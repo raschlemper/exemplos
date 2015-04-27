@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('exemplosApp')
-  .directive('layoutRodape', [function () {
+app.directive('layoutRodape', [function () {
 
     return {
 

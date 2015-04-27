@@ -8,16 +8,19 @@
  *
  * Main module of the application.
  */
-angular
-  .module('exemplosApp', [
+
+
+var app = angular.module('exemplosApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+  ]);
+
+
+app.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',

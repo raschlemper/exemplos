@@ -1,69 +1,79 @@
 <div class="container">
-	<div class="row">
-		<div class="col-md-9 text-center">
-			<div class="panel panel-default">
-				<div class="panel-heading">Cabeçalho</div>
-				<div class="panel-body">
-				  	<div class="row layout-line">
-						<div class="col-md-4 layout-box" ng-repeat="item in option.cabecalho">
-							<div class="row text-left"> 
-								<div class="radio">
-								  	<label>
-								  		<input type="radio" name="cabecalho" ng-value="item" ng-model="option.selection.cabecalho">{{item.name}}
-								  	</label>
-								</div>
-							</div>
-							<layout column="item.column" />
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Movimentos</div>
-				<div class="panel-body">
-				  	<div class="row layout-line">
-						<div class="col-md-4 layout-box" ng-repeat="item in option.detalhe">
-							<div class="row text-left"> 
-								<div class="radio">
-								  	<label>
-								  		<input type="radio" name="detalhe" ng-value="item" ng-model="option.selection.detalhe">{{item.name}}
-								  	</label>
-								</div>
-							</div>
-							<layout column="item.column" />
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Totalizadores</div>
-				<div class="panel-body">
-				  	<div class="row layout-line">
-						<div class="col-md-4 layout-box" ng-repeat="item in option.rodape">
-							<div class="row text-left"> 
-								<div class="radio">
-								  	<label>
-								  		<input type="radio" name="rodape" ng-value="item" ng-model="option.selection.rodape">{{item.name}}
-								  	</label>
-								</div>
-							</div>
-							<layout column="item.column" size="item.size" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 text-center" id="layout">
-			<div class="panel panel-default">
-				<div class="panel-heading">Layout</div>
-				<div class="panel-body layout-box">
-					<div class="row"> 
-						<layout id="cabecalho" column="option.selection.cabecalho.column"  ng-animate=" 'animate' "/>
-						<layout id="detalhe" column="option.selection.detalhe.column" />
-						<layout id="rodape" size="option.selection.rodape.size" column="option.selection.rodape.column" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <wizard>
+        <step ordem="1" titulo="'Layout'">
+            <div class="row">
+                <div class="col-md-9 text-center">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Cabeçalho</div>
+                        <div class="panel-body">
+                            <div class="row layout-line">
+                                <div class="col-md-4 layout-box" ng-repeat="item in option.cabecalho">
+                                    <div class="row text-left">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="cabecalho" ng-value="item" ng-model="option.selection.cabecalho">{{item.name}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <layout column="item.column" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Movimentos</div>
+                        <div class="panel-body">
+                            <div class="row layout-line">
+                                <div class="col-md-4 layout-box" ng-repeat="item in option.detalhe">
+                                    <div class="row text-left">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="detalhe" ng-value="item" ng-model="option.selection.detalhe">{{item.name}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <layout column="item.column" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Totalizadores</div>
+                        <div class="panel-body">
+                            <div class="row layout-line">
+                                <div class="col-md-4 layout-box" ng-repeat="item in option.rodape">
+                                    <div class="row text-left">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="rodape" ng-value="item" ng-model="option.selection.rodape">{{item.name}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <layout column="item.column" size="item.size" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center" id="layout">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Layout</div>
+                        <div class="panel-body layout-box">
+                            <div class="row">
+                                <layout id="cabecalho" column="option.selection.cabecalho.column" ng-animate=" 'animate' " />
+                                <layout id="detalhe" column="option.selection.detalhe.column" />
+                                <layout id="rodape" size="option.selection.rodape.size" column="option.selection.rodape.column" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </step>
+        <step ordem="2" titulo="'Agrupamento'">
+            Teasdasdsa
+        </step>
+        <step ordem="3" titulo="'Configuração'">
+            Teasdasdsa
+        </step>
+    </wizard>
 </div>

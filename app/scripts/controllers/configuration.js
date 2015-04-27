@@ -7,8 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-angular.module('exemplosApp')
-  .controller('ConfigurationCtrl', function ($scope) {
+app.controller('ConfigurationCtrl', function ($scope) {
 
   	var cabecalho = [
     	{ 'name' : '1 Coluna', 'column' : 1 },    	
@@ -37,5 +36,8 @@ angular.module('exemplosApp')
     	'detalhe': detalhe[0],
     	'rodape': rodape[0]
     };
+
+
+    
 
   });

@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('exemplosApp')
-  .directive('layout', ['$compile', function ($compile) {
+app.directive('layout', ['$compile', function ($compile) {
 
     return {
 

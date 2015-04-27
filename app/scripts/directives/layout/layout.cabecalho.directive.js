@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('exemplosApp')
-  .directive('layoutCabecalho', [function () {
+app.directive('layoutCabecalho', [function () {
 
     return {
 
