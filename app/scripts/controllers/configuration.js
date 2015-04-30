@@ -37,6 +37,14 @@ app.controller('ConfigurationCtrl', function ($scope) {
     	'rodape': rodape[0]
     };
 
+    //define os menus superiores para o wizard
+    $scope.configuracao = {};
+    $scope.configuracao.menus = [{ordem:1,
+        titulo:"Layout"
+    }, {ordem:2, titulo:"Componentes"},{ordem:3,
+        titulo:"Configuração"
+    }
+    ];
 
     
 

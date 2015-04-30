@@ -5,7 +5,6 @@ app.directive("step", function() {
         replace: true,
         transclude: true,
         scope: {
-            titulo:"=",
             ordem:"="
         }
     }

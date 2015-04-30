@@ -4,6 +4,7 @@ app.directive("wizard", function() {
         restrict: "E",
         transclude:true,
         scope: {
+        	configuracao:"="
         }
     }
 });
