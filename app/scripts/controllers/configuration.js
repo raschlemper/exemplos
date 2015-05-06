@@ -56,7 +56,7 @@ app.controller('ConfigurationCtrl', function($scope) {
     $scope.configuracao.menus = [{
         ordem: 1,
         titulo: "Visão"
-    },{
+    }, {
         ordem: 2,
         titulo: "Layout"
     }, {
@@ -67,6 +67,29 @@ app.controller('ConfigurationCtrl', function($scope) {
         titulo: "Configuração"
     }];
 
+    $scope.configuracao.layout = {};
 
+    $scope.configuracao.layout.header = {
+        "column": 6,
+        "line": 10
+    };
+
+    $scope.configuracao.layout.details = {
+        "column": 12,
+        "line": 8
+    };
+
+    $scope.configuracao.layout.footer = {
+        "column": 12,
+        "line": 6
+    };
+
+    $scope.isValid = function(booleano) {
+        if(booleano === true){
+            return booleano;
+        }else{
+            return false;
+        }
+    };
 
 });

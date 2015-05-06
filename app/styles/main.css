@@ -9,6 +9,15 @@ body {
   padding: 0;
 }
 
+.container-column{
+  background-color: #DDD !important;
+}
+
+.no-padding{
+  padding: 0px !important;
+  padding-right: 2px !important;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

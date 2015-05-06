@@ -1,12 +1,24 @@
 <div class="container">
-    <wizard configuracao="configuracao" steps="4" >
+    <wizard configuracao="configuracao" steps="4" valid="isValid(cadastroForm.$valid)">
         <step ordem="1">
-            Visão
+            <form name="cadastroForm">
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error': cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine }">
+                        <label for="nome">Visão:</label>
+                        <input id="nome" type="text" class="form-control" name="nome" ng-model="visao.nome" placeholder="Digite o nome da visão" required />
+                         <p ng-show="cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine" class="help-block">O nome é obrigatório.</p>
+                    </div>
+                     <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao" type="text" name="descricao" class="form-control" rows="3" ng-model="visao.descricao" required="true" placeholder="Digite a descrição da visão "/>
+                    </div>
+                </div>
+            </form>
         </step>
         <step ordem="2">
             <div class="row">
                 <div class="col-md-9 text-center">
-                    <div class="panel panel-default">
+                     <div class="panel panel-default">
                         <div class="panel-heading">Cabeçalho</div>
                         <div class="panel-body">
                             <div class="row layout-line">
@@ -17,8 +29,8 @@
                                                 <input type="radio" name="cabecalho" ng-value="item" ng-model="option.selection.cabecalho">{{item.name}}
                                             </label>
                                         </div>
-                                    </div>
-                                    <layout column="item.column" />
+                                    </div>  
+                                    <!-- <layout column="item.column" /> -->
                                 </div>
                             </div>
                         </div>
@@ -35,7 +47,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <layout column="item.column" />
+                            <!--         <layout column="item.column" /> -->
                                 </div>
                             </div>
                         </div>
@@ -52,7 +64,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <layout column="item.column" size="item.size" />
+                                    <!-- <layout column="item.column" size="item.size" /> -->
                                 </div>
                             </div>
                         </div>
@@ -63,9 +75,13 @@
                         <div class="panel-heading">Layout</div>
                         <div class="panel-body layout-box">
                             <div class="row">
-                                <layout id="cabecalho" column="option.selection.cabecalho.column" ng-animate=" 'animate' " />
-                                <layout id="detalhe" column="option.selection.detalhe.column" />
-                                <layout id="rodape" size="option.selection.rodape.size" column="option.selection.rodape.column" />
+                                <layout configuracao="configuracao.layout" preview="true">
+                                    <header title="">
+                                        <div class="layout layout-container container-column"></div>
+                                    </header>
+                                    <details></details>
+                                    <footer></footer>
+                                </layout>
                             </div>
                         </div>
                     </div>
