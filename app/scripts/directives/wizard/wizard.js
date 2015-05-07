@@ -26,7 +26,6 @@ app.directive("wizard", function() {
             $scope.updateAtual = function(order){
                 if(!$scope.isAtual(order)){
                     $scope.atual = order;
-                    console.log(angular.element("li.ng-binding.ng-scope.complete"));
                 }
             };
 

@@ -6,11 +6,11 @@
                     <div class="form-group" ng-class="{'has-error': cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine }">
                         <label for="nome">Visão:</label>
                         <input id="nome" type="text" class="form-control" name="nome" ng-model="visao.nome" placeholder="Digite o nome da visão" required />
-                         <p ng-show="cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine" class="help-block">O nome é obrigatório.</p>
+                        <p ng-show="cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine" class="help-block">O nome é obrigatório.</p>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="descricao">Descrição:</label>
-                        <textarea id="descricao" type="text" name="descricao" class="form-control" rows="3" ng-model="visao.descricao" required="true" placeholder="Digite a descrição da visão "/>
+                        <textarea id="descricao" type="text" name="descricao" class="form-control" rows="3" ng-model="visao.descricao" required="true" placeholder="Digite a descrição da visão " />
                     </div>
                 </div>
             </form>
@@ -18,7 +18,7 @@
         <step ordem="2">
             <div class="row">
                 <div class="col-md-9 text-center">
-                     <div class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">Cabeçalho</div>
                         <div class="panel-body">
                             <div class="row layout-line">
@@ -29,14 +29,32 @@
                                                 <input type="radio" name="cabecalho" ng-value="item" ng-model="option.selection.cabecalho">{{item.name}}
                                             </label>
                                         </div>
-                                    </div>  
-                                    <!-- <layout column="item.column" /> -->
+                                    </div>
+                                    <layout configuracao="configuracao">
+                                        <div block="header" columns="item.configuracao.header.column" lines="item.configuracao.header.line" group="false">
+                                            <div block="title" columns="item.configuracao.title.column" lines="item.configuracao.title.line" ng-if="item.configuracao.title">
+                                                <div class="layout layout-container-column">
+                                                    <span>Título</span>
+                                                </div>
+                                            </div>
+                                            <div block="foto" columns="item.configuracao.foto.column" lines="item.configuracao.foto.line" ng-if="item.configuracao.foto">
+                                                <div class="layout layout-container container-column">
+                                                    <div class="layout-number">5</div>
+                                                </div>
+                                            </div>
+                                            <div block="header-content" columns="item.configuracao.headerContent.column" lines="item.configuracao.headerContent.line" offset-line="item.configuracao.title.offsetLine">
+                                                <div class="layout layout-container container-column">
+                                                    <div class="layout-number">5</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </layout>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading">Movimentos</div>
+                        <div class="panel-heading">Detalhe</div>
                         <div class="panel-body">
                             <div class="row layout-line">
                                 <div class="col-md-4 layout-box" ng-repeat="item in option.detalhe">
@@ -47,13 +65,14 @@
                                             </label>
                                         </div>
                                     </div>
-                            <!--         <layout column="item.column" /> -->
+                                    <layout configuracao="item.configuracao" preview="true">
+                                    </layout>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading">Totalizadores</div>
+                        <div class="panel-heading">Rodapé</div>
                         <div class="panel-body">
                             <div class="row layout-line">
                                 <div class="col-md-4 layout-box" ng-repeat="item in option.rodape">
@@ -64,7 +83,8 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <!-- <layout column="item.column" size="item.size" /> -->
+                                    <layout configuracao="item.configuracao" preview="true">
+                                    </layout>
                                 </div>
                             </div>
                         </div>
@@ -75,12 +95,7 @@
                         <div class="panel-heading">Layout</div>
                         <div class="panel-body layout-box">
                             <div class="row">
-                                <layout configuracao="configuracao.layout" preview="true">
-                                    <header title="">
-                                        <div class="layout layout-container container-column"></div>
-                                    </header>
-                                    <details></details>
-                                    <footer></footer>
+                                <layout configuracao="configuracao" preview="true">
                                 </layout>
                             </div>
                         </div>

@@ -10,33 +10,107 @@
 app.controller('ConfigurationCtrl', function($scope) {
 
     var cabecalho = [{
-        'name': '1 Coluna',
-        'column': 1
+        'name': 'Com título',
+        'configuracao': {
+            'header': {
+                'column': 12,
+                'line': 35
+            },
+            'title': {
+                'column': 12,
+                'line': 10,
+                'offsetLine':1
+            },
+            'headerContent': {
+                'column': 12,
+                'line': 25
+            }
+        },
     }, {
-        'name': '2 Colunas',
-        'column': 2
+        'name': 'Sem título',
+        'configuracao': {
+            'header': {
+                'column': 12,
+                'line': 35
+            },
+            'headerContent': {
+                'column': 12
+            }
+        },
     }, {
-        'name': '3 Colunas',
-        'column': 3
+        'name': 'Com logo',
+        'configuracao': {
+            'header': {
+                'column': 12,
+                'line': 35
+            },
+            'headerContent': {
+                'column': 8,
+                'line': 35
+            },
+            'foto': {
+                'column': 4,
+                'line': 35
+            }
+        },
     }];
 
     var detalhe = [{
-        'name': '1 Coluna',
-        'column': 1
+        'name': 'Em colunas',
+        'configuracao': {
+            'details': {
+                'column': 12,
+                'line': 10
+            }
+        },
+        'type': 'column'
+    }, {
+        'name': 'Em linhas',
+        'configuracao': {
+            'details': {
+                'column': 12,
+                'line': 10
+            }
+        },
+        'type': 'line'
     }];
 
     var rodape = [{
-        'name': '1 Coluna',
-        'column': 1,
-        'size': [100]
+        'name': 'Abaixo',
+        'configuracao': {
+            'footer': {
+                'column': 12,
+                'line': 6
+            },
+            'details': {
+                'column': 12,
+                'line': 6
+            }
+        }
     }, {
-        'name': '2 Colunas',
-        'column': 2,
-        'size': [40, 60]
+        'name': 'Lateral',
+        'configuracao': {
+            'footer': {
+                'column': 3,
+                'line': 10
+            },
+            'details': {
+                'column': 8,
+                'line': 10
+            }
+        }
     }, {
-        'name': '3 Colunas',
-        'column': 3,
-        'size': [50, 20, 30]
+        'name': 'Ambos',
+        'configuracao': {
+            'footer': {
+                'column': 12,
+                'line': 6
+            },
+            'details': {
+                'column': 12,
+                'line': 6
+            }
+        }
     }];
 
     $scope.option = {
@@ -52,7 +126,9 @@ app.controller('ConfigurationCtrl', function($scope) {
     };
 
     //define os menus superiores para o wizard
-    $scope.configuracao = {};
+    $scope.configuracao = {'lineHeight':30, 'preview':{
+        'lineHeight':2
+    }};
     $scope.configuracao.menus = [{
         ordem: 1,
         titulo: "Visão"
@@ -67,27 +143,10 @@ app.controller('ConfigurationCtrl', function($scope) {
         titulo: "Configuração"
     }];
 
-    $scope.configuracao.layout = {};
-
-    $scope.configuracao.layout.header = {
-        "column": 6,
-        "line": 10
-    };
-
-    $scope.configuracao.layout.details = {
-        "column": 12,
-        "line": 8
-    };
-
-    $scope.configuracao.layout.footer = {
-        "column": 12,
-        "line": 6
-    };
-
     $scope.isValid = function(booleano) {
-        if(booleano === true){
+        if (booleano === true) {
             return booleano;
-        }else{
+        } else {
             return false;
         }
     };
