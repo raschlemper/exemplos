@@ -1,18 +1,21 @@
 'use strict';
 
-app.directive('layout', ['$compile', 'layoutSettings', '$sce', function ($compile, layoutSettings, $sce) {
+app.directive('layout', ['$compile', '$sce', function ($compile, $sce) {
     return {
         restrict: 'E',
         transclude: true,
+        replace:true,
         templateUrl: 'scripts/directives/layout/html/layout.template.html',
         controllerAs: 'layout',
         scope: {
-            configuracao: "=",
-            preview: "="
+            configuracao: "="
         },
         controller: ['$scope', function($scope){
             this.getConfiguration = function(){
                 return $scope.configuracao;
+            }
+            this.isPreview = function(){
+                return $scope.preview;
             }
         }]
     }
