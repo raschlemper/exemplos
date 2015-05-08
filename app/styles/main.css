@@ -212,4 +212,41 @@ body {
             justify-content : center;
 
   }
+   
+
+  .report {    
+    background-color: #eee;
+    margin-top: -30px;
+    padding: 40px;
+  }}
+
+  .report .page-portrait {    
+    background-color: #fff;
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .report .page-landscape {    
+    background-color: #fff;
+    height: 3508px;
+  }
+  
+  #header, #details, #footer {
+	  margin-bottom: 20px;
+  }
+  
+  .line-separator {
+  	  position: relative;
+  	  float: left;
+	  margin-top: 10px;
+	  margin-bottom: 20px;
+	  border-bottom: 1px solid #eee;
+	  width: 100%;
+  }
+  
+  
+  
 }

@@ -19,10 +19,9 @@ app.directive("header", function(layoutService, layoutSettings) {
                     scope.column = scope.configuracao.header.column;
                 }
             };
-            var getTitle = function(){
-                if(scope.preview){
-                    return scope.title;
-                }else{
+            
+            scope.getTitle = function(){
+                if(scope.title){
                     var title = '<h3>'+scope.title+'</h3>';
                     return title;
                 }
