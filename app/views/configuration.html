@@ -1,7 +1,7 @@
 <div class="container">
-    <wizard configuracao="configuracao" steps="4" valid="isValid(cadastroForm.$valid)">
-        <step ordem="1">
-            <form name="cadastroForm">
+    <form name="cadastroForm">
+        <wizard configuracao="configuracao" steps="4" valid="isValid(cadastroForm.$valid)">
+            <step ordem="1">
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error': cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine }">
                         <label for="nome">Visão:</label>
@@ -13,38 +13,143 @@
                         <textarea id="descricao" type="text" name="descricao" class="form-control" rows="3" ng-model="visao.descricao" required="true" placeholder="Digite a descrição da visão " />
                     </div>
                 </div>
-            </form>
-        </step>
-        <step ordem="2">
-            <div class="row">
-                <div class="col-md-9 text-center">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Cabeçalho</div>
-                        <div class="panel-body">
-                            <div class="row layout-line">
-                                <div class="col-md-4 layout-box" ng-repeat="item in option.cabecalho">
-                                    <div class="row text-left">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="cabecalho" ng-value="item" ng-model="option.selection.cabecalho">{{item.name}}
-                                            </label>
+            </step>
+            <step ordem="2">
+                <div class="row">
+                    <div class="col-md-9 text-center">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Cabeçalho</div>
+                            <div class="panel-body">
+                                <div class="row layout-line">
+                                    <div class="col-md-4 layout-box" ng-repeat="item in option.cabecalho">
+                                        <div class="row text-left">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="cabecalho" ng-value="item" ng-model="option.selection.cabecalho">{{item.name}}
+                                                </label>
+                                            </div>
                                         </div>
+                                        <layout configuracao="configuracao" preview="true">
+                                            <div block="header" columns="item.configuracao.header.column" lines="item.configuracao.header.line" group="false">
+                                                <div block="title" columns="item.configuracao.title.column" lines="item.configuracao.title.line" ng-if="item.configuracao.title">
+                                                    <div class="layout layout-container layout-border">
+                                                        <div class="layout layout-container container-column">
+                                                            <span>Título</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div block="foto" columns="item.configuracao.foto.column" lines="item.configuracao.foto.line" ng-if="item.configuracao.foto">
+                                                    <div class="layout layout-container layout-border">
+                                                        <div class="layout layout-container container-column"> <img src="images/yeoman.png" alt="I'm Yeoman" class="img-responsive"></div>
+                                                    </div>
+                                                </div>
+                                                <div block="header-content" columns="item.configuracao.headerContent.column" lines="item.configuracao.headerContent.line" offset-line="item.configuracao.title.offsetLine">
+                                                    <div class="layout layout-container layout-border">
+                                                        <div class="layout layout-container container-column"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </layout>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Detalhe</div>
+                            <div class="panel-body">
+                                <div class="row layout-line">
+                                    <div class="col-md-4 layout-box" ng-repeat="item in option.detalhe">
+                                        <div class="row text-left">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="detalhe" ng-value="item" ng-model="option.selection.detalhe">{{item.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <layout configuracao="configuracao" preview="true">
+                                            <div block="details" columns="item.configuracao.details.column" lines="item.configuracao.details.line" group="false">
+                                                <div block="details-content" columns="item.configuracao.headerContent.column" lines="item.configuracao.headerContent.line" offset-line="item.configuracao.title.offsetLine">
+                                                    <div class="layout layout-container layout-border">
+                                                        <div class="layout layout-container container-column"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </layout>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Rodapé</div>
+                            <div class="panel-body">
+                                <div class="row layout-line">
+                                    <div class="col-md-4 layout-box" ng-repeat="item in option.rodape">
+                                        <div class="row text-left">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="rodape" ng-value="item" ng-model="option.selection.rodape">{{item.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <layout configuracao="configuracao" preview="true">
+                                            <div block="details" columns="item.configuracao.detailsContent.column" lines="item.configuracao.detailsContent.line" group="false">
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column"></div>
+                                                </div>
+                                            </div>
+                                            <div block="total" columns="item.configuracao.total.column" lines="item.configuracao.total.line" group="false" ng-if="item.configuracao.total">
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column"></div>
+                                                </div>
+                                            </div>
+                                            <div block="footer" columns="item.configuracao.footer.column" lines="item.configuracao.footer.line" group="false" offset-line="item.configuracao.footer.offsetLine">
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column"></div>
+                                                </div>
+                                            </div>
+                                        </layout>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center" id="layout">
+                        <div class="panel panel-default" style="height: 250px;">
+                            <div class="panel-heading">Layout</div>
+                            <div class="panel-body layout-box">
+                                <div class="row">
                                     <layout configuracao="configuracao" preview="true">
-                                        <div block="header" columns="item.configuracao.header.column" lines="item.configuracao.header.line" group="false">
-                                            <div block="title" columns="item.configuracao.title.column" lines="item.configuracao.title.line" ng-if="item.configuracao.title">
+                                        <div block="header" columns="option.selection.cabecalho.configuracao.header.column" lines="option.selection.cabecalho.configuracao.header.line" group="false">
+                                            <div block="title" columns="option.selection.cabecalho.configuracao.title.column" lines="option.selection.cabecalho.configuracao.title.line" ng-if="option.selection.cabecalho.configuracao.title">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column">
                                                         <span>Título</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div block="foto" columns="item.configuracao.foto.column" lines="item.configuracao.foto.line" ng-if="item.configuracao.foto">
+                                            <div block="foto" columns="option.selection.cabecalho.configuracao.foto.column" lines="option.selection.cabecalho.configuracao.foto.line" ng-if="option.selection.cabecalho.configuracao.foto">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column"> <img src="images/yeoman.png" alt="I'm Yeoman" class="img-responsive"></div>
                                                 </div>
                                             </div>
-                                            <div block="header-content" columns="item.configuracao.headerContent.column" lines="item.configuracao.headerContent.line" offset-line="item.configuracao.title.offsetLine">
+                                            <div block="header-content" columns="option.selection.cabecalho.configuracao.headerContent.column" lines="option.selection.cabecalho.configuracao.headerContent.line" offset-line="option.selection.cabecalho.configuracao.title.offsetLine">
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div block="details" columns="option.selection.rodape.configuracao.details.column" lines="option.selection.rodape.configuracao.details.line" group="false">
+                                            <div block="details-content" ng-if="option.selection.rodape.configuracao.detailsContent" columns="option.selection.rodape.configuracao.detailsContent.column" lines="option.selection.rodape.configuracao.detailsContent.line" offset-line="item.configuracao.title.offsetLine">
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column"></div>
+                                                </div>
+                                            </div>
+                                            <div block="total" columns="option.selection.rodape.configuracao.total.column" lines="option.selection.rodape.configuracao.total.line" group="false" ng-if="option.selection.rodape.configuracao.total">
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column"></div>
+                                                </div>
+                                            </div>
+                                            <div block="footer" columns="option.selection.rodape.configuracao.footer.column" lines="option.selection.rodape.configuracao.footer.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column"></div>
                                                 </div>
@@ -53,124 +158,19 @@
                                     </layout>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Detalhe</div>
-                        <div class="panel-body">
-                            <div class="row layout-line">
-                                <div class="col-md-4 layout-box" ng-repeat="item in option.detalhe">
-                                    <div class="row text-left">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="detalhe" ng-value="item" ng-model="option.selection.detalhe">{{item.name}}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <layout configuracao="configuracao" preview="true">
-                                        <div block="details" columns="item.configuracao.details.column" lines="item.configuracao.details.line" group="false">
-                                            <div block="details-content" columns="item.configuracao.headerContent.column" lines="item.configuracao.headerContent.line" offset-line="item.configuracao.title.offsetLine">
-                                                <div class="layout layout-container layout-border">
-                                                    <div class="layout layout-container container-column"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </layout>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Rodapé</div>
-                        <div class="panel-body">
-                            <div class="row layout-line">
-                                <div class="col-md-4 layout-box" ng-repeat="item in option.rodape">
-                                    <div class="row text-left">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="rodape" ng-value="item" ng-model="option.selection.rodape">{{item.name}}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <layout configuracao="configuracao" preview="true">
-                                        <div block="details" columns="item.configuracao.detailsContent.column" lines="item.configuracao.detailsContent.line" group="false">
-                                            <div class="layout layout-container layout-border">
-                                                <div class="layout layout-container container-column"></div>
-                                            </div>
-                                        </div>
-                                        <div block="total" columns="item.configuracao.total.column" lines="item.configuracao.total.line" group="false" ng-if="item.configuracao.total">
-                                            <div class="layout layout-container layout-border">
-                                                <div class="layout layout-container container-column"></div>
-                                            </div>
-                                        </div>
-                                        <div block="footer" columns="item.configuracao.footer.column" lines="item.configuracao.footer.line" group="false" offset-line="item.configuracao.footer.offsetLine">
-                                            <div class="layout layout-container layout-border">
-                                                <div class="layout layout-container container-column"></div>
-                                            </div>
-                                        </div>
-                                    </layout>
-                                </div>
+                            <div class="panel-footer" style="margin-top: 15px;">
+                                <button class="btn btn-primary" ng-click="makePreview()">Preview</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 text-center" id="layout">
-                    <div class="panel panel-default" style="height: 250px;">
-                        <div class="panel-heading">Layout</div>
-                        <div class="panel-body layout-box">
-                            <div class="row">
-                                <layout configuracao="configuracao" preview="true">
-                                    <div block="header" columns="option.selection.cabecalho.configuracao.header.column" lines="option.selection.cabecalho.configuracao.header.line" group="false">
-                                        <div block="title" columns="option.selection.cabecalho.configuracao.title.column" lines="option.selection.cabecalho.configuracao.title.line" ng-if="option.selection.cabecalho.configuracao.title">
-                                            <div class="layout layout-container layout-border">
-                                                <div class="layout layout-container container-column">
-                                                    <span>Título</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div block="foto" columns="option.selection.cabecalho.configuracao.foto.column" lines="option.selection.cabecalho.configuracao.foto.line" ng-if="option.selection.cabecalho.configuracao.foto">
-                                            <div class="layout layout-container layout-border">
-                                                <div class="layout layout-container container-column"> <img src="images/yeoman.png" alt="I'm Yeoman" class="img-responsive"></div>
-                                            </div>
-                                        </div>
-                                        <div block="header-content" columns="option.selection.cabecalho.configuracao.headerContent.column" lines="option.selection.cabecalho.configuracao.headerContent.line" offset-line="option.selection.cabecalho.configuracao.title.offsetLine">
-                                            <div class="layout layout-container layout-border">
-                                                <div class="layout layout-container container-column"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div block="details" columns="option.selection.rodape.configuracao.details.column" lines="option.selection.rodape.configuracao.details.line" group="false">
-                                        <div block="details-content" ng-if="option.selection.rodape.configuracao.detailsContent" columns="option.selection.rodape.configuracao.detailsContent.column" lines="option.selection.rodape.configuracao.detailsContent.line" offset-line="item.configuracao.title.offsetLine">
-                                            <div class="layout layout-container layout-border">
-                                                <div class="layout layout-container container-column"></div>
-                                            </div>
-                                        </div>
-                                        <div block="total" columns="option.selection.rodape.configuracao.total.column" lines="option.selection.rodape.configuracao.total.line" group="false" ng-if="option.selection.rodape.configuracao.total">
-                                            <div class="layout layout-container layout-border">
-                                                <div class="layout layout-container container-column"></div>
-                                            </div>
-                                        </div>
-                                        <div block="footer" columns="option.selection.rodape.configuracao.footer.column" lines="option.selection.rodape.configuracao.footer.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine">
-                                            <div class="layout layout-container layout-border">
-                                                <div class="layout layout-container container-column"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </layout>
-                            </div>
-                        </div>
-                        <div class="panel-footer" style="margin-top: 15px;">
-                            <button class="btn btn-primary" ng-click="makePreview()">Preview</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </step>
-        <step ordem="3">
-            Teasdasdsa
-        </step>
-        <step ordem="4">
-            Teasdasdsa
-        </step>
-    </wizard>
+            </step>
+            <step ordem="3">
+                Teasdasdsa
+            </step>
+            <step ordem="4">
+                Teasdasdsa
+            </step>
+        </wizard>
+    </form>
 </div>
