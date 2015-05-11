@@ -7,7 +7,7 @@ var App = function() {
 	var self = this;
     
     self.setupVariables = function() {
-        self.ipAddress  = '10.0.1.127';
+        self.ipAddress  = '127.0.0.1';
         self.port       = '9000';
         self.root       = path.normalize(__dirname + '/..');
     };

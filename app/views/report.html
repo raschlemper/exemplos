@@ -1,69 +1,106 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-9 text-center">
-			<div class="panel panel-default">
-				<div class="panel-heading">CabeÃ§alho</div>
-				<div class="panel-body">
-				  	<div class="row layout-line">
-						<div class="col-md-4 layout-box" ng-repeat="item in option.cabecalho">
-							<div class="row text-left"> 
-								<div class="radio">
-								  	<label>
-								  		<input type="radio" name="cabecalho" ng-value="item" ng-model="option.selection.cabecalho">{{item.name}}
-								  	</label>
-								</div>
-							</div>
-							<layout column="item.column" />
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Movimentos</div>
-				<div class="panel-body">
-				  	<div class="row layout-line">
-						<div class="col-md-4 layout-box" ng-repeat="item in option.detalhe">
-							<div class="row text-left"> 
-								<div class="radio">
-								  	<label>
-								  		<input type="radio" name="detalhe" ng-value="item" ng-model="option.selection.detalhe">{{item.name}}
-								  	</label>
-								</div>
-							</div>
-							<layout column="item.column" />
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Totalizadores</div>
-				<div class="panel-body">
-				  	<div class="row layout-line">
-						<div class="col-md-4 layout-box" ng-repeat="item in option.rodape">
-							<div class="row text-left"> 
-								<div class="radio">
-								  	<label>
-								  		<input type="radio" name="rodape" ng-value="item" ng-model="option.selection.rodape">{{item.name}}
-								  	</label>
-								</div>
-							</div>
-							<layout column="item.column" size="item.size" />
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="col-md-2">
+
 		</div>
-		<div class="col-md-3 text-center" id="layout">
-			<div class="panel panel-default">
-				<div class="panel-heading">Layout</div>
-				<div class="panel-body layout-box">
-					<div class="row"> 
-						<layout id="cabecalho" column="option.selection.cabecalho.column"  ng-animate=" 'animate' "/>
-						<layout id="detalhe" column="option.selection.detalhe.column" />
-						<layout id="rodape" size="option.selection.rodape.size" column="option.selection.rodape.column" />
+		<div class="col-md-10 report">
+
+			<div class="page-portrait container-fluid">					
+				
+				<div id="header" class="col-md-12">
+				
+					<div id="header-title" class="col-md-12">
+						<div class="page-header">
+							<h3>Título do Relatório</h3>
+						</div>
+					</div>
+						
+					<div id="header-imagem" class="col-md-3">
+						<img src="images/yeoman.png" class="col-md-12"/>
+					</div>
+					
+					<div id="header-data" class="col-md-9">
+						<div class="row">
+							<div class="col-md-4">Instituicao Ensino:</div>
+							<div class="col-md-8">Nome da Instituicao de Ensino</div>
+						</div>	
+						<div class="row">
+							<div class="col-md-4">Curso:</div>
+							<div class="col-md-8">Nome do Tipo Curso</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">Série:</div>
+							<div class="col-md-8">Código da Série e Nome do Curso</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">Ano / Semetre:</div>
+							<div class="col-md-8">Código do Ano e Código do Semestre</div>
+						</div>
+					</div>
+					
+				</div>
+				
+				<div id="details" class="col-md-12" style="font-size: 80%">
+					<div id="details-data" class="col-md-10">
+						<table class="table">
+							<tr>
+								<th>Status</th>
+								<th>Nome do Aluno</th>
+								<th>Data Vencimento</th>
+								<th>Data Pagamento</th>
+								<th>Valor</th>
+							</tr>
+							<tr ng-repeat="number in list"> 
+								<td>{{ dadosteste.status }}</td>
+								<td>{{ dadosteste.aluno }}</td>
+								<td>{{ dadosteste.vencimento }}</td>
+								<td>{{ dadosteste.pagamento }}</td>
+								<td>{{ dadosteste.valor }}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="details-saldo" class="col-md-2">
+						<table class="table">
+							<tr>
+								<th>Saldo</th>
+							</tr>
+						</table>
 					</div>
 				</div>
+				
+				<div id="footer" class="col-md-12">
+					<div id="footer-total" class="col-md-12">Totalizadores</div>
+				</div>
+			
+			   <!-- <layout configuracao="configuracao.layout" preview="false">
+	                     <header title="teste">
+	                         <div class="layout layout-container container-column"></div>
+	                     </header>
+	                     <details></details>
+	                     <footer></footer>
+	                </layout>
+	
+				 <div class="row">
+					<div class="col-md-12">
+						<layout id="cabecalho" column="report.cabecalho.column" show-number="false" content="cabecalhoHtml"/>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table table-striped">
+							<tr>
+					          	<th ng-repeat="item in report.detalhe.fields.header">{{ item }}</th>
+					        </tr>
+							<tr>
+		  						<td ng-repeat="item in report.detalhe.fields.values">{{ item }}</td>
+		  					</tr>
+						</table>
+					</div>
+				</div> -->
+
 			</div>
+
 		</div>
 	</div>
 </div>
