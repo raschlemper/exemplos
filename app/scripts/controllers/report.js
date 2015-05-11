@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('ReportCtrl', function ($scope, $http) {
+app.controller('ReportCtrl', function ($scope, JsonService) {
 	
 	$scope.list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 	$scope.dadosteste = {"status": "R", "aluno": "Nome do Aluno", "vencimento": "08/05/2015", "pagamento": "08/05/2015", "valor": "100,00"}
@@ -91,14 +91,16 @@ app.controller('ReportCtrl', function ($scope, $http) {
         return html;
     }();
 
-    var getData = function(json) {
-        $http.get(json)
-            .success(function(data) {
-                $scope.report.data;
+    var teste = function() {
+        JsonService.movimento()
+            .then( function(data) {
+                console.log(data);
             })
-            .error(function(error) {
-                console.log(error);
+            .catch( function(err) {
+                return console.log(err);
             });
-    };
+    }
+
+    teste();
 
   });
