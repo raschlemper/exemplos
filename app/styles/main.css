@@ -115,7 +115,7 @@ body {
 
   .layout-container {
     height: 100%; 
-    padding: 4px 0 4px 4px !important; 
+    padding: 4px !important; 
     background-color: #fff;
   }
 

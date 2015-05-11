@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope) {
+app.controller('ConfigurationCtrl', function($scope, $location, LayoutService) {
 
     var cabecalho = [{
         'name': 'Com título',
@@ -18,12 +18,12 @@ app.controller('ConfigurationCtrl', function($scope) {
             },
             'title': {
                 'column': 12,
-                'line': 10,
-                'offsetLine':1
+                'line': 17,
+                'offsetLine': 1
             },
             'headerContent': {
                 'column': 12,
-                'line': 25
+                'line': 18
             }
         },
     }, {
@@ -60,7 +60,7 @@ app.controller('ConfigurationCtrl', function($scope) {
         'configuracao': {
             'details': {
                 'column': 12,
-                'line': 10
+                'line': 35
             }
         },
         'type': 'column'
@@ -69,7 +69,7 @@ app.controller('ConfigurationCtrl', function($scope) {
         'configuracao': {
             'details': {
                 'column': 12,
-                'line': 10
+                'line': 35
             }
         },
         'type': 'line'
@@ -80,23 +80,32 @@ app.controller('ConfigurationCtrl', function($scope) {
         'configuracao': {
             'footer': {
                 'column': 12,
-                'line': 6
+                'line': 15,
+                'offsetLine': 1
             },
             'details': {
                 'column': 12,
-                'line': 6
+                'line': 20
+            },
+            'detailsContent': {
+                'column': 12,
+                'line': 20
             }
         }
     }, {
         'name': 'Lateral',
         'configuracao': {
             'footer': {
-                'column': 3,
-                'line': 10
+                'column': 4,
+                'line': 35
             },
             'details': {
+                'column': 12,
+                'line': 35
+            },
+            'detailsContent': {
                 'column': 8,
-                'line': 10
+                'line': 35
             }
         }
     }, {
@@ -104,11 +113,20 @@ app.controller('ConfigurationCtrl', function($scope) {
         'configuracao': {
             'footer': {
                 'column': 12,
-                'line': 6
+                'line': 10,
+                'offsetLine': 1
+            },
+            'total': {
+                'column': 4,
+                'line': 25
             },
             'details': {
                 'column': 12,
-                'line': 6
+                'line': 25
+            },
+            'detailsContent': {
+                'column': 8,
+                'line': 25
             }
         }
     }];
@@ -126,9 +144,12 @@ app.controller('ConfigurationCtrl', function($scope) {
     };
 
     //define os menus superiores para o wizard
-    $scope.configuracao = {'lineHeight':30, 'preview':{
-        'lineHeight':2
-    }};
+    $scope.configuracao = {
+        'lineHeight': 15,
+        'preview': {
+            'lineHeight': 2
+        }
+    };
     $scope.configuracao.menus = [{
         ordem: 1,
         titulo: "Visão"
@@ -142,6 +163,12 @@ app.controller('ConfigurationCtrl', function($scope) {
         ordem: 4,
         titulo: "Configuração"
     }];
+
+    $scope.makePreview = function(){
+        LayoutService.service.setOptionPreview($scope.option.selection);
+        LayoutService.service.setConfiguration($scope.configuracao);
+        $location.path("/preview");
+    }
 
     $scope.isValid = function(booleano) {
         if (booleano === true) {

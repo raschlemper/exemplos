@@ -8,7 +8,8 @@ app.directive('layout', ['$compile', '$sce', function ($compile, $sce) {
         templateUrl: 'scripts/directives/layout/html/layout.template.html',
         controllerAs: 'layout',
         scope: {
-            configuracao: "="
+            configuracao: "=",
+            preview: "="
         },
         controller: ['$scope', function($scope){
             this.getConfiguration = function(){

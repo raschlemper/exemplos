@@ -30,21 +30,23 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <layout configuracao="configuracao">
+                                    <layout configuracao="configuracao" preview="true">
                                         <div block="header" columns="item.configuracao.header.column" lines="item.configuracao.header.line" group="false">
                                             <div block="title" columns="item.configuracao.title.column" lines="item.configuracao.title.line" ng-if="item.configuracao.title">
-                                                <div class="layout layout-container-column">
-                                                    <span>Título</span>
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column">
+                                                        <span>Título</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div block="foto" columns="item.configuracao.foto.column" lines="item.configuracao.foto.line" ng-if="item.configuracao.foto">
-                                                <div class="layout layout-container container-column">
-                                                    <div class="layout-number">5</div>
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column"> <img src="images/yeoman.png" alt="I'm Yeoman" class="img-responsive"></div>
                                                 </div>
                                             </div>
                                             <div block="header-content" columns="item.configuracao.headerContent.column" lines="item.configuracao.headerContent.line" offset-line="item.configuracao.title.offsetLine">
-                                                <div class="layout layout-container container-column">
-                                                    <div class="layout-number">5</div>
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -65,7 +67,14 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <layout configuracao="item.configuracao" preview="true">
+                                    <layout configuracao="configuracao" preview="true">
+                                        <div block="details" columns="item.configuracao.details.column" lines="item.configuracao.details.line" group="false">
+                                            <div block="details-content" columns="item.configuracao.headerContent.column" lines="item.configuracao.headerContent.line" offset-line="item.configuracao.title.offsetLine">
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column"></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </layout>
                                 </div>
                             </div>
@@ -83,7 +92,22 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <layout configuracao="item.configuracao" preview="true">
+                                    <layout configuracao="configuracao" preview="true">
+                                        <div block="details" columns="item.configuracao.detailsContent.column" lines="item.configuracao.detailsContent.line" group="false">
+                                            <div class="layout layout-container layout-border">
+                                                <div class="layout layout-container container-column"></div>
+                                            </div>
+                                        </div>
+                                        <div block="total" columns="item.configuracao.total.column" lines="item.configuracao.total.line" group="false" ng-if="item.configuracao.total">
+                                            <div class="layout layout-container layout-border">
+                                                <div class="layout layout-container container-column"></div>
+                                            </div>
+                                        </div>
+                                        <div block="footer" columns="item.configuracao.footer.column" lines="item.configuracao.footer.line" group="false" offset-line="item.configuracao.footer.offsetLine">
+                                            <div class="layout layout-container layout-border">
+                                                <div class="layout layout-container container-column"></div>
+                                            </div>
+                                        </div>
                                     </layout>
                                 </div>
                             </div>
@@ -91,13 +115,52 @@
                     </div>
                 </div>
                 <div class="col-md-3 text-center" id="layout">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" style="height: 250px;">
                         <div class="panel-heading">Layout</div>
                         <div class="panel-body layout-box">
                             <div class="row">
                                 <layout configuracao="configuracao" preview="true">
+                                    <div block="header" columns="option.selection.cabecalho.configuracao.header.column" lines="option.selection.cabecalho.configuracao.header.line" group="false">
+                                        <div block="title" columns="option.selection.cabecalho.configuracao.title.column" lines="option.selection.cabecalho.configuracao.title.line" ng-if="option.selection.cabecalho.configuracao.title">
+                                            <div class="layout layout-container layout-border">
+                                                <div class="layout layout-container container-column">
+                                                    <span>Título</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div block="foto" columns="option.selection.cabecalho.configuracao.foto.column" lines="option.selection.cabecalho.configuracao.foto.line" ng-if="option.selection.cabecalho.configuracao.foto">
+                                            <div class="layout layout-container layout-border">
+                                                <div class="layout layout-container container-column"> <img src="images/yeoman.png" alt="I'm Yeoman" class="img-responsive"></div>
+                                            </div>
+                                        </div>
+                                        <div block="header-content" columns="option.selection.cabecalho.configuracao.headerContent.column" lines="option.selection.cabecalho.configuracao.headerContent.line" offset-line="option.selection.cabecalho.configuracao.title.offsetLine">
+                                            <div class="layout layout-container layout-border">
+                                                <div class="layout layout-container container-column"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div block="details" columns="option.selection.rodape.configuracao.details.column" lines="option.selection.rodape.configuracao.details.line" group="false">
+                                        <div block="details-content" ng-if="option.selection.rodape.configuracao.detailsContent" columns="option.selection.rodape.configuracao.detailsContent.column" lines="option.selection.rodape.configuracao.detailsContent.line" offset-line="item.configuracao.title.offsetLine">
+                                            <div class="layout layout-container layout-border">
+                                                <div class="layout layout-container container-column"></div>
+                                            </div>
+                                        </div>
+                                        <div block="total" columns="option.selection.rodape.configuracao.total.column" lines="option.selection.rodape.configuracao.total.line" group="false" ng-if="option.selection.rodape.configuracao.total">
+                                            <div class="layout layout-container layout-border">
+                                                <div class="layout layout-container container-column"></div>
+                                            </div>
+                                        </div>
+                                        <div block="footer" columns="option.selection.rodape.configuracao.footer.column" lines="option.selection.rodape.configuracao.footer.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine">
+                                            <div class="layout layout-container layout-border">
+                                                <div class="layout layout-container container-column"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </layout>
                             </div>
+                        </div>
+                        <div class="panel-footer" style="margin-top: 15px;">
+                            <button class="btn btn-primary" ng-click="makePreview()">Preview</button>
                         </div>
                     </div>
                 </div>

@@ -17,29 +17,43 @@ app.directive('block', [function() {
         link: function(scope, element, attrs, ctrls) {
             scope.layoutCtrl = ctrls[0];
             scope.configuracao = scope.layoutCtrl.getConfiguration();
-            scope.configBlock = function() {
-                scope.column = 'col-md-' + scope.columns;
-                if (scope.lines) {
-                    if(scope.configuracao.preview){
-                    scope.height = "height:" + (scope.lines * scope.configuracao.preview.lineHeight) + "px;";
-                    }else{
-                     scope.height = "height:" + (scope.lines * scope.configuracao.lineHeight) + "px;";
-                    }   
-                } else {
-                    scope.height = "height: 100%;";
+
+            scope.getColumn = function() {
+                return 'col-md-' + scope.columns;
+            }
+
+            scope.getRowOffset = function() {
+                if (scope.offset) {
+                    return "col-md-offset-" + scope.offset;
                 }
-                if (scope.offsetRow) {
-                    scope.spaceRow = "col-md-offset-" + scope.offset;
-                }
+            }
+
+            scope.getLineOffset = function() {
                 if (scope.offsetLine) {
-                    if(scope.configuracao.preview){
-                        scope.spaceLine = "margin-top:" + (scope.offsetLine * scope.configuracao.preview.lineHeight) + "px;"
-                    }else{
-                        scope.spaceLine = "margin-top:" + (scope.offsetLine * scope.configuracao.lineHeight) + "px;"
+                    if (scope.layoutCtrl.isPreview()) {
+                        return "margin-top:" + (scope.offsetLine * scope.configuracao.preview.lineHeight) + "px;"
+                    } else {
+                        return "margin-top:" + (scope.offsetLine * scope.configuracao.lineHeight) + "px;"
                     }
                 }
-                if(scope.configuracao.preview){
-                    scope.padding = "padding: 0px !important; padding-right:5px !important";
+
+            }
+
+            scope.getPadding = function() {
+                if (scope.layoutCtrl.isPreview()) {
+                    return "padding: 0px !important; padding-right:2px !important;";
+                }
+            }
+
+            scope.getHeight = function() {
+                if (scope.lines) {
+                    if (scope.layoutCtrl.isPreview()) {
+                        return "height:" + (scope.lines * scope.configuracao.preview.lineHeight) + "px;";
+                    } else {
+                        return "height:" + (scope.lines * scope.configuracao.lineHeight) + "px;";
+                    }
+                } else {
+                    return "height: 100%;";
                 }
             }
 
@@ -49,8 +63,7 @@ app.directive('block', [function() {
                 }
             }
 
-            scope.configBlock();
-            scope.isGroup();
+
         }
     }
 }]);
