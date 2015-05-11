@@ -46,15 +46,6 @@ app.controller('ReportCtrl', function ($scope, JsonService) {
         }
     };
 	
-	
-	
-	
-	
-	
-	
-	
-	
-
     $scope.report = {
         description: 'Relatório de Movimentação Financeira',
         cabecalho: {

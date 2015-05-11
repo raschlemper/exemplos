@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $location, LayoutService) {
+app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, JsonService) {
 
     var cabecalho = [{
         'name': 'Com título',
@@ -164,7 +164,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService) {
         titulo: "Configuração"
     }];
 
-    $scope.makePreview = function(){
+    $scope.makePreview = function() {
         LayoutService.service.setOptionPreview($scope.option.selection);
         LayoutService.service.setConfiguration($scope.configuracao);
         $location.path("/preview");
@@ -177,5 +177,17 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService) {
             return false;
         }
     };
+
+    $scope.labels = [];
+    var getCamposMovimento = function() {
+        JsonService.campos()
+            .then(function(data) {
+                $scope.labels = data;
+            })
+            .catch(function(err) {
+                return console.log(err);
+            });
+    }
+    getCamposMovimento();
 
 });

@@ -1,0 +1,213 @@
+[{
+	"column": "ic_tipo_documento",
+	"label": "Tipo do documento"
+},
+{
+	"column": "id_mensalidade",
+	"label": "Id da mensalidade"
+},
+{
+	"column":"nr_documento",
+	"label": "Número do documento"
+},
+{
+	"column": "nr_titulo",
+	"label": "Número do título"
+},
+{
+	"column": "sequencia_titulo",
+	"label": "Sequência do título"
+},
+{
+	"column": "id_estrutura_servico",
+	"label": "Id estrutura do serviço"
+},
+{
+	"column": "nr_ano",
+	"label": "Ano"
+},
+{
+	"column": "nr_semestre",
+	"label": "Número do semestre"
+},
+{
+	"column": "cd_instituicao_ensino",
+	"label": "Código da Instituição de ensino"
+},
+{
+	"column":"nm_instituicao_ensino",
+	"label": "Nome da Instituição de ensino"
+},
+{
+	"column": "cd_tipo_curso",
+	"label": "Código Tipo de Curso"
+},
+{
+	"column": "ds_tipo_curso",
+	"label": "Descrição do tipo de curso"
+},
+{
+	"column": "cd_curso",
+	"label": "Código do curso"
+},
+{
+	"column": "nm_curso",
+	"label": "Nome do curso"
+},
+{
+	"column": "cd_curso_instituicao",
+	"label": "Código da relação Curso/Instituição"
+},
+{
+	"column": "id_tipo_receita_despesa",
+	"label": "Id tipo receita despesa"
+},
+{
+	"column": "ds_tipo_receita_despesa",
+	"label": "Descrição do tipo de receita despesa"
+},
+{
+	"column": "cd_aluno",
+	"label": "Código do aluno"
+},
+{
+	"column":"nm_aluno",
+	"label": "Nome do aluno"
+},
+{
+	"column": "id_responsavel_financeiro",
+	"label": "Id do responsável financeiro"
+},
+{
+	"column": "nm_responsavel_financeiro",
+	"label": "Nome do responsável financeiro"
+},
+{
+	"column": "dt_vencimento",
+	"label": "Data de vencimento"
+},
+{
+	"column": "dt_pagamento",
+	"label": "Data de pagamento"
+},
+{
+	"column": "caixa",
+	"label": "Caixa"
+},
+{
+	"column": "banco",
+	"label": "Banco"
+},
+{
+	"column": "ajuste",
+	"label": "Ajuste"
+},
+{
+	"column": "previsao_nao_confirmado",
+	"label": "Previsão não confirmada"
+},
+{
+	"column": "previsao_confirmado",
+	"label": "Previsão confirmada"
+},
+{
+	"column": "previsao_desconto_nao_confirmado",
+	"label": "Previsão de desconto não confirmado"
+},
+{
+	"column": "previsao_desconto_confirmado",
+	"label": "Previsão de desconto confirmado"
+},
+{
+	"column": "desconto_concedido",
+	"label": "Desconto concedido"
+},
+{
+	"column": "juros_calculado",
+	"label": "Juros calculado"
+},
+{
+	"column": "multa_calculado",
+	"label": "Multa calculado"
+},
+{
+	"column": "nota_promissoria",
+	"label": "Nota promissória"
+},
+{
+	"column": "fies",
+	"label": "Nota promissória"
+},
+{
+	"column": "cobranca",
+	"label": "Cobrança"
+},
+{
+	"column": "dif_nao_confirmado",
+	"label": "Dif não confirmada"
+},
+{
+	"column": "perdas",
+	"label": "Perdas"
+},
+{
+	"column": "dinheiro",
+	"label": "Dinheiro"
+},
+{
+	"column": "cartao_debito",
+	"label": "Cartão de débito"
+},
+{
+	"column": "cartao_credito",
+	"label": "Cartão de crédito"
+},
+{
+	"column": "cheque",
+	"label": "Cheque"
+},
+{
+	"column": "cheque_pre",
+	"label": "Cheque pré"
+},
+{
+	"column": "bolsa_condicional_nao_confirmado",
+	"label": "Bolsa condicional não confirmada"
+},
+{
+	"column": "bolsa_incondicional_nao_confirmado",
+	"label": "Bolsa incondicional não confirmada"
+},
+{
+	"column": "bolsa_condicional_confirmado",
+	"label": "Bolsa condicional confirmada"
+},
+{
+	"column": "bolsa_incondicional_confirmado",
+	"label": "Bolsa incondicional confirmada"
+},
+{
+	"column": "previsao_diversos_nao_confirmado",
+	"label": "Previsão de diversos não confirmado"
+},
+{
+	"column": "previsao_diversos_confirmado",
+	"label": "Previsão de diversos confirmado"
+},
+{
+	"column": "dif_confirmado",
+	"label": "Dif confirmada"
+},
+{
+	"column": "desconto_calculado",
+	"label": "Desconto calculado"
+},
+{
+	"column": "permuta",
+	"label": "Desconto calculado"
+},
+{
+	"column": "desconto_nao_previsto",
+	"label": "Desconto não previsto"
+}	
+]

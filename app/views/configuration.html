@@ -166,7 +166,13 @@
                 </div>
             </step>
             <step ordem="3">
-                Teasdasdsa
+                <ui-select ng-model="label.selected" theme="bootstrap" style="min-width: 300px;">
+                    <ui-select-match>{{$select}}</ui-select-match>
+                    <ui-select-choice repeat="label in labels |  filter: search">
+                        {{label.campo}}
+                    </ui-select-choice>
+                </ui-select>
+                <!--/row-->
             </step>
             <step ordem="4">
                 Teasdasdsa
