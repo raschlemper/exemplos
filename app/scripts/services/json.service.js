@@ -17,8 +17,8 @@ app.factory("JsonService", function($http, $q){
 	            	deferred.reject(err);
 	                return cb(err);
 	            }.bind(this));
-	            return deferred.promise;
-	        }
+            return deferred.promise;
+        }
 
     }
 });
