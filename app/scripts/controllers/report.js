@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('ReportCtrl', function ($scope, JsonService) {
+app.controller('ReportCtrl', function ($scope, ReportService, JsonService) {
 	
 	$scope.list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 	$scope.dadosteste = {"status": "R", "aluno": "Nome do Aluno", "vencimento": "08/05/2015", "pagamento": "08/05/2015", "valor": "100,00"}
@@ -83,7 +83,7 @@ app.controller('ReportCtrl', function ($scope, JsonService) {
     }();
 
     var teste = function() {
-        JsonService.movimento()
+        ReportService.movimento()
             .then( function(data) {
                 console.log(data);
             })
