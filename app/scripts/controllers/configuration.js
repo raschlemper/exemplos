@@ -7,7 +7,8 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, JsonService) {
+app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, JsonService, VisioService) {
+    $scope.visio = {};
 
     var cabecalho = [{
         'name': 'Com título',
@@ -131,13 +132,13 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
         }
     }];
 
-    $scope.option = {
+    $scope.visio.option = {
         'cabecalho': cabecalho,
         'detalhe': detalhe,
         'rodape': rodape
     };
 
-    $scope.option.selection = {
+    $scope.visio.option.selection = {
         'cabecalho': cabecalho[0],
         'detalhe': detalhe[0],
         'rodape': rodape[0]
@@ -165,9 +166,9 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
     }];
 
     $scope.makePreview = function() {
-        LayoutService.service.setOptionPreview($scope.option.selection);
+        LayoutService.service.setOptionPreview($scope.visio.option.selection);
         LayoutService.service.setConfiguration($scope.configuracao);
-        $location.path("/preview");
+        $location.path("/preview", "_blank");
     }
 
     $scope.isValid = function(booleano) {
@@ -178,11 +179,11 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
         }
     };
 
-    $scope.labels = [];
+    $scope.visio.campos = [];
     var getCamposMovimento = function() {
         JsonService.campos()
             .then(function(data) {
-                $scope.labels = data;
+                $scope.visio.campos = data;
             })
             .catch(function(err) {
                 return console.log(err);
@@ -190,4 +191,50 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
     }
     getCamposMovimento();
 
+    $scope.visio.selecionados = [];
+
+    $scope.addCampo = function(label) {
+        if (!label.selected) {
+            label.selected = true;
+            $scope.visio.selecionados.push(label);
+        } else {
+            label.selected = false;
+            var index = $scope.visio.selecionados.indexOf(label);
+            if (index >= 0) {
+                $scope.visio.selecionados.splice(index, 1);
+            }
+        }
+    }
+
+    $scope.removeCampo = function(selected) {
+        selected.selected = false;
+        var index = $scope.visio.selecionados.indexOf(selected);
+        if (index >= 0) {
+            $scope.visio.selecionados.splice(index, 1);
+        }
+    }
+
+    $scope.saveVisio = function() {
+        $scope.visio.createDate = new Date();
+        $scope.visio.hashid = Math.floor(10000000000 + Math.random() * 90000000000);
+        VisioService.service.addVisio($scope.visio);
+        $location.path("/main");
+    }
+
+    $scope.groupBy = function(agrupamento){
+        for (var i = 0; i < $scope.visio.selecionados.length; i++) {
+            $scope.visio.selecionados[i].groupby = agrupamento;
+            console.log($scope.visio.selecionados[i].groupby);
+        };
+    }
+
+    $scope.tab = 1;
+
+    $scope.setTab = function(tabId) {
+        $scope.tab  = tabId;
+    };
+
+    $scope.isSet = function(tabId) {
+        return $scope.tab === tabId;
+    };
 });

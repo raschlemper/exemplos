@@ -1,38 +1,40 @@
-<layout configuracao="configuracao" preview="false">
-    <div block="header" columns="option.selection.cabecalho.configuracao.header.column" lines="option.selection.cabecalho.configuracao.header.line" group="false">
-        <div block="title" columns="option.selection.cabecalho.configuracao.title.column" lines="option.selection.cabecalho.configuracao.title.line" ng-if="option.selection.cabecalho.configuracao.title">
-            <div class="layout layout-container layout-border">
-                <div class="layout layout-container container-column">
-                    <span>Título</span>
+<div class="fixed-margin">
+    <layout configuracao="configuracao" preview="false">
+        <div block="header" columns="option.selection.cabecalho.configuracao.header.column" lines="option.selection.cabecalho.configuracao.header.line" group="false">
+            <div block="title" columns="option.selection.cabecalho.configuracao.title.column" lines="option.selection.cabecalho.configuracao.title.line" ng-if="option.selection.cabecalho.configuracao.title">
+                <div class="layout layout-container layout-border">
+                    <div class="layout layout-container container-column">
+                        <span>Título</span>
+                    </div>
+                </div>
+            </div>
+            <div block="foto" columns="option.selection.cabecalho.configuracao.foto.column" lines="option.selection.cabecalho.configuracao.foto.line" ng-if="option.selection.cabecalho.configuracao.foto">
+                <div class="layout layout-container layout-border">
+                    <div class="layout layout-container container-column"> <img src="images/yeoman.png" alt="I'm Yeoman" class="img-responsive"></div>
+                </div>
+            </div>
+            <div block="header-content" columns="option.selection.cabecalho.configuracao.headerContent.column" lines="option.selection.cabecalho.configuracao.headerContent.line" offset-line="option.selection.cabecalho.configuracao.title.offsetLine">
+                <div class="layout layout-container layout-border">
+                    <div class="layout layout-container container-column"></div>
                 </div>
             </div>
         </div>
-        <div block="foto" columns="option.selection.cabecalho.configuracao.foto.column" lines="option.selection.cabecalho.configuracao.foto.line" ng-if="option.selection.cabecalho.configuracao.foto">
-            <div class="layout layout-container layout-border">
-                <div class="layout layout-container container-column"> <img src="images/yeoman.png" alt="I'm Yeoman" class="img-responsive"></div>
+        <div block="details" columns="option.selection.rodape.configuracao.details.column" lines="option.selection.rodape.configuracao.details.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine">
+            <div block="details-content" ng-if="option.selection.rodape.configuracao.detailsContent" columns="option.selection.rodape.configuracao.detailsContent.column" lines="option.selection.rodape.configuracao.detailsContent.line" offset-line="item.configuracao.title.offsetLine">
+                <div class="layout layout-container layout-border">
+                    <div class="layout layout-container container-column"></div>
+                </div>
+            </div>
+            <div block="total" columns="option.selection.rodape.configuracao.total.column" lines="option.selection.rodape.configuracao.total.line" group="false" ng-if="option.selection.rodape.configuracao.total">
+                <div class="layout layout-container layout-border">
+                    <div class="layout layout-container container-column"></div>
+                </div>
+            </div>
+            <div block="footer" columns="option.selection.rodape.configuracao.footer.column" lines="option.selection.rodape.configuracao.footer.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine">
+                <div class="layout layout-container layout-border">
+                    <div class="layout layout-container container-column"></div>
+                </div>
             </div>
         </div>
-        <div block="header-content" columns="option.selection.cabecalho.configuracao.headerContent.column" lines="option.selection.cabecalho.configuracao.headerContent.line" offset-line="option.selection.cabecalho.configuracao.title.offsetLine">
-            <div class="layout layout-container layout-border">
-                <div class="layout layout-container container-column"></div>
-            </div>
-        </div>
-    </div>
-    <div block="details" columns="option.selection.rodape.configuracao.details.column" lines="option.selection.rodape.configuracao.details.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine">
-        <div block="details-content" ng-if="option.selection.rodape.configuracao.detailsContent" columns="option.selection.rodape.configuracao.detailsContent.column" lines="option.selection.rodape.configuracao.detailsContent.line" offset-line="item.configuracao.title.offsetLine">
-            <div class="layout layout-container layout-border">
-                <div class="layout layout-container container-column"></div>
-            </div>
-        </div>
-        <div block="total" columns="option.selection.rodape.configuracao.total.column" lines="option.selection.rodape.configuracao.total.line" group="false" ng-if="option.selection.rodape.configuracao.total" >
-            <div class="layout layout-container layout-border">
-                <div class="layout layout-container container-column"></div>
-            </div>
-        </div>
-        <div block="footer" columns="option.selection.rodape.configuracao.footer.column" lines="option.selection.rodape.configuracao.footer.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine">
-            <div class="layout layout-container layout-border">
-                <div class="layout layout-container container-column"></div>
-            </div>
-        </div>
-    </div>
-</layout>
+    </layout>
+</div>

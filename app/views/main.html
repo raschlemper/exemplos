@@ -1,20 +1,35 @@
-<div class="jumbotron">
-    <h1>'Allo, 'Hello!</h1>
-    <p class="lead">
-        <img src="images/yeoman.png" alt="I'm Yeoman">
-        <br> Always a pleasure scaffolding your apps.
-    </p>
-    <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
-<div class="row marketing">
-    <h4>HTML5 Boilerplate</h4>
-    <p>
-        HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-    </p>
-    <h4>Angular</h4>
-    <p>
-        AngularJS is a toolset for building the framework most suited to your application development.
-    </p>
-    <h4>Karma</h4>
-    <p>Spectacular Test Runner for JavaScript.</p>
+<div class="fixed-margin">
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Minhas visões</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Código</th>
+                            <th>Data de criação</th>
+                            <th>Módulo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="visio in visios">
+                            <td>{{visio.name}}</td>
+                            <td>{{visio.description}}</td>
+                            <td>{{visio.hashid}}</td>
+                            <td>{{visio.createDate}}</td>
+                            <td>Financeiro</td>
+                            <td><span><i class="glyphicon glyphicon-edit"></i></span><span><i class="glyphicon glyphicon-remove"></i></span>
+                        </tr>
+                    </tbody>
+                </table>
+                <div ng-if="!visios.length" class="pontilhado">Para criar uma nova visão, clique no botão "Nova visão".</div>
+                <button class="btn btn-default pull-right" ng-click="newVisio()">Nova visão</button>
+            </div>
+        </div>
+    </div>
 </div>

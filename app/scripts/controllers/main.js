@@ -7,10 +7,12 @@
  * # MainCtrl
  * Controller of the exemplosApp
  */
-app.controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+app.controller('MainCtrl', function ($scope, $location, VisioService) {
+
+	$scope.newVisio = function(){
+ 		$location.path("/configuration");
+	};
+
+	$scope.visios = VisioService.service.getAll();
+    
   });
