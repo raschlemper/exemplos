@@ -6,7 +6,8 @@ app.directive("step", function() {
         transclude: true,
         require: ['^wizard'],
         scope: {
-            ordem: "="
+            ordem: "=",
+            title:"="
         },
         link: function(scope, element, attrs, ctrls) {
             scope.wizardCtrl = ctrls[0];

@@ -1,31 +1,31 @@
-<div class="container">
+<div class="container fixed-margin">
     <form name="cadastroForm">
         <wizard configuracao="configuracao" steps="4" valid="isValid(cadastroForm.$valid)">
-            <step ordem="1">
+            <step ordem="1" title="'Configuração da visão'">
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error': cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine }">
                         <label for="nome">Visão:</label>
-                        <input id="nome" type="text" class="form-control" name="nome" ng-model="visao.nome" placeholder="Digite o nome da visão" required />
+                        <input id="nome" type="text" class="form-control" name="nome" ng-model="visio.name" placeholder="Digite o nome da visão" required />
                         <p ng-show="cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine" class="help-block">O nome é obrigatório.</p>
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descrição:</label>
-                        <textarea id="descricao" type="text" name="descricao" class="form-control" rows="3" ng-model="visao.descricao" required="true" placeholder="Digite a descrição da visão " />
+                        <textarea id="descricao" type="text" name="descricao" class="form-control" rows="3" ng-model="visio.description" required="true" placeholder="Digite a descrição da visão " />
                     </div>
                 </div>
             </step>
-            <step ordem="2">
+            <step ordem="2" title="'Definição de layout'">
                 <div class="row">
                     <div class="col-md-9 text-center">
                         <div class="panel panel-default">
                             <div class="panel-heading">Cabeçalho</div>
                             <div class="panel-body">
                                 <div class="row layout-line">
-                                    <div class="col-md-4 layout-box" ng-repeat="item in option.cabecalho">
+                                    <div class="col-md-4 layout-box" ng-repeat="item in visio.option.cabecalho">
                                         <div class="row text-left">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="cabecalho" ng-value="item" ng-model="option.selection.cabecalho">{{item.name}}
+                                                    <input type="radio" name="cabecalho" ng-value="item" ng-model="visio.option.selection.cabecalho">{{item.name}}
                                                 </label>
                                             </div>
                                         </div>
@@ -58,11 +58,11 @@
                             <div class="panel-heading">Detalhe</div>
                             <div class="panel-body">
                                 <div class="row layout-line">
-                                    <div class="col-md-4 layout-box" ng-repeat="item in option.detalhe">
+                                    <div class="col-md-4 layout-box" ng-repeat="item in visio.option.detalhe">
                                         <div class="row text-left">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="detalhe" ng-value="item" ng-model="option.selection.detalhe">{{item.name}}
+                                                    <input type="radio" name="detalhe" ng-value="item" ng-model="visio.option.selection.detalhe">{{item.name}}
                                                 </label>
                                             </div>
                                         </div>
@@ -83,11 +83,11 @@
                             <div class="panel-heading">Rodapé</div>
                             <div class="panel-body">
                                 <div class="row layout-line">
-                                    <div class="col-md-4 layout-box" ng-repeat="item in option.rodape">
+                                    <div class="col-md-4 layout-box" ng-repeat="item in visio.option.rodape">
                                         <div class="row text-left">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="rodape" ng-value="item" ng-model="option.selection.rodape">{{item.name}}
+                                                    <input type="radio" name="rodape" ng-value="item" ng-model="visio.option.selection.rodape">{{item.name}}
                                                 </label>
                                             </div>
                                         </div>
@@ -119,37 +119,37 @@
                             <div class="panel-body layout-box">
                                 <div class="row">
                                     <layout configuracao="configuracao" preview="true">
-                                        <div block="header" columns="option.selection.cabecalho.configuracao.header.column" lines="option.selection.cabecalho.configuracao.header.line" group="false">
-                                            <div block="title" columns="option.selection.cabecalho.configuracao.title.column" lines="option.selection.cabecalho.configuracao.title.line" ng-if="option.selection.cabecalho.configuracao.title">
+                                        <div block="header" columns="visio.option.selection.cabecalho.configuracao.header.column" lines="visio.option.selection.cabecalho.configuracao.header.line" group="false">
+                                            <div block="title" columns="visio.option.selection.cabecalho.configuracao.title.column" lines="visio.option.selection.cabecalho.configuracao.title.line" ng-if="visio.option.selection.cabecalho.configuracao.title">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column">
                                                         <span>Título</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div block="foto" columns="option.selection.cabecalho.configuracao.foto.column" lines="option.selection.cabecalho.configuracao.foto.line" ng-if="option.selection.cabecalho.configuracao.foto">
+                                            <div block="foto" columns="visio.option.selection.cabecalho.configuracao.foto.column" lines="visio.option.selection.cabecalho.configuracao.foto.line" ng-if="visio.option.selection.cabecalho.configuracao.foto">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column"> <img src="images/yeoman.png" alt="I'm Yeoman" class="img-responsive"></div>
                                                 </div>
                                             </div>
-                                            <div block="header-content" columns="option.selection.cabecalho.configuracao.headerContent.column" lines="option.selection.cabecalho.configuracao.headerContent.line" offset-line="option.selection.cabecalho.configuracao.title.offsetLine">
+                                            <div block="header-content" columns="visio.option.selection.cabecalho.configuracao.headerContent.column" lines="visio.option.selection.cabecalho.configuracao.headerContent.line" offset-line="visio.option.selection.cabecalho.configuracao.title.offsetLine">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column"></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div block="details" columns="option.selection.rodape.configuracao.details.column" lines="option.selection.rodape.configuracao.details.line" group="false">
-                                            <div block="details-content" ng-if="option.selection.rodape.configuracao.detailsContent" columns="option.selection.rodape.configuracao.detailsContent.column" lines="option.selection.rodape.configuracao.detailsContent.line" offset-line="item.configuracao.title.offsetLine">
+                                        <div block="details" columns="visio.option.selection.rodape.configuracao.details.column" lines="visio.option.selection.rodape.configuracao.details.line" group="false">
+                                            <div block="details-content" ng-if="visio.option.selection.rodape.configuracao.detailsContent" columns="visio.option.selection.rodape.configuracao.detailsContent.column" lines="visio.option.selection.rodape.configuracao.detailsContent.line" offset-line="item.configuracao.title.offsetLine">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column"></div>
                                                 </div>
                                             </div>
-                                            <div block="total" columns="option.selection.rodape.configuracao.total.column" lines="option.selection.rodape.configuracao.total.line" group="false" ng-if="option.selection.rodape.configuracao.total">
+                                            <div block="total" columns="visio.option.selection.rodape.configuracao.total.column" lines="visio.option.selection.rodape.configuracao.total.line" group="false" ng-if="visio.option.selection.rodape.configuracao.total">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column"></div>
                                                 </div>
                                             </div>
-                                            <div block="footer" columns="option.selection.rodape.configuracao.footer.column" lines="option.selection.rodape.configuracao.footer.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine">
+                                            <div block="footer" columns="visio.option.selection.rodape.configuracao.footer.column" lines="visio.option.selection.rodape.configuracao.footer.line" group="false" offset-line="visio.option.selection.rodape.configuracao.footer.offsetLine">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column"></div>
                                                 </div>
@@ -165,17 +165,66 @@
                     </div>
                 </div>
             </step>
-            <step ordem="3">
-                <ui-select ng-model="label.selected" theme="bootstrap" style="min-width: 300px;">
-                    <ui-select-match>{{$select}}</ui-select-match>
-                    <ui-select-choice repeat="label in labels |  filter: search">
-                        {{label.campo}}
-                    </ui-select-choice>
-                </ui-select>
-                <!--/row-->
+            <step ordem="3" title="'Escolher campos'">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="container-fluid" style="max-height:550px">
+                                <div class="row">
+                                    <input type="text" class="form-control" placeholder="Digite o nome do campo desejado" ng-model="busca" style="margin-left: 50px; max-width: 950px;" />
+                                    <div class="col-md-3">
+                                        <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="margin-top:30px; max-height:550px; overflow-y: scroll; ">
+                                            <ul class="nav bs-docs-sidenav">
+                                                <label>Campos</label>
+                                                <li class="" ng-repeat="label in visio.campos | filter:busca">
+                                                    <a ng-click="addCampo(label)" ng-class="{'docs-active': label.selected}">{{label.label}}</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <div class="col-md-8" style="padding:45px">
+                                        <div id="navegation">
+                                            <ul class="nav nav-tabs">
+                                                <li role="fields" ng-class="{'active': isSet(1)}"><a ng-click="setTab(1)">Campos</a></li>
+                                                <li role="groupby" ng-class="{'active': isSet(2)}"><a ng-click="setTab(2)">Agrupamento</a></li>
+                                            </ul>
+                                        </div>
+                                        <div id="fields" class="fixed-margin" ng-if="isSet(1)">
+                                            <table class="table table-condensed">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Campos selecionados</th>
+                                                        <th>Agrupamento</th>
+                                                        <th class="col-md-2">Ações</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="selecionado in visio.selecionados">
+                                                        <td>{{selecionado.label}}</td>
+                                                        <td ng-if="selecionado.groupby">{{selecionado.groupby.label}}</td>
+                                                        <td ng-if="!selecionado.groupby">Nenhum</td>
+                                                        <td class="col-md-2"><span style="padding:2px" ng-click="removeCampo(selecionado)"><i class="glyphicon glyphicon-remove"></i></span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="groupby" class="fixed-margin" ng-if="isSet(2)">
+                                            <div class="form-group">
+                                                <select ng-model="campoSelecionado" ng-options="campo.label for campo in visio.campos" ng-show="visio.campos.length">
+                                                </select>
+                                                <button class="btn btn-default" ng-click="groupBy(campoSelecionado)">Agrupar</button>
+                                            </div>
+                                        </div>
+                                        <div ng-if="!visio.selecionados.length" class="pontilhado">Nenhum campo selecionado.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </step>
-            <step ordem="4">
-                Teasdasdsa
+            <step ordem="4" title="'Finalizar'">
+                <button class="btn btn-default" ng-click="saveVisio()">Salvar</button>
             </step>
         </wizard>
     </form>
