@@ -23,6 +23,6 @@ function getConfig(file){
 Movimento.find({}).remove(function() {
   var jsondata = getConfig('/movimento.json'); 
   Movimento.create(jsondata, function() {
-      console.log('finished populating users');
+      console.log('finished populating movimento');
   });
 });
