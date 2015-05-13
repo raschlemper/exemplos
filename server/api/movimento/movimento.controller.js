@@ -31,8 +31,7 @@ exports.getHeader = function(req, res, next) {
   var fields = req.body.fields;
   var group = getHeaderGroup(fields);
   Movimento.aggregate([
-    { $group: { _id: group } },
-    { $match: { cd_instituicao_ensino: { $in: [129] } } }
+    { $group: { _id: group } }
   ], function (err, headers) {
       if(err) return res.send(500, err);
       res.json(200, _.map(headers, function(value, key){ return value._id; }));

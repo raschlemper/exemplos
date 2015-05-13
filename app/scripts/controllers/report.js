@@ -31,7 +31,7 @@ app.controller('ReportCtrl', function ($scope, ReportService, JsonService) {
             .then( function(data) {
                 $scope.report.cabecalho.values = data;
                 setFieldHeaderLink(0);
-                setFieldHeaderValue(1);
+                setFieldHeaderValue(0);
             })
             .catch( function(err) {
                 return console.log(err);
