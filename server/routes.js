@@ -7,7 +7,7 @@
 module.exports = function(app) {
 
   // Insert routes below
-  app.use('/financeiro/movimento', require('./api/movimento'));
+  app.use('/financeiro', require('./api'));
 
   // All other routes should redirect to the index.html
   app.route('/*')

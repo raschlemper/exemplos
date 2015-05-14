@@ -1,4 +1,3 @@
-
 /**
  * Populate DB with sample data on Users
  */
@@ -8,7 +7,7 @@
 var path = require('path');
 var fs = require("fs");
 var config = require('../../config/environment');
-var Movimento = require('../../api/movimento/movimento.model');
+var Movimento = require('../../api/campo/campo.model');
 
 function readJsonFileSync(filepath, encoding){
     if (typeof (encoding) == 'undefined') { encoding = 'utf8'; }
@@ -22,8 +21,8 @@ function getConfig(file){
 }
 
 Movimento.find({}).remove(function() {
-  var jsondata = getConfig('/movimento.json'); 
+  var jsondata = getConfig('/campos_movimento.json'); 
   Movimento.create(jsondata, function() {
-      console.log('finished populating movimento');
+      console.log('finished populating users');
   });
 });

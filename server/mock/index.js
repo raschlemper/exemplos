@@ -9,3 +9,4 @@
  * Insert users
  */
 require('./movimento/movimento.mock'); 
+require('./campo/campo.mock'); 
