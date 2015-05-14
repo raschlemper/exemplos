@@ -5,6 +5,8 @@ app.controller('ReportCtrl', function ($scope, ReportService, JsonService) {
 	// $scope.list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 	// $scope.dadosteste = {"status": "R", "aluno": "Nome do Aluno", "vencimento": "08/05/2015", "pagamento": "08/05/2015", "valor": "100,00"}
     
+    var index = 1;
+
     $scope.report = {
         titulo: 'Relatário de Movimentação Financeira',
         cabecalho: {},
@@ -22,7 +24,7 @@ app.controller('ReportCtrl', function ($scope, ReportService, JsonService) {
                 getDataReport(data);
                 getFieldHeaderValue($scope.report.data[index].key);
                 getFieldDetailValue($scope.report.data[index].vals);
-                //console.log($scope.details[0]) ; 
+                getFieldFooterValue($scope.report.data[index].vals);
             })
             .catch( function(err) {
                 return console.log(err);
@@ -30,19 +32,26 @@ app.controller('ReportCtrl', function ($scope, ReportService, JsonService) {
     }
 
     var getDataReport = function(data) {
-        var groups = getFieldsGroup();        
+        var groups = getFieldsGroup($scope.report.cabecalho.fields);        
         $scope.report.data = DataGrouper.report(data, groups); 
     }
 
-    var getFieldsGroup = function() {
+    var getFieldsGroup = function(fields) {
         var groups = [];
-        _.map($scope.report.cabecalho.fields, function(field, index) {
+        _.map(fields, function(field, index) {
             _.map(field.value, function(value, index) {
                 groups.push(value);  
             }); 
         }); 
         return groups;
-    }
+    } 
+
+    var removeFieldsGroup = function(group, remove) {
+        _.map(remove, function(item){ 
+            group = _.without(group, item); 
+        });
+        return group;
+    } 
 
     var getFieldValue = function(data, fields) {       
         return _.map(fields, function(field, key) {
@@ -64,13 +73,7 @@ app.controller('ReportCtrl', function ($scope, ReportService, JsonService) {
                                              'expression': '<%= nm_instituicao_ensino %>' },
                     { 'name': 'Curso', 'key': ['cd_tipo_curso'], 
                                        'value': [ 'ds_tipo_curso'], 
-                                       'expression': '<%= ds_tipo_curso %>' },
-                    { 'name': 'Série', 'key': ['cd_curso_instituicao'], 
-                                       'value': ['cd_curso_instituicao', 'nm_curso'], 
-                                       'expression': '<%= cd_curso_instituicao %> - <%= nm_curso %>' },
-                    { 'name': 'Ano/Semestre', 'key': ['nr_ano', 'nr_semestre'], 
-                                              'value': ['nr_ano', 'nr_semestre'], 
-                                              'expression': '<%= nr_ano %> / <%= nr_semestre %>' }
+                                       'expression': '<%= ds_tipo_curso %>'  }
                   ]
     }
 
@@ -82,6 +85,12 @@ app.controller('ReportCtrl', function ($scope, ReportService, JsonService) {
 
     $scope.report.detalhe = {
         'fields': [ 
+                    { 'name': 'Série', 'key': ['cd_curso_instituicao'], 
+                                       'value': ['cd_curso_instituicao', 'nm_curso'], 
+                                       'expression': '<%= cd_curso_instituicao %> - <%= nm_curso %>' },
+                    { 'name': 'Ano/Semestre', 'key': ['nr_ano', 'nr_semestre'], 
+                                              'value': ['nr_ano', 'nr_semestre'], 
+                                              'expression': '<%= nr_ano %> / <%= nr_semestre %>' },
                     { 'name': 'Aluno', 'key': ['cd_aluno'], 
                                        'value': ['nm_aluno'], 
                                        'expression': '<%= nm_aluno %>' },
@@ -91,18 +100,52 @@ app.controller('ReportCtrl', function ($scope, ReportService, JsonService) {
                     { 'name': 'Pagamento', 'key': ['dt_pagamento'], 
                                            'value': ['dt_pagamento'], 
                                            'expression': '<%= dt_pagamento %>' },
-                    { 'name': 'Valor', 'key': ['previsao_nao_confirmado'], 
-                                       'value': ['previsao_nao_confirmado'], 
-                                       'expression': 'R$ <%= previsao_nao_confirmado %>' }
+                    { 'name': 'Valor', 'key': ['previsao_confirmado'], 
+                                       'value': ['previsao_confirmado'], 
+                                       'expression': 'R$ <%= previsao_confirmado %>' }
                   ]
     }
 
     var getFieldDetailValue = function(data) {         
-        var details = _.map(data, function(item, key) {
+        $scope.details = _.map(data, function(item, key) {
             return getFieldValue(item, $scope.report.detalhe.fields);  
         });  
-        $scope.details.header = details[0];
-        $scope.details.body = details;  
+        $scope.details.header = $scope.details[0];
+    }
+
+    // FOOTER
+
+    $scope.report.rodape = {
+        'fields': [ 
+                    { 'name': 'Valor', 'key': ['previsao_confirmado'], 
+                                       'value': ['previsao_confirmado'], 
+                                       'expression': 'R$ <%= previsao_confirmado %>' }
+                  ],
+        'groups': [ 
+                    { 'name': 'Série', 'key': ['cd_curso_instituicao'], 
+                                       'value': ['cd_curso_instituicao', 'nm_curso'], 
+                                       'expression': '<%= cd_curso_instituicao %> - <%= nm_curso %>' },
+                    { 'name': 'Ano/Semestre', 'key': ['nr_ano', 'nr_semestre'], 
+                                              'value': ['nr_ano', 'nr_semestre'], 
+                                              'expression': '<%= nr_ano %> / <%= nr_semestre %>' },
+                    { 'name': 'Aluno', 'key': ['cd_aluno'], 
+                                       'value': ['nm_aluno'], 
+                                       'expression': '<%= nm_aluno %>' }
+                  ]
+    }
+
+    var getFieldFooterValue = function(data) {      
+        var footers = DataGrouper.report(data, getFieldsGroup($scope.report.rodape.groups), 
+            getFieldsGroup($scope.report.rodape.fields)); 
+
+        $scope.footers = [];
+        _.map(footers, function(item) {
+            var sums = getFieldValue(item.sum, $scope.report.rodape.fields);
+            var fields = getFieldValue(item.key, $scope.report.rodape.groups);
+            $scope.footers.push(_.union(fields, sums));
+        });
+        $scope.footers.header = $scope.footers[0];
+        console.log(3, $scope.footers); 
     }
 
     // DATA GROUPER
@@ -124,21 +167,39 @@ app.controller('ReportCtrl', function ($scope, ReportService, JsonService) {
             }, []);
         };
 
-        var group = function(data, names) {
+        var vals = function(data, stem, names) {
+            return _.map(_.where(data, stem), function(item) {
+                return _.omit(item, names);
+            });
+        };
+
+        var sum = function(values, names) {
+            var data = [];
+            _.map(names, function(name) {
+                return data[name] = _.reduce(values, function(memo, item) {
+                    return memo + Number(_.property(name)(item));
+                }, 0); 
+            });            
+            return data;
+        };
+
+        var group = function(data, names, group_names) {
             var stems = keys(data, names);
             return _.map(stems, function(stem) {
+                var val = vals(data, stem, names);
+                var val_sum = [];
+                if(sum) { val_sum = sum(val, group_names); }
                 return {
                     key: stem,
-                    vals:_.map(_.where(data, stem), function(item) {
-                        return _.omit(item, names);
-                    })
+                    vals: val,
+                    sum: val_sum
                 };
             });
         };
 
         group.register = function(name, converter) {
-            return group[name] = function(data, names) {
-                return _.map(group(data, names), converter);
+            return group[name] = function(data, names, group_names) {
+                return _.map(group(data, names, group_names), converter);
             };
         };
 
@@ -147,9 +208,9 @@ app.controller('ReportCtrl', function ($scope, ReportService, JsonService) {
 
     DataGrouper.register("report", function(item) {
         return item;
-    });  
+    }); 
 
-    getData(1);  
+    getData(index);  
 
 
 
