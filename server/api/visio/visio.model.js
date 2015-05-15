@@ -167,7 +167,7 @@ var Campo = mongoose.model('Campo', CampoSchema);
 VisioSchema.methods = {};
 
 module.exports = mongoose.model('visios', VisioSchema);
-module.exports = mongoose.model('campos', CampoSchema);
+//module.exports = mongoose.model('campos', CampoSchema);
 module.exports = mongoose.model('cabecalhos', CabecalhoSchema);
 module.exports = mongoose.model('details', DetailsSchema);
 module.exports = mongoose.model('rodapes', RodapeSchema);
