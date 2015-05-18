@@ -6,18 +6,23 @@ app.directive('layout', ['$compile', '$sce', function ($compile, $sce) {
         transclude: true,
         replace:true,
         templateUrl: 'scripts/directives/layout/html/layout.template.html',
-        controllerAs: 'layout',
         scope: {
             configuracao: "=",
-            preview: "="
+            preview: "=",
+            minHeight: "=",
+            blocks: "="
         },
-        controller: ['$scope', function($scope){
-            this.getConfiguration = function(){
-                return $scope.configuracao;
+        link: function(scope){
+            scope.getHeight = function(){
+                if(scope.minHeight){
+                    return "min-height:"+scope.minHeight+"px;";
+                }
             }
-            this.isPreview = function(){
-                return $scope.preview;
+            scope.previewStyle = function(){
+                if(scope.preview){
+                    return "layout layout-border";
+                }
             }
-        }]
+        }
     }
 }]);

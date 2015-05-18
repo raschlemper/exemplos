@@ -9,12 +9,28 @@
     margin: 15px 15px 30px 15px;
 }
 
+.clip-unset {
+    clip: unset !important;
+    margin: 4px 0px 0px -20px !important;
+}
+
 body {
     padding: 0;
 }
 
 .fixed-margin {
     margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.sticky {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    height: 60px;
+    background-color: #F5F5F5;
+    top: 400px;
+    margin-top:30px;
 }
 
 .pontilhado {

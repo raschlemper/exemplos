@@ -7,7 +7,7 @@
 var path = require('path');
 var fs = require("fs");
 var config = require('../../config/environment');
-var Movimento = require('../../api/campo/campo.model');
+var Campo = require('../../api/campo/campo.model');
 
 function readJsonFileSync(filepath, encoding){
     if (typeof (encoding) == 'undefined') { encoding = 'utf8'; }
@@ -20,9 +20,9 @@ function getConfig(file){
     return readJsonFileSync(filepath);
 }
 
-Movimento.find({}).remove(function() {
+Campo.find({}).remove(function() {
   var jsondata = getConfig('/campos_movimento.json'); 
-  Movimento.create(jsondata, function() {
+  Campo.create(jsondata, function() {
       console.log('finished populating users');
   });
 });

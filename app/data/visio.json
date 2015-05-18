@@ -1,0 +1,669 @@
+[
+   {
+      "option":{
+         "cabecalho":[
+            {
+               "name":"Com título",
+               "configuracao":{
+                  "header":{
+                     "column":12,
+                     "line":35
+                  },
+                  "title":{
+                     "column":12,
+                     "line":17,
+                     "offsetLine":1,
+                     "component":"title"
+                  },
+                  "headerContent":{
+                     "column":12,
+                     "line":18,
+                     "component":"list"
+                  }
+               }
+            },
+            {
+               "name":"Sem título",
+               "configuracao":{
+                  "header":{
+                     "column":12,
+                     "line":35
+                  },
+                  "headerContent":{
+                     "column":12,
+                     "component":"list"
+                  }
+               }
+            },
+            {
+               "name":"Com logo",
+               "configuracao":{
+                  "header":{
+                     "column":12,
+                     "line":35
+                  },
+                  "headerContent":{
+                     "column":8,
+                     "line":35,
+                     "component":"list"
+                  },
+                  "foto":{
+                     "column":4,
+                     "line":35,
+                     "component":"image"
+                  }
+               }
+            }
+         ],
+         "detalhe":[
+            {
+               "name":"Em colunas",
+               "configuracao":{
+                  "details":{
+                     "column":12,
+                     "line":35,
+                     "component":"table"
+                  }
+               },
+               "type":"column"
+            },
+            {
+               "name":"Em linhas",
+               "configuracao":{
+                  "details":{
+                     "column":12,
+                     "line":35,
+                     "component":"table"
+                  }
+               },
+               "type":"line"
+            }
+         ],
+         "rodape":[
+            {
+               "name":"Abaixo",
+               "configuracao":{
+                  "footer":{
+                     "column":12,
+                     "line":15,
+                     "offsetLine":1
+                  },
+                  "details":{
+                     "column":12,
+                     "line":20
+                  },
+                  "detailsContent":{
+                     "column":12,
+                     "line":20,
+                     "component":"table"
+                  }
+               }
+            },
+            {
+               "name":"Lateral",
+               "configuracao":{
+                  "footer":{
+                     "column":4,
+                     "line":35
+                  },
+                  "details":{
+                     "column":12,
+                     "line":35
+                  },
+                  "detailsContent":{
+                     "column":8,
+                     "line":35,
+                     "component":"table"
+                  }
+               }
+            },
+            {
+               "name":"Ambos",
+               "configuracao":{
+                  "footer":{
+                     "column":12,
+                     "line":10,
+                     "offsetLine":1
+                  },
+                  "total":{
+                     "column":4,
+                     "line":25,
+                     "component":"table"
+                  },
+                  "details":{
+                     "column":12,
+                     "line":25
+                  },
+                  "detailsContent":{
+                     "column":8,
+                     "line":25,
+                     "component":"table"
+                  }
+               }
+            }
+         ],
+         "selection":{
+            "cabecalho":{
+               "name":"Com logo",
+               "configuracao":{
+                  "header":{
+                     "column":12,
+                     "line":35
+                  },
+                  "headerContent":{
+                     "column":8,
+                     "line":35,
+                     "component":"list"
+                  },
+                  "foto":{
+                     "column":4,
+                     "line":35,
+                     "component":"image"
+                  }
+               }
+            },
+            "detalhe":{
+               "name":"Em colunas",
+               "configuracao":{
+                  "details":{
+                     "column":12,
+                     "line":35,
+                     "component":"table"
+                  }
+               },
+               "type":"column"
+            },
+            "rodape":{
+               "name":"Ambos",
+               "configuracao":{
+                  "footer":{
+                     "column":12,
+                     "line":10,
+                     "offsetLine":1
+                  },
+                  "total":{
+                     "column":4,
+                     "line":25,
+                     "component":"table"
+                  },
+                  "details":{
+                     "column":12,
+                     "line":25
+                  },
+                  "detailsContent":{
+                     "column":8,
+                     "line":25,
+                     "component":"table"
+                  }
+               }
+            }
+         }
+      },
+      "campos":[
+         {
+            "_id":"5554e41003bb6642248844d1",
+            "column":"ic_tipo_documento",
+            "label":"Tipo do documento",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844d2",
+            "column":"id_mensalidade",
+            "label":"Id da mensalidade",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844d3",
+            "column":"nr_documento",
+            "label":"Número do documento",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844d4",
+            "column":"nr_titulo",
+            "label":"Número do título",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844d5",
+            "column":"sequencia_titulo",
+            "label":"Sequência do título",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844d6",
+            "column":"id_estrutura_servico",
+            "label":"Id estrutura do serviço",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844d7",
+            "column":"nr_ano",
+            "label":"Ano",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844d8",
+            "column":"nr_semestre",
+            "label":"Número do semestre",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844d9",
+            "column":"cd_instituicao_ensino",
+            "label":"Código da Instituição de ensino",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844da",
+            "column":"nm_instituicao_ensino",
+            "label":"Nome da Instituição de ensino",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844db",
+            "column":"cd_tipo_curso",
+            "label":"Código Tipo de Curso",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844dc",
+            "column":"ds_tipo_curso",
+            "label":"Descrição do tipo de curso",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844dd",
+            "column":"cd_curso",
+            "label":"Código do curso",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844de",
+            "column":"nm_curso",
+            "label":"Nome do curso",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844e0",
+            "column":"id_tipo_receita_despesa",
+            "label":"Id tipo receita despesa",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844e1",
+            "column":"ds_tipo_receita_despesa",
+            "label":"Descrição do tipo de receita despesa",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844e2",
+            "column":"cd_aluno",
+            "label":"Código do aluno",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844e3",
+            "column":"nm_aluno",
+            "label":"Nome do aluno",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844e4",
+            "column":"id_responsavel_financeiro",
+            "label":"Id do responsável financeiro",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844e5",
+            "column":"nm_responsavel_financeiro",
+            "label":"Nome do responsável financeiro",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844e6",
+            "column":"dt_vencimento",
+            "label":"Data de vencimento",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844e7",
+            "column":"dt_pagamento",
+            "label":"Data de pagamento",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844e8",
+            "column":"caixa",
+            "label":"Caixa",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844e9",
+            "column":"banco",
+            "label":"Banco",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844ea",
+            "column":"ajuste",
+            "label":"Ajuste",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844eb",
+            "column":"previsao_nao_confirmado",
+            "label":"Previsão não confirmada",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844ec",
+            "column":"previsao_confirmado",
+            "label":"Previsão confirmada",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844ed",
+            "column":"previsao_desconto_nao_confirmado",
+            "label":"Previsão de desconto não confirmado",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844ee",
+            "column":"previsao_desconto_confirmado",
+            "label":"Previsão de desconto confirmado",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844ef",
+            "column":"desconto_concedido",
+            "label":"Desconto concedido",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844f0",
+            "column":"juros_calculado",
+            "label":"Juros calculado",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844f1",
+            "column":"multa_calculado",
+            "label":"Multa calculado",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844f2",
+            "column":"nota_promissoria",
+            "label":"Nota promissória",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844f3",
+            "column":"fies",
+            "label":"Nota promissória",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844f4",
+            "column":"cobranca",
+            "label":"Cobrança",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844f5",
+            "column":"dif_nao_confirmado",
+            "label":"Dif não confirmada",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844f6",
+            "column":"perdas",
+            "label":"Perdas",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844f7",
+            "column":"dinheiro",
+            "label":"Dinheiro",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844f8",
+            "column":"cartao_debito",
+            "label":"Cartão de débito",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844dd",
+               "column":"cd_curso",
+               "label":"Código do curso",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844f9",
+            "column":"cartao_credito",
+            "label":"Cartão de crédito",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844fa",
+            "column":"cheque",
+            "label":"Cheque",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844fb",
+            "column":"cheque_pre",
+            "label":"Cheque pré",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844fc",
+            "column":"bolsa_condicional_nao_confirmado",
+            "label":"Bolsa condicional não confirmada",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844fd",
+            "column":"bolsa_incondicional_nao_confirmado",
+            "label":"Bolsa incondicional não confirmada",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844fe",
+            "column":"bolsa_condicional_confirmado",
+            "label":"Bolsa condicional confirmada",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844ff",
+            "column":"bolsa_incondicional_confirmado",
+            "label":"Bolsa incondicional confirmada",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb664224884500",
+            "column":"previsao_diversos_nao_confirmado",
+            "label":"Previsão de diversos não confirmado",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb664224884501",
+            "column":"previsao_diversos_confirmado",
+            "label":"Previsão de diversos confirmado",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb664224884502",
+            "column":"dif_confirmado",
+            "label":"Dif confirmada",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb664224884503",
+            "column":"desconto_calculado",
+            "label":"Desconto calculado",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb664224884504",
+            "column":"permuta",
+            "label":"Desconto calculado",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb664224884505",
+            "column":"desconto_nao_previsto",
+            "label":"Desconto não previsto",
+            "__v":0
+         },
+         {
+            "_id":"5554e41003bb6642248844df",
+            "column":"cd_curso_instituicao",
+            "label":"Código da relação Curso/Instituição",
+            "__v":0
+         }
+      ],
+      "selecionados":[
+         {
+            "_id":"5554e41003bb6642248844d1",
+            "column":"ic_tipo_documento",
+            "label":"Tipo do documento",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844d7",
+            "column":"nr_ano",
+            "label":"Ano",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844dc",
+            "column":"ds_tipo_curso",
+            "label":"Descrição do tipo de curso",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844e1",
+            "column":"ds_tipo_receita_despesa",
+            "label":"Descrição do tipo de receita despesa",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844d9",
+            "column":"cd_instituicao_ensino",
+            "label":"Código da Instituição de ensino",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844da",
+            "column":"nm_instituicao_ensino",
+            "label":"Nome da Instituição de ensino",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844e2",
+               "column":"cd_aluno",
+               "label":"Código do aluno",
+               "__v":0
+            }
+         },
+         {
+            "_id":"5554e41003bb6642248844f8",
+            "column":"cartao_debito",
+            "label":"Cartão de débito",
+            "__v":0,
+            "selected":true,
+            "groupby":{
+               "_id":"5554e41003bb6642248844dd",
+               "column":"cd_curso",
+               "label":"Código do curso",
+               "__v":0
+            }
+         }
+      ],
+      "name":"asd",
+      "description":"asd",
+      "createDate":"2015-05-14T18:41:48.614Z",
+      "hashid":49027767522
+   }
+]

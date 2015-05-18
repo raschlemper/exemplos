@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, JsonService, VisioService) {
+app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, JsonService, VisioService, CampoService) {
     $scope.visio = {};
 
     var cabecalho = [{
@@ -20,11 +20,13 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
             'title': {
                 'column': 12,
                 'line': 17,
-                'offsetLine': 1
+                'offsetLine': 1,
+                'component':"title"
             },
             'headerContent': {
                 'column': 12,
-                'line': 18
+                'line': 18,
+                'component':"list"
             }
         },
     }, {
@@ -35,7 +37,8 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
                 'line': 35
             },
             'headerContent': {
-                'column': 12
+                'column': 12,
+                'component':"list"
             }
         },
     }, {
@@ -47,11 +50,13 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
             },
             'headerContent': {
                 'column': 8,
-                'line': 35
+                'line': 35,
+                'component':"list"
             },
             'foto': {
                 'column': 4,
-                'line': 35
+                'line': 35,
+                'component':"image"
             }
         },
     }];
@@ -61,7 +66,8 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
         'configuracao': {
             'details': {
                 'column': 12,
-                'line': 35
+                'line': 35,
+                'component':"table"
             }
         },
         'type': 'column'
@@ -70,7 +76,8 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
         'configuracao': {
             'details': {
                 'column': 12,
-                'line': 35
+                'line': 35,
+                'component':"table"
             }
         },
         'type': 'line'
@@ -90,7 +97,8 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
             },
             'detailsContent': {
                 'column': 12,
-                'line': 20
+                'line': 20,
+                'component':"table"
             }
         }
     }, {
@@ -102,11 +110,12 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
             },
             'details': {
                 'column': 12,
-                'line': 35
+                'line': 35,
             },
             'detailsContent': {
                 'column': 8,
-                'line': 35
+                'line': 35,
+                'component':"table"
             }
         }
     }, {
@@ -119,7 +128,8 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
             },
             'total': {
                 'column': 4,
-                'line': 25
+                'line': 25,
+                'component':"table"
             },
             'details': {
                 'column': 12,
@@ -127,7 +137,8 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
             },
             'detailsContent': {
                 'column': 8,
-                'line': 25
+                'line': 25,
+                'component':"table"
             }
         }
     }];
@@ -181,7 +192,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
 
     $scope.visio.campos = [];
     var getCamposMovimento = function() {
-        JsonService.campos()
+        CampoService.campo()
             .then(function(data) {
                 $scope.visio.campos = data;
             })
@@ -226,6 +237,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
             $scope.visio.selecionados[i].groupby = agrupamento;
             console.log($scope.visio.selecionados[i].groupby);
         };
+        $scope.setTab(1);
     }
 
     $scope.tab = 1;

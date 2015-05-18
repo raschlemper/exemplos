@@ -1,38 +1,38 @@
 {
-    "name": "Exemplos",
-    "version": "1.0.0",
-    "description": "Exemplos Movimento Financeiro",
-    "keywords": [
-        "OpenShift",
-        "Node.js",
-        "application",
-        "openshift"
-    ],
-    "author": {
-        "name": "Gennera",
-        "email": "gennera@gennera.com.br",
-        "url": "http://www.openshift.com/"
-    },
-    "homepage": "http://www.gennera.com.br/",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/openshift/origin-server"
-    },
-    "engines": {
-        "node": ">= 0.6.0",
-        "npm": ">= 1.0.0"
-    },
-    "dependencies": {
-        "express": "~4.0.0",
-        "lodash": "~2.4.1",
-        "body-parser": "~1.5.0",
-        "fs-extra": "~0.18.3",
-        "mongodb": ">= 1.4.29",
-        "mongoose": "~3.8.8",
-        "connect-mongo": "^0.4.1"
-    },
-    "devDependencies": {},
-    "bundleDependencies": [],
-    "private": true,
-    "main": "server/app.js"
+  "name": "Exemplos",
+  "version": "1.0.0",
+  "description": "Exemplos Movimento Financeiro",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "application",
+    "openshift"
+  ],
+  "author": {
+    "name": "Gennera",
+    "email": "gennera@gennera.com.br",
+    "url": "http://www.openshift.com/"
+  },
+  "homepage": "http://www.gennera.com.br/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openshift/origin-server"
+  },
+  "engines": {
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
+  },
+  "dependencies": {
+    "body-parser": "~1.5.0",
+    "connect-mongo": "^0.4.1",
+    "express": "~4.0.0",
+    "fs-extra": "~0.18.3",
+    "lodash": "~2.4.1",
+    "mongodb": ">= 1.4.29",
+    "mongoose": "~3.8.8"
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+  "private": true,
+  "main": "server/app.js"
 }

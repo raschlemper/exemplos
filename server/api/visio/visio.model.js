@@ -54,6 +54,7 @@ var DetailsSchema = new Schema({
     type: String,
     configuracao: [ConfiguracaoSchema]
 });
+
 var RodapeSchema = new Schema({
     name: String,
     configuracao: [ConfiguracaoSchema]
@@ -143,7 +144,7 @@ var Visio = mongoose.model('Visio', VisioSchema);
 var Cabecalho = mongoose.model('Cabecalho', CabecalhoSchema);
 var Details = mongoose.model('Details', DetailsSchema);
 var Rodape = mongoose.model('Rodape', RodapeSchema);
-var Campo = mongoose.model('Campo', CampoSchema);
+/*var Campo = mongoose.model('Campo', CampoSchema);*/
 
 
 /**
@@ -167,7 +168,7 @@ var Campo = mongoose.model('Campo', CampoSchema);
 VisioSchema.methods = {};
 
 module.exports = mongoose.model('visios', VisioSchema);
-module.exports = mongoose.model('campos', CampoSchema);
+/*module.exports = mongoose.model('campos', CampoSchema);*/
 module.exports = mongoose.model('cabecalhos', CabecalhoSchema);
 module.exports = mongoose.model('details', DetailsSchema);
 module.exports = mongoose.model('rodapes', RodapeSchema);

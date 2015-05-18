@@ -1,39 +1,46 @@
 <div class="fixed-margin">
     <layout configuracao="configuracao" preview="false">
-        <div block="header" columns="option.selection.cabecalho.configuracao.header.column" lines="option.selection.cabecalho.configuracao.header.line" group="false">
-            <div block="title" columns="option.selection.cabecalho.configuracao.title.column" lines="option.selection.cabecalho.configuracao.title.line" ng-if="option.selection.cabecalho.configuracao.title">
-                <div class="layout layout-container layout-border">
-                    <div class="layout layout-container container-column">
-                        <span>Título</span>
-                    </div>
-                </div>
+        <div block="header" columns="option.selection.cabecalho.configuracao.header.column" lines="option.selection.cabecalho.configuracao.header.line" group="false" line-height="configuracao.lineHeight">
+            <div block="title" columns="option.selection.cabecalho.configuracao.title.column" lines="option.selection.cabecalho.configuracao.title.line" ng-if="option.selection.cabecalho.configuracao.title" line-height="configuracao.lineHeight">
+                <h1>Título</h1>
             </div>
-            <div block="foto" columns="option.selection.cabecalho.configuracao.foto.column" lines="option.selection.cabecalho.configuracao.foto.line" ng-if="option.selection.cabecalho.configuracao.foto">
-                <div class="layout layout-container layout-border">
-                    <div class="layout layout-container container-column"> <img src="images/yeoman.png" alt="I'm Yeoman" class="img-responsive"></div>
-                </div>
+            <div block="foto" columns="option.selection.cabecalho.configuracao.foto.column" lines="option.selection.cabecalho.configuracao.foto.line" ng-if="option.selection.cabecalho.configuracao.foto" line-height="configuracao.lineHeight">
+                <img src="images/yeoman.png" alt="I'm Yeoman" class="img-responsive" style="width:100%">
             </div>
-            <div block="header-content" columns="option.selection.cabecalho.configuracao.headerContent.column" lines="option.selection.cabecalho.configuracao.headerContent.line" offset-line="option.selection.cabecalho.configuracao.title.offsetLine">
-                <div class="layout layout-container layout-border">
-                    <div class="layout layout-container container-column"></div>
+            <div block="header-content" columns="option.selection.cabecalho.configuracao.headerContent.column" lines="option.selection.cabecalho.configuracao.headerContent.line" offset-line="option.selection.cabecalho.configuracao.title.offsetLine" line-height="configuracao.lineHeight">
+                <div class="row" ng-repeat="number in columns">
+                    <div class="col-lg-4">{{ dadosteste.aluno }}:</div>
+                    <div class="col-lg-8">{{ dadosteste.vencimento }}</div>
                 </div>
             </div>
         </div>
-        <div block="details" columns="option.selection.rodape.configuracao.details.column" lines="option.selection.rodape.configuracao.details.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine">
-            <div block="details-content" ng-if="option.selection.rodape.configuracao.detailsContent" columns="option.selection.rodape.configuracao.detailsContent.column" lines="option.selection.rodape.configuracao.detailsContent.line" offset-line="item.configuracao.title.offsetLine">
-                <div class="layout layout-container layout-border">
-                    <div class="layout layout-container container-column"></div>
-                </div>
+        <div block="details" columns="option.selection.rodape.configuracao.details.column" lines="option.selection.rodape.configuracao.details.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine" line-height="configuracao.lineHeight">
+            <div block="details-content" ng-if="option.selection.rodape.configuracao.detailsContent" columns="option.selection.rodape.configuracao.detailsContent.column" lines="option.selection.rodape.configuracao.detailsContent.line" offset-line="item.configuracao.title.offsetLine" line-height="configuracao.lineHeight">
+                <table class="table">
+                    <tr>
+                        <th>Status</th>
+                        <th>Nome do Aluno</th>
+                        <th>Data Vencimento</th>
+                        <th>Data Pagamento</th>
+                        <th>Valor</th>
+                    </tr>
+                    <tr ng-repeat="number in columns">
+                        <td>{{ dadosteste.status }}</td>
+                        <td>{{ dadosteste.aluno }}</td>
+                        <td>{{ dadosteste.vencimento }}</td>
+                        <td>{{ dadosteste.pagamento }}</td>
+                        <td>{{ dadosteste.valor }}</td>
+                    </tr>
+                </table>
             </div>
-            <div block="total" columns="option.selection.rodape.configuracao.total.column" lines="option.selection.rodape.configuracao.total.line" group="false" ng-if="option.selection.rodape.configuracao.total">
-                <div class="layout layout-container layout-border">
-                    <div class="layout layout-container container-column"></div>
-                </div>
+            <div block="total" columns="option.selection.rodape.configuracao.total.column" lines="option.selection.rodape.configuracao.total.line" group="false" ng-if="option.selection.rodape.configuracao.total" line-height="configuracao.lineHeight">
+                <table class="table">
+                    <tr>
+                        <th>Saldo</th>
+                    </tr>
+                </table>
             </div>
-            <div block="footer" columns="option.selection.rodape.configuracao.footer.column" lines="option.selection.rodape.configuracao.footer.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine">
-                <div class="layout layout-container layout-border">
-                    <div class="layout layout-container container-column"></div>
-                </div>
+            <div block="footer" columns="option.selection.rodape.configuracao.footer.column" lines="option.selection.rodape.configuracao.footer.line" group="false" offset-line="option.selection.rodape.configuracao.footer.offsetLine" line-height="configuracao.lineHeight">
             </div>
         </div>
     </layout>
