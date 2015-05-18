@@ -3,6 +3,7 @@
 var express = require('express');
 var movimento = require('./movimento/movimento.controller');
 var campo = require('./campo/campo.controller');
+var layout = require('./layout/layout.controller');
 var visio = require('./visio/visio.controller');
 
 var router = express.Router();
@@ -15,5 +16,8 @@ router.post('/campo', campo.create);
 
 router.get('/visio', visio.index);
 router.post('/visio', visio.create);
+
+router.get('/layout', layout.index);
+router.post('/layout', layout.create);
 
 module.exports = router;

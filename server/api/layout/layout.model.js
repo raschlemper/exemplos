@@ -7,6 +7,8 @@ var Schema = mongoose.Schema;
 var LayoutSchema = new Schema({
     "name": String,
 	"type": String,
+	"line": Number,
+	"column": Number,
 	"component":[Schema.Types.Components]	
 });
 

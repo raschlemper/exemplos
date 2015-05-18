@@ -8,7 +8,6 @@
 var path = require('path');
 var fs = require("fs");
 var config = require('../../config/environment');
-var Movimento = require('../../api/movimento/movimento.model');
 var Visio = require('../../api/visio/visio.model');
 
 function readJsonFileSync(filepath, encoding){
@@ -22,7 +21,7 @@ function getConfig(file){
     return readJsonFileSync(filepath);
 }
 
-Movimento.find({}).remove(function() {
+Visio.find({}).remove(function() {
   var jsondata = getConfig('/visio.json'); 
   Visio.create(jsondata, function() {
       console.log('finished populating visio');

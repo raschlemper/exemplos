@@ -6,7 +6,11 @@ var Schema = mongoose.Schema;
 
 var CampoSchema = new Schema({
     "column": String,
-    "label": String
+    "label": String,
+    "groupby": {
+        column: String,
+        label: String
+    }
 });
 
 

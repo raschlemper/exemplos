@@ -10,150 +10,59 @@
 app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, JsonService, VisioService, CampoService) {
     $scope.visio = {};
 
-    var cabecalho = [{
-        'name': 'Com título',
-        'configuracao': {
-            'header': {
-                'column': 12,
-                'line': 35
-            },
-            'title': {
-                'column': 12,
-                'line': 17,
-                'offsetLine': 1,
-                'component':"title"
-            },
-            'headerContent': {
-                'column': 12,
-                'line': 18,
-                'component':"list"
-            }
-        },
-    }, {
-        'name': 'Sem título',
-        'configuracao': {
-            'header': {
-                'column': 12,
-                'line': 35
-            },
-            'headerContent': {
-                'column': 12,
-                'component':"list"
-            }
-        },
-    }, {
-        'name': 'Com logo',
-        'configuracao': {
-            'header': {
-                'column': 12,
-                'line': 35
-            },
-            'headerContent': {
-                'column': 8,
-                'line': 35,
-                'component':"list"
-            },
-            'foto': {
-                'column': 4,
-                'line': 35,
-                'component':"image"
-            }
-        },
-    }];
-
-    var detalhe = [{
-        'name': 'Em colunas',
-        'configuracao': {
-            'details': {
-                'column': 12,
-                'line': 35,
-                'component':"table"
-            }
-        },
-        'type': 'column'
-    }, {
-        'name': 'Em linhas',
-        'configuracao': {
-            'details': {
-                'column': 12,
-                'line': 35,
-                'component':"table"
-            }
-        },
-        'type': 'line'
-    }];
-
-    var rodape = [{
-        'name': 'Abaixo',
-        'configuracao': {
-            'footer': {
-                'column': 12,
-                'line': 15,
-                'offsetLine': 1
-            },
-            'details': {
-                'column': 12,
-                'line': 20
-            },
-            'detailsContent': {
-                'column': 12,
-                'line': 20,
-                'component':"table"
-            }
-        }
-    }, {
-        'name': 'Lateral',
-        'configuracao': {
-            'footer': {
-                'column': 4,
-                'line': 35
-            },
-            'details': {
-                'column': 12,
-                'line': 35,
-            },
-            'detailsContent': {
-                'column': 8,
-                'line': 35,
-                'component':"table"
-            }
-        }
-    }, {
-        'name': 'Ambos',
-        'configuracao': {
-            'footer': {
-                'column': 12,
-                'line': 10,
-                'offsetLine': 1
-            },
-            'total': {
-                'column': 4,
-                'line': 25,
-                'component':"table"
-            },
-            'details': {
-                'column': 12,
-                'line': 25
-            },
-            'detailsContent': {
-                'column': 8,
-                'line': 25,
-                'component':"table"
-            }
-        }
-    }];
-
-    $scope.visio.option = {
-        'cabecalho': cabecalho,
-        'detalhe': detalhe,
-        'rodape': rodape
+    $scope.cabecalhos = [];
+    $scope.visio.layout = {};
+    $scope.visio.layout.selection = {
+        'cabecalho':{},
+        'rodape':{},
+        'detalhe':{}
+    }
+    var getCabecalhos = function() {
+        LayoutService.service.getAll()
+            .then(function(data) {
+                var filtered = data.filter(function(value) {
+                    return value.type == 'header';
+                });
+                $scope.cabecalhos = filtered;
+                $scope.visio.layout.selection.cabecalho = filtered[0];
+            })
+            .catch(function(err) {
+                return console.log(err);
+            });
     };
 
-    $scope.visio.option.selection = {
-        'cabecalho': cabecalho[0],
-        'detalhe': detalhe[0],
-        'rodape': rodape[0]
-    };
+
+    $scope.detalhes = [];
+
+    var getDetalhes = function() {
+        LayoutService.service.getAll()
+            .then(function(data) {
+                var filtered = data.filter(function(value) {
+                    return value.type == 'details';
+                });
+                $scope.detalhes = filtered;
+                $scope.visio.layout.selection.detalhe = filtered[0];
+            })
+            .catch(function(err) {
+                return console.log(err);
+            });
+    }
+
+    $scope.rodapes = [];
+
+    var getRodape = function() {
+        LayoutService.service.getAll()
+            .then(function(data) {
+                var filtered = data.filter(function(value) {
+                    return value.type == 'footer';
+                });
+                $scope.rodapes = filtered;
+                $scope.visio.layout.selection.rodape = filtered[0];
+            })
+            .catch(function(err) {
+                return console.log(err);
+            });
+    }
 
     //define os menus superiores para o wizard
     $scope.configuracao = {
@@ -177,7 +86,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
     }];
 
     $scope.makePreview = function() {
-        LayoutService.service.setOptionPreview($scope.visio.option.selection);
+        LayoutService.service.setOptionPreview($scope.visio.layout.selection);
         LayoutService.service.setConfiguration($scope.configuracao);
         $location.path("/preview", "_blank");
     }
@@ -190,11 +99,11 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
         }
     };
 
-    $scope.visio.campos = [];
+    $scope.campos = [];
     var getCamposMovimento = function() {
         CampoService.campo()
             .then(function(data) {
-                $scope.visio.campos = data;
+                $scope.campos = data;
             })
             .catch(function(err) {
                 return console.log(err);
@@ -202,17 +111,17 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
     }
     getCamposMovimento();
 
-    $scope.visio.selecionados = [];
+    $scope.visio.campos = [];
 
     $scope.addCampo = function(label) {
         if (!label.selected) {
             label.selected = true;
-            $scope.visio.selecionados.push(label);
+            $scope.visio.campos.push(label);
         } else {
             label.selected = false;
-            var index = $scope.visio.selecionados.indexOf(label);
+            var index = $scope.visio.campos.indexOf(label);
             if (index >= 0) {
-                $scope.visio.selecionados.splice(index, 1);
+                $scope.visio.campos.splice(index, 1);
             }
         }
     }
@@ -232,10 +141,10 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
         $location.path("/main");
     }
 
-    $scope.groupBy = function(agrupamento){
-        for (var i = 0; i < $scope.visio.selecionados.length; i++) {
-            $scope.visio.selecionados[i].groupby = agrupamento;
-            console.log($scope.visio.selecionados[i].groupby);
+    $scope.groupBy = function(agrupamento) {
+        for (var i = 0; i < $scope.visio.campos.length; i++) {
+            $scope.visio.campos[i].groupby = agrupamento;
+            console.log($scope.visio.campos[i].groupby);
         };
         $scope.setTab(1);
     }
@@ -243,10 +152,15 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
     $scope.tab = 1;
 
     $scope.setTab = function(tabId) {
-        $scope.tab  = tabId;
+        $scope.tab = tabId;
     };
 
     $scope.isSet = function(tabId) {
         return $scope.tab === tabId;
     };
+
+    getCabecalhos();
+    getDetalhes();
+    getRodape();
+
 });

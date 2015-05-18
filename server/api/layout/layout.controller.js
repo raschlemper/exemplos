@@ -1,14 +1,14 @@
 'use strict';
 
-var Campo = require('./campo.model');
+var Layout = require('./layout.model');
 
 /**
  * Get list of Movimentos
  */
 exports.index = function(req, res) {
-  Campo.find({}, function (err, campos) {
+  Layout.find({}, function (err, layouts) {
     if(err) return res.send(500, err);
-    res.json(200, campos);
+    res.json(200, layouts);
   });
 };
 
@@ -16,9 +16,9 @@ exports.index = function(req, res) {
  * Create Movimentos
  */
 exports.create = function(req, res, next) {
-  var newCampo = new Campo(req.body);
-  newCampo.save(function(err, movimentocampo) {
+  var newLayout = new Layout(req.body);
+  newLayout.save(function(err, layout) {
   	if(err) return res.send(500, err);
-    res.json(200, campo);
+    res.json(200, layout);
   });
 };
