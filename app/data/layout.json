@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Com título",
+        "type": "header",
+        "component": [{
+            "column": 12,
+            "line": 35
+        }]
+    },
+
+    {
+        "name": "Sem título",
+        "type": "header",
+        "component": [{
+            "column": 12,
+            "line": 35
+        }]
+    }   
+]

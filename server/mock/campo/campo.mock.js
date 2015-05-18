@@ -23,6 +23,6 @@ function getConfig(file){
 Campo.find({}).remove(function() {
   var jsondata = getConfig('/campos_movimento.json'); 
   Campo.create(jsondata, function() {
-      console.log('finished populating users');
+      console.log('finished populating campo');
   });
 });

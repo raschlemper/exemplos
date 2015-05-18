@@ -1,7 +1,6 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var generator = require('mongoose-gen');
 
 
 var Schema = mongoose.Schema;
@@ -168,11 +167,7 @@ var Rodape = mongoose.model('Rodape', RodapeSchema);
 VisioSchema.methods = {};
 
 module.exports = mongoose.model('visios', VisioSchema);
-<<<<<<< HEAD
-/*module.exports = mongoose.model('campos', CampoSchema);*/
-=======
 //module.exports = mongoose.model('campos', CampoSchema);
->>>>>>> 808dfd6bfe868ae5d9c85e95a3a63d331ce7d6e0
 module.exports = mongoose.model('cabecalhos', CabecalhoSchema);
 module.exports = mongoose.model('details', DetailsSchema);
 module.exports = mongoose.model('rodapes', RodapeSchema);

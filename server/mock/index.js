@@ -10,3 +10,6 @@
  */
 require('./movimento/movimento.mock'); 
 require('./campo/campo.mock'); 
+require('./component/component.mock'); 
+require('./layout/layout.mock'); 
+require('./visio/visio.mock'); 
