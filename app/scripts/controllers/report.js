@@ -5,7 +5,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
 	// $scope.list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 	// $scope.dadosteste = {"status": "R", "aluno": "Nome do Aluno", "vencimento": "08/05/2015", "pagamento": "08/05/2015", "valor": "100,00"}
     
-    var index = 0;
+    var index = 1;
 
     $scope.report = {
         titulo: 'Relatário de Movimentação Financeira',
@@ -14,9 +14,15 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
         rodape: {}
     };
 
-    $scope.links = [];
+    $scope.links = [
+            [ 
+                [ "129 - Sistema Modelo - Alegria", "Arquitetura e Urbanismo" ],
+                [ "129 - Sistema Modelo - Alegria", null ] 
+            ]
+        ];
     $scope.headers = [];
     $scope.details = [];
+    var dataFormat = null;
 
     var getData = function(index) {
         ReportService.movimento()
@@ -54,7 +60,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
     } 
 
     var getFieldValue = function(data, fields) {
-        var dataFormat = _.clone(data);      
+        dataFormat = angular.copy(data);    
         return _.map(fields, function(field, key) {
             applyFilter(dataFormat, field);
             return { name: field.name, value: getExpressionValue(dataFormat, field.expression) };
@@ -78,6 +84,16 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
         return result;
     }
 
+
+
+    var getLinkValue = function(data, fields) {
+        return _.map(data, function(value, key) {
+            return  _.map(fields, function(field, key) {
+                return _.property(field)(value.key);
+            });
+        });        
+    }  
+
     // HEADER
 
     $scope.report.cabecalho = {
@@ -92,7 +108,12 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
     }
 
     var getFieldHeaderValue = function(data) { 
-        $scope.headers = getFieldValue(data, $scope.report.cabecalho.fields);    
+        $scope.headers = getFieldValue(data, $scope.report.cabecalho.fields); 
+        //console.log($scope.report.data, $scope.headers);
+
+        var groups = getFieldsGroup($scope.report.cabecalho.fields);     
+        // $scope.links = getLinkValue($scope.report.data, groups);
+        //console.log(1, $scope.links);
     }  
 
     // DETAILS
@@ -115,7 +136,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
                                            'value': [ { 'field': 'dt_pagamento', 'filter': ['date', 'dd/MM/yyyy'] } ], 
                                            'expression': '<%= dt_pagamento %>' },
                     { 'name': 'Valor', 'key': ['previsao_confirmado'], 
-                                       'value': [ { 'field': 'previsao_confirmado', 'filter': ['currency', 'R$ ', 0.00] } ], 
+                                       'value': [ { 'field': 'previsao_confirmado', 'filter': ['currency', 'R$ '] } ], 
                                        'expression': '<%= previsao_confirmado %>' }
                   ]
     }
@@ -143,7 +164,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
                   ],
         'groups': [ 
                     { 'name': 'Valor', 'key': ['previsao_confirmado'], 
-                                       'value': [ { 'field': 'previsao_confirmado', 'filter': ['currency', 'R$ ', 0.00] } ], 
+                                       'value': [ { 'field': 'previsao_confirmado', 'filter': ['currency', 'R$ '] } ], 
                                        'expression': '<%= previsao_confirmado %>',
                                        'filter': 'sum' }
                   ]
@@ -164,121 +185,10 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
 
     // DATA GROUPER
 
-    var DataGrouper = (function() {
-        var has = function(obj, target) {
-            return _.any(obj, function(value) {
-                return _.isEqual(value, target);
-            });
-        };
+    DataGrouper
 
-        var keys = function(data, names) {
-            return _.reduce(data, function(memo, item) {
-                var key = _.pick(item, names);
-                if (!has(memo, key)) {
-                    memo.push(key);
-                }
-                return memo;
-            }, []);
-        };
-
-        var vals = function(data, stem, names) {
-            return _.map(_.where(data, stem), function(item) {
-                return _.omit(item, names);
-            });
-        };
-
-        var sum = function(values, names) {
-            var data = [];
-            _.map(names, function(name) {
-                return data[name] = _.reduce(values, function(memo, item) {
-                    return memo + Number(_.property(name)(item));
-                }, 0); 
-            });            
-            return data;
-        };
-
-        var group = function(data, names, group_names) {
-            var stems = keys(data, names);
-            return _.map(stems, function(stem) {
-                var val = vals(data, stem, names);
-                var val_sum = [];
-                if(sum) { val_sum = sum(val, group_names); }
-                return {
-                    key: stem,
-                    vals: val,
-                    sum: val_sum
-                };
-            });
-        };
-
-        group.register = function(name, converter) {
-            return group[name] = function(data, names, group_names) {
-                return _.map(group(data, names, group_names), converter);
-            };
-        };
-
-        return group;
-    }());
-
-    DataGrouper.register("report", function(item) {
-        return item;
-    }); 
+    
 
     getData(index);  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*var getFieldHeaderGroup = function() {
-        ReportService.movimentoByHeader(getFieldsGroup())
-            .then( function(data) {
-                $scope.report.cabecalho.values = data;
-                setFieldHeaderLink(0);
-                setFieldHeaderValue(0);
-            })
-            .catch( function(err) {
-                return console.log(err);
-            });
-    }
-
-    var setFieldHeaderLink = function(index) {   
-        var values = $scope.report.cabecalho.values;  
-        _.map(values, function(value, key) {
-            $scope.links[key] = { name: getFieldHeaderValue(key, value) };
-        });        
-    }
-
-    var setFieldHeaderValue = function(index) {        
-        var fields = _.pluck($scope.report.cabecalho.fields, 'field');
-        _.map(fields, function(field, key) {
-            $scope.headers[key] = { name: field.name, value: getFieldHeaderValue(index, field.value) };
-        });        
-    }
-
-    var getFieldHeaderValue = function(index, fields) {
-        var valueFormat = '';
-        var value = $scope.report.cabecalho.values[index];
-        _.map(fields, function(field) {
-            var property = _.property(field)(value);
-            if(_.isUndefined(property)) { valueFormat += field; } 
-            else { valueFormat += property; }
-        });
-        return valueFormat;
-    }
-
-    getFieldHeaderGroup();*/
 
   });
