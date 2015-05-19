@@ -1,11 +1,12 @@
 'use strict';
 
-app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonService) {
+app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonService, DataGrouperService) {
 	
 	// $scope.list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 	// $scope.dadosteste = {"status": "R", "aluno": "Nome do Aluno", "vencimento": "08/05/2015", "pagamento": "08/05/2015", "valor": "100,00"}
     
-    var index = 1;
+    var index = 0;
+    $scope.data = [];
 
     $scope.report = {
         titulo: 'Relatário de Movimentação Financeira',
@@ -13,6 +14,10 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
         detalhe: {},
         rodape: {}
     };
+
+    $scope.getData = function() {
+        return $scope.data;
+    }
 
     $scope.links = [
             [ 
@@ -26,20 +31,21 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
 
     var getData = function(index) {
         ReportService.movimento()
-            .then( function(data) {
+            .then( function(data) {  
+                $scope.data = data;              
                 getDataReport(data);
                 getFieldHeaderValue($scope.report.data[index].key);
                 getFieldDetailValue($scope.report.data[index].vals);
                 getFieldFooterValue($scope.report.data[index].vals);
             })
             .catch( function(err) {
-                return console.log(err);
+                $scope.data = [];
             });
     }
 
     var getDataReport = function(data) {
         var groups = getFieldsGroup($scope.report.cabecalho.fields);        
-        $scope.report.data = DataGrouper.report(data, groups); 
+        $scope.report.data = DataGrouperService.report(data, groups); 
     }
 
     var getFieldsGroup = function(fields) {
@@ -170,8 +176,8 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
                   ]
     }
 
-    var getFieldFooterValue = function(data) {      
-        var footers = DataGrouper.report(data, getFieldsGroup($scope.report.rodape.fields), 
+    var getFieldFooterValue = function(data) {   
+        var footers = DataGrouperService.report(data, getFieldsGroup($scope.report.rodape.fields), 
             getFieldsGroup($scope.report.rodape.groups)); 
 
         $scope.footers = [];
@@ -181,13 +187,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
             $scope.footers.push(_.union(fields, sums));
         });
         $scope.footers.header = $scope.footers[0];
-    }
-
-    // DATA GROUPER
-
-    DataGrouper
-
-    
+    }    
 
     getData(index);  
 

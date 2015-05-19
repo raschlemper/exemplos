@@ -4,16 +4,27 @@ app.directive('treeView', [function() {
 
     return {
         restrict: 'A',
+        replace: true,
+        transclude: true,
+        template: '<li ng-repeat="data in getData()">{{data}}</li>',
         scope: { 
             data: "="
         },
         link: function(scope, element, attrs, ctrls) {   
 
-            var tree = [];
+            var tree = [];    
 
-            _.map(scope.data, function(value, index) {
-                tree.push( { 'text': value } ); 
-            });
+            scope.getData = function() {
+                lista();
+                return scope.data;
+            }        
+
+            var lista = function() {
+                _.map(scope.data, function(value, index) {
+                    console.log(value, index);
+                    tree.push( { 'text': value } ); 
+                });
+            }
 
             // var tree = [
             //   {
@@ -49,8 +60,8 @@ app.directive('treeView', [function() {
             //   }
             // ];
             
-            $(element).css('padding', '0');
-            $(element).treeview({
+            element.css('padding', '0');
+            element.treeview({
                 data: tree,
                 showBorder: false
             });

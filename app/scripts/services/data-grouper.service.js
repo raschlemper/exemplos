@@ -52,6 +52,14 @@ app.factory("DataGrouperService", function(){
         };
     };
 
-        return group;
+    // Métodos
+
+    group.register("report", function(item) {
+    	return item;
+	});
+
+    return { 
+    	report: group.report
+    }
 
 });
