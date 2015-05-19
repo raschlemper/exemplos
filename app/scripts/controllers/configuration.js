@@ -7,16 +7,32 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, JsonService, VisioService, CampoService) {
-    $scope.visio = {};
+app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, LayoutService, JsonService, VisioService, CampoService) {
+
+    var carregaVisio = function() {
+        if ($routeParams.hashid) {
+            VisioService.service.getByHashid($routeParams.hashid).then(function(data) {
+                    $scope.visio = data[0];
+                })
+                .catch(function(err) {
+                    return console.log(err);
+                });
+        } else {
+            $scope.visio = {};
+            $scope.visio.campos = [];
+            $scope.visio.layout = {};
+            $scope.visio.layout.selection = {
+                'cabecalho': {},
+                'rodape': {},
+                'detalhe': {}
+            }
+        }
+    }
+
+    carregaVisio();
 
     $scope.cabecalhos = [];
-    $scope.visio.layout = {};
-    $scope.visio.layout.selection = {
-        'cabecalho':{},
-        'rodape':{},
-        'detalhe':{}
-    }
+
     var getCabecalhos = function() {
         LayoutService.service.getAll()
             .then(function(data) {
@@ -24,7 +40,9 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
                     return value.type == 'header';
                 });
                 $scope.cabecalhos = filtered;
-                $scope.visio.layout.selection.cabecalho = filtered[0];
+                if (!$routeParams.hashid) {
+                    $scope.visio.layout.selection.cabecalho = filtered[0];
+                }
             })
             .catch(function(err) {
                 return console.log(err);
@@ -41,7 +59,9 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
                     return value.type == 'details';
                 });
                 $scope.detalhes = filtered;
-                $scope.visio.layout.selection.detalhe = filtered[0];
+                if (!$routeParams.hashid) {
+                    $scope.visio.layout.selection.detalhe = filtered[0];
+                }
             })
             .catch(function(err) {
                 return console.log(err);
@@ -57,7 +77,9 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
                     return value.type == 'footer';
                 });
                 $scope.rodapes = filtered;
-                $scope.visio.layout.selection.rodape = filtered[0];
+                if (!$routeParams.hashid) {
+                    $scope.visio.layout.selection.rodape = filtered[0];
+                }
             })
             .catch(function(err) {
                 return console.log(err);
@@ -71,6 +93,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
             'lineHeight': 2
         }
     };
+
     $scope.configuracao.menus = [{
         ordem: 1,
         titulo: "Visão"
@@ -88,7 +111,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
     $scope.makePreview = function() {
         LayoutService.service.setOptionPreview($scope.visio.layout.selection);
         LayoutService.service.setConfiguration($scope.configuracao);
-        $location.path("/preview", "_blank");
+        $location.path("/preview");
     }
 
     $scope.isValid = function(booleano) {
@@ -111,8 +134,6 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
     }
     getCamposMovimento();
 
-    $scope.visio.campos = [];
-
     $scope.addCampo = function(label) {
         if (!label.selected) {
             label.selected = true;
@@ -128,9 +149,9 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
 
     $scope.removeCampo = function(selected) {
         selected.selected = false;
-        var index = $scope.visio.selecionados.indexOf(selected);
+        var index = $scope.visio.campos.indexOf(selected);
         if (index >= 0) {
-            $scope.visio.selecionados.splice(index, 1);
+            $scope.visio.campos.splice(index, 1);
         }
     }
 
@@ -142,7 +163,6 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
         arrayLayout.push($scope.visio.layout.selection.rodape);
         arrayLayout.push($scope.visio.layout.selection.detalhe);
         $scope.visio.layout.selection = arrayLayout;
-        console.log($scope.visio.layout.selection);
         VisioService.service.addVisio($scope.visio);
         $location.path("/main");
     }

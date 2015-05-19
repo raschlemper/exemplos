@@ -23,7 +23,7 @@
                             <td>{{visio.hashid}}</td>
                             <td>{{visio.createDate}}</td>
                             <td>Financeiro</td>
-                            <td><span><i class="glyphicon glyphicon-edit"></i></span><span><i class="glyphicon glyphicon-remove"></i></span>
+                            <td><span ng-click="updateVisio(visio)"><i class="glyphicon glyphicon-edit"></i></span><span ng-click="removeVisio(visio)"><i class="glyphicon glyphicon-remove"></i></span>
                         </tr>
                     </tbody>
                 </table>
@@ -33,5 +33,5 @@
         </div>
     </div>
 </div>
-{{visios}}
+
 
