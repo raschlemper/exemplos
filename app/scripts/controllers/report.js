@@ -15,16 +15,6 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
         rodape: {}
     };
 
-    $scope.getData = function() {
-        return $scope.data;
-    }
-
-    $scope.links = [
-            [ 
-                [ "129 - Sistema Modelo - Alegria", "Arquitetura e Urbanismo" ],
-                [ "129 - Sistema Modelo - Alegria", null ] 
-            ]
-        ];
     $scope.headers = [];
     $scope.details = [];
     var dataFormat = null;
@@ -33,10 +23,11 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
         ReportService.movimento()
             .then( function(data) {  
                 $scope.data = data;              
-                getDataReport(data);
+                $scope.report.data = getDataReport(data);
                 getFieldHeaderValue($scope.report.data[index].key);
                 getFieldDetailValue($scope.report.data[index].vals);
                 getFieldFooterValue($scope.report.data[index].vals);
+                getLinkValue();
             })
             .catch( function(err) {
                 $scope.data = [];
@@ -45,7 +36,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
 
     var getDataReport = function(data) {
         var groups = getFieldsGroup($scope.report.cabecalho.fields);        
-        $scope.report.data = DataGrouperService.report(data, groups); 
+        return DataGrouperService.report(data, groups); 
     }
 
     var getFieldsGroup = function(fields) {
@@ -92,12 +83,8 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
 
 
 
-    var getLinkValue = function(data, fields) {
-        return _.map(data, function(value, key) {
-            return  _.map(fields, function(field, key) {
-                return _.property(field)(value.key);
-            });
-        });        
+    var getLinkValue = function() {
+        $scope.groups = getFieldsGroup($scope.report.cabecalho.fields);    
     }  
 
     // HEADER
@@ -109,26 +96,21 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
                                              'expression': '<%= nm_instituicao_ensino %>' },
                     { 'name': 'Curso', 'key': ['cd_tipo_curso'], 
                                        'value': [ { 'field': 'ds_tipo_curso' } ], 
-                                       'expression': '<%= ds_tipo_curso %>'  }
-                  ]
+                                       'expression': '<%= ds_tipo_curso %>'  },                  
+                    { 'name': 'Série', 'key': ['cd_curso_instituicao'], 
+                                       'value': [ { 'field': 'cd_curso_instituicao' }, { 'field': 'nm_curso' } ], 
+                                       'expression': '<%= cd_curso_instituicao %> - <%= nm_curso %>' }
+                ]
     }
 
     var getFieldHeaderValue = function(data) { 
         $scope.headers = getFieldValue(data, $scope.report.cabecalho.fields); 
-        //console.log($scope.report.data, $scope.headers);
-
-        var groups = getFieldsGroup($scope.report.cabecalho.fields);     
-        // $scope.links = getLinkValue($scope.report.data, groups);
-        //console.log(1, $scope.links);
     }  
 
     // DETAILS
 
     $scope.report.detalhe = {
         'fields': [ 
-                    { 'name': 'Série', 'key': ['cd_curso_instituicao'], 
-                                       'value': [ { 'field': 'cd_curso_instituicao' }, { 'field': 'nm_curso' } ], 
-                                       'expression': '<%= cd_curso_instituicao %> - <%= nm_curso %>' },
                     { 'name': 'Ano/Semestre', 'key': ['nr_ano', 'nr_semestre'], 
                                               'value': [ { 'field': 'nr_ano' }, { 'field': 'nr_semestre' } ], 
                                               'expression': '<%= nr_ano %> / <%= nr_semestre %>' },
@@ -158,9 +140,9 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
 
     $scope.report.rodape = {
         'fields': [ 
-                    { 'name': 'Série', 'key': ['cd_curso_instituicao'], 
-                                       'value': [ { 'field': 'cd_curso_instituicao' }, { 'field': 'nm_curso' } ], 
-                                       'expression': '<%= cd_curso_instituicao %> - <%= nm_curso %>' },
+                    // { 'name': 'Série', 'key': ['cd_curso_instituicao'], 
+                    //                    'value': [ { 'field': 'cd_curso_instituicao' }, { 'field': 'nm_curso' } ], 
+                    //                    'expression': '<%= cd_curso_instituicao %> - <%= nm_curso %>' },
                     { 'name': 'Ano/Semestre', 'key': ['nr_ano', 'nr_semestre'], 
                                               'value': [ { 'field': 'nr_ano' }, { 'field': 'nr_semestre' } ], 
                                               'expression': '<%= nr_ano %> / <%= nr_semestre %>' },
