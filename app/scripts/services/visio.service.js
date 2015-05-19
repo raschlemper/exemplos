@@ -4,9 +4,7 @@ app.factory("VisioService", function($http, $q) {
     _visioService.addVisio = function(visio, callback) {
     	var cb = callback || angular.noop;
         var deferred = $q.defer();
-        $http.post('/financeiro/visio', {
-                'visios': visio
-            })
+        $http.post('/financeiro/visio', visio)
             .success(function(data) {
                 deferred.resolve(data);
                 return cb();

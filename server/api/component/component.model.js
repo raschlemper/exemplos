@@ -6,7 +6,10 @@ var Schema = mongoose.Schema;
 
 var ComponentSchema = new Schema({
     "column": Number,
-	"line": Number
+    "label": String,
+	"line": Number,
+	"name": String,
+	"widget": String
 });
 
 

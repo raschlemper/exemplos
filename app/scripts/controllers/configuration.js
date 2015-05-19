@@ -137,6 +137,12 @@ app.controller('ConfigurationCtrl', function($scope, $location, LayoutService, J
     $scope.saveVisio = function() {
         $scope.visio.createDate = new Date();
         $scope.visio.hashid = Math.floor(10000000000 + Math.random() * 90000000000);
+        var arrayLayout = [];
+        arrayLayout.push($scope.visio.layout.selection.cabecalho);
+        arrayLayout.push($scope.visio.layout.selection.rodape);
+        arrayLayout.push($scope.visio.layout.selection.detalhe);
+        $scope.visio.layout.selection = arrayLayout;
+        console.log($scope.visio.layout.selection);
         VisioService.service.addVisio($scope.visio);
         $location.path("/main");
     }
