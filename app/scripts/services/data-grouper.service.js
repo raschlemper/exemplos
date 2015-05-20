@@ -22,6 +22,20 @@ app.factory("DataGrouperService", function(){
         });
     };
 
+    var group = function(data, names, group_names) {
+        var stems = keys(data, names);
+        return _.map(stems, function(stem) {
+            var val = vals(data, stem, names);
+            var val_sum = [];
+            return {
+                key: stem,
+                vals: val
+            };
+        });
+    };
+
+    // Métodos Privados
+
     var sum = function(values, names) {
         var data = {};
         _.map(names, function(name) {
@@ -32,34 +46,25 @@ app.factory("DataGrouperService", function(){
         return data;
     };
 
-    var group = function(data, names, group_names) {
-        var stems = keys(data, names);
-        return _.map(stems, function(stem) {
-            var val = vals(data, stem, names);
-            var val_sum = [];
-            if(sum) { val_sum = sum(val, group_names); }
-            return {
-                key: stem,
-                vals: val,
-                sum: val_sum
-            };
-        });
-    };
+    // Métodos Públicos
 
-    group.register = function(name, converter) {
-        return group[name] = function(data, names, group_names) {
-            return _.map(group(data, names, group_names), converter);
-        };
-    };
+    return {
 
-    // Métodos
+        report: function(data, names) {
+            var groups = group(data, names);
+            return _.map(groups, function(item) {
+                return item;
+            });
+        },
 
-    group.register("report", function(item) {
-    	return item;
-	});
+        sum: function(data, names, group_names) {
+            var groups = group(data, names);
+            return _.map(groups, function(item) {
+                var val_sum = sum(item.vals, group_names);
+                return _.extend({}, item, { 'sum': val_sum });
+            });
+        }
 
-    return { 
-    	report: group.report
     }
 
 });

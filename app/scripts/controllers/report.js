@@ -165,15 +165,19 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
     }
 
     var getFieldFooterValue = function(data) {   
-        var footers = DataGrouperService.report(data, getFieldsGroup($scope.report.rodape.fields), 
+        var footers = DataGrouperService.sum(data, getFieldsGroup($scope.report.rodape.fields), 
             getFieldsGroup($scope.report.rodape.groups)); 
-        $scope.footers = _.map(footers, function(item) {
+        $scope.footers = unionGroup(footers);
+        $scope.footers.header = $scope.footers[0];
+    }    
+
+    var unionGroup = function(dataGrouper) {
+        return _.map(dataGrouper, function(item) {
             var sums = getFieldValue(item.sum, $scope.report.rodape.groups);
             var fields = getFieldValue(item.key, $scope.report.rodape.fields);
             return _.union(fields, sums);
         });
-        $scope.footers.header = $scope.footers[0];
-    }    
+    }
 
     getData(index);  
 
