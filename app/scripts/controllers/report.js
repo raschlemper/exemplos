@@ -17,6 +17,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
 
     $scope.headers = [];
     $scope.details = [];
+    $scope.footers = [];
     var dataFormat = null;
 
     var getData = function(index) {
@@ -24,14 +25,19 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
             .then( function(data) {  
                 $scope.data = data;              
                 $scope.report.data = getDataReport(data);
-                getFieldHeaderValue($scope.report.data[index].key);
-                getFieldDetailValue($scope.report.data[index].vals);
-                getFieldFooterValue($scope.report.data[index].vals);
-                getLinkValue();
+                $scope.getReport(index);
+                getPageValue();
             })
             .catch( function(err) {
                 $scope.data = [];
             });
+    }
+
+    $scope.getReport = function(index) {
+        getFieldHeaderValue($scope.report.data[index].key);
+        getFieldDetailValue($scope.report.data[index].vals);
+        getFieldFooterValue($scope.report.data[index].vals);
+
     }
 
     var getDataReport = function(data) {
@@ -81,10 +87,10 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
         return result;
     }
 
-
-
-    var getLinkValue = function() {
-        $scope.groups = getFieldsGroup($scope.report.cabecalho.fields);    
+    var getPageValue = function() {
+        $scope.pages = _.map($scope.report.data, function(item) {
+            return item.key;
+        });
     }  
 
     // HEADER
@@ -161,12 +167,10 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
     var getFieldFooterValue = function(data) {   
         var footers = DataGrouperService.report(data, getFieldsGroup($scope.report.rodape.fields), 
             getFieldsGroup($scope.report.rodape.groups)); 
-
-        $scope.footers = [];
-        _.map(footers, function(item) {
+        $scope.footers = _.map(footers, function(item) {
             var sums = getFieldValue(item.sum, $scope.report.rodape.groups);
             var fields = getFieldValue(item.key, $scope.report.rodape.fields);
-            $scope.footers.push(_.union(fields, sums));
+            return _.union(fields, sums);
         });
         $scope.footers.header = $scope.footers[0];
     }    
