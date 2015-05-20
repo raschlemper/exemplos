@@ -48,7 +48,10 @@
 					<div id="details-saldo" class="col-lg-2">
 						<table class="table">
 							<tr>
-								<th>Saldo</th>
+								<th ng-repeat="header in rests.header">{{ header.name }}</th>
+							</tr>
+							<tr ng-repeat="rest in rests"> 
+								<td ng-repeat="field in rest">{{ field.value }}</td>
 							</tr>
 						</table>
 					</div>

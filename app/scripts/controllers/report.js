@@ -7,6 +7,12 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
     
     var index = 0;
     $scope.data = [];
+    $scope.headers = [];
+    $scope.details = [];
+    $scope.footers = [];
+    $scope.rest = [];
+    var fields = [];
+    var dataFormat = null;
 
     $scope.report = {
         titulo: 'Relatário de Movimentação Financeira',
@@ -15,15 +21,10 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
         rodape: {}
     };
 
-    $scope.headers = [];
-    $scope.details = [];
-    $scope.footers = [];
-    var dataFormat = null;
-
     var getData = function(index) {
         ReportService.movimento()
-            .then( function(data) {  
-                $scope.data = data;              
+            .then( function(data) {   
+                $scope.data = data;  
                 $scope.report.data = getDataReport(data);
                 $scope.getReport(index);
                 getPageValue();
@@ -37,7 +38,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
         getFieldHeaderValue($scope.report.data[index].key);
         getFieldDetailValue($scope.report.data[index].vals);
         getFieldFooterValue($scope.report.data[index].vals);
-
+        getFieldRestValue($scope.report.data[index].vals);
     }
 
     var getDataReport = function(data) {
@@ -91,22 +92,82 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
         $scope.pages = _.map($scope.report.data, function(item) {
             return item.key;
         });
-    }  
+    }   
+
+    var getFields = function() {
+        var fields = [];
+
+        fields['instituicao'] = { 
+            'name': 'Instituição', 
+            'key': ['cd_instituicao_ensino'], 
+            'value': [ { 'field': 'nm_instituicao_ensino' } ], 
+            'expression': '<%= nm_instituicao_ensino %>' 
+        };
+
+        fields['curso'] = { 
+            'name': 'Curso', 
+            'key': ['cd_tipo_curso'], 
+            'value': [ { 'field': 'ds_tipo_curso' } ], 
+            'expression': '<%= ds_tipo_curso %>'  
+        };
+
+        fields['serie'] = { 
+            'name': 'Série', 
+            'key': ['cd_curso_instituicao'], 
+            'value': [ { 'field': 'cd_curso_instituicao' }, { 'field': 'nm_curso' } ], 
+            'expression': '<%= cd_curso_instituicao %> - <%= nm_curso %>'  
+        };
+
+        fields['ano'] = { 
+            'name': 'Ano/Semestre', 
+            'key': ['nr_ano', 'nr_semestre'], 
+            'value': [ { 'field': 'nr_ano' }, { 'field': 'nr_semestre' } ], 
+            'expression': '<%= nr_ano %> / <%= nr_semestre %>' 
+        };
+
+        fields['aluno'] = { 
+            'name': 'Aluno', 
+            'key': ['cd_aluno'], 
+            'value': [ { 'field': 'nm_aluno' } ], 
+            'expression': '<%= nm_aluno %>' 
+        };
+
+        fields['vencimento'] = { 
+            'name': 'Vencimento', 
+            'key': ['dt_vencimento'], 
+            'value': [ { 'field': 'dt_vencimento', 'filter': ['date', 'dd/MM/yyyy'] } ], 
+            'expression': '<%= dt_vencimento %>' 
+        };
+
+        fields['pagamento'] = { 
+            'name': 'Pagamento', 
+            'key': ['dt_pagamento'], 
+            'value': [ { 'field': 'dt_pagamento', 'filter': ['date', 'dd/MM/yyyy'] } ], 
+            'expression': '<%= dt_pagamento %>' 
+        };
+
+        fields['valor'] = { 
+            'name': 'Valor', 
+            'key': ['previsao_confirmado'], 
+            'value': [ { 'field': 'previsao_confirmado', 'filter': ['currency', 'R$ '] } ], 
+            'expression': '<%= previsao_confirmado %>'
+        };
+
+        fields['saldo'] = angular.copy(fields['valor']);
+        fields['saldo'].name = 'Saldo'
+
+        return fields;
+    }
+
+    var field = function(field) {
+        if(fields.length === 0) { fields = getFields(); }
+        return fields[field];
+    }
 
     // HEADER
 
     $scope.report.cabecalho = {
-        'fields': [ 
-                    { 'name': 'Instituição', 'key': ['cd_instituicao_ensino'], 
-                                             'value': [ { 'field': 'nm_instituicao_ensino' } ], 
-                                             'expression': '<%= nm_instituicao_ensino %>' },
-                    { 'name': 'Curso', 'key': ['cd_tipo_curso'], 
-                                       'value': [ { 'field': 'ds_tipo_curso' } ], 
-                                       'expression': '<%= ds_tipo_curso %>'  },                  
-                    { 'name': 'Série', 'key': ['cd_curso_instituicao'], 
-                                       'value': [ { 'field': 'cd_curso_instituicao' }, { 'field': 'nm_curso' } ], 
-                                       'expression': '<%= cd_curso_instituicao %> - <%= nm_curso %>' }
-                ]
+        'fields': [ field('instituicao'), field('curso'), field('serie') ]
     }
 
     var getFieldHeaderValue = function(data) { 
@@ -116,23 +177,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
     // DETAILS
 
     $scope.report.detalhe = {
-        'fields': [ 
-                    { 'name': 'Ano/Semestre', 'key': ['nr_ano', 'nr_semestre'], 
-                                              'value': [ { 'field': 'nr_ano' }, { 'field': 'nr_semestre' } ], 
-                                              'expression': '<%= nr_ano %> / <%= nr_semestre %>' },
-                    { 'name': 'Aluno', 'key': ['cd_aluno'], 
-                                       'value': [ { 'field': 'nm_aluno' } ], 
-                                       'expression': '<%= nm_aluno %>' },
-                    { 'name': 'Vencimento', 'key': ['dt_vencimento'], 
-                                            'value': [ { 'field': 'dt_vencimento', 'filter': ['date', 'dd/MM/yyyy'] } ], 
-                                            'expression': '<%= dt_vencimento %>' },
-                    { 'name': 'Pagamento', 'key': ['dt_pagamento'], 
-                                           'value': [ { 'field': 'dt_pagamento', 'filter': ['date', 'dd/MM/yyyy'] } ], 
-                                           'expression': '<%= dt_pagamento %>' },
-                    { 'name': 'Valor', 'key': ['previsao_confirmado'], 
-                                       'value': [ { 'field': 'previsao_confirmado', 'filter': ['currency', 'R$ '] } ], 
-                                       'expression': '<%= previsao_confirmado %>' }
-                  ]
+        'fields': [ field('ano'), field('aluno'), field('vencimento'), field('pagamento'), field('valor') ]
     }
 
     var getFieldDetailValue = function(data) {         
@@ -145,40 +190,47 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
     // FOOTER
 
     $scope.report.rodape = {
-        'fields': [ 
-                    // { 'name': 'Série', 'key': ['cd_curso_instituicao'], 
-                    //                    'value': [ { 'field': 'cd_curso_instituicao' }, { 'field': 'nm_curso' } ], 
-                    //                    'expression': '<%= cd_curso_instituicao %> - <%= nm_curso %>' },
-                    { 'name': 'Ano/Semestre', 'key': ['nr_ano', 'nr_semestre'], 
-                                              'value': [ { 'field': 'nr_ano' }, { 'field': 'nr_semestre' } ], 
-                                              'expression': '<%= nr_ano %> / <%= nr_semestre %>' },
-                    { 'name': 'Aluno', 'key': ['cd_aluno'], 
-                                       'value': [ { 'field': 'nm_aluno' } ], 
-                                       'expression': '<%= nm_aluno %>' }
-                  ],
-        'groups': [ 
-                    { 'name': 'Valor', 'key': ['previsao_confirmado'], 
-                                       'value': [ { 'field': 'previsao_confirmado', 'filter': ['currency', 'R$ '] } ], 
-                                       'expression': '<%= previsao_confirmado %>',
-                                       'filter': 'sum' }
-                  ]
+        'fields': [ field('ano'), field('aluno') ],
+        'groups': [ field('valor') ]
     }
 
     var getFieldFooterValue = function(data) {   
         var footers = DataGrouperService.sum(data, getFieldsGroup($scope.report.rodape.fields), 
             getFieldsGroup($scope.report.rodape.groups)); 
-        $scope.footers = unionGroup(footers);
+        $scope.footers = unionGroupFooter(footers);
         $scope.footers.header = $scope.footers[0];
     }    
 
-    var unionGroup = function(dataGrouper) {
+    var unionGroupFooter = function(dataGrouper) {
         return _.map(dataGrouper, function(item) {
-            var sums = getFieldValue(item.sum, $scope.report.rodape.groups);
             var fields = getFieldValue(item.key, $scope.report.rodape.fields);
+            var sums = getFieldValue(item.sum, $scope.report.rodape.groups);
             return _.union(fields, sums);
         });
     }
 
-    getData(index);  
+    // REST
+
+    $scope.report.saldo = {
+        'fields': [ field('ano'), field('aluno') ],
+        'groups': [ field('saldo') ]
+    }
+
+    var getFieldRestValue = function(data) {   
+        var rests = DataGrouperService.rest(data, getFieldsGroup($scope.report.saldo.fields), 
+            getFieldsGroup($scope.report.saldo.groups)); 
+        $scope.rests = _.map(rests, function(item) {
+            return getFieldValue(item.rest, $scope.report.saldo.groups);
+        });
+        $scope.rests.header = $scope.rests[0];
+
+        console.log(1, rests, $scope.rests);
+    }      
+
+    var unionGroupRest = function(dataGrouper) {
+        return 
+    } 
+
+    getData(index); 
 
   });
