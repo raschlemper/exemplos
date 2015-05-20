@@ -34,6 +34,22 @@ app.factory("DataGrouperService", function(){
         });
     };
 
+    var toKey = function(item, values, group_names) {
+        _.map(group_names, function(name) {
+            item.key[name] = values[name];
+        });
+        return item; 
+    };
+
+    var toVals = function(item, values, group_names) {
+        _.map(values, function(value, index) {
+            _.map(group_names, function(name) {
+                item.vals[index][name] = value[name];
+            });
+        });
+        return item; 
+    };
+
     // Method Privade
 
     var sum = function(values, names) {
@@ -76,7 +92,7 @@ app.factory("DataGrouperService", function(){
             var groups = group(data, names);
             return _.map(groups, function(item) {
                 var val_sum = sum(item.vals, group_names);
-                return _.extend({}, item, { 'sum': val_sum });
+                return toKey(item, val_sum, group_names);
             });
         },
 
@@ -84,7 +100,7 @@ app.factory("DataGrouperService", function(){
             var groups = group(data, names);
             return _.map(groups, function(item) {
                 var val_rest = rest(item.vals, group_names);
-                return _.extend({}, item, { 'rest': val_rest });
+                return toVals(item, val_rest, group_names);
             });
         }
 

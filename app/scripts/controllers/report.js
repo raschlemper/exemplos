@@ -5,7 +5,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
 	// $scope.list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 	// $scope.dadosteste = {"status": "R", "aluno": "Nome do Aluno", "vencimento": "08/05/2015", "pagamento": "08/05/2015", "valor": "100,00"}
     
-    var index = 0;
+    var index = 1;
     $scope.data = [];
     $scope.headers = [];
     $scope.details = [];
@@ -69,6 +69,14 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
             applyFilter(dataFormat, field);
             return { name: field.name, value: getExpressionValue(dataFormat, field.expression) };
         });        
+    }  
+
+    var getListFieldValue = function(item, fields) {
+        var data = [];
+        _.map(item.vals, function(value, index) {
+            data.push(getFieldValue(value, fields));
+        });
+        return data;     
     }  
 
     var applyFilter = function(data, field) {
@@ -204,7 +212,7 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
     var unionGroupFooter = function(dataGrouper) {
         return _.map(dataGrouper, function(item) {
             var fields = getFieldValue(item.key, $scope.report.rodape.fields);
-            var sums = getFieldValue(item.sum, $scope.report.rodape.groups);
+            var sums = getFieldValue(item.key, $scope.report.rodape.groups);
             return _.union(fields, sums);
         });
     }
@@ -219,16 +227,14 @@ app.controller('ReportCtrl', function ($scope, $filter, ReportService, JsonServi
     var getFieldRestValue = function(data) {   
         var rests = DataGrouperService.rest(data, getFieldsGroup($scope.report.saldo.fields), 
             getFieldsGroup($scope.report.saldo.groups)); 
-        $scope.rests = _.map(rests, function(item) {
-            return getFieldValue(item.rest, $scope.report.saldo.groups);
-        });
+        $scope.rests = getListFieldValue(rests[index], $scope.report.saldo.groups)
         $scope.rests.header = $scope.rests[0];
-
-        console.log(1, rests, $scope.rests);
     }      
 
     var unionGroupRest = function(dataGrouper) {
-        return 
+        return _.map(dataGrouper, function(item) {
+            return getListFieldValue(item, $scope.report.saldo.groups);
+        });
     } 
 
     getData(index); 
