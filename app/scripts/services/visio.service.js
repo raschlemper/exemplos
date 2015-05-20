@@ -16,7 +16,17 @@ app.factory("VisioService", function($http, $q) {
     };
 
     _visioService.remove = function(visio, callback) {
+        var deferred = $q.defer();
         $http.post('/financeiro/visio/remove', visio)
+            .error(function(err) {
+                deferred.reject(err);
+                return cb(err);
+            }.bind(this));
+    };
+
+    _visioService.update = function(visio, callback) {
+        var deferred = $q.defer();
+        $http.put('/financeiro/visio', visio)
             .error(function(err) {
                 deferred.reject(err);
                 return cb(err);

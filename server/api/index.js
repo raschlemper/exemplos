@@ -18,6 +18,7 @@ router.get('/visio', visio.index);
 router.get('/visio/:hashid', visio.findByHashid);
 router.post('/visio', visio.create);
 router.post('/visio/remove', visio.remove);
+router.put('/visio', visio.update);
 
 router.get('/layout', layout.index);
 router.post('/layout', layout.create);

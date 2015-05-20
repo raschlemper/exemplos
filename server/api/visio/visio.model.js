@@ -6,9 +6,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var VisioSchema = new Schema({
-    layout:{
-        selection:[Schema.Types.Layouts]
-    },
+    layout:[Schema.Types.Layouts],
     campos: [Schema.Types.Campos],
     name: String,
     description: String,

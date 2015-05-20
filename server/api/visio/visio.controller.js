@@ -35,6 +35,14 @@ exports.create = function(req, res, next) {
   });
 };
 
+
+exports.update = function(req, res, next) {
+  Visio.findByIdAndUpdate(req.body._id, req.body, function(err, visio) {
+    if(err) return res.send(500, err);
+    res.json(200, visio);
+  });
+};
+
 /**
  * Remove Visio
  */

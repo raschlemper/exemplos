@@ -25,7 +25,7 @@
                                         <div class="row text-left">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" class="clip-unset" name="cabecalho" ng-value="item" ng-model="visio.layout.selection.cabecalho">{{item.name}}
+                                                    <input type="radio" class="clip-unset" name="cabecalho" ng-value="item" ng-model="selection.cabecalho">{{item.name}}
                                                 </label>
                                             </div>
                                         </div>
@@ -52,7 +52,7 @@
                                         <div class="row text-left">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" class="clip-unset" name="detalhe" ng-value="item" ng-model="visio.layout.selection.detalhe">{{item.name}}
+                                                    <input type="radio" class="clip-unset" name="detalhe" ng-value="item" ng-model="selection.detalhe">{{item.name}}
                                                 </label>
                                             </div>
                                         </div>
@@ -79,7 +79,7 @@
                                         <div class="row text-left">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" class="clip-unset" name="rodape" ng-value="item" ng-model="visio.layout.selection.rodape">{{item.name}}
+                                                    <input type="radio" class="clip-unset" name="rodape" ng-value="item" ng-model="selection.rodape">{{item.name}}
                                                 </label>
                                             </div>
                                         </div>
@@ -105,8 +105,8 @@
                             <div class="panel-body layout-box">
                                 <div class="row">
                                     <layout configuracao="configuracao" preview="true">
-                                        <div block="header" columns="visio.layout.selection.cabecalho.column" lines="visio.layout.selection.cabecalho.line" group="false" line-height="configuracao.preview.lineHeight" preview-block="true">
-                                                 <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.preview.lineHeight" preview-block="true" ng-repeat="component in visio.layout.selection.cabecalho.component">
+                                        <div block="header" columns="selection.cabecalho.column" lines="selection.cabecalho.line" group="false" line-height="configuracao.preview.lineHeight" preview-block="true">
+                                                 <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.preview.lineHeight" preview-block="true" ng-repeat="component in selection.cabecalho.component">
                                                     <div class="layout layout-container layout-border">
                                                         <div class="layout layout-container container-column">
                                                             <span>{{component.label}}</span>
@@ -114,8 +114,8 @@
                                                     </div>
                                                 </div>
                                         </div>
-                                        <div block="rodape" columns="visio.layout.selection.rodape.column" lines="visio.layout.selection.rodape.line" group="false" line-height="configuracao.preview.lineHeight" preview-block="true">
-                                             <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.preview.lineHeight" preview-block="true" ng-repeat="component in visio.layout.selection.rodape.component">
+                                        <div block="rodape" columns="selection.rodape.column" lines="selection.rodape.line" group="false" line-height="configuracao.preview.lineHeight" preview-block="true">
+                                             <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.preview.lineHeight" preview-block="true" ng-repeat="component in selection.rodape.component">
                                                     <div class="layout layout-container layout-border">
                                                         <div class="layout layout-container container-column">
                                                             <span>{{component.label}}</span>
@@ -201,5 +201,3 @@
         </wizard>
     </form>
 </div>
-
-{{visio.layout.selection}}
