@@ -14,9 +14,10 @@ exports.index = function(req, res) {
 
 
 exports.getById = function(req, res) { 
-  Layout.find({_id:req.params.id}, function (err, visio) {
+	console.log(req.params.id);
+  Layout.find({_id: req.params.id}, function (err, layouts) {
     if(err) return res.send(500, err);
-    res.json(200, visio);
+    res.json(200, layouts);
   });
 };
 

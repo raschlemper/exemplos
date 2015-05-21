@@ -34,7 +34,7 @@ app.factory("LayoutService", function($http, $q) {
     _layoutService.getById = function(id, callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
-        $http.get('/financeiro/layout', {params:{id:id}})
+        $http.get('/financeiro/layout/'+id, {params:{id:id}})
             .success(function(data) {
                 deferred.resolve(data);
                 return cb();

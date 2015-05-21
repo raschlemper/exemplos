@@ -48,7 +48,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
     }
 
     var getLayoutById = function(){
-        LayoutService.service.getById('555e3724881921e81c06d20f').then(function(data) {
+        LayoutService.service.getById('555e4e4e4ef9a328246ae1ab').then(function(data) {
             console.log(data);
         });
     };
