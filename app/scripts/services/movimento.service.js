@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory("ReportService", function($http, $q){
+app.factory("MovimentoService", function($http, $q){
 
     return {
 

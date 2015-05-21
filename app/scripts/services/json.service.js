@@ -1,7 +1,9 @@
 'use strict';
 
 app.factory("JsonService", function($http, $q) {
+
     return {
+
         movimento: function(callback) {
             var cb = callback || angular.noop;
             var deferred = $q.defer();
@@ -9,22 +11,49 @@ app.factory("JsonService", function($http, $q) {
                 .success(function(data) {
                     deferred.resolve(data);
                     return cb(data);
-                })
-                .error(function(error) {
+                }).error(function(err) {
                     deferred.reject(err);
                     return cb(err);
                 }.bind(this));
             return deferred.promise;
         },
-        campos: function(callback) {
+
+        camposTest: function(callback) {
             var cb = callback || angular.noop;
             var deferred = $q.defer();
-             $http.get('data/campos_movimento.json')
+            $http.get('data/test/campos.json')
                 .success(function(data) {
                     deferred.resolve(data);
                     return cb(data);
-                })
-                .error(function(error) {
+                }).error(function(err) {
+                    deferred.reject(err);
+                    return cb(err);
+                }.bind(this));
+            return deferred.promise;
+        },
+
+        layoutTest: function(callback) {
+            var cb = callback || angular.noop;
+            var deferred = $q.defer();
+            $http.get('data/test/layout.json')
+                .success(function(data) {
+                    deferred.resolve(data);
+                    return cb(data);
+                }).error(function(err) {
+                    deferred.reject(err);
+                    return cb(err);
+                }.bind(this));
+            return deferred.promise;
+        },
+        
+        campos: function(callback) {
+            var cb = callback || angular.noop;
+            var deferred = $q.defer();
+            $http.get('data/campos_movimento.json')
+                .success(function(data) {
+                    deferred.resolve(data);
+                    return cb(data);
+                }).error(function(err) {
                     deferred.reject(err);
                     return cb(err);
                 }.bind(this));
