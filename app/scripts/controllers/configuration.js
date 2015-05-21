@@ -47,6 +47,14 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
             });
     }
 
+    var getLayoutById = function(){
+        LayoutService.service.getById('555e3724881921e81c06d20f').then(function(data) {
+            console.log(data);
+        });
+    };
+
+    getLayoutById();
+
     //define os menus superiores para o wizard
     $scope.menus = [{
         ordem: 1,

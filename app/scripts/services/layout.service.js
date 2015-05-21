@@ -29,7 +29,22 @@ app.factory("LayoutService", function($http, $q) {
                 return cb(err);
             }.bind(this));
         return deferred.promise;
-    }
+    };
+
+    _layoutService.getById = function(id, callback) {
+        var cb = callback || angular.noop;
+        var deferred = $q.defer();
+        $http.get('/financeiro/layout', {params:{id:id}})
+            .success(function(data) {
+                deferred.resolve(data);
+                return cb();
+            })
+            .error(function(err) {
+                deferred.reject(err);
+                return cb(err);
+            }.bind(this));
+        return deferred.promise;
+    };
     return {
         service: _layoutService
     }

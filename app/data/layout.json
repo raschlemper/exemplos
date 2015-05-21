@@ -11,13 +11,15 @@
             "name": "foto",
             "column": 4,
             "line": 35,
-            "type": "image"
+            "type": "image",
+            "data": "images/yeoman.png"
         }, {
             "label": "Conteúdo do cabeçalho",
             "name": "headerContent",
             "column": 8,
             "line": 35,
-            "type": "list"
+            "type": "list",
+            "data": []
         }]
     }, {
         "_id": "555b24e0a209f0690f4c7fbf",
@@ -30,13 +32,17 @@
             "label": "Detalhes",
             "name": "details",
             "column": 8,
-            "line": 25
+            "line": 25,
+            "type": "list",
+            "data": []
         }, {
             "label": "Total",
             "name": "total",
             "column": 4,
             "line": 25,
-            "type": "table"
+            "type": "table",
+            "type": "list",
+            "data": []
         }, {
             "label": "Rodapé",
             "name": "footer",

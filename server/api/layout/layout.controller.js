@@ -12,6 +12,15 @@ exports.index = function(req, res) {
   });
 };
 
+
+exports.getById = function(req, res) { 
+  Layout.find({_id:req.params.id}, function (err, visio) {
+    if(err) return res.send(500, err);
+    res.json(200, visio);
+  });
+};
+
+
 /**
  * Create Movimentos
  */

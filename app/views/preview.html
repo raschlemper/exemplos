@@ -2,11 +2,7 @@
     <layout configuracao="visio.layout.configuration" preview="false">
         <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="visio.layout.configuration.full.lineHeight" preview-block="false" ng-repeat="container in visio.layout.containers">
             <div block="component.name" columns="component.column" lines="component.line" line-height="visio.layout.configuration.full.lineHeight" preview-block="false" ng-repeat="component in container.component">
-                <div class="layout layout-container layout-border">
-                    <div class="layout layout-container container-column">
-                        <span>{{component.label}}</span>
-                    </div>
-                </div>
+                <widget type="component.type" data="component.data"></widget>
             </div>
         </div>
     </layout>

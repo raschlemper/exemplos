@@ -32,7 +32,11 @@
                                         <layout configuracao="item.configuration" preview="true">
                                             <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in item.containers">
                                                 <div block="component.name" columns="component.column" lines="component.line" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
-                                                    
+                                                    <div class="layout layout-container layout-border">
+                                                        <div class="layout layout-container container-column">
+                                                            <span>{{component.label}}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </layout>

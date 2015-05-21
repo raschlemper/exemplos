@@ -29,6 +29,7 @@ router.get('/entity', entity.index);
 router.post('/entity', entity.create);
 
 router.get('/layout', layout.index);
+router.get('/layout/:id', layout.getById);
 router.post('/layout', layout.create);
 
 module.exports = router;
