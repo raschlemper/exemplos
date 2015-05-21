@@ -1,127 +1,32 @@
 [{
-        "name": "Com título",
-        "type": "header",
-        "line": 35,
-        "column": 12,
-        "component": [{
-            "label": "Título",
-            "name": "title",
-            "column": 12,
-            "line": 17,
-            "offsetLine": 1,
-            "widget": "title"
-        }, {
-            "label": "Conteúdo do cabeçalho",
-            "name": "headerContent",
-            "column": 12,
-            "line": 18,
-            "widget": "list"
-        }]
-    },
-
-    {
-        "name": "Sem título",
-        "type": "header",
-        "line": 35,
-        "column": 12,
-        "component": [{
-            "label": "Conteúdo do cabeçalho",
-            "name": "headerContent",
-            "column": 12,
-            "widget": "list"
-        }]
-    },
-
-    {
+    "containers": [{
+        "_id": "555b24e0a209f0690f4c7fba",
         "name": "Com foto",
         "type": "header",
         "line": 35,
         "column": 12,
+        "__v": 0,
         "component": [{
             "label": "Foto",
             "name": "foto",
             "column": 4,
             "line": 35,
-            "widget": "image"
+            "type": "image"
         }, {
             "label": "Conteúdo do cabeçalho",
             "name": "headerContent",
             "column": 8,
             "line": 35,
-            "widget": "list"
+            "type": "list"
         }]
-    },
-
-    {
-        "name": "Em linhas",
-        "type": "details",
-        "line": 35,
-        "column": 12,
-        "component": [{
-            "label": "Detalhes",
-            "name": "detailsContent",
-            "column": 12,
-            "line": 35,
-            "widget": "list"
-        }]
-    },
-
-    {
-        "name": "Em colunas",
-        "type": "details",
-        "line": 35,
-        "column": 12,
-        "component": [{
-            "label": "Detalhes",
-            "name": "detailsContent",
-            "column": 12,
-            "line": 35,
-            "widget": "table"
-        }]
-    },
-
-    {
-        "name": "Abaixo",
-        "type": "footer",
-        "line": 35,
-        "column": 12,
-        "component": [{
-            "label": "Detalhes",
-            "name": "detailsContent",
-            "column": 12,
-            "line": 20
-        }, {
-            "label": "Rodapé",
-            "name": "footer",
-            "column": 12,
-            "line": 15
-        }]
-    },
-
-    {
-        "name": "Lateral",
-        "type": "footer",
-        "line": 35,
-        "column": 12,
-        "component": [{  
-            "label": "Detalhes",
-            "name": "detailsContent",
-            "column": 8,
-            "line": 35
-        },{
-            "label": "Rodapé",
-            "name": "footer",
-            "column": 4,
-            "line": 35
-        }]
-    },
-
-    {
+    }, {
+        "_id": "555b24e0a209f0690f4c7fbf",
         "name": "Ambos",
         "type": "footer",
         "line": 35,
         "column": 12,
-        "component": [ {
+        "__v": 0,
+        "component": [{
             "label": "Detalhes",
             "name": "details",
             "column": 8,
@@ -131,13 +36,124 @@
             "name": "total",
             "column": 4,
             "line": 25,
-            "widget": "table"
-        },{
+            "type": "table"
+        }, {
             "label": "Rodapé",
             "name": "footer",
             "column": 12,
-            "line": 10,
+            "line": 25,
             "offsetLine": 1
         }]
+    }],
+    "name": "Layout master",
+    "description": "Descrição",
+    "configuration": {
+        "full": {
+            "lineHeight": 15
+        },
+        "preview": {
+            "lineHeight": 2
+        }
     }
-]
+}, {
+    "containers": [{
+        "_id": "555b24e0a209f0690f4c7fba",
+        "name": "Sem foto",
+        "type": "header",
+        "line": 35,
+        "column": 12,
+        "__v": 0,
+        "component": [{
+            "label": "Conteúdo do cabeçalho",
+            "name": "headerContent",
+            "column": 12,
+            "line": 35,
+            "type": "list"
+        }]
+    }, {
+        "_id": "555b24e0a209f0690f4c7fbf",
+        "name": "Ambos",
+        "type": "footer",
+        "line": 35,
+        "column": 12,
+        "__v": 0,
+        "component": [{
+            "label": "Detalhes",
+            "name": "details",
+            "column": 12,
+            "line": 25
+        }, {
+            "label": "Rodapé",
+            "name": "footer",
+            "column": 12,
+            "line": 25,
+            "offsetLine": 1
+        }]
+    }],
+    "name": "Layout normal",
+    "description": "Descrição",
+    "configuration": {
+        "full": {
+            "lineHeight": 15
+        },
+        "preview": {
+            "lineHeight": 2
+        }
+    }
+}, {
+    "containers": [{
+        "_id": "555b24e0a209f0690f4c7fbf",
+        "name": "Ambos",
+        "type": "footer",
+        "line": 85,
+        "column": 12,
+        "__v": 0,
+        "component": [{
+            "label": "Detalhes",
+            "name": "details",
+            "column": 12,
+            "line": 60
+        }, {
+            "label": "Rodapé",
+            "name": "footer",
+            "column": 12,
+            "line": 25,
+            "offsetLine": 1
+        }]
+    }],
+    "name": "Layout sem header",
+    "description": "Descrição",
+    "configuration": {
+        "full": {
+            "lineHeight": 15
+        },
+        "preview": {
+            "lineHeight": 2
+        }
+    }
+}, {
+    "containers": [{
+        "_id": "555b24e0a209f0690f4c7fbf",
+        "name": "Ambos",
+        "type": "footer",
+        "line": 85,
+        "column": 12,
+        "__v": 0,
+        "component": [{
+            "label": "Detalhes",
+            "name": "details",
+            "column": 12,
+            "line": 85
+        }]
+    }],
+    "name": "Inteirão",
+    "description": "Descrição",
+    "configuration": {
+        "full": {
+            "lineHeight": 15
+        },
+        "preview": {
+            "lineHeight": 2
+        }
+    }
+}]

@@ -30,7 +30,6 @@ app.factory("LayoutService", function($http, $q) {
             }.bind(this));
         return deferred.promise;
     }
-
     return {
         service: _layoutService
     }

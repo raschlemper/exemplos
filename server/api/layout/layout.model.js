@@ -6,12 +6,18 @@ var Schema = mongoose.Schema;
 
 var LayoutSchema = new Schema({
     "name": String,
-	"type": String,
-	"line": Number,
-	"column": Number,
-	"component":[Schema.Types.Components]	
+    "order": Number,
+    "description": String,
+    "configuration": {
+        "full": {
+            "lineHeight": Number
+        },
+        "preview": {
+            "lineHeight": Number
+        }
+    },
+    "containers": [Schema.Types.Containers]
 });
-
 
 var layout = mongoose.model('layout', LayoutSchema);
 
@@ -36,4 +42,3 @@ var layout = mongoose.model('layout', LayoutSchema);
 LayoutSchema.methods = {};
 
 module.exports = mongoose.model('layouts', LayoutSchema);
-

@@ -5,12 +5,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var CampoSchema = new Schema({
-    "column": String,
+    "field": String,
     "label": String,
-    "groupby": {
-        column: String,
-        label: String
-    }
+    "type": String,
+    "isKey": Boolean
 });
 
 

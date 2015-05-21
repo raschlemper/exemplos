@@ -13,7 +13,6 @@ exports.index = function(req, res) {
   });
 };
 
-
 /**
  * Get Visio by hashid
  */

@@ -2,11 +2,10 @@
 
 var mongoose = require('mongoose');
 
-
 var Schema = mongoose.Schema;
 
 var VisioSchema = new Schema({
-    layout:[Schema.Types.Layouts],
+	layout: { type : mongoose.Schema.ObjectId, ref : 'layouts' },
     campos: [Schema.Types.Campos],
     name: String,
     description: String,
@@ -14,9 +13,7 @@ var VisioSchema = new Schema({
     hashid: Number
 });
 
-
 var Visio = mongoose.model('Visio', VisioSchema);
-
 
 /**
  * Virtuals
@@ -39,4 +36,3 @@ var Visio = mongoose.model('Visio', VisioSchema);
 VisioSchema.methods = {};
 
 module.exports = mongoose.model('visios', VisioSchema);
-

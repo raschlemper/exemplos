@@ -1,16 +1,7 @@
 <div class="fixed-margin">
-    <layout configuracao="configuracao" preview="false">
-        <div block="header" columns="visio.layout.selection.cabecalho.column" lines="visio.layout.selection.cabecalho.line" group="false" line-height="configuracao.lineHeight" preview-block="true">
-            <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.lineHeight" preview-block="false" ng-repeat="component in visio.layout.selection.cabecalho.component">
-                <div class="layout layout-container layout-border">
-                    <div class="layout layout-container container-column">
-                        <span>{{component.label}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div block="rodape" columns="visio.layout.selection.rodape.column" lines="visio.layout.selection.rodape.line" group="false" line-height="configuracao.lineHeight" preview-block="true">
-            <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.lineHeight" preview-block="false" ng-repeat="component in visio.layout.selection.rodape.component">
+    <layout configuracao="visio.layout.configuration" preview="false">
+        <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="visio.layout.configuration.full.lineHeight" preview-block="false" ng-repeat="container in visio.layout.containers">
+            <div block="component.name" columns="component.column" lines="component.line" line-height="visio.layout.configuration.full.lineHeight" preview-block="false" ng-repeat="component in container.component">
                 <div class="layout layout-container layout-border">
                     <div class="layout layout-container container-column">
                         <span>{{component.label}}</span>

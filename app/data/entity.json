@@ -1,0 +1,171 @@
+[
+
+    {
+        "name": "Instituição",
+        "key": [{
+            "field": "cd_instituicao_ensino",
+            "label": "Código da instituição de ensino",
+            "type": "codigo",
+            "isKey": true
+        }],
+        "value": [{
+            "field": "nm_instituicao_ensino",
+            "label": "Nome da instituição de ensino",
+            "type": "text",
+            "isKey": false
+        }],
+        "expression": "<%= nm_instituicao_ensino %>"
+    },
+
+    {
+        "name": "Curso",
+        "key": [{
+            "field": "cd_tipo_curso",
+            "label": "Código do tipo de curso",
+            "type": "codigo",
+            "isKey": true
+        }],
+        "value": [{
+            "field": "ds_tipo_curso",
+            "label": "Descrição do tipo de curso",
+            "type": "text",
+            "isKey": false
+        }],
+        "expression": "<%= ds_tipo_curso %>"
+    },
+
+    {
+        "name": "Série",
+        "key": [{
+            "field": "cd_curso_instituicao",
+            "label": "Código do Curso/Instituição",
+            "type": "codigo",
+            "isKey": true
+        }],
+        "value": [{
+            "field": "cd_curso_instituicao",
+            "label": "Código do Curso/Instituição",
+            "type": "codigo",
+            "isKey": true
+        }, {
+            "field": "nm_curso",
+            "label": "Nome do Curso/Instituição",
+            "type": "text",
+            "isKey": false
+        }],
+        "expression": "<%= cd_curso_instituicao %> - <%= nm_curso %>"
+    },
+
+    {
+        "name": "Ano/Semestre",
+        "key": [{
+            "field": "nr_ano",
+            "label": "Ano",
+            "type": "date",
+            "isKey": false
+        }, {
+            "field": "nr_semestre",
+            "label": "Semestre",
+            "type": "number",
+            "isKey": false
+        }],
+        "value": [{
+            "field": "nr_ano",
+            "label": "Ano",
+            "type": "date",
+            "isKey": false
+        }, {
+            "field": "nr_semestre",
+            "label": "Semestre",
+            "type": "number",
+            "isKey": false
+        }],
+        "expression": "<%= nr_ano %> / <%= nr_semestre %>"
+    },
+
+    {
+        "name": "Aluno",
+        "key": [{
+            "field": "cd_aluno",
+            "label": "Código do aluno",
+            "type": "codigo",
+            "isKey": true
+        }],
+        "value": [{
+            "field": "nm_aluno",
+            "label": "Nome do aluno",
+            "type": "text",
+            "isKey": false
+        }],
+        "expression": "<%= nm_aluno %>"
+    },
+
+    {
+        "name": "Vencimento",
+        "key": [{
+            "field": "dt_vencimento",
+            "label": "Data de vencimento",
+            "type": "date",
+            "isKey": false
+        }],
+        "value": [{
+            "field": "dt_vencimento",
+            "label": "Data de vencimento",
+            "type": "date",
+            "isKey": false
+        }],
+        "expression": "<%= dt_vencimento %>"
+    },
+
+    {
+        "name": "Pagamento",
+        "key": [{
+            "field": "dt_pagamento",
+            "label": "Data de pagamento",
+            "type": "date",
+            "isKey": false
+        }],
+        "value": [{
+            "field": "dt_pagamento",
+            "label": "Data de pagamento",
+            "type": "date",
+            "isKey": false
+        }],
+        "expression": "<%= dt_pagamento %>"
+    },
+
+    {
+        "name": "Valor",
+        "key": [{
+            "field": "previsao_confirmado",
+            "label": "Previsão confirmada",
+            "type": "number",
+            "isKey": false
+        }],
+        "value": [{
+            "field": "previsao_confirmado",
+            "label": "Previsão confirmada",
+            "type": "number",
+            "isKey": false
+        }],
+        "expression": "<%= previsao_confirmado %>"
+    },
+
+    {
+        "name": "Saldo",
+        "key": [{
+            "field": "previsao_confirmado",
+            "label": "Previsão confirmada",
+            "type": "number",
+            "isKey": false
+        }],
+        "value": [{
+            "field": "previsao_confirmado",
+            "label": "Previsão confirmada",
+            "type": "number",
+            "isKey": false
+        }],
+        "expression": "<%= previsao_confirmado %>"
+    }
+
+]

@@ -7,7 +7,7 @@
 var path = require('path');
 var fs = require("fs");
 var config = require('../../config/environment');
-var Campo = require('../../api/campo/campo.model');
+var Entity = require('../../api/entity/entity.model');
 
 function readJsonFileSync(filepath, encoding){
     if (typeof (encoding) == 'undefined') { encoding = 'utf8'; }
@@ -20,9 +20,9 @@ function getConfig(file){
     return readJsonFileSync(filepath);
 }
 
-Campo.find({}).remove(function() {
-  var jsondata = getConfig('/field.json'); 
-  Campo.create(jsondata, function() {
-      console.log('finished populating campo');
+Entity.find({}).remove(function() {
+  var jsondata = getConfig('/entity.json'); 
+  Entity.create(jsondata, function() {
+      console.log('finished populating entity');
   });
 });

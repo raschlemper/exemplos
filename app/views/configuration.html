@@ -1,6 +1,6 @@
 <div class="container fixed-margin">
     <form name="cadastroForm">
-        <wizard configuracao="configuracao" steps="4" valid="isValid(cadastroForm.$valid)">
+        <wizard configuracao="menus" steps="4" valid="isValid(cadastroForm.$valid)">
             <step ordem="1" title="'Configuração da visão'">
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error': cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine }">
@@ -18,79 +18,21 @@
                 <div class="row">
                     <div class="col-md-9 text-center">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Cabeçalho</div>
+                            <div class="panel-heading">Layouts</div>
                             <div class="panel-body">
                                 <div class="row layout-line">
-                                    <div class="col-md-4 layout-box" ng-repeat="item in cabecalhos">
+                                    <div class="col-md-4 layout-box" ng-repeat="item in layouts">
                                         <div class="row text-left">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" class="clip-unset" name="cabecalho" ng-value="item" ng-model="selection.cabecalho">{{item.name}}
+                                                    <input type="radio" class="clip-unset" name="layout" ng-value="item" ng-model="selection.layout">{{item.name}}
                                                 </label>
                                             </div>
                                         </div>
-                                        <layout configuracao="configuracao" preview="true">
-                                            <div block="item.type" columns="item.column" lines="item.line" group="false" line-height="configuracao.preview.lineHeight" preview-block="true">
-                                                <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.preview.lineHeight" preview-block="true" ng-repeat="component in item.component">
-                                                    <div class="layout layout-container layout-border">
-                                                        <div class="layout layout-container container-column">
-                                                            <span>{{component.label}}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </layout>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Detalhe</div>
-                            <div class="panel-body">
-                                <div class="row layout-line">
-                                    <div class="col-md-4 layout-box" ng-repeat="item in detalhes">
-                                        <div class="row text-left">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" class="clip-unset" name="detalhe" ng-value="item" ng-model="selection.detalhe">{{item.name}}
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <layout configuracao="configuracao" preview="true">
-                                            <div block="item.type" columns="item.column" lines="item.line" group="false" line-height="configuracao.preview.lineHeight" preview-block="true">
-                                                <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.preview.lineHeight" preview-block="true" ng-repeat="component in item.component">
-                                                    <div class="layout layout-container layout-border">
-                                                        <div class="layout layout-container container-column">
-                                                            <span>{{component.label}}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </layout>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Rodapé</div>
-                            <div class="panel-body">
-                                <div class="row layout-line">
-                                    <div class="col-md-4 layout-box" ng-repeat="item in rodapes">
-                                        <div class="row text-left">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" class="clip-unset" name="rodape" ng-value="item" ng-model="selection.rodape">{{item.name}}
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <layout configuracao="configuracao" preview="true">
-                                            <div block="item.type" columns="item.column" lines="item.line" group="false" line-height="configuracao.preview.lineHeight" preview-block="true">
-                                                <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.preview.lineHeight" preview-block="true" ng-repeat="component in item.component">
-                                                    <div class="layout layout-container layout-border">
-                                                        <div class="layout layout-container container-column">
-                                                            <span>{{component.label}}</span>
-                                                        </div>
-                                                    </div>
+                                        <layout configuracao="item.configuration" preview="true">
+                                            <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in item.containers">
+                                                <div block="component.name" columns="component.column" lines="component.line" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
+                                                    
                                                 </div>
                                             </div>
                                         </layout>
@@ -101,27 +43,18 @@
                     </div>
                     <div class="col-md-3 text-center" id="layout">
                         <div class="panel panel-default" style="height: 250px;">
-                            <div class="panel-heading">Layout</div>
+                            <div class="panel-heading">Selecionado</div>
                             <div class="panel-body layout-box">
                                 <div class="row">
-                                    <layout configuracao="configuracao" preview="true">
-                                        <div block="header" columns="selection.cabecalho.column" lines="selection.cabecalho.line" group="false" line-height="configuracao.preview.lineHeight" preview-block="true">
-                                                 <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.preview.lineHeight" preview-block="true" ng-repeat="component in selection.cabecalho.component">
-                                                    <div class="layout layout-container layout-border">
-                                                        <div class="layout layout-container container-column">
-                                                            <span>{{component.label}}</span>
-                                                        </div>
+                                    <layout configuracao="selection.layout.configuration" preview="true">
+                                        <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="selection.layout.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in selection.layout.containers">
+                                            <div block="component.name" columns="component.column" lines="component.line" line-height="selection.layout.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
+                                                <div class="layout layout-container layout-border">
+                                                    <div class="layout layout-container container-column">
+                                                        <span>{{component.label}}</span>
                                                     </div>
                                                 </div>
-                                        </div>
-                                        <div block="rodape" columns="selection.rodape.column" lines="selection.rodape.line" group="false" line-height="configuracao.preview.lineHeight" preview-block="true">
-                                             <div block="component.name" columns="component.column" lines="component.line" line-height="configuracao.preview.lineHeight" preview-block="true" ng-repeat="component in selection.rodape.component">
-                                                    <div class="layout layout-container layout-border">
-                                                        <div class="layout layout-container container-column">
-                                                            <span>{{component.label}}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            </div>
                                         </div>
                                     </layout>
                                 </div>
@@ -145,7 +78,7 @@
                                             <ul class="nav bs-docs-sidenav">
                                                 <label>Campos</label>
                                                 <li class="" ng-repeat="label in campos | filter:busca">
-                                                    <a ng-click="addCampo(label)" ng-class="{'docs-active': label.selected}">{{label.label}}</a>
+                                                    <a ng-click="addCampo(label)" ng-class="{'docs-active': label.selected}">{{label.name}}</a>
                                                 </li>
                                             </ul>
                                         </nav>
@@ -154,38 +87,27 @@
                                         <div id="navegation">
                                             <ul class="nav nav-tabs">
                                                 <li role="fields" ng-class="{'active': isSet(1)}"><a ng-click="setTab(1)">Campos</a></li>
-                                                <li role="groupby" ng-class="{'active': isSet(2)}"><a ng-click="setTab(2)">Agrupamento Geral</a></li>
                                             </ul>
                                         </div>
                                         <div id="fields" class="fixed-margin" ng-if="isSet(1)">
                                             <table class="table table-condensed">
                                                 <thead>
                                                     <tr>
-                                                        <th>Campos selecionados</th>
-                                                        <th>Agrupamento por campo</th>
-                                                        <th>Componente</th>
+                                                        <th>Nome</th>
+                                                        <th>Chave</th>
+                                                        <th>Valor</th>
                                                         <th class="col-md-2">Ações</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr ng-repeat="selecionado in visio.campos">
-                                                        <td>{{selecionado.label}}</td>
-                                                        <td>
-                                                            <select ng-model="selecionado.groupby" ng-options="campo.label for campo in campos" ng-show="campos.length">
-                                                            </select>
-                                                        </td>
-                                                        <td ng-if="!selecionado.component">Nenhum</td>
+                                                        <td>{{selecionado.name}}</td>
+                                                        <td>{{selecionado.key[0].label}}</td>
+                                                        <td>{{selecionado.value[0].label}}</td>
                                                         <td class="col-md-2"><span style="padding:2px" ng-click="removeCampo(selecionado)"><i class="glyphicon glyphicon-remove"></i></span></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        <div id="groupby" class="fixed-margin" ng-if="isSet(2)">
-                                            <div class="form-group" ng-if="visio.campos.length">
-                                                <select ng-model="campoSelecionado" ng-options="campo.label for campo in campos" ng-show="campos.length">
-                                                </select>
-                                                <button class="btn btn-default" ng-click="groupBy(campoSelecionado)">Agrupar</button>
-                                            </div>
                                         </div>
                                         <div ng-if="!visio.campos.length" class="pontilhado">Nenhum campo selecionado.</div>
                                     </div>

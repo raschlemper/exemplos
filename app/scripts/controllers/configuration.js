@@ -7,20 +7,14 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, LayoutService, JsonService, VisioService, CampoService) {
+app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, LayoutService, JsonService, VisioService, EntityService) {
 
     $scope.visio = {};
-    $scope.cabecalhos = [];
-    $scope.detalhes = [];
-    $scope.rodapes = [];
+    $scope.layouts = [];
     $scope.campos = [];
+    $scope.selection = {};
 
     var carregaVisio = function() {
-        $scope.selection = {
-            'cabecalho': {},
-            'rodape': {},
-            'detalhe': {}
-        };
         if ($routeParams.hashid) {
             VisioService.service.getByHashid($routeParams.hashid).then(function(data) {
                     $scope.visio = data[0];
@@ -35,90 +29,26 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
         }
     }
 
-
-    var getCabecalhos = function() {
+    var getLayouts = function() {
         LayoutService.service.getAll()
             .then(function(data) {
-                var filtered = data.filter(function(value) {
-                    return value.type == 'header';
-                });
-                $scope.cabecalhos = filtered;
+                $scope.layouts = data;
                 if (!$routeParams.hashid) {
-                    $scope.selection.cabecalho = filtered[0];
+                    $scope.selection.layout = data[0];
                 } else {
-                    var headerId = _.find($scope.visio.layout, function(obj) {
-                        return obj.type == 'header';
+                    var selecionado = $scope.layouts.filter(function(value) {
+                        return value._id == $scope.visio.layout;
                     });
-                    $scope.selection.cabecalho = _.find($scope.cabecalhos, function(obj) {
-                        return obj._id == headerId._id;
-                    });
+                    $scope.selection.layout = selecionado[0];
                 }
             })
             .catch(function(err) {
                 return console.log(err);
             });
-    }
-
-    var getDetalhes = function() {
-        LayoutService.service.getAll()
-            .then(function(data) {
-                var filtered = data.filter(function(value) {
-                    return value.type == 'details';
-                });
-                $scope.detalhes = filtered;
-                if (!$routeParams.hashid) {
-                    $scope.selection.detalhe = filtered[0];
-                } else {
-                    var detailsId = _.find($scope.visio.layout, function(obj) {
-                        return obj.type == 'details';
-                    });
-                    $scope.selection.detalhe = _.find($scope.detalhes, function(obj) {
-                        return obj._id == detailsId._id;
-                    });
-                }
-            })
-            .catch(function(err) {
-                return console.log(err);
-            });
-    }
-
-    var getRodape = function() {
-        LayoutService.service.getAll()
-            .then(function(data) {
-                var filtered = data.filter(function(value) {
-                    return value.type == 'footer';
-                });
-                $scope.rodapes = filtered;
-                if (!$routeParams.hashid) {
-                    $scope.selection.rodape = filtered[0];
-                } else {
-                    var footerId = _.find($scope.visio.layout, function(obj) {
-                        return obj.type == 'footer';
-                    });
-                    $scope.selection.rodape = _.find($scope.rodapes, function(obj) {
-                        return obj._id == footerId._id;
-                    });
-                }
-            })
-            .catch(function(err) {
-                return console.log(err);
-            });
-    }
-
-    var limpaCampos = function() {
-        $scope.visio = {};
-        $scope.selection = {};
     }
 
     //define os menus superiores para o wizard
-    $scope.configuracao = {
-        'lineHeight': 15,
-        'preview': {
-            'lineHeight': 2
-        }
-    };
-
-    $scope.configuracao.menus = [{
+    $scope.menus = [{
         ordem: 1,
         titulo: "Visão"
     }, {
@@ -133,7 +63,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
     }];
 
     $scope.makePreview = function() {
-        LayoutService.service.setOptionPreview($scope.selection);
+        LayoutService.service.setOptionPreview($scope.selection.layout);
         LayoutService.service.setConfiguration($scope.configuracao);
         $location.path("/preview");
     }
@@ -148,7 +78,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
 
 
     var getCamposMovimento = function() {
-        CampoService.campo()
+        EntityService.entity()
             .then(function(data) {
                 $scope.campos = data;
             })
@@ -182,18 +112,10 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
         if (!$routeParams.hashid) {
             $scope.visio.createDate = new Date();
             $scope.visio.hashid = Math.floor(10000000000 + Math.random() * 90000000000);
-            var arrayLayout = [];
-            arrayLayout.push($scope.selection.cabecalho);
-            arrayLayout.push($scope.selection.rodape);
-            arrayLayout.push($scope.selection.detalhe);
-            $scope.visio.layout = arrayLayout;
+            $scope.visio.layout = $scope.selection.layout._id;
             VisioService.service.addVisio($scope.visio);
         } else {
-            var arrayLayout = [];
-            arrayLayout.push($scope.selection.cabecalho);
-            arrayLayout.push($scope.selection.rodape);
-            arrayLayout.push($scope.selection.detalhe);
-            $scope.visio.layout = arrayLayout;
+            $scope.visio.layout = $scope.selection.layout._id;
             VisioService.service.update($scope.visio);
         }
         $location.path("/main");
@@ -218,9 +140,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
     };
 
     carregaVisio();
-    getCabecalhos();
-    getDetalhes();
-    getRodape();
+    getLayouts();
     getCamposMovimento();
 
 });

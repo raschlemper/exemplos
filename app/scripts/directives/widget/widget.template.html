@@ -1,0 +1,17 @@
+<div>
+    <table ng-if="isTable()">
+        <thead>
+            <tr>
+                <th ng-repeat="head in data.heads"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="field in data.values">
+                <td>{{field.value}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <img ng-if="isImage()" src="{{data}}" />
+    <p ng-if="isText()">{{data}}</p>
+    <h3 ng-if="isTitle()">{{data}}</h3>
+</div>

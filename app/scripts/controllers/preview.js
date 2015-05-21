@@ -11,16 +11,10 @@ app.controller('PreviewCtrl', function($scope, BlockService, LayoutService) {
 
     $scope.option = {};
     $scope.blocks = BlockService.service.getAll();
-    $scope.visio = {layout:{}}
-    $scope.visio.layout.selection = LayoutService.service.getOptionPreview();
-    $scope.configuracao = LayoutService.service.getConfiguration();
+    $scope.visio = {};
+    $scope.visio.layout = LayoutService.service.getOptionPreview();
 
     $scope.columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
-    $scope.addBlock = function(block) {
-        BlockService.service.addBlock(block);
-        $scope.block = {};
-    };
 
     $scope.dadosteste = {
         "status": "R",
