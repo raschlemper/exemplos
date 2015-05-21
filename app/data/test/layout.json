@@ -1,4 +1,6 @@
 {
+    "title": "Relatório de Movimentação Financeira",
+    "filter": [ "instituicao", "curso", "serie" ],
     "containers": [
         {   
             "ordem": 1, 

@@ -81,10 +81,10 @@ app.factory("DataGrouperService", function(){
 
     return {
 
-        report: function(data, names) {
+        keys: function(data, names) {
             var groups = group(data, names);
             return _.map(groups, function(item) {
-                return item;
+                return item.key;
             });
         },
 

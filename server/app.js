@@ -9,12 +9,12 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express');
 var http = require('http');
-var config = require('./config/mongodb');
 var config = require('./config/environment');
 
 // Setup server
 var app = express();
 var server = http.createServer(app);
+require('./config/mongodb');
 require('./config/express')(app);
 require('./routes')(app);
 
