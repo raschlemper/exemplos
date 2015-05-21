@@ -1,95 +1,103 @@
 'use strict';
 
-app.controller('ReportCtrl', function ($scope, $filter, MovimentoService, ReportService, DataGrouperService, JsonService) {
+app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location, 
+        ReportService, MovimentoService, VisioService, LayoutService, JsonService) {
 	
-	var index = 1;
-    var data = [];
-    var fields = [];
-    var report = {
-        titulo: 'Relatário de Movimentação Financeira',
-        layout: []
-    };
+	var index = 0;
+    var registers = [];
+    var visio = [];
+    var layout = [];
+    $scope.report = {};
+    
 
-    // $scope.headers = [];
-    // $scope.details = [];
-    // $scope.footers = [];
-    // $scope.rest = [];
-    // var fields = [];
-    // var dataFormat = null;
+    var createReport = function() {
+        if(!$routeParams.hashid) { 
+            $location.url('/report').search('hashid', '555b2523a209f0690f4c7ff7'); 
+        }
+        getData();
+    }
 
-    // var layout = 
-
-    // $scope.report = {
-    //     titulo: 'Relatário de Movimentação Financeira',
-    //     layout: layout
-    // };
-
-    var getData = function(index) {
+    var getData = function() {
         MovimentoService.movimento()
-            .then( function(data) {   
-                data = data;   
-                getFields(); 
+            .then( function(data) { 
+                registers = data; 
+                getVisio(); 
             })
             .catch( function(err) {
                 data = [];
             });
-    }      
+    }   
 
-    var getFields = function() {
-        JsonService.camposTest()
-            .then( function(data) {   
-                fields = data;
-                getLayout(); 
-            })
-            .catch( function(err) {
-                fields = [];
-            });
-    }      
-
-    var getLayout = function() {
-        JsonService.layoutTest()
-            .then( function(data) {   
-                report.layout = data;
-                getFieldsToLayout(report.layout);
+    var getVisio = function() {
+        VisioService.service.getByHashid($routeParams.hashid)
+            .then( function(data) {  
+                visio = data[0];
+                getLayout(visio.layout);
             })
             .catch( function(err) {
                 layout = [];
             });
     }
 
-    var getFieldsToLayout = function(layout) {
-        _.map(layout.containers, function(container) {
-            _.map(container.components, function(component) {
-                fieldsTo(component);
-                groupsTo(component);
+    var getLayout = function(layout) {
+        LayoutService.service.getById(layout)
+            .then( function(data) {  
+                layout = data;
+                $scope.report = ReportService.create(registers, data);    
+                $scope.getPage(index);  
+
+                console.log($scope.report);
+            })
+            .catch( function(err) {
+                layout = [];
             });
-        })
+    }  
+
+    $scope.getPage = function(index) {
+        var page = $scope.report.pages[index];
+        //console.log(index, page);
     }
 
-    var fieldsTo = function(component) {
-        var data = component.fields;
-        var list = _.map(data, function(item) { return fields[item]; })
-        if(fields.length > 0) { component.fields = list; }
-    }
-
-    var groupsTo = function(component) {
-        var data = component.groups;
-        var list = _.map(data, function(item) { return fields[item]; })
-        if(fields.length > 0) { component.groups = list; }
-    }
-
-    getData(index);
-
-    // $scope.getReport = function(index) {
-    //     getFieldHeaderValue($scope.report.data[index].key);
-    //     getFieldDetailValue($scope.report.data[index].vals);
-    //     getFieldFooterValue($scope.report.data[index].vals);
-    //     getFieldRestValue($scope.report.data[index].vals);
+    // var getFieldsToLayout = function(fields) {
+    //     filterTo(fields);
+    //     _.map($scope.report.layout.containers, function(container) {
+    //         _.map(container.components, function(component) {
+    //             fieldsTo(component, fields);
+    //             groupsTo(component, fields);
+    //         });
+    //     })
     // }
 
-    // var getDataReport = function(data) {
-    //     var groups = getFieldsGroup($scope.report.cabecalho.fields);        
-    //     return DataGrouperService.report(data, groups); 
+    // var filterTo = function(fields) {
+    //     var data = $scope.report.layout.filter;
+    //     var list = _.map(data, function(item) { return fields[item]; })
+    //     if(fields.length > 0) { layout.filter = list; }
+    // }
+
+    // var fieldsTo = function(component, fields) {
+    //     var data = component.fields;
+    //     var list = _.map(data, function(item) { return fields[item]; })
+    //     if(fields.length > 0) { component.fields = list; }
+    // }
+
+    // var groupsTo = function(component, fields) {
+    //     var data = component.groups;
+    //     var list = _.map(data, function(item) { return fields[item]; })
+    //     if(fields.length > 0) { component.groups = list; }
+    // }
+
+    createReport();
+
+    // $scope.get$scope.report = function(index) {
+    //     getFieldHeaderValue($scope.$scope.report.data[index].key);
+    //     getFieldDetailValue($scope.$scope.report.data[index].vals);
+    //     getFieldFooterValue($scope.$scope.report.data[index].vals);
+    //     getFieldRestValue($scope.$scope.report.data[index].vals);
+    // }
+
+    // var getData$scope.report = function(data) {
+    //     var groups = getFieldsGroup($scope.$scope.report.cabecalho.fields);        
+    //     return DataGrouperService.$scope.report(data, groups); 
     // }
 
     // var getFieldsGroup = function(fields) {
@@ -143,7 +151,7 @@ app.controller('ReportCtrl', function ($scope, $filter, MovimentoService, Report
     // }
 
     // var getPageValue = function() {
-    //     $scope.pages = _.map($scope.report.data, function(item) {
+    //     $scope.pages = _.map($scope.$scope.report.data, function(item) {
     //         return item.key;
     //     });
     // } 
@@ -155,66 +163,66 @@ app.controller('ReportCtrl', function ($scope, $filter, MovimentoService, Report
 
     // // HEADER
 
-    // $scope.report.cabecalho = {
+    // $scope.$scope.report.cabecalho = {
     //     'fields': [ field('instituicao'), field('curso'), field('serie') ]
     // }
 
     // var getFieldHeaderValue = function(data) { 
-    //     $scope.headers = getFieldValue(data, $scope.report.cabecalho.fields); 
+    //     $scope.headers = getFieldValue(data, $scope.$scope.report.cabecalho.fields); 
     // }  
 
     // // DETAILS
 
-    // $scope.report.detalhe = {
+    // $scope.$scope.report.detalhe = {
     //     'fields': [ field('ano'), field('aluno'), field('vencimento'), field('pagamento'), field('valor') ]
     // }
 
     // var getFieldDetailValue = function(data) {         
     //     $scope.details = _.map(data, function(item, key) {
-    //         return getFieldValue(item, $scope.report.detalhe.fields);  
+    //         return getFieldValue(item, $scope.$scope.report.detalhe.fields);  
     //     });  
     //     $scope.details.header = $scope.details[0];
     // }
 
     // // FOOTER
 
-    // $scope.report.rodape = {
+    // $scope.$scope.report.rodape = {
     //     'fields': [ field('ano'), field('aluno') ],
     //     'groups': [ field('valor') ]
     // }
 
     // var getFieldFooterValue = function(data) {   
-    //     var footers = DataGrouperService.sum(data, getFieldsGroup($scope.report.rodape.fields), 
-    //         getFieldsGroup($scope.report.rodape.groups)); 
+    //     var footers = DataGrouperService.sum(data, getFieldsGroup($scope.$scope.report.rodape.fields), 
+    //         getFieldsGroup($scope.$scope.report.rodape.groups)); 
     //     $scope.footers = unionGroupFooter(footers);
     //     $scope.footers.header = $scope.footers[0];
     // }    
 
     // var unionGroupFooter = function(dataGrouper) {
     //     return _.map(dataGrouper, function(item) {
-    //         var fields = getFieldValue(item.key, $scope.report.rodape.fields);
-    //         var sums = getFieldValue(item.key, $scope.report.rodape.groups);
+    //         var fields = getFieldValue(item.key, $scope.$scope.report.rodape.fields);
+    //         var sums = getFieldValue(item.key, $scope.$scope.report.rodape.groups);
     //         return _.union(fields, sums);
     //     });
     // }
 
     // // REST
 
-    // $scope.report.saldo = {
+    // $scope.$scope.report.saldo = {
     //     'fields': [ field('ano'), field('aluno') ],
     //     'groups': [ field('saldo') ]
     // }
 
     // var getFieldRestValue = function(data) {   
-    //     var rests = DataGrouperService.rest(data, getFieldsGroup($scope.report.saldo.fields), 
-    //         getFieldsGroup($scope.report.saldo.groups)); 
-    //     $scope.rests = getListFieldValue(rests[index], $scope.report.saldo.groups)
+    //     var rests = DataGrouperService.rest(data, getFieldsGroup($scope.$scope.report.saldo.fields), 
+    //         getFieldsGroup($scope.$scope.report.saldo.groups)); 
+    //     $scope.rests = getListFieldValue(rests[index], $scope.$scope.report.saldo.groups)
     //     $scope.rests.header = $scope.rests[0];
     // }      
 
     // var unionGroupRest = function(dataGrouper) {
     //     return _.map(dataGrouper, function(item) {
-    //         return getListFieldValue(item, $scope.report.saldo.groups);
+    //         return getListFieldValue(item, $scope.$scope.report.saldo.groups);
     //     });
     // } 
 
