@@ -1,4 +1,5 @@
 [{
+    "_id": "555e430d923e6f18206dde3a",
     "containers": [{
         "_id": "555b24e0a209f0690f4c7fba",
         "name": "Com foto",
@@ -12,14 +13,14 @@
             "column": 4,
             "line": 35,
             "type": "image",
-            "data": "images/yeoman.png"
+            "data": { }
         }, {
             "label": "Conteúdo do cabeçalho",
             "name": "headerContent",
             "column": 8,
             "line": 35,
             "type": "list",
-            "data": []
+            "data": { }
         }]
     }, {
         "_id": "555b24e0a209f0690f4c7fbf",
@@ -34,7 +35,7 @@
             "column": 8,
             "line": 25,
             "type": "list",
-            "data": []
+            "data": { }
         }, {
             "label": "Total",
             "name": "total",
@@ -42,13 +43,14 @@
             "line": 25,
             "type": "table",
             "type": "list",
-            "data": []
+            "data": { }
         }, {
             "label": "Rodapé",
             "name": "footer",
             "column": 12,
             "line": 25,
-            "offsetLine": 1
+            "offsetLine": 1,
+            "data": { }
         }]
     }],
     "name": "Layout master",
@@ -96,6 +98,14 @@
             "offsetLine": 1
         }]
     }],
+
+
+
+
+
+
+
+
     "name": "Layout normal",
     "description": "Descrição",
     "configuration": {
@@ -127,6 +137,12 @@
             "offsetLine": 1
         }]
     }],
+
+
+
+
+
+
     "name": "Layout sem header",
     "description": "Descrição",
     "configuration": {
