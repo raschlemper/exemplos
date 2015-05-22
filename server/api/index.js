@@ -5,7 +5,7 @@ var movimento = require('./movimento/movimento.controller');
 var campo = require('./campo/campo.controller');
 var container = require('./container/container.controller');
 var visio = require('./visio/visio.controller');
-var layout = require('./layout/layout.controller');
+var template = require('./template/template.controller');
 var entity = require('./entity/entity.controller');
 
 var router = express.Router();
@@ -28,8 +28,8 @@ router.post('/container', container.create);
 router.get('/entity', entity.index);
 router.post('/entity', entity.create);
 
-router.get('/layout', layout.index);
-router.get('/layout/:id', layout.getById);
-router.post('/layout', layout.create);
+router.get('/template', template.index);
+router.get('/template/:id', template.getById);
+router.post('/template', template.create);
 
 module.exports = router;

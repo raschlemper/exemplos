@@ -7,7 +7,7 @@
 var path = require('path');
 var fs = require("fs");
 var config = require('../../config/environment');
-var Layout = require('../../api/layout/layout.model');
+var Template = require('../../api/template/template.model');
 
 function readJsonFileSync(filepath, encoding){
     if (typeof (encoding) == 'undefined') { encoding = 'utf8'; }
@@ -20,9 +20,9 @@ function getConfig(file){
     return readJsonFileSync(filepath);
 }
 
-Layout.find({}).remove(function() {
-  var jsondata = getConfig('/layout.json'); 
-  Layout.create(jsondata, function() {
-      console.log('finished populating layout');
+Template.find({}).remove(function() {
+  var jsondata = getConfig('/template.json'); 
+  Template.create(jsondata, function() {
+      console.log('finished populating tempalte');
   });
 });

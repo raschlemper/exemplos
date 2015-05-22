@@ -1,25 +1,25 @@
-app.factory("LayoutService", function($http, $q) {
+app.factory("TemplateService", function($http, $q) {
     var _optionPreview = {};
     var _configuration = {};
-    var _layoutService = {};
+    var _templateService = {};
 
-    _layoutService.getOptionPreview = function() {
+    _templateService.getOptionPreview = function() {
         return _optionPreview;
     };
 
-    _layoutService.setOptionPreview = function(preview) {
+    _templateService.setOptionPreview = function(preview) {
         _optionPreview = preview;
     };
-    _layoutService.getConfiguration = function() {
+    _templateService.getConfiguration = function() {
         return _configuration;
     };
-    _layoutService.setConfiguration = function(config) {
+    _templateService.setConfiguration = function(config) {
         _configuration = config;
     };
-    _layoutService.getAll = function(callback) {
+    _templateService.getAll = function(callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
-        $http.get('/financeiro/layout')
+        $http.get('/financeiro/template')
             .success(function(data) {
                 deferred.resolve(data);
                 return cb();
@@ -31,10 +31,10 @@ app.factory("LayoutService", function($http, $q) {
         return deferred.promise;
     };
 
-    _layoutService.getById = function(id, callback) {
+    _templateService.getById = function(id, callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
-        $http.get('/financeiro/layout/'+id, {params:{id:id}})
+        $http.get('/financeiro/template/'+id, {params:{id:id}})
             .success(function(data) {
                 deferred.resolve(data);
                 return cb();
@@ -46,6 +46,6 @@ app.factory("LayoutService", function($http, $q) {
         return deferred.promise;
     };
     return {
-        service: _layoutService
+        service: _templateService
     }
 });

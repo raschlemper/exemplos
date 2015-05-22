@@ -14,18 +14,18 @@
                     </div>
                 </div>
             </step>
-            <step ordem="2" title="'Definição de layout'">
+            <step ordem="2" title="'Definir template'">
                 <div class="row">
                     <div class="col-md-9 text-center">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Layouts</div>
+                            <div class="panel-heading">Templates</div>
                             <div class="panel-body">
                                 <div class="row layout-line">
-                                    <div class="col-md-4 layout-box" ng-repeat="item in layouts">
+                                    <div class="col-md-4 layout-box" ng-repeat="item in templates">
                                         <div class="row text-left">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" class="clip-unset" name="layout" ng-value="item" ng-model="selection.layout">{{item.name}}
+                                                    <input type="radio" class="clip-unset" name="layout" ng-value="item" ng-model="selection.template" ng-click="selectTemplate()">{{item.name}}
                                                 </label>
                                             </div>
                                         </div>
@@ -34,7 +34,6 @@
                                                 <div block="component.name" columns="component.column" lines="component.line" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
                                                     <div class="layout layout-container layout-border">
                                                         <div class="layout layout-container container-column">
-                                                            <span>{{component.label}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -50,12 +49,11 @@
                             <div class="panel-heading">Selecionado</div>
                             <div class="panel-body layout-box">
                                 <div class="row">
-                                    <layout configuracao="selection.layout.configuration" preview="true">
-                                        <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="selection.layout.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in selection.layout.containers">
-                                            <div block="component.name" columns="component.column" lines="component.line" line-height="selection.layout.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
+                                    <layout configuracao="selection.template.configuration" preview="true">
+                                        <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in selection.template.containers">
+                                            <div block="component.name" columns="component.column" lines="component.line" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column">
-                                                        <span>{{component.label}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,59 +61,108 @@
                                     </layout>
                                 </div>
                             </div>
-                            <div class="panel-footer" style="margin-top: 15px;">
-                                <button class="btn btn-primary" ng-click="makePreview()">Preview</button>
-                            </div>
                         </div>
                     </div>
                 </div>
             </step>
-            <step ordem="3" title="'Escolher campos'">
+            <step ordem="3" title="'Editar componentes'">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <div class="container-fluid" style="max-height:550px">
-                                <div class="row">
-                                    <input type="text" class="form-control" placeholder="Digite o nome do campo desejado" ng-model="busca" style="margin-left: 50px; max-width: 950px;" />
-                                    <div class="col-md-3">
-                                        <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="margin-top:30px; max-height:550px; overflow-y: scroll; ">
-                                            <ul class="nav bs-docs-sidenav">
-                                                <label>Campos</label>
-                                                <li class="" ng-repeat="label in campos | filter:busca">
-                                                    <a ng-click="addCampo(label)" ng-class="{'docs-active': label.selected}">{{label.name}}</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
+                            <div class="col-md-6 container-fluid pull-left" style="max-height:550px">
+                                <layout configuracao="visio.layout.configuration" preview="true">
+                                    <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="5" preview-block="false" ng-repeat="container in visio.layout.containers">
+                                        <div block="component.name" columns="component.column" lines="component.line" line-height="5" preview-block="true" ng-repeat="component in container.component">
+                                            <div class="layout layout-container layout-border" ng-click="editComponent(component)">
+                                                <div class="layout layout-container container-column">
+                                                    <span>{{component.label}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-8" style="padding:45px">
-                                        <div id="navegation">
-                                            <ul class="nav nav-tabs">
-                                                <li role="fields" ng-class="{'active': isSet(1)}"><a ng-click="setTab(1)">Campos</a></li>
-                                            </ul>
+                                </layout>
+                            </div>
+                            <div class="col-md-6 container-fluid pull-right">
+                                <div class="panel panel-info" ng-if="component.type">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">{{component.label}}</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label>Nome do componente:</label>
+                                            <input type="text" placeholder="Digite o nome do componente" ng-model="component.label" />
                                         </div>
-                                        <div id="fields" class="fixed-margin" ng-if="isSet(1)">
-                                            <table class="table table-condensed">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Nome</th>
-                                                        <th>Chave</th>
-                                                        <th>Valor</th>
-                                                        <th class="col-md-2">Ações</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr ng-repeat="selecionado in visio.campos">
-                                                        <td>{{selecionado.name}}</td>
-                                                        <td>{{selecionado.key[0].label}}</td>
-                                                        <td>{{selecionado.value[0].label}}</td>
-                                                        <td class="col-md-2"><span style="padding:2px" ng-click="removeCampo(selecionado)"><i class="glyphicon glyphicon-remove"></i></span></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="form-group" ng-if="component.type === 'image'">
+                                            <label>Link da foto:</label>
+                                            <input type="text" ng-model="component.data" placeholder="Digite o link da foto" />
                                         </div>
-                                        <div ng-if="!visio.campos.length" class="pontilhado">Nenhum campo selecionado.</div>
+                                        <div class="form-group" ng-if="component.type === 'list'">
+                                            <div class="panel panel-default" >
+                                                <div class="panel-heading">Campos escolhidos</div>
+                                                <div class="panel-body" ng-if="component.data.fields.length">
+                                                    <ul class="list-group">
+                                                        <li ng-repeat="field in component.data.fields" class="list-group-item">{{field.name}}</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="panel-footer">
+                                                    <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Escolher campos <i class="glyphicon glyphicon-modal-window"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header"></div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label>Busca de campos</label>
+                                                                <input type="text" class="form-control" placeholder="Digite o nome do campo desejado" ng-model="busca" />
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="margin-top:30px; max-height:550px; overflow-y: scroll; ">
+                                                                    <ul class="nav bs-docs-sidenav">
+                                                                        <label>Campos</label>
+                                                                        <li class="" ng-repeat="label in campos | filter:busca">
+                                                                            <a ng-click="addCampo(label)" ng-class="{'docs-active': label.selected}">{{label.name}}</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </nav>
+                                                            </div>
+                                                            <div class="col-md-8" style="padding:45px; margin-left:50px;">
+                                                                <div id="fields" class="fixed-margin">
+                                                                    <table class="table table-condensed">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Nome</th>
+                                                                                <th>Chave</th>
+                                                                                <th>Valor</th>
+                                                                                <th class="col-md-2">Ações</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="selecionado in component.data.fields">
+                                                                                <td>{{selecionado.name}}</td>
+                                                                                <td>{{selecionado.key[0].label}}</td>
+                                                                                <td>{{selecionado.value[0].label}}</td>
+                                                                                <td class="col-md-2"><span style="padding:2px" ng-click="removeCampo(selecionado)"><i class="glyphicon glyphicon-remove"></i></span></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div ng-if="!component.data.fields.length" class="pontilhado">Nenhum campo selecionado.</div>
+                                                                {{component.fields}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer" style="margin-top:50% !important">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                            <button type="button" ng-click="saveFields()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <span ng-if="!component.type">Selecione um componente para editar</span>
                             </div>
                         </div>
                     </div>

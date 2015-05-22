@@ -1,23 +1,23 @@
 'use strict';
 
-var Layout = require('./layout.model');
+var Template = require('./template.model');
 
 /**
  * Get list of Movimentos
  */
 exports.index = function(req, res) {
-  Layout.find({}, function (err, layouts) {
+  Template.find({}, function (err, templates) {
     if(err) return res.send(500, err);
-    res.json(200, layouts);
+    res.json(200, templates);
   });
 };
 
 
 exports.getById = function(req, res) { 
 	console.log(req.params.id);
-  Layout.find({_id: req.params.id}, function (err, layouts) {
+  Template.find({_id: req.params.id}, function (err, templates) {
     if(err) return res.send(500, err);
-    res.json(200, layouts);
+    res.json(200, templates);
   });
 };
 
@@ -26,9 +26,9 @@ exports.getById = function(req, res) {
  * Create Movimentos
  */
 exports.create = function(req, res, next) {
-  var newLayout = new Layout(req.body);
-  newLayout.save(function(err, layout) {
+  var newTemplate = new Template(req.body);
+  newTemplate.save(function(err, template) {
   	if(err) return res.send(500, err);
-    res.json(200, layout);
+    res.json(200, template);
   });
 };

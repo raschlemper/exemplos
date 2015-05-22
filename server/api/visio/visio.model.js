@@ -5,8 +5,21 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var VisioSchema = new Schema({
-	layout: { type : mongoose.Schema.ObjectId, ref : 'layouts' },
-    campos: [Schema.Types.Campos],
+    layout: {
+    	templateId: mongoose.Schema.ObjectId, 
+        name: String,
+        order: Number,
+        description: String,
+        configuration: {
+            full: {
+                lineHeight: Number
+            },
+            preview: {
+                lineHeight: Number
+            }
+        },
+        containers: [Schema.Types.Containers]
+    },
     name: String,
     description: String,
     createDate: Date,

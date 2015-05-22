@@ -7,12 +7,40 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, LayoutService, JsonService, VisioService, EntityService) {
+app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, TemplateService, JsonService, VisioService, EntityService) {
 
     $scope.visio = {};
-    $scope.layouts = [];
+    $scope.templates = [];
     $scope.campos = [];
     $scope.selection = {};
+    $scope.component = {};
+
+
+    $scope.editComponent = function(component) {
+        $scope.component = component;
+        if (component.type === 'list') {
+            if (!$scope.component.data) {
+                $scope.component.data = {
+                    'fields': []
+                };
+            } 
+        }
+    }
+
+    $scope.selectTemplate = function() {
+        $scope.visio.layout = $scope.selection.template;
+        $scope.visio.layout.templateId = $scope.selection.template._id;
+    }
+
+    $scope.saveFields = function() {
+        for (var i = 0; i < $scope.visio.layout.containers.length; i++) {
+            for (var a = 0; a < $scope.visio.layout.containers[i].component.length; a++) {
+                if ($scope.visio.layout.containers[i].component[a]._id === $scope.component._id) {
+                    $scope.visio.layout.containers[i].component[a].data.fields === $scope.component.data.fields;
+                }
+            };
+        };
+    }
 
     var carregaVisio = function() {
         if ($routeParams.hashid) {
@@ -29,39 +57,31 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
         }
     }
 
-    var getLayouts = function() {
-        LayoutService.service.getAll()
-            .then(function(data) {
-                $scope.layouts = data;
-                if (!$routeParams.hashid) {
-                    $scope.selection.layout = data[0];
-                } else {
-                    var selecionado = $scope.layouts.filter(function(value) {
-                        return value._id == $scope.visio.layout;
-                    });
-                    $scope.selection.layout = selecionado[0];
-                }
-            })
-            .catch(function(err) {
-                return console.log(err);
-            });
-    }
-
-    var getLayoutById = function(){
-        LayoutService.service.getById('555e4e4e4ef9a328246ae1ab').then(function(data) {
-            console.log(data);
-        });
-    };
-
-    getLayoutById();
-
-    //define os menus superiores para o wizard
+    var getTemplates = function() {
+            TemplateService.service.getAll()
+                .then(function(data) {
+                    $scope.templates = data;
+                    if (!$routeParams.hashid) {
+                        $scope.selection.template = data[0];
+                        $scope.visio.layout = data[0];
+                    } else {
+                        var selecionado = $scope.templates.filter(function(value) {
+                            return value._id == $scope.visio.layout.templateId;
+                        });
+                        $scope.selection.template = selecionado[0];
+                    }
+                })
+                .catch(function(err) {
+                    return console.log(err);
+                });
+        }
+        //define os menus superiores para o wizard
     $scope.menus = [{
         ordem: 1,
         titulo: "Visão"
     }, {
         ordem: 2,
-        titulo: "Layout"
+        titulo: "Template"
     }, {
         ordem: 3,
         titulo: "Campos"
@@ -71,8 +91,8 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
     }];
 
     $scope.makePreview = function() {
-        LayoutService.service.setOptionPreview($scope.selection.layout);
-        LayoutService.service.setConfiguration($scope.configuracao);
+        TemplateService.service.setOptionPreview($scope.selection.template);
+        TemplateService.service.setConfiguration($scope.configuracao);
         $location.path("/preview");
     }
 
@@ -98,12 +118,12 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
     $scope.addCampo = function(label) {
         if (!label.selected) {
             label.selected = true;
-            $scope.visio.campos.push(label);
+            $scope.component.data.fields.push(label);
         } else {
             label.selected = false;
-            var index = $scope.visio.campos.indexOf(label);
+            var index = $scope.component.data.fields.indexOf(label);
             if (index >= 0) {
-                $scope.visio.campos.splice(index, 1);
+                $scope.component.data.fields.splice(index, 1);
             }
         }
     }
@@ -120,10 +140,8 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
         if (!$routeParams.hashid) {
             $scope.visio.createDate = new Date();
             $scope.visio.hashid = Math.floor(10000000000 + Math.random() * 90000000000);
-            $scope.visio.layout = $scope.selection.layout._id;
             VisioService.service.addVisio($scope.visio);
         } else {
-            $scope.visio.layout = $scope.selection.layout._id;
             VisioService.service.update($scope.visio);
         }
         $location.path("/main");
@@ -148,7 +166,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, La
     };
 
     carregaVisio();
-    getLayouts();
+    getTemplates();
     getCamposMovimento();
 
 });

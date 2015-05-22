@@ -3,7 +3,6 @@ app.factory("ReportService", function(DataGrouperService, JsonService){
 	var registers = [];
 	var layout = [];
     var fields = [];
-
 	var report = {
         title: null,
         pages: []

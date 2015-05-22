@@ -12,6 +12,6 @@ require('./movimento/movimento.mock');
 require('./campo/campo.mock'); 
 require('./component/component.mock'); 
 require('./container/container.mock'); 
-require('./layout/layout.mock'); 
+require('./template/template.mock'); 
 require('./entity/entity.mock'); 
 require('./visio/visio.mock'); 
