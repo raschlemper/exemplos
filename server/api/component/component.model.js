@@ -10,7 +10,7 @@ var ComponentSchema = new Schema({
 	"line": Number,
 	"name": String,
 	"type": String,
-	"dependency": { type : mongoose.Schema.ObjectId, ref : 'components' }
+	"data": {}
 });
 
 

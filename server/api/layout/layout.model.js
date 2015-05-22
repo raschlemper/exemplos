@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var LayoutSchema = new Schema({
+var TemplateSchema = new Schema({
     "name": String,
     "order": Number,
     "description": String,
@@ -19,7 +19,7 @@ var LayoutSchema = new Schema({
     "containers": [Schema.Types.Containers]
 });
 
-var layout = mongoose.model('layout', LayoutSchema);
+var template = mongoose.model('template', TemplateSchema);
 
 /**
  * Virtuals
@@ -39,6 +39,6 @@ var layout = mongoose.model('layout', LayoutSchema);
 /**
  * Methods
  */
-LayoutSchema.methods = {};
+TemplateSchema.methods = {};
 
-module.exports = mongoose.model('layouts', LayoutSchema);
+module.exports = mongoose.model('templates', TemplateSchema);
