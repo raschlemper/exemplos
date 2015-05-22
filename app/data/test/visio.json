@@ -1,0 +1,94 @@
+ [{
+     "_id": "555e4320923e6f18206dde8a",
+     "layout": "555e430d923e6f18206dde3a",
+     "name": "Teste legal",
+     "description": "asd",
+     "createDate": "2015-05-21T20:42:08.506Z",
+     "hashid": 88779446226,
+     "__v": 0,
+     "campos": [{
+         "_id": "555e430d923e6f18206dde44",
+         "name": "Curso",
+         "expression": "<%= ds_tipo_curso %>",
+         "__v": 0,
+         "group": {
+             "fields": []
+         },
+         "value": [{
+             "field": "ds_tipo_curso",
+             "label": "Descrição do tipo de curso",
+             "type": "text",
+             "isKey": false
+         }],
+         "key": [{
+             "field": "cd_tipo_curso",
+             "label": "Código do tipo de curso",
+             "type": "codigo",
+             "isKey": true
+         }],
+         "selected": true
+     }, {
+         "_id": "555e430d923e6f18206dde43",
+         "name": "Instituição",
+         "expression": "<%= nm_instituicao_ensino %>",
+         "__v": 0,
+         "group": {
+             "fields": []
+         },
+         "value": [{
+             "field": "nm_instituicao_ensino",
+             "label": "Nome da instituição de ensino",
+             "type": "text",
+             "isKey": false
+         }],
+         "key": [{
+             "field": "cd_instituicao_ensino",
+             "label": "Código da instituição de ensino",
+             "type": "codigo",
+             "isKey": true
+         }],
+         "selected": true
+     }, {
+         "_id": "555e430d923e6f18206dde48",
+         "name": "Vencimento",
+         "expression": "<%= dt_vencimento %>",
+         "__v": 0,
+         "group": {
+             "fields": []
+         },
+         "value": [{
+             "field": "dt_vencimento",
+             "label": "Data de vencimento",
+             "type": "date",
+             "isKey": false
+         }],
+         "key": [{
+             "field": "dt_vencimento",
+             "label": "Data de vencimento",
+             "type": "date",
+             "isKey": false
+         }],
+         "selected": true
+     }, {
+         "_id": "555e430d923e6f18206dde4a",
+         "name": "Valor",
+         "expression": "<%= previsao_confirmado %>",
+         "__v": 0,
+         "group": {
+             "fields": []
+         },
+         "value": [{
+             "field": "previsao_confirmado",
+             "label": "Previsão confirmada",
+             "type": "number",
+             "isKey": false
+         }],
+         "key": [{
+             "field": "previsao_confirmado",
+             "label": "Previsão confirmada",
+             "type": "number",
+             "isKey": false
+         }],
+         "selected": true
+     }]
+ }]

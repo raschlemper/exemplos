@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 
 var EntitySchema = new Schema({
     "name": String,
+    "order": Number,
     "key": [Schema.Types.Campos],
     "value": [Schema.Types.Campos],
     "expression": String,

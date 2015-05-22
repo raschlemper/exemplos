@@ -1,7 +1,9 @@
 [
 
     {
+        "_id" : "555f17bf7d9f9062787ebdc7",
         "name": "Instituição",
+        "order": 1,
         "key": [{
             "field": "cd_instituicao_ensino",
             "label": "Código da instituição de ensino",
@@ -18,7 +20,9 @@
     },
 
     {
+        "_id" : "555f17bf7d9f9062787ebdc8",
         "name": "Curso",
+        "order": 2,
         "key": [{
             "field": "cd_tipo_curso",
             "label": "Código do tipo de curso",
@@ -35,7 +39,9 @@
     },
 
     {
+        "_id" : "555f17bf7d9f9062787ebdc9",
         "name": "Série",
+        "order": 3,
         "key": [{
             "field": "cd_curso_instituicao",
             "label": "Código do Curso/Instituição",
@@ -57,7 +63,9 @@
     },
 
     {
+        "_id" : "555f17bf7d9f9062787ebdca",
         "name": "Ano/Semestre",
+        "order": 4,
         "key": [{
             "field": "nr_ano",
             "label": "Ano",
@@ -84,7 +92,9 @@
     },
 
     {
+        "_id" : "555f17bf7d9f9062787ebdcb",
         "name": "Aluno",
+        "order": 5,
         "key": [{
             "field": "cd_aluno",
             "label": "Código do aluno",
@@ -101,7 +111,9 @@
     },
 
     {
+        "_id" : "555f17bf7d9f9062787ebdcc",
         "name": "Vencimento",
+        "order": 6,
         "key": [{
             "field": "dt_vencimento",
             "label": "Data de vencimento",
@@ -118,7 +130,9 @@
     },
 
     {
+        "_id" : "555f17bf7d9f9062787ebdcd",
         "name": "Pagamento",
+        "order": 7,
         "key": [{
             "field": "dt_pagamento",
             "label": "Data de pagamento",
@@ -135,7 +149,9 @@
     },
 
     {
+        "_id" : "555f17bf7d9f9062787ebdce",
         "name": "Valor",
+        "order": 8,
         "key": [{
             "field": "previsao_confirmado",
             "label": "Previsão confirmada",
@@ -152,7 +168,9 @@
     },
 
     {
+        "_id" : "555f17bf7d9f9062787ebdcf",
         "name": "Saldo",
+        "order": 9,
         "key": [{
             "field": "previsao_confirmado",
             "label": "Previsão confirmada",
