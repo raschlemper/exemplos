@@ -18,10 +18,10 @@ app.factory("JsonService", function($http, $q) {
             return deferred.promise;
         },
 
-        camposTest: function(callback) {
+        visioTest: function(callback) {
             var cb = callback || angular.noop;
             var deferred = $q.defer();
-            $http.get('data/test/campos.json')
+            $http.get('data/test/visio.json')
                 .success(function(data) {
                     deferred.resolve(data);
                     return cb(data);
@@ -36,6 +36,20 @@ app.factory("JsonService", function($http, $q) {
             var cb = callback || angular.noop;
             var deferred = $q.defer();
             $http.get('data/test/layout.json')
+                .success(function(data) {
+                    deferred.resolve(data);
+                    return cb(data);
+                }).error(function(err) {
+                    deferred.reject(err);
+                    return cb(err);
+                }.bind(this));
+            return deferred.promise;
+        },
+
+        camposTest: function(callback) {
+            var cb = callback || angular.noop;
+            var deferred = $q.defer();
+            $http.get('data/test/campos.json')
                 .success(function(data) {
                     deferred.resolve(data);
                     return cb(data);

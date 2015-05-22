@@ -13,24 +13,32 @@
 
 			<div class="page-portrait container-fluid shadow">
 				
-				<div id="header-title" class="col-lg-12" ng-show="report.title">
-					<div class="page-header">
-						<h3>{{ report.title }}</h3>
-					</div>
-				</div>
-
+				<layout configuracao="visio.layout.configuration" preview="false">
 				
-				<layout configuracao="selection.layout.configuration" preview="false">
+					<div id="header-title" class="col-lg-12" ng-show="report.title">
+						<div class="page-header">
+							<h3>{{ report.title }}</h3>
+						</div>
+					</div>
 
-                    <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="selection.layout.configuration.full.lineHeight" preview-block="false" ng-repeat="container in selection.layout.containers">
+                    <div block="container.type" 
+                    	 columns="container.column" 
+                    	 lines="container.line" 
+                    	 group="false" 
+                    	 line-height="visio.layout.configuration.full.lineHeight" 
+                    	 preview-block="true" 
+                    	 ng-repeat="container in visio.layout.containers">
 
-                        <div block="component.name" columns="component.column" lines="component.line" line-height="selection.layout.configuration.full.lineHeight" preview-block="false" ng-repeat="component in container.component">
+                        <div block="component.name" 
+                             columns="component.column" 
+                             lines="component.line" 
+                             line-height="visio.layout.configuration.full.lineHeight" 
+                             preview-block="true" 
+                             ng-repeat="component in container.components">
 
-                            <div class="layout layout-container layout-border">
-                                <div class="layout layout-container container-column">
-                                    <span>{{component.label}}</span>
-                                </div>
-                            </div>
+                             <span ng-init="widget = getWidget(component.code)" />
+
+                             <span ng-bind-html="widget"></span>
 
                         </div>
 
