@@ -18,7 +18,7 @@ var all = {
   // Root path of server
   root: path.normalize(__dirname + '/../../..'),
 
-  ip: process.env.IP || "10.0.1.127",
+  ip: process.env.IP || "localhost",
 
   // Server port
   port: process.env.PORT || 8000,
