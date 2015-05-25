@@ -71,10 +71,6 @@ app.factory("ReportService", function(DataGrouperService, JsonService){
 		return report;
 	};  
 
-    var init = function() {
-	    // getFields();  
-	}();
-	
 	return {
 		create: create
 	}

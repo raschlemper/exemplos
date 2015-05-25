@@ -18,13 +18,14 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, Te
 
     $scope.editComponent = function(component) {
         $scope.component = component;
-        if (component.type === 'list') {
+        if (component.type === 'table') {
             if (!$scope.component.data) {
                 $scope.component.data = {
                     'fields': []
                 };
             } 
         }
+        getCamposMovimento();
     }
 
     $scope.selectTemplate = function() {
@@ -91,8 +92,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, Te
     }];
 
     $scope.makePreview = function() {
-        TemplateService.service.setOptionPreview($scope.selection.template);
-        TemplateService.service.setConfiguration($scope.configuracao);
+        TemplateService.service.setOptionPreview($scope.visio.layout);
         $location.path("/preview");
     }
 
@@ -130,9 +130,9 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, Te
 
     $scope.removeCampo = function(selected) {
         selected.selected = false;
-        var index = $scope.visio.campos.indexOf(selected);
+        var index = $scope.component.data.fields.indexOf(selected);
         if (index >= 0) {
-            $scope.visio.campos.splice(index, 1);
+            $scope.component.data.fields.splice(index, 1);
         }
     }
 

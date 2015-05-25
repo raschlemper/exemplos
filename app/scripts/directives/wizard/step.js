@@ -7,7 +7,8 @@ app.directive("step", function() {
         require: ['^wizard'],
         scope: {
             ordem: "=",
-            title:"="
+            title:"=",
+            minHeight: "="
         },
         link: function(scope, element, attrs, ctrls) {
             scope.wizardCtrl = ctrls[0];
@@ -20,6 +21,12 @@ app.directive("step", function() {
             		return true;
             	}
             };
+
+            scope.getMinHeight = function(){
+                if(scope.minHeight){
+                    return "min-height:"+scope.minHeight+"px;";
+                }
+            }
         }
     }
 });
