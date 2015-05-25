@@ -23,6 +23,6 @@ function getConfig(file){
 Template.find({}).remove(function() {
   var jsondata = getConfig('/template.json'); 
   Template.create(jsondata, function() {
-      console.log('finished populating tempalte');
+      console.log('finished populating template');
   });
 });

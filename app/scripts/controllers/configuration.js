@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, TemplateService, JsonService, VisioService, EntityService) {
+app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService) {
 
     $scope.visio = {};
     $scope.templates = [];
@@ -23,7 +23,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, Te
                 $scope.component.data = {
                     'fields': []
                 };
-            } 
+            }
         }
         getCamposMovimento();
     }
@@ -31,6 +31,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, Te
     $scope.selectTemplate = function() {
         $scope.visio.layout = $scope.selection.template;
         $scope.visio.layout.templateId = $scope.selection.template._id;
+        console.log($scope.visio.layout.templateId);
     }
 
     $scope.saveFields = function() {
@@ -65,10 +66,12 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, Te
                     if (!$routeParams.hashid) {
                         $scope.selection.template = data[0];
                         $scope.visio.layout = data[0];
+                        $scope.visio.layout.templateId = data[0]._id;
                     } else {
                         var selecionado = $scope.templates.filter(function(value) {
                             return value._id == $scope.visio.layout.templateId;
                         });
+                        console.log(selecionado);
                         $scope.selection.template = selecionado[0];
                     }
                 })
@@ -108,7 +111,18 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, Te
     var getCamposMovimento = function() {
         EntityService.entity()
             .then(function(data) {
-                $scope.campos = data;
+                var campos = data;
+                if ($scope.component.data.fields.length) {
+                    campos.filter(function(campo) {
+                        for (var i = 0; i < $scope.component.data.fields.length; i++) {
+                            if (campo._id === $scope.component.data.fields[i]._id) {
+                                $scope.component.data.fields[i].selected = true;
+                                campo.selected = true;
+                            }
+                        };
+                    });
+                };
+                $scope.campos = campos;
             })
             .catch(function(err) {
                 return console.log(err);
@@ -121,19 +135,13 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, Te
             $scope.component.data.fields.push(label);
         } else {
             label.selected = false;
-            var index = $scope.component.data.fields.indexOf(label);
-            if (index >= 0) {
-                $scope.component.data.fields.splice(index, 1);
-            }
+            $scope.component.data.fields = _.without($scope.component.data.fields, _.findWhere($scope.component.data.fields, {_id: label._id}));
         }
     }
 
     $scope.removeCampo = function(selected) {
         selected.selected = false;
-        var index = $scope.component.data.fields.indexOf(selected);
-        if (index >= 0) {
-            $scope.component.data.fields.splice(index, 1);
-        }
+        $scope.component.data.fields = _.without($scope.component.data.fields, _.findWhere($scope.component.data.fields, {_id: selected._id}));
     }
 
     $scope.saveVisio = function() {
@@ -167,6 +175,5 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, Te
 
     carregaVisio();
     getTemplates();
-    getCamposMovimento();
 
 });
