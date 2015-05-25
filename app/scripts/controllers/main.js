@@ -13,6 +13,10 @@ app.controller('MainCtrl', function($scope, $location, VisioService) {
         $location.path("/configuration");
     };
 
+    $scope.viewReport = function(visio) {
+        $location.url('/report').search('hashid', visio.hashid);
+    };
+
     $scope.updateVisio = function(visio){
         $location.url('/configuration').search('hashid', visio.hashid);
     }

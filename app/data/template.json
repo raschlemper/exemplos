@@ -21,7 +21,7 @@
             "name": "headerContent",
             "column": 8,
             "line": 35,
-            "type": "list",
+            "type": "table",
             "data": {}
         }]
     }, {
@@ -37,7 +37,7 @@
             "name": "details",
             "column": 8,
             "line": 25,
-            "type": "list",
+            "type": "table",
             "data": {}
         }, {
             "_id": "555f88eebe6354bb237607ef",
@@ -46,7 +46,6 @@
             "column": 4,
             "line": 25,
             "type": "table",
-            "type": "list",
             "data": {}
         }, {
             "_id": "555f88eebe6354bb237607f0",
@@ -55,6 +54,7 @@
             "column": 12,
             "line": 25,
             "offsetLine": 1,
+            "type": "table",
             "data": {}
         }]
     }],
@@ -82,7 +82,8 @@
             "name": "headerContent",
             "column": 12,
             "line": 35,
-            "type": "list"
+            "type": "table",
+            "data": {}
         }]
     }, {
         "_id": "555b24e0a209f0690f4c7fbf",
@@ -96,14 +97,18 @@
             "label": "Detalhes",
             "name": "details",
             "column": 12,
-            "line": 25
+            "line": 25,
+            "data": {},
+            "type": "table"
         }, {
             "_id": "555f88eebe6354bb237607f0",
             "label": "Rodapé",
             "name": "footer",
             "column": 12,
             "line": 25,
-            "offsetLine": 1
+            "offsetLine": 1,
+            "data": {},
+            "type": "table"
         }]
     }],
     "name": "Layout normal",
@@ -129,14 +134,18 @@
             "label": "Detalhes",
             "name": "details",
             "column": 12,
-            "line": 60
+            "line": 60,
+            "data": {},
+            "type": "table"
         }, {
             "_id": "555f88eebe6354bb237607f0",
             "label": "Rodapé",
             "name": "footer",
             "column": 12,
             "line": 25,
-            "offsetLine": 1
+            "offsetLine": 1,
+            "data": {},
+            "type": "table"
         }]
     }],
     "name": "Layout sem header",
@@ -162,7 +171,9 @@
             "label": "Detalhes",
             "name": "details",
             "column": 12,
-            "line": 85
+            "line": 85,
+            "data": {},
+            "type": "table"
         }]
     }],
     "name": "Inteirão",

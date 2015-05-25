@@ -34,6 +34,8 @@
                                                 <div block="component.name" columns="component.column" lines="component.line" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
                                                     <div class="layout layout-container layout-border">
                                                         <div class="layout layout-container container-column">
+                                                            <div ng-if="component.type === 'table'" class="layout-number glyphicon glyphicon-list"></div>
+                                                            <div ng-if="component.type === 'image'" class="layout-number   glyphicon glyphicon-picture"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -54,6 +56,8 @@
                                             <div block="component.name" columns="component.column" lines="component.line" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column">
+                                                        <div ng-if="component.type === 'table'" class="layout-number glyphicon glyphicon-list"></div>
+                                                        <div ng-if="component.type === 'image'" class="layout-number   glyphicon glyphicon-picture"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -65,7 +69,7 @@
                     </div>
                 </div>
             </step>
-            <step ordem="3" title="'Editar componentes'">
+            <step ordem="3" title="'Editar componentes'" min-height="550">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -94,14 +98,14 @@
                                         </div>
                                         <div class="form-group" ng-if="component.type === 'image'">
                                             <label>Link da foto:</label>
-                                            <input type="text" ng-model="component.data" placeholder="Digite o link da foto" />
+                                            <input type="text" ng-model="component.data.path" placeholder="Digite o link da foto" />
                                         </div>
-                                        <div class="form-group" ng-if="component.type === 'list'">
-                                            <div class="panel panel-default" >
+                                        <div class="form-group" ng-if="component.type === 'table'">
+                                            <div class="panel panel-default">
                                                 <div class="panel-heading">Campos escolhidos</div>
                                                 <div class="panel-body" ng-if="component.data.fields.length">
                                                     <ul class="list-group">
-                                                        <li ng-repeat="field in component.data.fields" class="list-group-item">{{field.name}}</li>
+                                                        <li ng-repeat="field in component.data.fields" class="list-group-item">{{field.name}}<i class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" data-placement="right" title="{{field.description}}"></i></li>
                                                     </ul>
                                                 </div>
                                                 <div class="panel-footer">
@@ -111,9 +115,11 @@
                                             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
-                                                        <div class="modal-header"></div>
+                                                        <div class="modal-header">
+                                                            <h3>Escolher campos para componente</h3>
+                                                        </div>
                                                         <div class="modal-body">
-                                                            <div class="form-group">
+                                                            <div class="col-md-12 form-group" style="margin-left:20px;">
                                                                 <label>Busca de campos</label>
                                                                 <input type="text" class="form-control" placeholder="Digite o nome do campo desejado" ng-model="busca" />
                                                             </div>
@@ -169,6 +175,7 @@
                 </div>
             </step>
             <step ordem="4" title="'Finalizar'">
+                <button class="btn btn-default" ng-click="makePreview()">Preview</button>
                 <button class="btn btn-default" ng-click="saveVisio()">Salvar</button>
             </step>
         </wizard>

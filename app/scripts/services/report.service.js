@@ -65,7 +65,7 @@ app.factory("ReportService", function(DataGrouperService){
 		layout = lay;	
 		return setValuesReport();
     }
-	
+    
 	return {
 		create: create
 	}
