@@ -221,7 +221,6 @@
                  "column": 3,
                  "line": 15,
                  "type": "table",
-                 "type": "list",
                  "data": {
                      "fields": [{
                          "_id": "555f17bf7d9f9062787ebdca",
@@ -323,6 +322,7 @@
                          "_id": "555f17bf7d9f9062787ebdcf",
                          "name": "Saldo",
                          "order": 9,
+                         "formula": "sum",
                          "key": [{
                              "field": "previsao_confirmado",
                              "label": "Previsão confirmada",
@@ -403,6 +403,7 @@
                          "_id": "555f17bf7d9f9062787ebdcf",
                          "name": "Saldo",
                          "order": 9,
+                         "formula": "sum",
                          "key": [{
                              "field": "previsao_confirmado",
                              "label": "Previsão confirmada",

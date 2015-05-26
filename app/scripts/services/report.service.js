@@ -1,10 +1,7 @@
-app.factory("ReportService", function(DataGrouperService, JsonService){   
+app.factory("ReportService", function(DataGrouperService){   
 
 	var registers = [];
 	var layout = [];
-    var fields = [];
-
-    var componentsData = [];
 
 	var report = {
         title: null,
@@ -53,23 +50,21 @@ app.factory("ReportService", function(DataGrouperService, JsonService){
            getComponents(container, components);
         })
         return components;
-    }  
-
-	var create = function(reg, lay) {
-		registers = reg;	
-		layout = lay;	
-		return setValuesReport();
-    }  
+    }    
 
     var setValuesReport = function() {
         report.title = getTitle(); 
         report.components = getDatasByComponents(); 
         report.filter = getReportFilter();
         report.pages = getPages(); 
-        console.log('Report', report);
-	    // report.components = getComponents();
-		return report;
-	};  
+    }
+
+	var create = function(reg, lay) {
+		registers = reg;	
+		layout = lay;	
+		setValuesReport();
+        return report;
+    }
 
 	return {
 		create: create

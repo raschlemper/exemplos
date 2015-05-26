@@ -1,14 +1,14 @@
 'use strict';
 
 app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location, 
-        ReportService, MovimentoService, VisioService, LayoutService, JsonService) {
+        ReportService, MovimentoService, ReportComponentService, ReportFormatterService, VisioService, 
+        JsonService) {
 	
 	var index = 0;
     var registers = [];
     var visio = {};
     $scope.visio = {};
-    $scope.report = {};
-    
+    $scope.report = {};    
 
     var createReport = function() {
         if(!$routeParams.hashid) { 
@@ -36,7 +36,6 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
                 $scope.visio = visio;
                 $scope.report = ReportService.create(registers, visio.layout); 
                 $scope.getPage(index);  
-                console.log('Visio', visio);
             })
             .catch( function(err) {
                 layout = [];
@@ -45,7 +44,16 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
 
     $scope.getPage = function(index) {
         var page = $scope.report.pages[index];
-        console.log('Page', index, page);
+        var registersByFilter = applyFilter(page);
+        ReportComponentService.create(registersByFilter, $scope.report.components);
+        ReportFormatterService.format($scope.report.components);
+
+        console.log($scope.report);
+    }
+
+    var applyFilter = function(page) {
+        if(!page) { return registers; }
+        return _.where(registers, page);
     }
 
     $scope.getWidget =function(code) {
