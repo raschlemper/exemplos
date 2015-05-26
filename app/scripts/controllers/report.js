@@ -29,8 +29,7 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
     }   
 
     var getVisio = function() {
-        // $routeParams.hashid
-        JsonService.visioTest()
+        VisioService.getByHashid($routeParams.hashid)
             .then( function(data) {  
                 visio = data[0];
                 $scope.visio = visio;
