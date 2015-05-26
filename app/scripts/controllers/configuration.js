@@ -18,7 +18,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, $w
 
     $scope.editComponent = function(component) {
         $scope.component = component;
-        if (component.type === 'table') {
+        if (component.type === 'table' || component.type === 'list') {
             if (!$scope.component.data) {
                 $scope.component.data = {
                     'fields': []
@@ -112,14 +112,16 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, $w
         EntityService.entity()
             .then(function(data) {
                 var campos = data;
-                if ($scope.component.data.fields.length) {
+                if ($scope.component.data) {
                     campos.filter(function(campo) {
-                        for (var i = 0; i < $scope.component.data.fields.length; i++) {
-                            if (campo._id === $scope.component.data.fields[i]._id) {
-                                $scope.component.data.fields[i].selected = true;
-                                campo.selected = true;
-                            }
-                        };
+                        if ($scope.component.data.fields.length) {
+                            for (var i = 0; i < $scope.component.data.fields.length; i++) {
+                                if (campo._id === $scope.component.data.fields[i]._id) {
+                                    $scope.component.data.fields[i].selected = true;
+                                    campo.selected = true;
+                                }
+                            };
+                        }
                     });
                 };
                 $scope.campos = campos;
@@ -135,13 +137,17 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, $w
             $scope.component.data.fields.push(label);
         } else {
             label.selected = false;
-            $scope.component.data.fields = _.without($scope.component.data.fields, _.findWhere($scope.component.data.fields, {_id: label._id}));
+            $scope.component.data.fields = _.without($scope.component.data.fields, _.findWhere($scope.component.data.fields, {
+                _id: label._id
+            }));
         }
     }
 
     $scope.removeCampo = function(selected) {
         selected.selected = false;
-        $scope.component.data.fields = _.without($scope.component.data.fields, _.findWhere($scope.component.data.fields, {_id: selected._id}));
+        $scope.component.data.fields = _.without($scope.component.data.fields, _.findWhere($scope.component.data.fields, {
+            _id: selected._id
+        }));
     }
 
     $scope.saveVisio = function() {

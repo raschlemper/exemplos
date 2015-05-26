@@ -2,7 +2,7 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Minhas visões</h3>
+                <h3 ><i class="icon-layers"></i>   Minhas visões</h3>
             </div>
             <div class="panel-body">
                 <table class="table table-bordered">
@@ -24,16 +24,18 @@
                             <td>{{visio.hashid}}</td>
                             <td>{{visio.createDate}}</td>
                             <td>Financeiro</td>
-                            <td><span ng-click="updateVisio(visio)"><i class="glyphicon glyphicon-edit"></i></span><span ng-click="removeVisio(visio)"><i class="glyphicon glyphicon-remove"></i></span></td>
-                            <td><span ng-click="viewReport(visio)"><i class="glyphicon glyphicon-modal-window"></i></span></td>
+                            <td>
+                                <button  class="btn btn-default btn-flat"ng-click="updateVisio(visio)"><i class="icon-note"></i></button>
+                                <button class="btn btn-default btn-flat" ng-click="removeVisio(visio)"><i class="icon-close"></i></button>
+                            </td>
+                            <td><button class="btn btn-default btn-flat" ng-click="viewReport(visio)"><i class="icon-eye"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
                 <div ng-if="!visios.length" class="pontilhado">Para criar uma nova visão, clique no botão "Nova visão".</div>
-                <button class="btn btn-default pull-right" ng-click="newVisio()">Nova visão</button>
+                <button class="btn btn-default pull-right" ng-click="newVisio()">Nova visão <i class="icon-doc"></i></button>
             </div>
         </div>
     </div>
 </div>
 
-{{visios}}
