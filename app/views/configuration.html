@@ -31,7 +31,7 @@
                                         </div>
                                         <layout configuracao="item.configuration" preview="true">
                                             <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in item.containers">
-                                                <div block="component.name" columns="component.column" lines="component.line" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
+                                                <div block="component.name" columns="component.column" lines="component.line" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.components">
                                                     <div class="layout layout-container layout-border">
                                                         <div class="layout layout-container container-column">
                                                             <div ng-if="component.type === 'table'" class="layout-number icon-list" title="Tipo tabela"></div>
@@ -56,7 +56,7 @@
                                 <div class="row">
                                     <layout configuracao="selection.template.configuration" preview="true" >
                                         <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in selection.template.containers">
-                                            <div block="component.name" columns="component.column" lines="component.line" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
+                                            <div block="component.name" columns="component.column" lines="component.line" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.components">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column">
                                                         <div ng-if="component.type === 'table'" class="layout-number icon-list"></div>
@@ -82,7 +82,7 @@
                             <div class="col-md-6 container-fluid pull-left" style="max-height:550px">
                                 <layout configuracao="visio.layout.configuration" preview="true">
                                     <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="5" preview-block="false" ng-repeat="container in visio.layout.containers">
-                                        <div block="component.name" columns="component.column" lines="component.line" line-height="5" preview-block="true" ng-repeat="component in container.component">
+                                        <div block="component.name" columns="component.column" lines="component.line" line-height="5" preview-block="true" ng-repeat="component in container.components">
                                             <div class="layout layout-container layout-border" ng-click="editComponent(component)">
                                                 <div class="layout layout-container container-column">
                                                     <span>{{component.label}}</span>
@@ -104,7 +104,7 @@
                                         </div>
                                         <div class="form-group" ng-if="component.type === 'text'">
                                             <label for="text">Texto:</label>
-                                            <input id="text" class="form-control" type="text" placeholder="Digite o conteúdo do componente" ng-model="component.data" />
+                                            <textarea id="text" class="form-control" type="text" rows="3" placeholder="Digite o conteúdo do componente" ng-model="component.data" />
                                         </div>
                                         <div class="form-group" ng-if="component.type === 'title'">
                                             <label for="title">Título:</label>
@@ -149,7 +149,7 @@
                                                             </div>
                                                             <div class="col-md-8" style="padding:45px; margin-left:50px;">
                                                                 <div id="fields" class="fixed-margin">
-                                                                    <table class="table table-condensed">
+                                                                    <table class="table table-bordered">
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>Nome</th>

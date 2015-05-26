@@ -36,9 +36,9 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, $w
 
     $scope.saveFields = function() {
         for (var i = 0; i < $scope.visio.layout.containers.length; i++) {
-            for (var a = 0; a < $scope.visio.layout.containers[i].component.length; a++) {
-                if ($scope.visio.layout.containers[i].component[a]._id === $scope.component._id) {
-                    $scope.visio.layout.containers[i].component[a].data.fields === $scope.component.data.fields;
+            for (var a = 0; a < $scope.visio.layout.containers[i].components.length; a++) {
+                if ($scope.visio.layout.containers[i].components[a]._id === $scope.component._id) {
+                    $scope.visio.layout.containers[i].components[a].data.fields === $scope.component.data.fields;
                 }
             };
         };

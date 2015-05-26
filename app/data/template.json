@@ -7,7 +7,7 @@
         "line": 35,
         "column": 12,
         "__v": 0,
-        "component": [{
+        "components": [{
             "_id": "555f88eebe6354bb237607ec",
             "label": "Foto",
             "name": "foto",
@@ -31,7 +31,7 @@
         "line": 35,
         "column": 12,
         "__v": 0,
-        "component": [{
+        "components": [{
             "_id": "555f88eebe6354bb237607ee",
             "label": "Detalhes",
             "name": "details",
@@ -76,7 +76,7 @@
         "line": 35,
         "column": 12,
         "__v": 0,
-        "component": [{
+        "components": [{
             "_id": "555f88eebe6354bb237607f1",
             "label": "Conteúdo do cabeçalho",
             "name": "headerContent",
@@ -92,7 +92,7 @@
         "line": 35,
         "column": 12,
         "__v": 0,
-        "component": [{
+        "components": [{
             "_id": "555f88eebe6354bb237607f2",
             "label": "Detalhes",
             "name": "details",
@@ -129,7 +129,7 @@
         "line": 85,
         "column": 12,
         "__v": 0,
-        "component": [{
+        "components": [{
             "_id": "555f88eebe6354bb237607f3",
             "label": "Detalhes",
             "name": "details",
@@ -166,7 +166,7 @@
         "line": 85,
         "column": 12,
         "__v": 0,
-        "component": [{
+        "components": [{
             "_id": "555f88eebe6354bb237607f4",
             "label": "Detalhes",
             "name": "details",
@@ -194,7 +194,7 @@
         "line": 85,
         "column": 12,
         "__v": 0,
-        "component": [{
+        "components": [{
             "_id": "555f88eebe6354bb237607f3",
             "label": "Detalhes",
             "name": "details",

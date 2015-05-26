@@ -16,13 +16,14 @@
              "line": 35,
              "column": 12,
              "__v": 0,
-             "component": [{
+             "components": [{
                  "_id": "555f88eebe6354bb237607ec",
                  "label": "Foto",
                  "name": "foto",
                  "column": 4,
                  "line": 35,
-                 "type": "image"
+                 "type": "image",
+                 "data":{}
              }, {
                  "_id": "555f88eebe6354bb237607ed",
                  "label": "Conteúdo do cabeçalho",
@@ -41,20 +42,22 @@
              "line": 35,
              "column": 12,
              "__v": 0,
-             "component": [{
+             "components": [{
                  "_id": "555f88eebe6354bb237607ee",
                  "label": "Detalhes",
                  "name": "details",
                  "column": 8,
                  "line": 25,
-                 "type": "table"
+                 "type": "table",
+                 "data":{}
              }, {
                  "_id": "555f88eebe6354bb237607ef",
                  "label": "Total",
                  "name": "total",
                  "column": 4,
                  "line": 25,
-                 "type": "table"
+                 "type": "table",
+                 "data":{}
              }, {
                  "_id": "555f88eebe6354bb237607f0",
                  "label": "Rodapé",
@@ -62,7 +65,8 @@
                  "column": 12,
                  "line": 25,
                  "offsetLine": 1,
-                 "type": "table"
+                 "type": "table",
+                 "data":{}
              }]
          }],
          "configuration": {

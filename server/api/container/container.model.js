@@ -9,7 +9,7 @@ var ContainerSchema = new Schema({
 	"type": String,
 	"line": Number,
 	"column": Number,
-	"component":[Schema.Types.Components]		
+	"components":[Schema.Types.Components]		
 });
 
 

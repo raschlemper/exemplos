@@ -3,7 +3,6 @@
 app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location, 
         ReportService, MovimentoService, ReportComponentService, ReportFormatterService, VisioService, 
         JsonService) {
-	
 	var index = 0;
     var registers = [];
     var visio = {};
@@ -11,9 +10,9 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
     $scope.report = {};    
 
     var createReport = function() {
-        if(!$routeParams.hashid) { 
+/*        if(!$routeParams.hashid) { 
             $location.url('/report').search('hashid', '555b2523a209f0690f4c7ff7'); 
-        }
+        }*/
         getData();
     }
 
@@ -29,7 +28,7 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
     }   
 
     var getVisio = function() {
-        VisioService.getByHashid($routeParams.hashid)
+        VisioService.service.getByHashid($routeParams.hashid)
             .then( function(data) {  
                 visio = data[0];
                 $scope.visio = visio;
