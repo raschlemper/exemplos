@@ -5,6 +5,12 @@ app.factory("ReportFunctionService", function(DataGrouperService) {
             return memo + value;
         });
     }
+
+    var rest = function(values, field) {
+        return _.reduce(values[field], function(memo, value) {
+            return memo + value;
+        });
+    }
 	
     var getValues = function(register, field) {
     	var values = {};
@@ -24,6 +30,9 @@ app.factory("ReportFunctionService", function(DataGrouperService) {
     var formulaFactory = function(formula) {
     	switch(formula) {
             case "sum":
+                return sum;
+                break;
+            case "rest":
                 return sum;
                 break;
             default:
