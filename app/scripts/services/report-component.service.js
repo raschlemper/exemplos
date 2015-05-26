@@ -12,10 +12,15 @@ app.factory("ReportComponentService", function(DataGrouperService, ReportFunctio
         values[field] = _.pluck(field.value, 'field');
         return values;
     }
+    
+    var getGroupValues = function(registers) {
+        return _.pluck(registers, 'vals');
+    }
 
-    var applyFormula = function(field, register) {
+    var applyFormula = function(field, register, registers) {
         var formula = field.formula;
-        return ReportFunctionService.calculate(formula, getValues(field), register.vals);
+        return ReportFunctionService.calculate(formula, getValues(field), register.vals, 
+            getGroupValues(registers));
     }
 
     var groupRegister = function(registers, data) {
@@ -66,7 +71,7 @@ app.factory("ReportComponentService", function(DataGrouperService, ReportFunctio
         var rows = [];
         _.map(data.groups, function(field) {
             _.map(registers, function(register) {
-                var result = applyFormula(field, register);
+                var result = applyFormula(field, register, registers);
                 rows.push(createRow(register, result));
             });
         });
