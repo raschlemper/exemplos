@@ -36,8 +36,6 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
                 $scope.visio = visio;
                 $scope.report = ReportService.create(registers, visio.layout); 
                 $scope.getPage(index);  
-                // console.log('Report', $scope.report);
-                // console.log('Visio', visio);
             })
             .catch( function(err) {
                 layout = [];
@@ -48,9 +46,9 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
         var page = $scope.report.pages[index];
         var registersByFilter = applyFilter(page);
         ReportComponentService.create(registersByFilter, $scope.report.components);
-        //ReportFormatterService.format($scope.report.components);
+        ReportFormatterService.format($scope.report.components);
 
-        console.log($scope.report.components);
+        console.log($scope.report);
     }
 
     var applyFilter = function(page) {

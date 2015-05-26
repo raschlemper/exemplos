@@ -57,15 +57,15 @@ app.factory("ReportService", function(DataGrouperService){
         report.components = getDatasByComponents(); 
         report.filter = getReportFilter();
         report.pages = getPages(); 
-        return report;
     }
 
 	var create = function(reg, lay) {
 		registers = reg;	
 		layout = lay;	
-		return setValuesReport();
+		setValuesReport();
+        return report;
     }
-    
+
 	return {
 		create: create
 	}

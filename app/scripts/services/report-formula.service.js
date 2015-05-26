@@ -8,10 +8,8 @@ app.factory("ReportFunctionService", function(DataGrouperService) {
 	
     var getValues = function(register, field) {
     	var values = {};
-    	// _.map(registers, function(register) {
-    		values[field] = _.pluck(register.vals, field);
-    	// });	
-        return values;
+    	values[field] = _.pluck(register, field);
+    	return values;
     }
 
     var calculateFormula = function(fields, register, formulaCallback) {
@@ -34,8 +32,8 @@ app.factory("ReportFunctionService", function(DataGrouperService) {
     }
 
     var calculate = function(formula, fields, register) {
-    	var funct = formulaFactory(formula);
-        var result = calculateFormula(fields, register, funct);
+    	var formulaFunction = formulaFactory(formula);
+        var result = calculateFormula(fields, register, formulaFunction);
     	return result;
     }
 
