@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="bower_components/bootswatch/flatly/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css">
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -47,17 +48,14 @@
                         <li id="home" class="active"><a href="#/">Home</a></li>
                         <li id="report"><a ng-href="#/report">Relatório</a></li>
                     </ul>
-                    <ul class="nav navbar-nav pull-right" id="menu">
-                        <li class="dropdown">
+                    <ul class="nav navbar-nav pull-right" id="menu2">
+                        <li class="dropdown pull-right">
                             <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-settings"></i><span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
+                            <ul class="dropdown-menu" role="menu2">
+                                <li><a href="#/profile">Perfil</a></li>
+                                <li><a href="#/system">Configuração</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
+                                <li><a href="#/logout">Sair</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -68,9 +66,9 @@
     <div class="container-fluid">
         <div ng-view=""></div>
     </div>
-    <div class="footer navbar-default navbar-fixed-bottom">
+    <div class="footer navbar-default navbar-fixed-bottom" ng-controller="FooterCtrl">
         <div class="container">
-            <p class="text-muted">Portal Financeiro by Gennera</p>
+            <p class="text-muted">{{footer}}</p>
         </div>
     </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -106,6 +104,7 @@
     <script src="scripts/controllers/configuration.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/preview.js"></script>
+    <script src="scripts/controllers/footer.js"></script>
     <script src="scripts/controllers/report.js"></script>
     <script src="scripts/services/campo.service.js"></script>
     <script src="scripts/services/data-grouper.service.js"></script>
@@ -124,6 +123,7 @@
     <script src="scripts/directives/wizard/step.js"></script>
     <script src="scripts/directives/wizard/wizard.js"></script>
     <script src="scripts/directives/widget/widget.directive.js"></script>
+    <script src="scripts/app.constants.js"></script>
     <!-- endbuild -->
 </body>
 

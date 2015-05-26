@@ -14,7 +14,7 @@ app.directive('widget', [function() {
             var isTable = function() {
                 console.log("Table: " + scope.type);
                 if (scope.type === 'table') {
-                    scope.data = {
+                   /* scope.data = {
                         'heads': [{
                             'name': 'teste'
                         }, {
@@ -95,7 +95,7 @@ app.directive('widget', [function() {
                                 'value': 'teste3'
                             }]
                         }]
-                    };
+                    };*/
                     scope.table = true;
                 }
             };
@@ -125,7 +125,7 @@ app.directive('widget', [function() {
                 console.log("List: " + scope.type);
                 if (scope.type === 'list') {
                     scope.list = true;
-                    scope.data = [{
+/*                    scope.data = [{
 
                         "head": "head1",
                         "value": "value1"
@@ -145,7 +145,7 @@ app.directive('widget', [function() {
                         "head": "head4",
                         "value": "value4"
 
-                    }];
+                    }];*/
                 }
             }
 

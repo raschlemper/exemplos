@@ -186,7 +186,7 @@
             "lineHeight": 2
         }
     }
-},{
+}, {
     "containers": [{
         "_id": "555b24e0a209f0690f4c7fbf",
         "name": "Ambos",
@@ -214,6 +214,43 @@
         }]
     }],
     "name": "Layout com texto",
+    "description": "Descrição",
+    "configuration": {
+        "full": {
+            "lineHeight": 15
+        },
+        "preview": {
+            "lineHeight": 2
+        }
+    }
+},{
+    "containers": [{
+        "_id": "555b24e0a209f0690f4c7fbf",
+        "name": "Ambos",
+        "type": "footer",
+        "line": 85,
+        "column": 12,
+        "__v": 0,
+        "components": [{
+            "_id": "555f88eebe6354bb237607f3",
+            "label": "Detalhes",
+            "name": "details",
+            "column": 12,
+            "line": 60,
+            "data": {},
+            "type": "text"
+        }, {
+            "_id": "555f88eebe6354bb237607f0",
+            "label": "Rodapé",
+            "name": "footer",
+            "column": 12,
+            "line": 25,
+            "offsetLine": 1,
+            "data": {},
+            "type": "text"
+        }]
+    }],
+    "name": "Puro com texto",
     "description": "Descrição",
     "configuration": {
         "full": {

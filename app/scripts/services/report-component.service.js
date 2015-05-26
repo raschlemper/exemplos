@@ -12,14 +12,14 @@ app.factory("ReportComponentService", function(DataGrouperService, ReportFunctio
         values[field] = _.pluck(field.value, 'field');
         return values;
     }
-    
+
     var getGroupValues = function(registers) {
         return _.pluck(registers, 'vals');
     }
 
     var applyFormula = function(field, register, registers) {
         var formula = field.formula;
-        return ReportFunctionService.calculate(formula, getValues(field), register.vals, 
+        return ReportFunctionService.calculate(formula, getValues(field), register.vals,
             getGroupValues(registers));
     }
 
@@ -88,6 +88,9 @@ app.factory("ReportComponentService", function(DataGrouperService, ReportFunctio
     }
 
     var createComponent = function(registers, component) {
+        if (!component.data) {
+            return;
+        }
         if (component.data.groups) {
             return createComponentGroup(registers, component);
         }

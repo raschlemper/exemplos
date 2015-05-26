@@ -17,7 +17,7 @@ app.controller('MainCtrl', function($scope, $location, VisioService) {
         $location.url('/report').search('hashid', visio.hashid);
     };
 
-    $scope.updateVisio = function(visio){
+    $scope.updateVisio = function(visio) {
         $location.url('/configuration').search('hashid', visio.hashid);
     }
 
@@ -31,10 +31,14 @@ app.controller('MainCtrl', function($scope, $location, VisioService) {
                 return console.log(err);
             });
     };
-    getVisios();
+
 
     $scope.removeVisio = function(visio) {
         VisioService.service.remove(visio);
         getVisios();
     }
+
+    var init = function() {
+        getVisios();
+    }();
 });

@@ -76,6 +76,7 @@ app.factory("ReportFormatterService", function(DataGrouperService) {
     }
 
     var createRow = function(component) {
+        if(!component.data){return;}
         if(component.data.groups) {
             return createGroupsRow(component);
         }
