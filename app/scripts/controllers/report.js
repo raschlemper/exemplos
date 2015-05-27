@@ -27,10 +27,11 @@
      }
 
      var getVisio = function() {
-         // VisioService.service.getByHashid($routeParams.hashid)
-         JsonService.visioTest()
+         VisioService.service.getByHashid($routeParams.hashid)
+         // JsonService.visioTest()
              .then(function(data) {
                  $scope.visio = data[0];
+                 console.log(data[0]);
                  ReportService.create(registers, $scope.visio.layout);
                  $scope.getPage(index);
                  console.log($scope.visio.layout);

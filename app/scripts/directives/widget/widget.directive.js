@@ -13,6 +13,7 @@ app.directive('widget', [function() {
 
             var isTable = function() {
                 console.log("Table: " + scope.type);
+                console.log(scope.data);
                 if (scope.type === 'table') {
                    /* scope.data = {
                         'heads': [{
@@ -108,8 +109,9 @@ app.directive('widget', [function() {
             }
 
             var isImage = function() {
-                console.log("Image: " + scope.type);
+                
                 if (scope.type === 'image') {
+                    console.log("Image: ", scope.data);
                     scope.image = true;
                 }
             }
