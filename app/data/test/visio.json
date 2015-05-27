@@ -115,7 +115,7 @@
                  "name": "details",
                  "column": 9,
                  "line": 15,
-                 "type": "list",
+                 "type": "table",
                  "data": {
                      "fields": [{
                          "_id": "555f17bf7d9f9062787ebdca",

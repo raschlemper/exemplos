@@ -1,20 +1,24 @@
-<div>
-    <table class="table table-bordered" ng-if="table" style="width: 100%;">
-        <thead>
-            <tr>
-                <th ng-repeat="head in data.heads">{{head.name}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="row in data.rows">
-                <td ng-repeat="field in row.values">{{field.value}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <img ng-if="image" src="{{data.path}}" style="width: 100%;" />
+<div style="padding:5px">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" ng-if="table" style="width: 100%;">
+            <thead>
+                <tr class="info" ng-repeat="columns in data[0]">
+                    <th ng-repeat="column in columns">{{column.name}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in data">
+                    <td ng-repeat="column in row.columns">{{column.value}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <img ng-if="image" src="{{data[0].path}}" style="width: 100%;" />
     <div ng-if="list">
-        <div class="well" ng-repeat="row in data">
-            <span>{{row.head}}</span>:<span>{{row.value}}</span>
+        <div ng-repeat="row in data">
+            <div ng-repeat="column in row.columns">
+                <span>{{column.name}}</span>:<span>{{column.value}}</span>
+            </div>
         </div>
     </div>
     <p ng-if="text" style="width: 100%;">{{data}}</p>

@@ -46,3 +46,4 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
     createReport();
 
 });
+
