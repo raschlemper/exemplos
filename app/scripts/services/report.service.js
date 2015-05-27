@@ -1,35 +1,11 @@
-app.factory("ReportService", function(DataGrouperService, ReportComponentService, ReportFormatterService) {
+app.factory("ReportService", function(DataGrouperService, ReportComponentService, ReportFormatterService, 
+    ReportPageService) {
 
     var report = {
-        filter: [],
-        pages: [],
         components: []
     };
 
-    var getFieldsFilter = function() {
-        var values = _.pluck(report.filter, 'value');
-        return _.reduce(values, function(memo, value) {
-            return _.union(memo, _.pluck(value, 'field'));
-        }, []);
-    }
-
-    var getPages = function(registers) {
-        var fieldsFilter = getFieldsFilter();
-        return DataGrouperService.keys(registers, fieldsFilter);
-    }
-
-    var getReportFilter = function() {
-        var headerComponents = _.where(report.components, {
-            'containerType': 'header'
-        });
-        return _.reduce(headerComponents, function(memo, component) {
-            if (component.data) {
-                return _.union(memo, component.data.fields);
-            }
-        }, []);
-    }
-
-    var getComponents = function(container, components) {
+    var createComponents = function(container, components) {
         _.map(container.components, function(component) {
             components.push({
                 'containerType': container.type,
@@ -40,10 +16,10 @@ app.factory("ReportService", function(DataGrouperService, ReportComponentService
         });
     }
 
-    var getDatasByComponents = function(layout) {
+    var getComponents = function(layout) {
         var components = [];
         _.map(layout.containers, function(container) {
-            getComponents(container, components);
+            createComponents(container, components);
         })
         return components;
     }
@@ -79,8 +55,7 @@ app.factory("ReportService", function(DataGrouperService, ReportComponentService
         return createComponentWithoutField(registers, component);
     }
 
-    var createComponent = function(registers, layout) {
-        var components = getDatasByComponents(layout);
+    var createComponent = function(registers, components) {
         return _.map(components, function(component) {
             return componentFactory(registers, component);
         });
@@ -94,6 +69,7 @@ app.factory("ReportService", function(DataGrouperService, ReportComponentService
     }
 
     var setComponent = function(layout, indexContainer, indexComponent, componentReport) {
+        if(!componentReport.rows) return;
         layout.containers[indexContainer].components[indexComponent].data = componentReport.rows;
     }
 
@@ -106,24 +82,20 @@ app.factory("ReportService", function(DataGrouperService, ReportComponentService
         });
     }
 
-    var bindReport = function(layout) {
-        // layout['filter'] = report.filter;
-        layout['pages'] = report.pages;
-        bindComponents(layout);       
+    var page = function(page, registers, layout) {
+        var components = getComponents(layout);
+        var filters = ReportPageService.page(page, registers);
+        report.components = createComponent(filters, components);
+        bindComponents(layout);
     }
 
-    var setValuesReport = function(registers, layout) {
-        report.components = createComponent(registers, layout);
-        report.filter = getReportFilter();
-        report.pages = getPages(registers);
-    }
-
-    var create = function(registers, layout) {
-        setValuesReport(registers, layout);
-        bindReport(layout);
+    var pages = function(registers, layout) {
+        var components = getComponents(layout);
+        return ReportPageService.pages(registers, components); 
     }
 
     return {
-        create: create
+        pages: pages,
+        page: page
     }
 });
