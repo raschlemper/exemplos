@@ -12,11 +12,11 @@
         <div class="col-lg-10 report">
             <div class="page-portrait container-fluid shadow">
                 <layout configuracao="visio.layout.configuration" preview="false">
-                    <div id="header-title" class="col-lg-12" ng-show="report.title">
+<!--                     <div id="header-title" class="col-lg-12" ng-show="report.title">
                         <div class="page-header">
                             <h3>{{ report.title }}</h3>
                         </div>
-                    </div>
+                    </div> -->
                     <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="visio.layout.configuration.full.lineHeight" preview-block="true" ng-repeat="container in visio.layout.containers">
                         <div block="component.name" columns="component.column" lines="component.line" line-height="visio.layout.configuration.full.lineHeight" preview-block="true" ng-repeat="component in container.components">
                             <h3>{{component.label}}</h3>
@@ -28,3 +28,5 @@
         </div>
     </div>
 </div>
+
+{{report}}

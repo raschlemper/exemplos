@@ -54,33 +54,6 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
         return _.where(registers, page);
     }
 
-    $scope.getWidget =function(code) {
-        var widget = _.findWhere($scope.report.components, {'code': code});
-        return createWidget(widget);
-    }
-
-    var createWidget = function(widget) {
-        switch(widget.type) {
-            case "image":
-                return '<img src="' + widget.data.path + '"/>';
-                break;
-            case "list":
-                return createList(widget);
-                break;
-            default:
-                return '';
-        }
-    }
-
-    var createList = function(widget) {
-        var html =  '<div class="row">';
-        _.map(widget.data.fields, function(field) {
-            html += '<div class="col-lg-12">' + field + ':</div>';
-        })
-        html += '</div>'; 
-        return html;
-    }
-
     createReport();    
 
   });
