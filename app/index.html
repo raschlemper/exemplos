@@ -9,11 +9,15 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!--     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" /> -->
     <link rel="stylesheet" href="bower_components/fuelux/dist/css/fuelux.css" />
-    <link rel="stylesheet" href="bower_components/bootstrap-treeview/dist/bootstrap-treeview.min.css"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap-treeview/dist/bootstrap-treeview.min.css">
+    </script>
     <link rel="stylesheet" href="bower_components/hover/css/hover-min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="bower_components/bootswatch/flatly/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css">
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -44,6 +48,17 @@
                         <li id="home" class="active"><a href="#/">Home</a></li>
                         <li id="report"><a ng-href="#/report">Relatório</a></li>
                     </ul>
+                    <ul class="nav navbar-nav pull-right" id="menu2">
+                        <li class="dropdown pull-right">
+                            <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-settings"></i><span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu2">
+                                <li><a href="#/profile">Perfil</a></li>
+                                <li><a href="#/system">Configuração</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#/logout">Sair</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -51,11 +66,11 @@
     <div class="container-fluid">
         <div ng-view=""></div>
     </div>
-        <div class="footer navbar-default navbar-fixed-bottom">
-            <div class="container">
-                <p class="text-muted">Portal Financeiro by Gennera</p>
-            </div>
+    <div class="footer navbar-default navbar-fixed-bottom" ng-controller="FooterCtrl">
+        <div class="container">
+            <p class="text-muted">{{footer}}</p>
         </div>
+    </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
     ! function(A, n, g, u, l, a, r) {
@@ -86,12 +101,11 @@
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-
     <script src="scripts/controllers/configuration.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/preview.js"></script>
+    <script src="scripts/controllers/footer.js"></script>
     <script src="scripts/controllers/report.js"></script>
-
     <script src="scripts/services/campo.service.js"></script>
     <script src="scripts/services/data-grouper.service.js"></script>
     <script src="scripts/services/json.service.js"></script>
@@ -103,14 +117,13 @@
     <script src="scripts/services/report-formula.service.js"></script>
     <script src="scripts/services/visio.service.js"></script>
     <script src="scripts/services/entity.service.js"></script>
-
     <script src="scripts/directives/layout/layout.directive.js"></script>
     <script src="scripts/directives/tree-view/tree-view.directive.js"></script>
     <script src="scripts/directives/ui-blocks/block.directive.js"></script>
     <script src="scripts/directives/wizard/step.js"></script>
     <script src="scripts/directives/wizard/wizard.js"></script>
     <script src="scripts/directives/widget/widget.directive.js"></script>
-    
+    <script src="scripts/app.constants.js"></script>
     <!-- endbuild -->
 </body>
 

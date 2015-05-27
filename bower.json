@@ -14,7 +14,11 @@
     "fuelux": "~3.7.2",
     "bootstrap-treeview": "~1.2.0",
     "font-awesome": "~4.3.0",
-    "hover": "*"
+    "hover": "*",
+    "simple-line-icons": "~1.0.0",
+    "bootstrap-theme-bootswatch-flatly": "~1.0.2",
+    "bootswatch": "~3.3.4+1",
+    "animateCSS": "~1.2.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"

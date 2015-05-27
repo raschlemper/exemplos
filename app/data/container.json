@@ -3,19 +3,21 @@
         "type": "header",
         "line": 35,
         "column": 12,
-        "component": [{
+        "components": [{
             "label": "Título",
             "name": "title",
             "column": 12,
             "line": 17,
             "offsetLine": 1,
-            "widget": "title"
+            "type": "title",
+            "data": {}
         }, {
             "label": "Conteúdo do cabeçalho",
             "name": "headerContent",
             "column": 12,
             "line": 18,
-            "widget": "list"
+            "type": "list",
+            "data": {}
         }]
     },
 
@@ -24,11 +26,12 @@
         "type": "header",
         "line": 35,
         "column": 12,
-        "component": [{
+        "components": [{
             "label": "Conteúdo do cabeçalho",
             "name": "headerContent",
             "column": 12,
-            "widget": "list"
+            "type": "list",
+            "data": {}
         }]
     },
 
@@ -37,18 +40,20 @@
         "type": "header",
         "line": 35,
         "column": 12,
-        "component": [{
+        "components": [{
             "label": "Foto",
             "name": "foto",
             "column": 4,
             "line": 35,
-            "widget": "image"
+            "type": "image",
+            "data": {}
         }, {
             "label": "Conteúdo do cabeçalho",
             "name": "headerContent",
             "column": 8,
             "line": 35,
-            "widget": "list"
+            "type": "list",
+            "data": {}
         }]
     },
 
@@ -57,12 +62,13 @@
         "type": "details",
         "line": 35,
         "column": 12,
-        "component": [{
+        "components": [{
             "label": "Detalhes",
             "name": "detailsContent",
             "column": 12,
             "line": 35,
-            "widget": "list"
+            "type": "list",
+            "data": {}
         }]
     },
 
@@ -71,12 +77,13 @@
         "type": "details",
         "line": 35,
         "column": 12,
-        "component": [{
+        "components": [{
             "label": "Detalhes",
             "name": "detailsContent",
             "column": 12,
             "line": 35,
-            "widget": "table"
+            "type": "table",
+            "data": {}
         }]
     },
 
@@ -85,16 +92,20 @@
         "type": "footer",
         "line": 35,
         "column": 12,
-        "component": [{
+        "components": [{
             "label": "Detalhes",
             "name": "detailsContent",
             "column": 12,
-            "line": 20
+            "line": 20,
+            "type": "list",
+            "data": {}
         }, {
             "label": "Rodapé",
             "name": "footer",
             "column": 12,
-            "line": 15
+            "line": 15,
+            "type": "list",
+            "data": {}
         }]
     },
 
@@ -103,16 +114,20 @@
         "type": "footer",
         "line": 35,
         "column": 12,
-        "component": [{  
+        "components": [{
             "label": "Detalhes",
             "name": "detailsContent",
             "column": 8,
-            "line": 35
-        },{
+            "line": 35,
+            "type": "list",
+            "data": {}
+        }, {
             "label": "Rodapé",
             "name": "footer",
             "column": 4,
-            "line": 35
+            "line": 35,
+            "type": "list",
+            "data": {}
         }]
     },
 
@@ -121,23 +136,28 @@
         "type": "footer",
         "line": 35,
         "column": 12,
-        "component": [ {
+        "components": [{
             "label": "Detalhes",
             "name": "details",
             "column": 8,
-            "line": 25
+            "line": 25,
+            "type": "list",
+            "data": {}
         }, {
             "label": "Total",
             "name": "total",
             "column": 4,
             "line": 25,
-            "widget": "table"
-        },{
+            "type": "table",
+            "data": {}
+        }, {
             "label": "Rodapé",
             "name": "footer",
             "column": 12,
             "line": 10,
-            "offsetLine": 1
+            "offsetLine": 1,
+            "type": "list",
+            "data": {}
         }]
     }
 ]

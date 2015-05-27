@@ -14,7 +14,7 @@ app.directive('widget', [function() {
             var isTable = function() {
                 console.log("Table: " + scope.type);
                 if (scope.type === 'table') {
-                    scope.data = {
+                   /* scope.data = {
                         'heads': [{
                             'name': 'teste'
                         }, {
@@ -34,7 +34,7 @@ app.directive('widget', [function() {
                             }, {
                                 'value': 'teste3'
                             }]
-                          },{
+                        }, {
                             'values': [{
                                 'value': 'teste'
                             }, {
@@ -44,7 +44,7 @@ app.directive('widget', [function() {
                             }, {
                                 'value': 'teste3'
                             }]
-                          },{
+                        }, {
                             'values': [{
                                 'value': 'teste'
                             }, {
@@ -54,7 +54,7 @@ app.directive('widget', [function() {
                             }, {
                                 'value': 'teste3'
                             }]
-                          },{
+                        }, {
                             'values': [{
                                 'value': 'teste'
                             }, {
@@ -64,7 +64,7 @@ app.directive('widget', [function() {
                             }, {
                                 'value': 'teste3'
                             }]
-                          },{
+                        }, {
                             'values': [{
                                 'value': 'teste'
                             }, {
@@ -74,7 +74,7 @@ app.directive('widget', [function() {
                             }, {
                                 'value': 'teste3'
                             }]
-                          },{
+                        }, {
                             'values': [{
                                 'value': 'teste'
                             }, {
@@ -84,7 +84,7 @@ app.directive('widget', [function() {
                             }, {
                                 'value': 'teste3'
                             }]
-                          },{
+                        }, {
                             'values': [{
                                 'value': 'teste'
                             }, {
@@ -94,9 +94,8 @@ app.directive('widget', [function() {
                             }, {
                                 'value': 'teste3'
                             }]
-                          }
-                        ]
-                    };
+                        }]
+                    };*/
                     scope.table = true;
                 }
             };
@@ -122,10 +121,39 @@ app.directive('widget', [function() {
                 }
             }
 
+            var isList = function() {
+                console.log("List: " + scope.type);
+                if (scope.type === 'list') {
+                    scope.list = true;
+/*                    scope.data = [{
+
+                        "head": "head1",
+                        "value": "value1"
+
+                    }, {
+
+                        "head": "head2",
+                        "value": "value2"
+
+                    }, {
+
+                        "head": "head3",
+                        "value": "value3"
+
+                    }, {
+
+                        "head": "head4",
+                        "value": "value4"
+
+                    }];*/
+                }
+            }
+
             isTable();
             isText();
             isImage();
             isTitle();
+            isList();
         }
     }
 }]);

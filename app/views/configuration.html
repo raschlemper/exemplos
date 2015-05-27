@@ -31,11 +31,14 @@
                                         </div>
                                         <layout configuracao="item.configuration" preview="true">
                                             <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in item.containers">
-                                                <div block="component.name" columns="component.column" lines="component.line" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
+                                                <div block="component.name" columns="component.column" lines="component.line" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.components">
                                                     <div class="layout layout-container layout-border">
                                                         <div class="layout layout-container container-column">
-                                                            <div ng-if="component.type === 'table'" class="layout-number glyphicon glyphicon-list"></div>
-                                                            <div ng-if="component.type === 'image'" class="layout-number   glyphicon glyphicon-picture"></div>
+                                                            <div ng-if="component.type === 'table'" class="layout-number icon-list" title="Tipo tabela"></div>
+                                                            <div ng-if="component.type === 'image'" class="layout-number   icon-picture" title="Tipo imagem"></div>
+                                                            <div ng-if="component.type === 'list'" class="layout-number   icon-docs" title="Tipo lista"></div>
+                                                            <div ng-if="component.type === 'text'" class="layout-number   icon-speech" title="Tipo texto"></div>
+                                                            <div ng-if="component.type === 'title'" class="layout-number   icon-speech" title="Tipo'título"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -51,13 +54,16 @@
                             <div class="panel-heading">Selecionado</div>
                             <div class="panel-body layout-box">
                                 <div class="row">
-                                    <layout configuracao="selection.template.configuration" preview="true">
+                                    <layout configuracao="selection.template.configuration" preview="true" >
                                         <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in selection.template.containers">
-                                            <div block="component.name" columns="component.column" lines="component.line" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.component">
+                                            <div block="component.name" columns="component.column" lines="component.line" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.components">
                                                 <div class="layout layout-container layout-border">
                                                     <div class="layout layout-container container-column">
-                                                        <div ng-if="component.type === 'table'" class="layout-number glyphicon glyphicon-list"></div>
-                                                        <div ng-if="component.type === 'image'" class="layout-number   glyphicon glyphicon-picture"></div>
+                                                        <div ng-if="component.type === 'table'" class="layout-number icon-list"></div>
+                                                        <div ng-if="component.type === 'image'" class="layout-number   icon-picture"></div>
+                                                        <div ng-if="component.type === 'list'" class="layout-number   icon-docs"></div>
+                                                        <div ng-if="component.type === 'text'" class="layout-number   icon-speech"></div>
+                                                        <div ng-if="component.type === 'title'" class="layout-number   icon-speech"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -76,7 +82,7 @@
                             <div class="col-md-6 container-fluid pull-left" style="max-height:550px">
                                 <layout configuracao="visio.layout.configuration" preview="true">
                                     <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="5" preview-block="false" ng-repeat="container in visio.layout.containers">
-                                        <div block="component.name" columns="component.column" lines="component.line" line-height="5" preview-block="true" ng-repeat="component in container.component">
+                                        <div block="component.name" columns="component.column" lines="component.line" line-height="5" preview-block="true" ng-repeat="component in container.components">
                                             <div class="layout layout-container layout-border" ng-click="editComponent(component)">
                                                 <div class="layout layout-container container-column">
                                                     <span>{{component.label}}</span>
@@ -89,27 +95,35 @@
                             <div class="col-md-6 container-fluid pull-right">
                                 <div class="panel panel-info" ng-if="component.type">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">{{component.label}}</h3>
+                                        <h3 class="panel-title"><i class="icon-wrench"></i>   {{component.label}}</h3>
                                     </div>
                                     <div class="panel-body">
                                         <div class="form-group">
-                                            <label>Nome do componente:</label>
-                                            <input type="text" placeholder="Digite o nome do componente" ng-model="component.label" />
+                                            <label for="nome">Nome do componente:</label>
+                                            <input id="nome" class="form-control" type="text" placeholder="Digite o nome do componente" ng-model="component.label" />
+                                        </div>
+                                        <div class="form-group" ng-if="component.type === 'text'">
+                                            <label for="text">Texto:</label>
+                                            <textarea id="text" class="form-control" type="text" rows="3" placeholder="Digite o conteúdo do componente" ng-model="component.data" />
+                                        </div>
+                                        <div class="form-group" ng-if="component.type === 'title'">
+                                            <label for="title">Título:</label>
+                                            <input id="title" class="form-control" type="text" placeholder="Digite o título para o relatório" ng-model="component.data" />
                                         </div>
                                         <div class="form-group" ng-if="component.type === 'image'">
-                                            <label>Link da foto:</label>
-                                            <input type="text" ng-model="component.data.path" placeholder="Digite o link da foto" />
+                                            <label for="caminho">Link da foto:</label>
+                                            <input id="caminho" class="form-control" type="text" ng-model="component.data.path" placeholder="Digite o link da foto" />
                                         </div>
-                                        <div class="form-group" ng-if="component.type === 'table'">
+                                        <div class="form-group" ng-if="component.type === 'table' || component.type === 'list'">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">Campos escolhidos</div>
                                                 <div class="panel-body" ng-if="component.data.fields.length">
                                                     <ul class="list-group">
-                                                        <li ng-repeat="field in component.data.fields" class="list-group-item">{{field.name}}<i class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" data-placement="right" title="{{field.description}}"></i></li>
+                                                        <li ng-repeat="field in component.data.fields" class="list-group-item">{{field.name}}<i class="icon-info pull-right" data-toggle="tooltip" data-placement="right" title="{{field.description}}"></i></li>
                                                     </ul>
                                                 </div>
                                                 <div class="panel-footer">
-                                                    <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Escolher campos <i class="glyphicon glyphicon-modal-window"></i></button>
+                                                    <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Escolher campos <i class="icon-cursor"></i></button>
                                                 </div>
                                             </div>
                                             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -135,7 +149,7 @@
                                                             </div>
                                                             <div class="col-md-8" style="padding:45px; margin-left:50px;">
                                                                 <div id="fields" class="fixed-margin">
-                                                                    <table class="table table-condensed">
+                                                                    <table class="table table-bordered">
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>Nome</th>
@@ -149,7 +163,9 @@
                                                                                 <td>{{selecionado.name}}</td>
                                                                                 <td>{{selecionado.key[0].label}}</td>
                                                                                 <td>{{selecionado.value[0].label}}</td>
-                                                                                <td class="col-md-2"><span style="padding:2px" ng-click="removeCampo(selecionado)"><i class="glyphicon glyphicon-remove"></i></span></td>
+                                                                                <td class="col-md-2">
+                                                                                    <button class="btn btn-default btn-flat" ng-click="removeCampo(selecionado)"><i class="icon-close"></i></button>
+                                                                                </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>

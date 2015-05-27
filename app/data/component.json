@@ -45,23 +45,27 @@
     "name": "headerContent",
     "column": 12,
     "line": 35,
-    "type": "list"
+    "type": "list",
+    "data": {}
 }, {
     "_id": "555f88eebe6354bb237607f2",
     "label": "Detalhes",
     "name": "details",
     "column": 12,
-    "line": 25
+    "line": 25,
+    "data": {}
 }, {
     "_id": "555f88eebe6354bb237607f3",
     "label": "Detalhes",
     "name": "details",
     "column": 12,
-    "line": 60
+    "line": 60,
+    "data": {}
 }, {
     "_id": "555f88eebe6354bb237607f4",
     "label": "Detalhes",
     "name": "details",
     "column": 12,
-    "line": 85
+    "line": 85,
+    "data": {}
 }]

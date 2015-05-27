@@ -31,7 +31,9 @@ app.factory("ReportService", function(DataGrouperService) {
             'containerType': 'header'
         });
         return _.reduce(headerComponents, function(memo, component) {
-            return _.union(memo, component.data.fields);
+            if (component.data) {
+                return _.union(memo, component.data.fields);
+            }
         }, []);
     }
 
@@ -42,8 +44,8 @@ app.factory("ReportService", function(DataGrouperService) {
                 'code': component.code,
                 'type': component.type,
                 'data': component.data
-            })
-        })
+            });
+        });
     }
 
     var getDatasByComponents = function() {
