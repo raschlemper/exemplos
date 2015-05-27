@@ -3,16 +3,17 @@
         <div class="col-lg-2">
             <div class="row">
                 <div class="col-md-12 text-center" ng-repeat="page in report.pages track by $index">
-                    <i class="fa fa-file-text-o fa-lg img-file-page" ng-click="getPage($index)">
-						<p class="img-file-font"><strong>Página {{ $index + 1 }}</strong></p>
-					</i>
+                  <div ng-click="getPage($index)" class="img-file-page">
+                    <i class="icon-doc"  class=""></i>
+                    <p class="img-file-font"><strong>Página {{ $index + 1 }}</strong></p>
+                  </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-10 report">
             <div class="page-portrait container-fluid shadow">
                 <layout configuracao="visio.layout.configuration" preview="false">
-<!--                     <div id="header-title" class="col-lg-12" ng-show="report.title">
+                    <!--                     <div id="header-title" class="col-lg-12" ng-show="report.title">
                         <div class="page-header">
                             <h3>{{ report.title }}</h3>
                         </div>
@@ -28,5 +29,3 @@
         </div>
     </div>
 </div>
-
-{{report}}

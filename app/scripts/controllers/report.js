@@ -28,7 +28,6 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
     }   
 
     var getVisio = function() {
-
         VisioService.service.getByHashid($routeParams.hashid).then( function(data) {  
                 visio = data[0];
                 $scope.visio = visio;
@@ -45,7 +44,6 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
         var registersByFilter = applyFilter(page);
         ReportComponentService.create(registersByFilter, $scope.report.components);
         ReportFormatterService.format($scope.report.components);
-
         console.log($scope.report);
     }
 
