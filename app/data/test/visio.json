@@ -135,7 +135,7 @@
                          "value": [{
                              "field": "nr_ano",
                              "label": "Ano",
-                             "type": "date",
+                             "type": "number",
                              "isKey": false
                          }, {
                              "field": "nr_semestre",
@@ -175,6 +175,7 @@
                              "field": "dt_vencimento",
                              "label": "Data de vencimento",
                              "type": "date",
+                             "filter": ["date", "dd/MM/yyyy"],
                              "isKey": false
                          }],
                          "expression": "<%= dt_vencimento %>"
@@ -192,6 +193,7 @@
                              "field": "dt_pagamento",
                              "label": "Data de pagamento",
                              "type": "date",
+                             "filter": ["date", "dd/MM/yyyy"],
                              "isKey": false
                          }],
                          "expression": "<%= dt_pagamento %>"
@@ -229,7 +231,7 @@
                          "key": [{
                              "field": "nr_ano",
                              "label": "Ano",
-                             "type": "date",
+                             "type": "number",
                              "isKey": false
                          }, {
                              "field": "nr_semestre",
@@ -280,6 +282,7 @@
                              "field": "dt_vencimento",
                              "label": "Data de vencimento",
                              "type": "date",
+                             "filter": ["date", "dd/MM/yyyy"],
                              "isKey": false
                          }],
                          "expression": "<%= dt_vencimento %>"
@@ -296,6 +299,7 @@
                          "value": [{
                              "field": "dt_pagamento",
                              "label": "Data de pagamento",
+                             "filter": ["date", "dd/MM/yyyy"],
                              "type": "date",
                              "isKey": false
                          }],
@@ -316,6 +320,7 @@
                              "field": "previsao_confirmado",
                              "label": "Previsão confirmada",
                              "type": "number",
+                             "filter": ["currency", "R$ "],
                              "isKey": false
                          }],
                          "expression": "<%= previsao_confirmado %>"
@@ -344,7 +349,7 @@
                          "key": [{
                              "field": "nr_ano",
                              "label": "Ano",
-                             "type": "date",
+                             "type": " number",
                              "isKey": false
                          }, {
                              "field": "nr_semestre",
@@ -355,7 +360,7 @@
                          "value": [{
                              "field": "nr_ano",
                              "label": "Ano",
-                             "type": "date",
+                             "type": "number",
                              "isKey": false
                          }, {
                              "field": "nr_semestre",
@@ -397,6 +402,7 @@
                              "field": "previsao_confirmado",
                              "label": "Previsão confirmada",
                              "type": "number",
+                             "filter": ["currency", "R$ "],
                              "isKey": false
                          }],
                          "expression": "<%= previsao_confirmado %>"

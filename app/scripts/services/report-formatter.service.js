@@ -1,4 +1,4 @@
-app.factory("ReportFormatterService", function(DataGrouperService) {
+app.factory("ReportFormatterService", function($filter, DataGrouperService) {
 
     var getFieldValue = function(data, fields) {
         dataFormat = angular.copy(data);
