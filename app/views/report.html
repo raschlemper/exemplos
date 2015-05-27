@@ -2,12 +2,14 @@
     <div class="row visible-lg-block main-report">
         <div class="col-lg-2">
             <div class="row">
-                <div class="col-md-12 text-center" ng-repeat="page in report.pages track by $index">
+
+                <div class="col-md-12 text-center" ng-repeat="page in visio.layout.pages track by $index">
                   <div ng-click="getPage($index)" class="img-file-page">
                     <i class="icon-doc"  class=""></i>
                     <p class="img-file-font"><strong>Página {{ $index + 1 }}</strong></p>
                   </div>
                 </div>
+
             </div>
         </div>
         <div class="col-lg-10 report">

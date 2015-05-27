@@ -59,9 +59,6 @@ app.factory("ReportComponentService", function(DataGrouperService, ReportFunctio
     }
 
     var createComponentField = function(registers, component) {
-        if (!component.data.fields) {
-            return;
-        }
         var data = getData(component);
         var groupers = groupRegister(registers, data);
         return createRowField(data, groupers);
@@ -79,34 +76,15 @@ app.factory("ReportComponentService", function(DataGrouperService, ReportFunctio
     }
 
     var createComponentGroup = function(registers, component) {
-        if (!component.data.groups) {
-            return;
-        }
         var data = getData(component);
         var groupers = groupRegister(registers, data);
         return createRowGroup(data, groupers);
     }
-
-    var createComponent = function(registers, component) {
-        if (!component.data) {
-            return;
-        }
-        if (component.data.groups) {
-            return createComponentGroup(registers, component);
-        }
-        if (component.data.fields) {
-            return createComponentField(registers, component);
-        }
-        return createComponentWithoutField(registers, component);
-    }
-
-    var create = function(registers, components) {
-        _.map(components, function(component) {
-            component['values'] = createComponent(registers, component);
-        });
-    }
-
+    
     return {
-        create: create
+        createComponentWithoutField: createComponentWithoutField,
+        createComponentField: createComponentField,
+        createComponentGroup: createComponentGroup
+
     }
 });

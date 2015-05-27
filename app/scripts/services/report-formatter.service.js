@@ -39,60 +39,45 @@ app.factory("ReportFormatterService", function(DataGrouperService) {
         return getFieldValue(value, fields);
     }
 
-    var createRowWithoutFields = function(component) {   
-        var rows = [];     
-        rows.push(component.values);
-        return rows;
-    }
-
     var orderRow = function(row) {
         return _.sortBy(row, function(item) {
             return item.order;
         })
     }
 
-    var createObjectRow = function(row) {
+    var formatObject = function(row) {
         return { 'columns': orderRow(row) }
     }
 
-    var createFieldsRow = function(component) {
+    var formatWithoutFields = function(component) {   
+        var rows = [];     
+        rows.push(component.values);
+        return rows;
+    }
+
+    var formatFields = function(component) {
         var rows = [];
         _.map(component.values, function(value, index) {
             var fieldsRows = getFieldValueFields(component, value);
-            rows.push(createObjectRow(fieldsRows));
+            rows.push(formatObject(fieldsRows));
         });
         return rows;
     }
 
-    var createGroupsRow = function(component) {
+    var formatGroups = function(component) {
         var rows = [];
         _.map(component.values, function(value, index) {
             var groupsRows = getFieldValueGroups(component, value);
             var fieldsRows = getFieldValueFields(component, value);
             var row = _.union(groupsRows, fieldsRows);
-            rows.push(createObjectRow(row));
+            rows.push(formatObject(row));
         });
         return rows;
     }
 
-    var createRow = function(component) {
-        if(!component.data){return;}
-        if(component.data.groups) {
-            return createGroupsRow(component);
-        }
-        if(component.data.fields) { 
-            return createFieldsRow(component);
-        }
-        return createRowWithoutFields(component);
-    }
-
-    var format = function(components) {
-        _.map(components, function(component) {
-            component['rows'] = createRow(component);
-        });
-    }
-
     return {
-        format: format
+        formatWithoutFields: formatWithoutFields,
+        formatFields: formatFields,
+        formatGroups: formatGroups
     }
 });
