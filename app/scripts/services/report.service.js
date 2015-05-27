@@ -1,18 +1,10 @@
-app.factory("ReportService", function(DataGrouperService) {
-
-    var registers = [];
-    var layout = [];
+app.factory("ReportService", function(DataGrouperService, ReportComponentService, ReportFormatterService) {
 
     var report = {
-        title: null,
         filter: [],
         pages: [],
         components: []
     };
-
-    var getTitle = function() {
-        return layout.title;
-    }
 
     var getFieldsFilter = function() {
         var values = _.pluck(report.filter, 'value');
@@ -21,7 +13,7 @@ app.factory("ReportService", function(DataGrouperService) {
         }, []);
     }
 
-    var getPages = function() {
+    var getPages = function(registers) {
         var fieldsFilter = getFieldsFilter();
         return DataGrouperService.keys(registers, fieldsFilter);
     }
@@ -41,14 +33,14 @@ app.factory("ReportService", function(DataGrouperService) {
         _.map(container.components, function(component) {
             components.push({
                 'containerType': container.type,
-                'code': component.code,
+                'code': component._id,
                 'type': component.type,
                 'data': component.data
             });
         });
     }
 
-    var getDatasByComponents = function() {
+    var getDatasByComponents = function(layout) {
         var components = [];
         _.map(layout.containers, function(container) {
             getComponents(container, components);
@@ -56,18 +48,79 @@ app.factory("ReportService", function(DataGrouperService) {
         return components;
     }
 
-    var setValuesReport = function() {
-        report.title = getTitle();
-        report.components = getDatasByComponents();
-        report.filter = getReportFilter();
-        report.pages = getPages();
+    var createComponentWithoutField = function(registers, component) {
+        component['values'] = ReportComponentService.createComponentWithoutField(registers, component);
+        component['rows'] = ReportFormatterService.formatWithoutFields(component);
+        return component;
     }
 
-    var create = function(reg, lay) {
-        registers = reg;
-        layout = lay;
-        setValuesReport();
-        return report;
+    var createComponentField = function(registers, component) {
+        component['values'] = ReportComponentService.createComponentField(registers, component);
+        component['rows'] = ReportFormatterService.formatFields(component);
+        return component;
+    }
+
+    var createComponentGroup = function(registers, component) {
+        component['values'] = ReportComponentService.createComponentGroup(registers, component);
+        component['rows'] = ReportFormatterService.formatGroups(component);
+        return component;
+    }
+
+    var componentFactory = function(registers, component) {
+        if (!component.data) {
+            return;
+        }
+        if (component.data.groups) {
+            return createComponentGroup(registers, component);
+        }
+        if (component.data.fields) {
+            return createComponentField(registers, component);
+        }
+        return createComponentWithoutField(registers, component);
+    }
+
+    var createComponent = function(registers, layout) {
+        var components = getDatasByComponents(layout);
+        return _.map(components, function(component) {
+            return componentFactory(registers, component);
+        });
+    }
+
+    var findComponentByCode = function(code) {
+        var comp = _.find(report.components, function(component){ 
+            return _.isEqual(component.code, code);
+        });
+        return comp;
+    }
+
+    var setComponent = function(layout, indexContainer, indexComponent, componentReport) {
+        layout.containers[indexContainer].components[indexComponent].data = componentReport.rows;
+    }
+
+    var bindComponents = function(layout) {
+        _.map(layout.containers, function(container, indexContainer) {
+            _.map(container.components, function(component, indexComponent) {               
+                componentReport = findComponentByCode(component._id);
+                setComponent(layout, indexContainer, indexComponent, componentReport);
+            });
+        });
+    }
+
+    var bindReport = function(layout) {
+        // layout['filter'] = report.filter;
+        layout['pages'] = report.pages;
+        bindComponents(layout);       
+    }
+
+    var setValuesReport = function(registers, layout) {
+        report.components = createComponent(registers, layout);
+        report.filter = getReportFilter();
+        report.pages = getPages(registers);
+    }
+
+    var create = function(registers, layout) {
+        setValuesReport(registers, layout);
+        bindReport(layout);
     }
 
     return {

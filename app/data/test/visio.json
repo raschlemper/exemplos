@@ -26,7 +26,7 @@
              "column": 12,
              "__v": 0,
              "components": [{
-                 "code": 1,
+                 "_id": "555f88eebe6354bb237607ec",
                  "label": "Foto",
                  "name": "foto",
                  "column": 3,
@@ -36,7 +36,7 @@
                      "path": "images/yeoman.png"
                  }
              }, {
-                 "code": 2,
+                 "_id": "555f88eebe6354bb237607ed",
                  "label": "Conteúdo do cabeçalho",
                  "name": "headerContent",
                  "column": 9,
@@ -110,7 +110,7 @@
              "column": 12,
              "__v": 0,
              "components": [{
-                 "code": 3,
+                 "_id": "555f88eebe6354bb237607ee",
                  "label": "Detalhes",
                  "name": "details",
                  "column": 9,
@@ -215,7 +215,7 @@
                      }]
                  }
              }, {
-                 "code": 4,
+                 "_id": "555f88eebe6354bb237607ef",
                  "label": "Total",
                  "name": "total",
                  "column": 3,
@@ -330,7 +330,7 @@
              "column": 12,
              "__v": 0,
              "components": [{
-                 "code": 5,
+                 "_id": "555f88eebe6354bb237607eg",
                  "label": "Rodapé",
                  "name": "footer",
                  "column": 12,

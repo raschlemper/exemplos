@@ -3,11 +3,10 @@
 app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location, 
         ReportService, MovimentoService, ReportComponentService, ReportFormatterService, VisioService, 
         JsonService) {
-	var index = 0;
+	
+    var index = 0;
     var registers = [];
     var visio = {};
-    $scope.visio = {};
-    $scope.report = {};    
 
     var createReport = function() {
 /*        if(!$routeParams.hashid) { 
@@ -29,11 +28,14 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
 
     var getVisio = function() {
 
-        VisioService.service.getByHashid($routeParams.hashid).then( function(data) {  
+        // VisioService.service.getByHashid($routeParams.hashid)
+        JsonService.visioTest()
+            .then( function(data) {  
                 visio = data[0];
-                $scope.visio = visio;
-                $scope.report = ReportService.create(registers, visio.layout); 
+                ReportService.create(registers, visio.layout); 
                 $scope.getPage(index);  
+
+                console.log(visio.layout);
             })
             .catch( function(err) {
                 layout = [];
@@ -41,12 +43,12 @@ app.controller('ReportCtrl', function ($scope, $filter, $routeParams, $location,
     }
 
     $scope.getPage = function(index) {
-        var page = $scope.report.pages[index];
-        var registersByFilter = applyFilter(page);
-        ReportComponentService.create(registersByFilter, $scope.report.components);
-        ReportFormatterService.format($scope.report.components);
+        // var page = $scope.report.pages[index];
+        // var registersByFilter = applyFilter(page);
+        // ReportComponentService.create(registersByFilter, $scope.report.components);
+        // ReportFormatterService.format($scope.report.components);
 
-        console.log($scope.report);
+        // console.log($scope.report);
     }
 
     var applyFilter = function(page) {
