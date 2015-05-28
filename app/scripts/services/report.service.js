@@ -5,9 +5,10 @@ app.factory("ReportService", function(DataGrouperService, ReportComponentService
         components: []
     };
 
-    var createComponents = function(container, components) {
+    var createComponents = function(container) {
+        var components = [];
         _.map(container.components, function(component) {
-            if(!component.data){component.data = {}};
+            if(!component.data) { component.data = {}; }
             components.push({
                 'containerType': container.type,
                 'code': component._id,
@@ -15,14 +16,16 @@ app.factory("ReportService", function(DataGrouperService, ReportComponentService
                 'data': component.data
             });
         });
+        return components;
     }
 
     var getComponents = function(layout) {
-        var components = [];
+        var componentsList = [];
         _.map(layout.containers, function(container) {
-            createComponents(container, components);
+            var components = createComponents(container);
+            componentsList = _.union(componentsList, components);
         })
-        return components;
+        return componentsList;
     }
 
     var createComponentWithoutField = function(registers, component) {
@@ -77,7 +80,7 @@ app.factory("ReportService", function(DataGrouperService, ReportComponentService
     var bindComponents = function(layout) {
         _.map(layout.containers, function(container, indexContainer) {
             _.map(container.components, function(component, indexComponent) {               
-                var componentReport = findComponentByCode(component._id);
+                componentReport = findComponentByCode(component._id);
                 setComponent(layout, indexContainer, indexComponent, componentReport);
             });
         });

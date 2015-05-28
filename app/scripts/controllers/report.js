@@ -6,6 +6,7 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
 
     var index = 0;
     var registers = [];
+    var visio = {};
     $scope.pages = [];
     $scope.visio = {};
 
@@ -28,7 +29,8 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
         VisioService.service.getByHashid($routeParams.hashid)
         // JsonService.visioTest()
             .then(function(data) {
-                $scope.visio = data[0];
+                visio = data[0];                
+                $scope.visio = angular.copy(visio);
                 $scope.pages = ReportService.pages(registers, $scope.visio.layout);
                 $scope.getPage($scope.pages[index]);
             })
@@ -37,7 +39,8 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
             });
     }
 
-    $scope.getPage = function(page) {
+    $scope.getPage = function(page) {               
+        $scope.visio = angular.copy(visio);
         ReportService.page(page, registers, $scope.visio.layout);
         console.log($scope.visio.layout);
     }
