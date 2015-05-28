@@ -2,7 +2,7 @@
     <div class="table-responsive">
         <table class="table table-bordered table-hover" ng-if="table" style="width: 100%;">
             <thead>
-                <tr class="info" ng-repeat="columns in data[0]">
+                <tr  class="active" ng-repeat="columns in data[0]">
                     <th ng-repeat="column in columns">{{column.name}}</th>
                 </tr>
             </thead>

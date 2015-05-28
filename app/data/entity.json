@@ -1,16 +1,16 @@
-[
-
-    {
-        "_id" : "555f17bf7d9f9062787ebdc7",
+[{
+        "_id": "555f17bf7d9f9062787ebdc7",
         "name": "Instituição",
         "order": 1,
         "key": [{
+            "_id": "55670754fb32cea14217746e",
             "field": "cd_instituicao_ensino",
             "label": "Código da instituição de ensino",
             "type": "codigo",
             "isKey": true
         }],
         "value": [{
+            "_id": "55670754fb32cea14217746f",
             "field": "nm_instituicao_ensino",
             "label": "Nome da instituição de ensino",
             "type": "text",
@@ -21,16 +21,18 @@
     },
 
     {
-        "_id" : "555f17bf7d9f9062787ebdc8",
+        "_id": "555f17bf7d9f9062787ebdc8",
         "name": "Curso",
         "order": 2,
         "key": [{
+            "_id": "55670754fb32cea142177470",
             "field": "cd_tipo_curso",
             "label": "Código do tipo de curso",
             "type": "codigo",
             "isKey": true
         }],
         "value": [{
+            "_id": "55670754fb32cea142177471",
             "field": "ds_tipo_curso",
             "label": "Descrição do tipo de curso",
             "type": "text",
@@ -41,151 +43,705 @@
     },
 
     {
-        "_id" : "555f17bf7d9f9062787ebdc9",
+        "_id": "555f17bf7d9f9062787ebdc9",
         "name": "Série",
         "order": 3,
         "key": [{
+            "_id": "55670754fb32cea142177474",
             "field": "cd_curso_instituicao",
             "label": "Código do Curso/Instituição",
             "type": "codigo",
             "isKey": true
         }],
         "value": [{
+            "_id": "55670754fb32cea142177474",
             "field": "cd_curso_instituicao",
             "label": "Código do Curso/Instituição",
             "type": "codigo",
             "isKey": true
         }, {
+            "_id": "55670754fb32cea142177473",
             "field": "nm_curso",
             "label": "Nome do Curso/Instituição",
             "type": "text",
             "isKey": false
         }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
         "expression": "<%= cd_curso_instituicao %> - <%= nm_curso %>"
     },
 
     {
-        "_id" : "555f17bf7d9f9062787ebdca",
+        "_id": "555f17bf7d9f9062787ebdca",
         "name": "Ano/Semestre",
         "order": 4,
         "key": [{
+            "_id": "55670754fb32cea14217746c",
             "field": "nr_ano",
             "label": "Ano",
             "type": "date",
             "isKey": false
         }, {
+            "_id": "55670754fb32cea14217746d",
             "field": "nr_semestre",
             "label": "Semestre",
             "type": "number",
             "isKey": false
         }],
         "value": [{
+            "_id": "55670754fb32cea14217746c",
             "field": "nr_ano",
             "label": "Ano",
             "type": "date",
             "isKey": false
         }, {
+            "_id": "55670754fb32cea14217746d",
             "field": "nr_semestre",
             "label": "Semestre",
             "type": "number",
             "isKey": false
         }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
         "expression": "<%= nr_ano %> / <%= nr_semestre %>"
     },
 
     {
-        "_id" : "555f17bf7d9f9062787ebdcb",
+        "_id": "555f17bf7d9f9062787ebdcb",
         "name": "Aluno",
         "order": 5,
         "key": [{
+            "_id": "55670754fb32cea142177477",
             "field": "cd_aluno",
             "label": "Código do aluno",
             "type": "codigo",
             "isKey": true
         }],
         "value": [{
+            "_id": "55670754fb32cea142177478",
             "field": "nm_aluno",
             "label": "Nome do aluno",
             "type": "text",
             "isKey": false
         }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
         "expression": "<%= nm_aluno %>"
     },
 
     {
-        "_id" : "555f17bf7d9f9062787ebdcc",
+        "_id": "555f17bf7d9f9062787ebdcc",
         "name": "Vencimento",
         "order": 6,
         "key": [{
+            "_id": "55670754fb32cea14217747b",
             "field": "dt_vencimento",
             "label": "Data de vencimento",
             "type": "date",
             "isKey": false
         }],
         "value": [{
+            "_id": "55670754fb32cea14217747b",
             "field": "dt_vencimento",
             "label": "Data de vencimento",
             "type": "date",
             "isKey": false
         }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
         "expression": "<%= dt_vencimento %>"
     },
 
     {
-        "_id" : "555f17bf7d9f9062787ebdcd",
+        "_id": "555f17bf7d9f9062787ebdcd",
         "name": "Pagamento",
         "order": 7,
         "key": [{
+            "_id": "55670754fb32cea14217747c",
             "field": "dt_pagamento",
             "label": "Data de pagamento",
             "type": "date",
             "isKey": false
         }],
         "value": [{
+            "_id": "55670754fb32cea14217747c",
             "field": "dt_pagamento",
             "label": "Data de pagamento",
             "type": "date",
             "isKey": false
         }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
         "expression": "<%= dt_pagamento %>"
     },
 
     {
-        "_id" : "555f17bf7d9f9062787ebdce",
+        "_id": "555f17bf7d9f9062787ebdce",
         "name": "Valor",
         "order": 8,
         "key": [{
+            "_id": "5567047ca0c28d0228cb09ca",
             "field": "previsao_confirmado",
             "label": "Previsão confirmada",
             "type": "number",
             "isKey": false
         }],
         "value": [{
+            "_id": "5567047ca0c28d0228cb09ca",
             "field": "previsao_confirmado",
             "label": "Previsão confirmada",
             "type": "number",
             "isKey": false
         }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
         "expression": "<%= previsao_confirmado %>"
     },
 
     {
-        "_id" : "555f17bf7d9f9062787ebdcf",
+        "_id": "555f17bf7d9f9062787ebdcf",
         "name": "Saldo",
         "order": 9,
+        "formula": "rest",
         "key": [{
+            "_id": "5567047ca0c28d0228cb09ca",
             "field": "previsao_confirmado",
             "label": "Previsão confirmada",
             "type": "number",
+            "filter": ["currency", "R$ "],
             "isKey": false
         }],
         "value": [{
+            "_id": "5567047ca0c28d0228cb09ca",
             "field": "previsao_confirmado",
             "label": "Previsão confirmada",
             "type": "number",
+            "filter": ["currency", "R$ "],
             "isKey": false
         }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
         "expression": "<%= previsao_confirmado %>"
+    },
+
+    {
+        "name": "Responsável financeiro",
+        "order": 10,
+        "key": [{
+            "_id": "55670754fb32cea142177479",
+            "field": "id_responsavel_financeiro",
+            "label": "Id do responsável financeiro",
+            "type": "codigo",
+            "isKey": true
+        }],
+        "value": [{
+            "_id": "55670754fb32cea14217747a",
+            "field": "nm_responsavel_financeiro",
+            "label": "Nome do responsável financeiro",
+            "type": "text",
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= nm_responsavel_financeiro %>"
+    },
+
+    {
+        "name": "Desconto concedido",
+        "order": 11,
+        "key": [{
+            "_id": "55670754fb32cea142177484",
+            "field": "desconto_concedido",
+            "label": "Desconto concedido",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177484",
+            "field": "desconto_concedido",
+            "label": "Desconto concedido",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= desconto_concedido %>"
+    },
+
+    {
+        "name": "Previsão de desconto",
+        "order": 12,
+        "key": [{
+            "_id": "55670754fb32cea142177483",
+            "field": "previsao_desconto_confirmado",
+            "label": "Previsão de desconto confirmado",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177483",
+            "field": "previsao_desconto_confirmado",
+            "label": "Previsão de desconto confirmado",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= previsao_desconto_confirmado %>"
+    },
+
+    {
+        "name": "Juros",
+        "order": 13,
+        "key": [{
+            "_id": "55670754fb32cea142177485",
+            "field": "juros_calculado",
+            "label": "Juros calculado",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177485",
+            "field": "juros_calculado",
+            "label": "Juros calculado",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= juros_calculado %>"
+    },
+
+    {
+        "name": "Multa",
+        "order": 14,
+        "key": [{
+            "_id": "55670754fb32cea142177486",
+            "field": "multa_calculado",
+            "label": "Multa calculado",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177486",
+            "field": "multa_calculado",
+            "label": "Multa calculado",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= multa_calculado %>"
+    },
+
+    {
+        "name": "Caixa",
+        "order": 15,
+        "key": [{
+            "_id": "55670754fb32cea14217747d",
+            "field": "caixa",
+            "label": "Caixa",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea14217747d",
+            "field": "caixa",
+            "label": "Caixa",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= caixa %>"
+    },
+
+    {
+        "name": "Banco",
+        "order": 16,
+        "key": [{
+            "_id": "55670754fb32cea14217747e",
+            "field": "banco",
+            "label": "Banco",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea14217747e",
+            "field": "banco",
+            "label": "Banco",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= banco %>"
+    },
+
+    {
+        "name": "Ajuste",
+        "order": 17,
+        "key": [{
+            "_id": "55670754fb32cea14217747f",
+            "field": "ajuste",
+            "label": "Ajuste",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea14217747f",
+            "field": "ajuste",
+            "label": "Ajuste",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= ajuste %>"
+    },
+
+    {
+        "name": "Nota promissória",
+        "order": 18,
+        "key": [{
+            "_id": "55670754fb32cea142177487",
+            "field": "nota_promissoria",
+            "label": "Nota promissória",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177487",
+            "field": "nota_promissoria",
+            "label": "Nota promissória",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= nota_promissoria %>"
+    },
+
+    {
+        "name": "FIES",
+        "order": 18,
+        "key": [{
+            "_id": "55670754fb32cea142177488",
+            "field": "fies",
+            "label": "FIES",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177488",
+            "field": "fies",
+            "label": "FIES",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= fies %>"
+    },
+
+    {
+        "name": "Cobrança",
+        "order": 19,
+        "key": [{
+            "_id": "55670754fb32cea142177489",
+            "field": "cobranca",
+            "label": "Cobrança",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177489",
+            "field": "cobranca",
+            "label": "Cobrança",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= cobranca %>"
+    },
+
+    {
+        "name": "Perdas",
+        "order": 20,
+        "key": [{
+            "_id": "55670754fb32cea14217748b",
+            "field": "perdas",
+            "label": "Perdas",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea14217748b",
+            "field": "perdas",
+            "label": "Perdas",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= perdas %>"
+    },
+
+    {
+        "name": "Dinheiro",
+        "order": 21,
+        "key": [{
+            "_id": "55670754fb32cea14217748c",
+            "field": "dinheiro",
+            "label": "Dinheiro",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea14217748c",
+            "field": "dinheiro",
+            "label": "Dinheiro",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= dinheiro %>"
+    },
+
+    {
+        "name": "Cartão de débito",
+        "order": 22,
+        "key": [{
+            "_id": "55670754fb32cea14217748d",
+            "field": "cartao_debito",
+            "label": "Cartão de débito",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea14217748d",
+            "field": "cartao_debito",
+            "label": "Cartão de débito",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= cartao_debito %>"
+    },
+
+    {
+        "name": "Cartão de crédito",
+        "order": 23,
+        "key": [{
+            "_id": "55670754fb32cea14217748e",
+            "field": "cartao_credito",
+            "label": "Cartão de crédito",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea14217748e",
+            "field": "cartao_credito",
+            "label": "Cartão de crédito",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= cartao_credito %>"
+    },
+
+    {
+        "name": "Cheque",
+        "order": 24,
+        "key": [{
+            "_id": "55670754fb32cea14217748f",
+            "field": "cheque",
+            "label": "Cheque",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea14217748f",
+            "field": "cheque",
+            "label": "Cheque",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= cheque %>"
+    },
+
+    {
+        "name": "Cheque pré",
+        "order": 25,
+        "key": [{
+            "_id": "55670754fb32cea142177490",
+            "field": "cheque_pre",
+            "label": "Cheque pré",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177490",
+            "field": "cheque_pre",
+            "label": "Cheque pré",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= cheque_pre %>"
+    },
+
+    {
+        "name": "Bolsa condicional",
+        "order": 26,
+        "key": [{
+            "_id": "55670754fb32cea142177493",
+            "field": "bolsa_condicional_confirmado",
+            "label": "Bolsa condicional confirmada",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177493",
+            "field": "bolsa_condicional_confirmado",
+            "label": "Bolsa condicional confirmada",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= bolsa_condicional_confirmado %>"
+    },
+
+    {
+        "name": "Bolsa incondicional",
+        "order": 27,
+        "key": [{
+            "_id": "55670754fb32cea142177494",
+            "field": "bolsa_incondicional_confirmado",
+            "label": "Bolsa incondicional confirmada",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177494",
+            "field": "bolsa_incondicional_confirmado",
+            "label": "Bolsa incondicional confirmada",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= bolsa_incondicional_confirmado %>"
+    },
+
+    {
+        "name": "Previsão de diversos",
+        "order": 28,
+        "key": [{
+            "_id": "55670754fb32cea142177496",
+            "field": "previsao_diversos_confirmado",
+            "label": "Previsão de diversos confirmado",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177496",
+            "field": "previsao_diversos_confirmado",
+            "label": "Previsão de diversos confirmado",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= previsao_diversos_confirmado %>"
+    },
+
+    {
+        "name": "Dif",
+        "order": 29,
+        "key": [{
+            "_id": "55670754fb32cea142177497",
+            "field": "dif_confirmado",
+            "label": "Dif confirmada",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177497",
+            "field": "dif_confirmado",
+            "label": "Dif confirmada",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= dif_confirmado %>"
+    },
+
+    {
+        "name": "Desconto calculado",
+        "order": 30,
+        "key": [{
+            "_id": "55670754fb32cea142177498",
+            "field": "desconto_calculado",
+            "label": "Desconto calculado",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177498",
+            "field": "desconto_calculado",
+            "label": "Desconto calculado",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= desconto_calculado %>"
+    },
+
+    {
+        "name": "Permuta",
+        "order": 31,
+        "key": [{
+            "_id": "55670754fb32cea142177499",
+            "field": "permuta",
+            "label": "Permuta",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "value": [{
+            "_id": "55670754fb32cea142177499",
+            "field": "permuta",
+            "label": "Permuta",
+            "type": "number",
+            "filter": ["currency", "R$ "],
+            "isKey": false
+        }],
+        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+        "expression": "<%= permuta %>"
     }
 
 ]

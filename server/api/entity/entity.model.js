@@ -10,10 +10,8 @@ var EntitySchema = new Schema({
     "key": [Schema.Types.Campos],
     "value": [Schema.Types.Campos],
     "expression": String,
-    "group": {
-        "fields": [Schema.Types.Campos],
-        "formula": String
-    }
+    "formula": String,
+    "description": String
 });
 
 var entity = mongoose.model('entity', EntitySchema);

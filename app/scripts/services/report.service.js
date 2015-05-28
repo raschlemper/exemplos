@@ -7,6 +7,7 @@ app.factory("ReportService", function(DataGrouperService, ReportComponentService
 
     var createComponents = function(container, components) {
         _.map(container.components, function(component) {
+            if(!component.data){component.data = {}};
             components.push({
                 'containerType': container.type,
                 'code': component._id,
@@ -76,7 +77,7 @@ app.factory("ReportService", function(DataGrouperService, ReportComponentService
     var bindComponents = function(layout) {
         _.map(layout.containers, function(container, indexContainer) {
             _.map(container.components, function(component, indexComponent) {               
-                componentReport = findComponentByCode(component._id);
+                var componentReport = findComponentByCode(component._id);
                 setComponent(layout, indexContainer, indexComponent, componentReport);
             });
         });

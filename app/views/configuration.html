@@ -138,7 +138,7 @@
                                                                 <input type="text" class="form-control" placeholder="Digite o nome do campo desejado" ng-model="busca" />
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="margin-top:30px; max-height:550px; overflow-y: scroll; ">
+                                                                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="margin-top:30px; max-height:330px; overflow-y: scroll; ">
                                                                     <ul class="nav bs-docs-sidenav">
                                                                         <label>Campos</label>
                                                                         <li class="" ng-repeat="label in campos | filter:busca">
@@ -155,14 +155,18 @@
                                                                                 <th>Nome</th>
                                                                                 <th>Chave</th>
                                                                                 <th>Valor</th>
+                                                                                <th>Grupo</th>
                                                                                 <th class="col-md-2">Ações</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr ng-repeat="selecionado in component.data.fields">
+                                                                                {{selecionado}}
                                                                                 <td>{{selecionado.name}}</td>
                                                                                 <td>{{selecionado.key[0].label}}</td>
                                                                                 <td>{{selecionado.value[0].label}}</td>
+                                                                                 <td ng-if="!selecionado.group">Não possui</td>
+                                                                                <td ng-if="selecionado.group">{{selecionado.group}}</td>
                                                                                 <td class="col-md-2">
                                                                                     <button class="btn btn-default btn-flat" ng-click="removeCampo(selecionado)"><i class="icon-close"></i></button>
                                                                                 </td>

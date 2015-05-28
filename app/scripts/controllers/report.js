@@ -25,20 +25,19 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
     }
 
     var getVisio = function() {
-        // VisioService.service.getByHashid($routeParams.hashid)
-        JsonService.visioTest()
+        VisioService.service.getByHashid($routeParams.hashid)
+        // JsonService.visioTest()
             .then(function(data) {
                 $scope.visio = data[0];
                 $scope.pages = ReportService.pages(registers, $scope.visio.layout);
-                $scope.getPage(index);
+                $scope.getPage($scope.pages[index]);
             })
             .catch(function(err) {
                 layout = [];
             });
     }
 
-    $scope.getPage = function(index) {
-        var page = $scope.pages[index];
+    $scope.getPage = function(page) {
         ReportService.page(page, registers, $scope.visio.layout);
         console.log($scope.visio.layout);
     }
