@@ -41,6 +41,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                 $scope.component.data = {
                     'fields': []
                 };
+                $scope.selectedsFiltered = [];
             }
         }
         getCamposMovimento();
@@ -71,7 +72,6 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                     return console.log(err);
                 });
         } else {
-            $scope.visio = {};
             $scope.visio.campos = [];
             $scope.visio.layout = {};
         }

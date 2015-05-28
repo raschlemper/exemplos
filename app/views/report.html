@@ -18,8 +18,8 @@
                             <h3>{{ report.title }}</h3>
                         </div>
                     </div>
-                    <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="visio.layout.configuration.full.lineHeight" preview-block="true" ng-repeat="container in visio.layout.containers">
-                        <div block="component.name" columns="component.column" lines="component.line" line-height="visio.layout.configuration.full.lineHeight" preview-block="true" ng-repeat="component in container.components">
+                    <div block="container.type" columns="container.column" lines="0" group="false" line-height="visio.layout.configuration.full.lineHeight" preview-block="true" ng-repeat="container in visio.layout.containers">
+                        <div block="component.name" columns="component.column" lines="0" line-height="visio.layout.configuration.full.lineHeight" preview-block="true" ng-repeat="component in container.components">
                             <widget data="component.data" type="component.type"></widget>
                         </div>
                     </div>
