@@ -16,7 +16,8 @@ var app = angular.module('exemplosApp', [
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap'
   ]);
 
 

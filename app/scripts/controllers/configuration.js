@@ -7,14 +7,32 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService) {
+app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService) {
 
     $scope.visio = {};
     $scope.templates = [];
     $scope.campos = [];
     $scope.selection = {};
     $scope.component = {};
+    $scope.totalItens = 0;
+    $scope.selectedsFiltered = [];
 
+    //Código para paginação
+    var totalItens = function() {
+        if ($scope.component.data) {
+            if ($scope.component.data.fields.length) {
+                $scope.totalItens = $scope.component.data.fields.length;
+            }
+        }
+    };
+
+    $scope.totalPorPagina = 3;
+    $scope.paginaAtual = 1;
+
+    $scope.mudaPagina = function(pagina) {
+        $scope.paginaAtual = pagina;
+        filtraSelecionados();
+    };
 
     $scope.editComponent = function(component) {
         $scope.component = component;
@@ -121,6 +139,7 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, $w
                                     campo.selected = true;
                                 }
                             };
+                            $scope.selectedsFiltered = $scope.component.data.fields;
                         }
                     });
                 };
@@ -141,6 +160,9 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, $w
                 _id: label._id
             }));
         }
+        $scope.selectedsFiltered = $scope.component.data.fields;
+        totalItens();
+        filtraSelecionados();
     }
 
     $scope.removeCampo = function(selected) {
@@ -148,6 +170,9 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, $w
         $scope.component.data.fields = _.without($scope.component.data.fields, _.findWhere($scope.component.data.fields, {
             _id: selected._id
         }));
+        $scope.selectedsFiltered = $scope.component.data.fields;
+        totalItens();
+        filtraSelecionados();
     }
 
     $scope.saveVisio = function() {
@@ -159,6 +184,11 @@ app.controller('ConfigurationCtrl', function($scope, $location, $routeParams, $w
             VisioService.service.update($scope.visio);
         }
         $location.path("/main");
+    }
+
+    var filtraSelecionados = function() {
+        var pagina = $scope.paginaAtual - 1;
+        $scope.selectedsFiltered = $filter('startPage')($scope.component.data.fields, pagina * $scope.totalPorPagina);
     }
 
     $scope.groupBy = function(agrupamento) {

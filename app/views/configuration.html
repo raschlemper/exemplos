@@ -54,7 +54,7 @@
                             <div class="panel-heading">Selecionado</div>
                             <div class="panel-body layout-box">
                                 <div class="row">
-                                    <layout configuracao="selection.template.configuration" preview="true" >
+                                    <layout configuracao="selection.template.configuration" preview="true">
                                         <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in selection.template.containers">
                                             <div block="component.name" columns="component.column" lines="component.line" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.components">
                                                 <div class="layout layout-container layout-border">
@@ -134,24 +134,24 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="col-md-12 form-group" style="margin-left:20px;">
-                                                                <label>Busca de campos</label>
-                                                                <input type="text" class="form-control" placeholder="Digite o nome do campo desejado" ng-model="busca" />
+                                                                <label>Buscar de campos</label>
+                                                                <input type="text" class="form-control" placeholder="Digite o nome do campo desejado" ng-model="busca.name" />
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="margin-top:30px; max-height:330px; overflow-y: scroll; ">
                                                                     <ul class="nav bs-docs-sidenav">
-                                                                        <label>Campos</label>
-                                                                        <li class="" ng-repeat="label in campos | filter:busca">
+                                                                        <label>Selecionar campos</label>
+                                                                        <li class="" ng-repeat="label in campos | filter:busca | orderBy:label.order">
                                                                             <a ng-click="addCampo(label)" ng-class="{'docs-active': label.selected}">{{label.name}}</a>
                                                                         </li>
                                                                     </ul>
                                                                 </nav>
                                                             </div>
                                                             <div class="col-md-8" style="padding:45px; margin-left:50px;">
-                                                                <div id="fields" class="fixed-margin">
-                                                                    <table class="table table-bordered">
+                                                                <div id="fields">
+                                                                    <table class="table table-bordered table-hover">
                                                                         <thead>
-                                                                            <tr>
+                                                                            <tr class="active">
                                                                                 <th>Nome</th>
                                                                                 <th>Chave</th>
                                                                                 <th>Valor</th>
@@ -160,22 +160,22 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <tr ng-repeat="selecionado in component.data.fields">
+                                                                            <tr ng-repeat="selecionado in selectedsFiltered | orderBy:selecionado.order | limitTo:totalPorPagina">
                                                                                 {{selecionado}}
                                                                                 <td>{{selecionado.name}}</td>
                                                                                 <td>{{selecionado.key[0].label}}</td>
                                                                                 <td>{{selecionado.value[0].label}}</td>
-                                                                                 <td ng-if="!selecionado.group">Não possui</td>
-                                                                                <td ng-if="selecionado.group">{{selecionado.group}}</td>
+                                                                                <td ng-if="!selecionado.formula">Não possui</td>
+                                                                                <td ng-if="selecionado.formula">{{selecionado.value[0].label}}</td>
                                                                                 <td class="col-md-2">
                                                                                     <button class="btn btn-default btn-flat" ng-click="removeCampo(selecionado)"><i class="icon-close"></i></button>
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
+                                                                    <pagination ng-if="component.data.fields.length" total-items="totalItens" ng-model="paginaAtual" style="margin-left:51px" items-per-page="totalPorPagina" ng-change="mudaPagina(paginaAtual)" class="pagination-sm" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
                                                                 </div>
                                                                 <div ng-if="!component.data.fields.length" class="pontilhado">Nenhum campo selecionado.</div>
-                                                                {{component.fields}}
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer" style="margin-top:50% !important">

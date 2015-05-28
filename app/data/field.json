@@ -128,13 +128,15 @@
     "_id": "55670754fb32cea14217747b",
     "field": "dt_vencimento",
     "label": "Data de vencimento",
-    "type": "text",
+    "type": "date",
+    "filter": ["date", "dd/MM/yyyy"],
     "isKey": false
 }, {
     "_id": "55670754fb32cea14217747c",
     "field": "dt_pagamento",
     "label": "Data de pagamento",
     "type": "date",
+    "filter": ["date", "dd/MM/yyyy"],
     "isKey": false
 }, {
     "_id": "55670754fb32cea14217747d",
