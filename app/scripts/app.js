@@ -22,6 +22,12 @@ var app = angular.module('exemplosApp', [
 
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider) {
+    // $httpProvider.defaults.useXDomain = true;
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost';
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = ['GET, POST, OPTIONS, PUT, PATCH, DELETE'];
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = 'X-Requested-With,content-type';
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Credentials'] = true;
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',

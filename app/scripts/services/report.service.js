@@ -95,7 +95,9 @@ app.factory("ReportService", function(DataGrouperService, ReportComponentService
 
     var pages = function(registers, layout) {
         var components = getComponents(layout);
-        return ReportPageService.pages(registers, components); 
+        var pages = ReportPageService.pages(registers, components);     
+        var link = ReportFormatterService.formatLinks(pages); 
+        return pages;
     }
 
     return {

@@ -42,7 +42,7 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
     $scope.getPage = function(page) {               
         $scope.visio = angular.copy(visio);
         ReportService.page(page, registers, $scope.visio.layout);
-        console.log($scope.visio.layout);
+        console.log($scope.pages);
     }
 
     createReport();

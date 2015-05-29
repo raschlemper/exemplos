@@ -80,7 +80,7 @@
                      }, {
                          "_id": "555f17bf7d9f9062787ebdc9",
                          "name": "Série",
-                         "order": 3,
+                         "order": 4,
                          "key": [{
                              "field": "cd_curso_instituicao",
                              "label": "Código do Curso/Instituição",
@@ -120,7 +120,7 @@
                      "fields": [{
                          "_id": "555f17bf7d9f9062787ebdca",
                          "name": "Ano/Semestre",
-                         "order": 4,
+                         "order": 3,
                          "key": [{
                              "field": "nr_ano",
                              "label": "Ano",
@@ -227,7 +227,7 @@
                      "fields": [{
                          "_id": "555f17bf7d9f9062787ebdca",
                          "name": "Ano/Semestre",
-                         "order": 4,
+                         "order": 3,
                          "key": [{
                              "field": "nr_ano",
                              "label": "Ano",
