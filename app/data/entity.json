@@ -135,6 +135,7 @@
             "field": "dt_vencimento",
             "label": "Data de vencimento",
             "type": "date",
+            "filter": ["date", "dd/MM/yyyy"],
             "isKey": false
         }],
         "value": [{
@@ -142,6 +143,7 @@
             "field": "dt_vencimento",
             "label": "Data de vencimento",
             "type": "date",
+            "filter": ["date", "dd/MM/yyyy"],
             "isKey": false
         }],
         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
@@ -156,6 +158,7 @@
             "_id": "55670754fb32cea14217747c",
             "field": "dt_pagamento",
             "label": "Data de pagamento",
+            "filter": ["date", "dd/MM/yyyy"],
             "type": "date",
             "isKey": false
         }],
@@ -163,6 +166,7 @@
             "_id": "55670754fb32cea14217747c",
             "field": "dt_pagamento",
             "label": "Data de pagamento",
+            "filter": ["date", "dd/MM/yyyy"],
             "type": "date",
             "isKey": false
         }],
@@ -177,6 +181,7 @@
         "key": [{
             "_id": "5567047ca0c28d0228cb09ca",
             "field": "previsao_confirmado",
+            "filter": ["currency", "R$ "],
             "label": "Previsão confirmada",
             "type": "number",
             "isKey": false
@@ -184,6 +189,7 @@
         "value": [{
             "_id": "5567047ca0c28d0228cb09ca",
             "field": "previsao_confirmado",
+            "filter": ["currency", "R$ "],
             "label": "Previsão confirmada",
             "type": "number",
             "isKey": false

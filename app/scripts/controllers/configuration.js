@@ -89,7 +89,6 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                         var selecionado = $scope.templates.filter(function(value) {
                             return value._id == $scope.visio.layout.templateId;
                         });
-                        console.log(selecionado);
                         $scope.selection.template = selecionado[0];
                     }
                 })
@@ -209,7 +208,11 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         return $scope.tab === tabId;
     };
 
-    carregaVisio();
-    getTemplates();
+    var init = function() {
+        carregaVisio();
+        getTemplates();
+    }
+
+    init();
 
 });
