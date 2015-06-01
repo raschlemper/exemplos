@@ -15,11 +15,6 @@
     margin: 4px 0px 0px -20px !important;
 }
 
-/*.sidebar-link:hover, .sidebar-link:active{
-    background-color: #1CAF9A !important;
-}*/
-
-
 
 @media (min-width: 768px) {
   .container {
@@ -39,6 +34,13 @@
   }
 }
 
+
+.activeList {
+    text-decoration: none;
+    background-color: #ECF0F1;
+}
+
+
 .selected-flat {
     display: block;
     float: right;
@@ -50,7 +52,7 @@
     height: 0px;
     border-top: 12px solid transparent;
     border-bottom: 12px solid transparent;
-    border-right: 12px solid #FFF;
+    border-right: 12px solid #2C3E50;
 }
 
 #sidebar {
