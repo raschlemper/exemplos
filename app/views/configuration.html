@@ -1,44 +1,70 @@
-<div class="container fixed-margin">
-    <form name="cadastroForm">
-        <wizard configuracao="menus" steps="4" valid="isValid(cadastroForm.$valid)">
-            <step ordem="1" title="'Configuração da visão'">
-                <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error': cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine }">
-                        <label for="nome">Visão:</label>
-                        <input id="nome" type="text" class="form-control" name="nome" ng-model="visio.name" placeholder="Digite o nome da visão" required />
-                        <p ng-show="cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine" class="help-block">O nome é obrigatório.</p>
+<div class="container-fluid">
+    <div class="container fixed-margin">
+        <form name="cadastroForm">
+            <wizard configuracao="menus" steps="4" valid="isValid(cadastroForm.$valid)">
+                <step ordem="1" title="'Configuração da visão'">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error': cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine }">
+                            <label for="nome">Visão:</label>
+                            <input id="nome" type="text" class="form-control" name="nome" ng-model="visio.name" placeholder="Digite o nome da visão" required />
+                            <p ng-show="cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine" class="help-block">O nome é obrigatório.</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="descricao">Descrição:</label>
+                            <textarea id="descricao" type="text" name="descricao" class="form-control" rows="3" ng-model="visio.description" placeholder="Digite a descrição da visão " />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="descricao">Descrição:</label>
-                        <textarea id="descricao" type="text" name="descricao" class="form-control" rows="3" ng-model="visio.description" placeholder="Digite a descrição da visão " />
-                    </div>
-                </div>
-            </step>
-            <step ordem="2" title="'Definir template'">
-                <div class="row">
-                    <div class="col-md-9 text-center">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Templates</div>
-                            <div class="panel-body">
-                                <div class="row layout-line">
-                                    <div class="col-md-4 layout-box" ng-repeat="item in templates">
-                                        <div class="row text-left">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" class="clip-unset" name="layout" ng-value="item" ng-model="selection.template" ng-click="selectTemplate()">{{item.name}}
-                                                </label>
+                </step>
+                <step ordem="2" title="'Definir template'">
+                    <div class="row">
+                        <div class="col-md-9 text-center">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Templates</div>
+                                <div class="panel-body">
+                                    <div class="row layout-line">
+                                        <div class="col-md-4 layout-box" ng-repeat="item in templates">
+                                            <div class="row text-left">
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" class="clip-unset" name="layout" ng-value="item" ng-model="selection.template" ng-click="selectTemplate()">{{item.name}}
+                                                    </label>
+                                                </div>
                                             </div>
+                                            <layout configuracao="item.configuration" preview="true">
+                                                <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in item.containers">
+                                                    <div block="component.name" columns="component.column" lines="component.line" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.components">
+                                                        <div class="layout layout-container layout-border">
+                                                            <div class="layout layout-container container-column">
+                                                                <div ng-if="component.type === 'table'" class="layout-number icon-list" title="Tipo tabela"></div>
+                                                                <div ng-if="component.type === 'image'" class="layout-number   icon-picture" title="Tipo imagem"></div>
+                                                                <div ng-if="component.type === 'list'" class="layout-number   icon-docs" title="Tipo lista"></div>
+                                                                <div ng-if="component.type === 'text'" class="layout-number   icon-speech" title="Tipo texto"></div>
+                                                                <div ng-if="component.type === 'title'" class="layout-number   icon-speech" title="Tipo'título"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </layout>
                                         </div>
-                                        <layout configuracao="item.configuration" preview="true">
-                                            <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in item.containers">
-                                                <div block="component.name" columns="component.column" lines="component.line" line-height="item.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.components">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center" id="layout">
+                            <div class="panel panel-default" style="height: 250px;">
+                                <div class="panel-heading">Selecionado</div>
+                                <div class="panel-body layout-box">
+                                    <div class="row">
+                                        <layout configuracao="selection.template.configuration" preview="true">
+                                            <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in selection.template.containers">
+                                                <div block="component.name" columns="component.column" lines="component.line" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.components">
                                                     <div class="layout layout-container layout-border">
                                                         <div class="layout layout-container container-column">
-                                                            <div ng-if="component.type === 'table'" class="layout-number icon-list" title="Tipo tabela"></div>
-                                                            <div ng-if="component.type === 'image'" class="layout-number   icon-picture" title="Tipo imagem"></div>
-                                                            <div ng-if="component.type === 'list'" class="layout-number   icon-docs" title="Tipo lista"></div>
-                                                            <div ng-if="component.type === 'text'" class="layout-number   icon-speech" title="Tipo texto"></div>
-                                                            <div ng-if="component.type === 'title'" class="layout-number   icon-speech" title="Tipo'título"></div>
+                                                            <div ng-if="component.type === 'table'" class="layout-number icon-list"></div>
+                                                            <div ng-if="component.type === 'image'" class="layout-number   icon-picture"></div>
+                                                            <div ng-if="component.type === 'list'" class="layout-number   icon-docs"></div>
+                                                            <div ng-if="component.type === 'text'" class="layout-number   icon-speech"></div>
+                                                            <div ng-if="component.type === 'title'" class="layout-number   icon-speech"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -49,40 +75,192 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 text-center" id="layout">
-                        <div class="panel panel-default" style="height: 250px;">
-                            <div class="panel-heading">Selecionado</div>
-                            <div class="panel-body layout-box">
-                                <div class="row">
-                                    <layout configuracao="selection.template.configuration" preview="true">
-                                        <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="container in selection.template.containers">
-                                            <div block="component.name" columns="component.column" lines="component.line" line-height="selection.template.configuration.preview.lineHeight" preview-block="true" ng-repeat="component in container.components">
-                                                <div class="layout layout-container layout-border">
+                </step>
+                <step ordem="3" title="'Editar componentes'" min-height="550">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-6 container-fluid pull-left" style="max-height:550px">
+                                    <layout configuracao="visio.layout.configuration" preview="true">
+                                        <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="5" preview-block="false" ng-repeat="container in visio.layout.containers">
+                                            <div block="component.name" columns="component.column" lines="component.line" line-height="5" preview-block="true" ng-repeat="component in container.components">
+                                                <div class="layout layout-container layout-border" ng-click="editComponent(component)">
                                                     <div class="layout layout-container container-column">
-                                                        <div ng-if="component.type === 'table'" class="layout-number icon-list"></div>
-                                                        <div ng-if="component.type === 'image'" class="layout-number   icon-picture"></div>
-                                                        <div ng-if="component.type === 'list'" class="layout-number   icon-docs"></div>
-                                                        <div ng-if="component.type === 'text'" class="layout-number   icon-speech"></div>
-                                                        <div ng-if="component.type === 'title'" class="layout-number   icon-speech"></div>
+                                                        <span>{{component.label}}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </layout>
                                 </div>
+                                <div class="col-md-6 container-fluid pull-right">
+                                    <div class="panel panel-info" ng-if="component.type">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="icon-wrench"></i>   {{component.label}}</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label for="nome">Nome do componente:</label>
+                                                <input id="nome" class="form-control" type="text" placeholder="Digite o nome do componente" ng-model="component.label" />
+                                            </div>
+                                            <div class="form-group" ng-if="component.type === 'text'">
+                                                <label for="text">Texto:</label>
+                                                <textarea id="text" class="form-control" type="text" rows="3" placeholder="Digite o conteúdo do componente" ng-model="component.data" />
+                                            </div>
+                                            <div class="form-group" ng-if="component.type === 'title'">
+                                                <label for="title">Título:</label>
+                                                <input id="title" class="form-control" type="text" placeholder="Digite o título para o relatório" ng-model="component.data" />
+                                            </div>
+                                            <div class="form-group" ng-if="component.type === 'image'">
+                                                <label for="caminho">Link da foto:</label>
+                                                <input id="caminho" class="form-control" type="text" ng-model="component.data.path" placeholder="Digite o link da foto" />
+                                            </div>
+                                            <div class="form-group" ng-if="component.type === 'table' || component.type === 'list'">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">Campos escolhidos</div>
+                                                    <div class="panel-body" ng-if="component.data.fields.length">
+                                                        <ul class="list-group">
+                                                            <li ng-repeat="field in component.data.fields" class="list-group-item"><span class="label label-sm label-success">{{field.name}}</span><i class="icon-info pull-right" data-toggle="tooltip" data-placement="right" title="{{field.description}}"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="panel-footer">
+                                                        <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Escolher campos <i class="icon-cursor"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h3>Escolher campos para componente</h3>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="col-md-12 form-group" style="margin-left:20px;">
+                                                                    <label>Buscar de campos</label>
+                                                                    <input type="text" class="form-control" placeholder="Digite o nome do campo desejado" ng-model="busca.name" />
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="margin-top:30px; max-height:330px; overflow-y: scroll; ">
+                                                                        <ul class="nav bs-docs-sidenav">
+                                                                            <label>Selecionar campos</label>
+                                                                            <li class="" ng-repeat="label in campos | filter:busca | orderBy:label.order">
+                                                                                <a ng-click="addCampo(label)" ng-class="{'docs-active': label.selected}">{{label.name}}</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </nav>
+                                                                </div>
+                                                                <div class="col-md-8" style="padding:45px; margin-left:50px;">
+                                                                    <div id="fields">
+                                                                        <table class="table table-bordered table-hover">
+                                                                            <thead>
+                                                                                <tr class="active">
+                                                                                    <th>Nome</th>
+                                                                                    <th>Chave</th>
+                                                                                    <th>Valor</th>
+                                                                                    <th>Grupo</th>
+                                                                                    <th class="col-md-2">Ações</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr ng-repeat="selecionado in selectedsFiltered | orderBy:selecionado.order | limitTo:totalPorPagina">
+                                                                                    {{selecionado}}
+                                                                                    <td>{{selecionado.name}}</td>
+                                                                                    <td>{{selecionado.key[0].label}}</td>
+                                                                                    <td>{{selecionado.value[0].label}}</td>
+                                                                                    <td ng-if="!selecionado.formula">Não possui</td>
+                                                                                    <td ng-if="selecionado.formula">{{selecionado.value[0].label}}</td>
+                                                                                    <td class="col-md-2">
+                                                                                        <button class="btn btn-default btn-flat" ng-click="removeCampo(selecionado)"><i class="icon-close"></i></button>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <pagination ng-if="component.data.fields.length" total-items="totalItens" ng-model="paginaAtual" style="margin-left:51px" items-per-page="totalPorPagina" ng-change="mudaPagina(paginaAtual)" class="pagination-sm" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+                                                                    </div>
+                                                                    <div ng-if="!component.data.fields.length" class="pontilhado">Nenhum campo selecionado.</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer" style="margin-top:50% !important">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                                <button type="button" ng-click="saveFields()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span ng-if="!component.type">Selecione um componente para editar</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </step>
-            <step ordem="3" title="'Editar componentes'" min-height="550">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="col-md-6 container-fluid pull-left" style="max-height:550px">
+                </step>
+                <step ordem="4" title="'Finalizar'">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <h3>Resumo:</h3>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <strong>Nome:</strong> {{visio.name}}
+                                    </li>
+                                    <li>
+                                        <strong>Descrição:</strong> {{visio.description}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-5">
+                                <h3>Campos selecionados:</h3>
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>
+                                                Container
+                                            </th>
+                                            <th class="hidden-480">
+                                                Componentes
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="container in visio.layout.containers">
+                                            <td>
+                                                {{container.name}}
+                                            </td>
+                                            <td class="hidden-480">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr class="active">
+                                                            <th>
+                                                                Label
+                                                            </th>
+                                                            <th class="hidden-480">
+                                                                Campos
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="component in container.components">
+                                                            <td class="hidden-480">{{component.label}}</td>
+                                                            <td class="hidden-480" ng-if="component.data.fields">
+                                                                <span class="label label-sm label-success" style="margin:5px" ng-repeat="field in component.data.fields">{{field.name}}</span>
+                                                            </td>
+                                                            <td class="hidden-480" ng-if="!component.data.fields">
+                                                                <span>Não possui</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-xs-4">
+                                <h3 style="margin-left:30px">Layout selecionado:</h3>
                                 <layout configuracao="visio.layout.configuration" preview="true">
-                                    <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="5" preview-block="false" ng-repeat="container in visio.layout.containers">
-                                        <div block="component.name" columns="component.column" lines="component.line" line-height="5" preview-block="true" ng-repeat="component in container.components">
+                                    <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="3" preview-block="false" ng-repeat="container in visio.layout.containers">
+                                        <div block="component.name" columns="component.column" lines="component.line" line-height="3" preview-block="true" ng-repeat="component in container.components">
                                             <div class="layout layout-container layout-border" ng-click="editComponent(component)">
                                                 <div class="layout layout-container container-column">
                                                     <span>{{component.label}}</span>
@@ -92,115 +270,16 @@
                                     </div>
                                 </layout>
                             </div>
-                            <div class="col-md-6 container-fluid pull-right">
-                                <div class="panel panel-info" ng-if="component.type">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><i class="icon-wrench"></i>   {{component.label}}</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="form-group">
-                                            <label for="nome">Nome do componente:</label>
-                                            <input id="nome" class="form-control" type="text" placeholder="Digite o nome do componente" ng-model="component.label" />
-                                        </div>
-                                        <div class="form-group" ng-if="component.type === 'text'">
-                                            <label for="text">Texto:</label>
-                                            <textarea id="text" class="form-control" type="text" rows="3" placeholder="Digite o conteúdo do componente" ng-model="component.data" />
-                                        </div>
-                                        <div class="form-group" ng-if="component.type === 'title'">
-                                            <label for="title">Título:</label>
-                                            <input id="title" class="form-control" type="text" placeholder="Digite o título para o relatório" ng-model="component.data" />
-                                        </div>
-                                        <div class="form-group" ng-if="component.type === 'image'">
-                                            <label for="caminho">Link da foto:</label>
-                                            <input id="caminho" class="form-control" type="text" ng-model="component.data.path" placeholder="Digite o link da foto" />
-                                        </div>
-                                        <div class="form-group" ng-if="component.type === 'table' || component.type === 'list'">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">Campos escolhidos</div>
-                                                <div class="panel-body" ng-if="component.data.fields.length">
-                                                    <ul class="list-group">
-                                                        <li ng-repeat="field in component.data.fields" class="list-group-item">{{field.name}}<i class="icon-info pull-right" data-toggle="tooltip" data-placement="right" title="{{field.description}}"></i></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="panel-footer">
-                                                    <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Escolher campos <i class="icon-cursor"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3>Escolher campos para componente</h3>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="col-md-12 form-group" style="margin-left:20px;">
-                                                                <label>Buscar de campos</label>
-                                                                <input type="text" class="form-control" placeholder="Digite o nome do campo desejado" ng-model="busca.name" />
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="margin-top:30px; max-height:330px; overflow-y: scroll; ">
-                                                                    <ul class="nav bs-docs-sidenav">
-                                                                        <label>Selecionar campos</label>
-                                                                        <li class="" ng-repeat="label in campos | filter:busca | orderBy:label.order">
-                                                                            <a ng-click="addCampo(label)" ng-class="{'docs-active': label.selected}">{{label.name}}</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </nav>
-                                                            </div>
-                                                            <div class="col-md-8" style="padding:45px; margin-left:50px;">
-                                                                <div id="fields">
-                                                                    <table class="table table-bordered table-hover">
-                                                                        <thead>
-                                                                            <tr class="active">
-                                                                                <th>Nome</th>
-                                                                                <th>Chave</th>
-                                                                                <th>Valor</th>
-                                                                                <th>Grupo</th>
-                                                                                <th class="col-md-2">Ações</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr ng-repeat="selecionado in selectedsFiltered | orderBy:selecionado.order | limitTo:totalPorPagina">
-                                                                                {{selecionado}}
-                                                                                <td>{{selecionado.name}}</td>
-                                                                                <td>{{selecionado.key[0].label}}</td>
-                                                                                <td>{{selecionado.value[0].label}}</td>
-                                                                                <td ng-if="!selecionado.formula">Não possui</td>
-                                                                                <td ng-if="selecionado.formula">{{selecionado.value[0].label}}</td>
-                                                                                <td class="col-md-2">
-                                                                                    <button class="btn btn-default btn-flat" ng-click="removeCampo(selecionado)"><i class="icon-close"></i></button>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <pagination ng-if="component.data.fields.length" total-items="totalItens" ng-model="paginaAtual" style="margin-left:51px" items-per-page="totalPorPagina" ng-change="mudaPagina(paginaAtual)" class="pagination-sm" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
-                                                                </div>
-                                                                <div ng-if="!component.data.fields.length" class="pontilhado">Nenhum campo selecionado.</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer" style="margin-top:50% !important">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                                            <button type="button" ng-click="saveFields()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <span ng-if="!component.type">Selecione um componente para editar</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button class="btn btn-default" ng-click="makePreview()">Preview</button>
+                                <button class="btn btn-default" ng-click="saveVisio()">Salvar</button>
                             </div>
                         </div>
                     </div>
-                </div>
-            </step>
-            <step ordem="4" title="'Finalizar'">
-<!--                 <p>
-                    {{visio}}
-                </p> -->
-                <button class="btn btn-default" ng-click="makePreview()">Preview</button>
-                <button class="btn btn-default" ng-click="saveVisio()">Salvar</button>
-            </step>
-        </wizard>
-    </form>
+                </step>
+            </wizard>
+        </form>
+    </div>
 </div>

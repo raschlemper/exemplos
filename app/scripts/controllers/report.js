@@ -10,6 +10,8 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
     $scope.pages = [];
     $scope.visio = {};
 
+    $scope.paginas = [{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"},{"key":"Curso", "value":"Energia"}];
+
     var createReport = function() {
         getData();
     }
