@@ -1,15 +1,19 @@
 app.factory("ReportFormatterService", function($filter, DataGrouperService) {
 
-    var getFieldValue = function(data, fields) {
+    var getFieldsValue = function(data, fields) {
         dataFormat = angular.copy(data);
         return _.map(fields, function(field, key) {
-            applyFilter(dataFormat, field);
-            return {
-                name: field.name,
-                value: getExpressionValue(dataFormat, field.expression),
-                order: field.order
-            };
+            return getFieldValue(dataFormat, field)
         });
+    }
+
+    var getFieldValue = function(data, field) {
+        applyFilter(data, field);
+        return {
+            name: field.name,
+            value: getExpressionValue(data, field.expression),
+            order: field.order
+        };
     }
 
     var applyFilter = function(data, field) {
@@ -31,12 +35,12 @@ app.factory("ReportFormatterService", function($filter, DataGrouperService) {
 
     var getFieldValueFields = function(component, value) {
         var fields = component.data.fields;
-        return getFieldValue(value, fields);
+        return getFieldsValue(value, fields);
     }
 
     var getFieldValueGroups = function(component, value) {
         var fields = component.data.groups;
-        return getFieldValue(value, fields);
+        return getFieldsValue(value, fields);
     }
 
     var orderRow = function(row) {
@@ -75,9 +79,17 @@ app.factory("ReportFormatterService", function($filter, DataGrouperService) {
         return rows;
     }
 
+    var formatLinks = function(pages) {
+        return _.map(pages, function(page) {  
+            page.link = getFieldValue(page.filters, page.field);
+            return page;
+        });
+    }
+
     return {
         formatWithoutFields: formatWithoutFields,
         formatFields: formatFields,
-        formatGroups: formatGroups
+        formatGroups: formatGroups,
+        formatLinks: formatLinks
     }
 });

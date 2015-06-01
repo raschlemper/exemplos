@@ -1,11 +1,12 @@
 <div id="sidebar">
     <div class="sidebar-inner" role="navigation">
         <div style="margin-top: 30px;">
-        <input type="text" class="form-control" placeholder="Buscar página..." ng-model="search" style="width:60%; margin:15px" />
+            <input type="text" class="form-control" placeholder="Buscar página..." ng-model="search" style="width:60%; margin:15px" />
+            <i class="icon-search"></i>
         </div>
-        <div class="si-inner" >
+        <div class="si-inner">
             <ul class="nav nav-sidebar">
-                <li ng-repeat="page in paginas | filter:search"><a href="#" class="sidebar-link" style="color:#2C3E50  !important; font-weight:bold">{{$index + 1}} - {{page.key}} - {{page.value}} <!-- <span class="selected-flat"></span> --></a></li>
+                <li ng-repeat="page in paginas | filter:search" ng-click="getPage(page)"><a href="#" class="sidebar-link" style="color:#2C3E50  !important; font-weight:bold"></i>{{$index + 1}} - {{page.key}} - {{page.value}} <!-- <span class="selected-flat"></span> --></a></li>
             </ul>
         </div>
     </div>
@@ -13,16 +14,6 @@
 <section id="content">
     <div class="col-lg-10 fixed-margin pull-right">
         <div class="row visible-lg-block main-report" style="min-height:100%;">
-            <!--         <div class="col-lg-2">
-            <div class="row">
-                <div class="col-md-12 text-center" >
-                    <div ng-click="getPage(page)" class="img-file-page">
-                        <i class="icon-doc" class=""></i>
-                        <p class="img-file-font"><strong>Página {{ $index + 1 }}</strong></p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
             <div class="col-lg-11 pontilhado">
                 <layout configuracao="visio.layout.configuration" preview="false">
                     <div id="header-title" class="col-lg-12" ng-show="report.title">

@@ -45,7 +45,7 @@
     {
         "_id": "555f17bf7d9f9062787ebdc9",
         "name": "Série",
-        "order": 3,
+        "order": 4,
         "key": [{
             "_id": "55670754fb32cea142177474",
             "field": "cd_curso_instituicao",
@@ -73,7 +73,7 @@
     {
         "_id": "555f17bf7d9f9062787ebdca",
         "name": "Ano/Semestre",
-        "order": 4,
+        "order": 3,
         "key": [{
             "_id": "55670754fb32cea14217746c",
             "field": "nr_ano",
@@ -176,7 +176,7 @@
 
     {
         "_id": "555f17bf7d9f9062787ebdce",
-        "name": "Valor",
+        "name": "Previsão confirmada",
         "order": 8,
         "key": [{
             "_id": "5567047ca0c28d0228cb09ca",
@@ -192,31 +192,6 @@
             "filter": ["currency", "R$ "],
             "label": "Previsão confirmada",
             "type": "number",
-            "isKey": false
-        }],
-        "description": "Campo refere-se à instituição de ensino registrada no sistema.",
-        "expression": "<%= previsao_confirmado %>"
-    },
-
-    {
-        "_id": "555f17bf7d9f9062787ebdcf",
-        "name": "Saldo",
-        "order": 9,
-        "formula": "rest",
-        "key": [{
-            "_id": "5567047ca0c28d0228cb09ca",
-            "field": "previsao_confirmado",
-            "label": "Previsão confirmada",
-            "type": "number",
-            "filter": ["currency", "R$ "],
-            "isKey": false
-        }],
-        "value": [{
-            "_id": "5567047ca0c28d0228cb09ca",
-            "field": "previsao_confirmado",
-            "label": "Previsão confirmada",
-            "type": "number",
-            "filter": ["currency", "R$ "],
             "isKey": false
         }],
         "description": "Campo refere-se à instituição de ensino registrada no sistema.",

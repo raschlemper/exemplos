@@ -19,11 +19,19 @@ app.factory("ReportPageService", function(DataGrouperService, ReportFunctionServ
         }, []);
     }
 
-    var getPages = function(registers, components) {
-        var fieldsFilter = getFieldsFilter(components);
-        return DataGrouperService.keys(registers, fieldsFilter);
+    var createLinkPage = function(groupers, components) {
+        var filters = getReportFilter(components);
+        var fieldLink = _.max(filters, function(filter){ return filter.order; });
+        return _.map(groupers, function(grouper){ 
+            return { 'filters': grouper, 'field': fieldLink };
+        });
     }
 
+    var getPages = function(registers, components) {
+        var fieldsFilter = getFieldsFilter(components);
+        var groupers = DataGrouperService.keys(registers, fieldsFilter);
+        return createLinkPage(groupers, components);
+    }
 
     var applyFilter = function(page, registers) {
         if(!page) { return registers; }
@@ -31,7 +39,7 @@ app.factory("ReportPageService", function(DataGrouperService, ReportFunctionServ
     }
 
     var page = function(page, registers) {
-        var registersByFilter = applyFilter(page, registers);
+        var registersByFilter = applyFilter(page.filters, registers);
         return registersByFilter;
     };
 

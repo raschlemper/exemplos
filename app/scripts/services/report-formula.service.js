@@ -3,7 +3,7 @@ app.factory("ReportFunctionService", function(DataGrouperService) {
     var sum = function(register, field, registers) {
         var values = getValues(register, field);
         return _.reduce(values[field], function(memo, value) {
-            return memo + value;
+            return Number(memo) + Number(value);
         }, []);
     }
 

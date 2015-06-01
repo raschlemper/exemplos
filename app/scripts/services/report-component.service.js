@@ -23,8 +23,18 @@ app.factory("ReportComponentService", function(DataGrouperService, ReportFunctio
             getGroupValues(registers));
     }
 
-    var groupRegister = function(registers, data) {
+    var getFieldsToGrouper = function(data) {
         var fields = getFields(_.pluck(data.fields, 'value'));
+        var groups = getFields(_.pluck(data.groups, 'value'));
+        var resultFields = angular.copy(fields);
+        _.map(groups, function(group) {            
+            resultFields = _.without(resultFields, group);
+        })
+        return fields;
+    }
+
+    var groupRegister = function(registers, data) {
+        var fields = getFieldsToGrouper(data);
         return DataGrouperService.group(registers, fields);
     }
 
@@ -36,10 +46,10 @@ app.factory("ReportComponentService", function(DataGrouperService, ReportFunctio
         return fields;
     }
 
-    var getData = function(component) {
+    var getData = function(fields, groups) {
         return {
-            fields: component.data.fields,
-            groups: component.data.groups
+            fields: fields,
+            groups: groups
         }
     }
 
@@ -59,9 +69,8 @@ app.factory("ReportComponentService", function(DataGrouperService, ReportFunctio
     }
 
     var createComponentField = function(registers, component) {
-        var data = getData(component);
-        var groupers = groupRegister(registers, data);
-        return createRowField(data, groupers);
+        var groupers = groupRegister(registers, component.data);
+        return createRowField(component.data, groupers);
     }
 
     var createRowGroup = function(data, registers) {
@@ -76,9 +85,8 @@ app.factory("ReportComponentService", function(DataGrouperService, ReportFunctio
     }
 
     var createComponentGroup = function(registers, component) {
-        var data = getData(component);
-        var groupers = groupRegister(registers, data);
-        return createRowGroup(data, groupers);
+        var groupers = groupRegister(registers, component.data);
+        return createRowGroup(component.data, groupers);
     }
     
     return {
