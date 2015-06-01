@@ -9,6 +9,56 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
     var visio = {};
     $scope.pages = [];
     $scope.visio = {};
+    $scope.selectedIndex = 0;
+
+    $scope.select = function(i) {
+        console.log(i);
+        $scope.selectedIndex = i;
+    };
+
+    $scope.paginas = [{
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }, {
+        "key": "Curso",
+        "value": "Energia"
+    }];
 
     var createReport = function() {
         getData();
@@ -29,7 +79,7 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
         // VisioService.service.getByHashid($routeParams.hashid)
         JsonService.visioTest()
             .then(function(data) {
-                visio = data[0];                
+                visio = data[0];
                 $scope.visio = angular.copy(visio);
                 $scope.pages = ReportService.pages(registers, $scope.visio.layout);
                 $scope.getPage($scope.pages[index]);
@@ -39,7 +89,7 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
             });
     }
 
-    $scope.getPage = function(page) {               
+    $scope.getPage = function(page) {
         $scope.visio = angular.copy(visio);
         ReportService.page(page, registers, $scope.visio.layout);
     }
@@ -47,4 +97,3 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
     createReport();
 
 });
-
