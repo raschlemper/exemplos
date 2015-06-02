@@ -1,4 +1,4 @@
-app.factory("DataGrouperService", function(){
+app.factory("DataGrouperService", function() {
 
     var has = function(obj, target) {
         return _.any(obj, function(value) {
@@ -51,6 +51,21 @@ app.factory("DataGrouperService", function(){
             var groups = group(data, names);
             return _.map(groups, function(item) {
                 return item.vals;
+            });
+        },
+
+        groupFields: function(data, names, fields) {
+            var groups = group(data, names);
+            return _.map(groups, function(item) {
+                var values = [];
+                _.map(item.vals, function(value) {
+                    var valueFileds = _.pick(value, fields);
+                    if (_.where(values, valueFileds).length == 0) {
+                        values.push(valueFileds);
+                    }
+                });
+                item.vals = values;
+                return item;
             });
         }
 
