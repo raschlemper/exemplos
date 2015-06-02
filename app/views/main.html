@@ -19,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="visio in visios">
+                            <tr ng-repeat="visio in filtered">
                                 <td>{{visio.name}}</td>
                                 <td>{{visio.description}}</td>
                                 <td>{{visio.hashid}}</td>
@@ -35,6 +35,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <pagination ng-if="visios.length" total-items="totalItens" ng-model="paginaAtual" style="margin-left:51px" items-per-page="totalPorPagina" ng-change="mudaPagina(paginaAtual)" class="pagination-sm" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
                     <div ng-if="!visios.length" class="pontilhado">Para criar uma nova visão, clique no botão "Nova visão".</div>
                     <button class="btn btn-default pull-right" ng-click="newVisio()">Nova visão <i class="icon-doc"></i></button>
                 </div>

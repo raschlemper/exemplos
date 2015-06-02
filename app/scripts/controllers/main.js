@@ -7,7 +7,18 @@
  * # MainCtrl
  * Controller of the exemplosApp
  */
-app.controller('MainCtrl', function($scope, $location, VisioService) {
+app.controller('MainCtrl', function($scope, $location, $filter, VisioService) {
+
+    $scope.visios = [];
+    $scope.totalItens = 0;
+    $scope.totalPorPagina = 6;
+    $scope.paginaAtual = 1;
+    $scope.filtered = [];
+
+    $scope.mudaPagina = function(pagina) {
+        $scope.paginaAtual = pagina;
+        filtraSelecionados();
+    };
 
     $scope.newVisio = function() {
         $location.path("/configuration");
@@ -21,11 +32,12 @@ app.controller('MainCtrl', function($scope, $location, VisioService) {
         $location.url('/configuration').search('hashid', visio.hashid);
     }
 
-    $scope.visios = [];
     var getVisios = function() {
         VisioService.service.getAll()
             .then(function(data) {
                 $scope.visios = data;
+                $scope.totalItens = data.length;
+                filtraSelecionados();
             })
             .catch(function(err) {
                 return console.log(err);
@@ -41,4 +53,10 @@ app.controller('MainCtrl', function($scope, $location, VisioService) {
     var init = function() {
         getVisios();
     }();
+
+
+    var filtraSelecionados = function() {
+        var pagina = $scope.paginaAtual - 1;
+        $scope.filtered = $filter('startPage')($scope.visios, pagina * $scope.totalPorPagina);
+    }
 });

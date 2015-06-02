@@ -82,7 +82,7 @@
             "name": "headerContent",
             "column": 12,
             "line": 35,
-            "type": "table",
+            "type": "list",
             "data": {}
         }]
     }, {
