@@ -73,17 +73,17 @@
                                     </div>
                                 </div>
                             </div>
-                             <div class="panel panel-default" style="height: 246px;">
-                                 <div class="panel-heading">Legenda</div>
-                                 <div class="panel-body layout-box">
-                                     <div class="row legenda-container">
-                                         <div><i class="icon-list legenda"></i> Tabela de dados</div>
-                                         <div><i class="icon-picture legenda"></i> Foto</div>
-                                         <div><i class=" icon-docs legenda"></i> Lista</div>
-                                         <div><i class="icon-speech legenda"></i> Texto ou título</div>
-                                     </div>
-                                 </div>
-                             </div>
+                            <div class="panel panel-default" style="height: 246px;">
+                                <div class="panel-heading">Legenda</div>
+                                <div class="panel-body layout-box">
+                                    <div class="row legenda-container">
+                                        <div><i class="icon-list legenda"></i> Tabela de dados</div>
+                                        <div><i class="icon-picture legenda"></i> Foto</div>
+                                        <div><i class=" icon-docs legenda"></i> Lista</div>
+                                        <div><i class="icon-speech legenda"></i> Texto ou título</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </step>
@@ -209,19 +209,8 @@
                 <step ordem="4" title="'Finalizar'">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-2">
-                                <h3>Resumo:</h3>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <strong>Nome:</strong> {{visio.name}}
-                                    </li>
-                                    <li>
-                                        <strong>Descrição:</strong> {{visio.description}}
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-xs-5">
-                                <h3>Campos selecionados:</h3>
+                            <div class="col-xs-8">
+                                <h4>Campos selecionados:</h4>
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr class="active">
@@ -267,19 +256,31 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-xs-4">
-                                <h3 style="margin-left:30px">Layout selecionado:</h3>
-                                <layout configuracao="visio.layout.configuration" preview="true">
-                                    <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="3" preview-block="false" ng-repeat="container in visio.layout.containers">
-                                        <div block="component.name" columns="component.column" lines="component.line" line-height="3" preview-block="true" ng-repeat="component in container.components">
-                                            <div class="layout layout-container layout-border" ng-click="editComponent(component)">
-                                                <div class="layout layout-container container-column">
-                                                    <span>{{component.label}}</span>
+                            <div class="col-xs-3">
+                                <div style="margin-left: -30px">
+                                    <h4 style="margin-left:30px">Layout selecionado:</h4>
+                                    <layout configuracao="visio.layout.configuration" preview="true">
+                                        <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="3" preview-block="false" ng-repeat="container in visio.layout.containers">
+                                            <div block="component.name" columns="component.column" lines="component.line" line-height="3" preview-block="true" ng-repeat="component in container.components">
+                                                <div class="layout layout-container layout-border" ng-click="editComponent(component)">
+                                                    <div class="layout layout-container container-column">
+                                                        <span>{{component.label}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </layout>
+                                    </layout>
+                                </div>
+                                <div style="margin-top:70px">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <strong>Nome:</strong> {{visio.name}}
+                                        </li>
+                                        <li>
+                                            <strong>Descrição:</strong> {{visio.description}}
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
