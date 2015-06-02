@@ -12,7 +12,6 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
     $scope.selectedIndex = 0;
 
     $scope.select = function(i) {
-        console.log(i);
         $scope.selectedIndex = i;
     };
 

@@ -29,11 +29,6 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
     $scope.totalPorPagina = 3;
     $scope.paginaAtual = 1;
 
-    $scope.mudaPagina = function(pagina) {
-        $scope.paginaAtual = pagina;
-        filtraSelecionados();
-    };
-
     $scope.editComponent = function(component) {
         $scope.component = component;
         if (component.type === 'table' || component.type === 'list') {
