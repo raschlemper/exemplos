@@ -16,50 +16,6 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
         $scope.selectedIndex = i;
     };
 
-    $scope.paginas = [{
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }, {
-        "key": "Curso",
-        "value": "Energia"
-    }];
-
     var createReport = function() {
         getData();
     }
