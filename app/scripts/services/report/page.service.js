@@ -4,12 +4,6 @@ app.factory("ReportPageService", function(DataGrouperService) {
         return _.without(fields, field);
     }
 
-    var getLink = function(fields) {
-        return _.max(fields, function(field) {
-            return field.order;
-        });
-    }
-
     var createLinkPage = function(fields) {   
         var fieldLink = _.last(fields);//getLink(fields);    
         var filters = removeLinkFromFields(fields, fieldLink);

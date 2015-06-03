@@ -7,6 +7,12 @@ app.factory("ReportService", function(DataGrouperService, ReportPageService, Rep
 
     /* TODO: Colocar esta método no momento em que o layout esta sendo criado. */
 
+    var orderBy = function(fields) {
+        return _.sortBy(fields, function(item) {
+            return item.order;
+        })
+    }
+
     var createComponents = function(container) {
         var components = [];
         _.map(container.components, function(component) {
@@ -35,17 +41,18 @@ app.factory("ReportService", function(DataGrouperService, ReportPageService, Rep
         var headerComponents = _.where(components, {
             'containerType': 'header'
         });
-       return _.reduce(headerComponents, function(memo, component) {
+       var filters = _.reduce(headerComponents, function(memo, component) {
             if (component.data) {
                 return _.union(memo, component.data.fields);
             }
         }, []);
+        return orderBy(filters);
     }
 
     /* **************************************************************************** */
 
-    var getFieldsFilter = function(filters) {
-        var values = _.pluck(filters, 'value');
+    var getValueFields = function(filters) { 
+        var values = _.pluck(filters, 'value'); 
         return _.map(values, function(value) {
             return _.pluck(value, 'field');
         }, []);
@@ -64,28 +71,33 @@ app.factory("ReportService", function(DataGrouperService, ReportPageService, Rep
         });          
     }
 
-    var createLinksPage = function(groupers, link) {
-        var links = [];
-        _.map(groupers, function(grouper) {            
-            // fazer um for para percorrer os niveis da lista
-            var filters = ReportFormatterService.formatFields(grouper.key, link.filters);  
-
-            var field = formatFieldLink(grouper.vals, link.field);
-            //var filtersGroupers = DataGrouperService.links(filters, grouper.key);
-            links.push({ 'filters': filtersGroupers, 'field': field });
+    var formatLinks = function(data, names, index) {  
+        if (index == names.length) {
+            return;
+        }
+        return _.map(data, function(item, i) {
+            var list = formatLinks(item.vals, names, index + 1);
+            var obj = { 'item': ReportFormatterService.formatField(item.key, names[index]) };
+            if (list) {
+                _.extend(obj, { 'values': list });
+            } 
+            return obj; 
         });
-        return links;
     }
 
-    var pages = function(registers, visio) {
-        var filters = getReportFilter(visio.layout);
-        var link = ReportPageService.links(filters);
-        var fields = getFieldsFilter(link.filters);
-        var groupers = DataGrouperService.links(registers, fields);
-        return createLinksPage(groupers, link);
+    var links = function(registers, visio) {
+        var filters = getReportFilter(visio.layout); 
+        var fields = getValueFields(filters);
+        var groupers = DataGrouperService.hierarchy(registers, fields);
+        return formatLinks(groupers, filters, 0);
+    }
+
+    var link = function(link) {
+        //console.log(link)
     }
 
     return {
-        pages: pages
+        links: links,
+        link: link
     }
 });
