@@ -34,20 +34,22 @@ app.factory("DataGrouperService", function() {
         });
     };
 
-    var recursive = function(data, names, index) {
+    var hierarchy = function(data, names, index) {
         if (index == names.length) {
             return;
         }
         var groups = group(data, names[index]);
-        return _.map(groups, function(item, i) {
-            var lista = recursive(item.vals, names, index + 1);
-            var obj = item.key;
-            if (lista) {
-                return _.extend(obj, lista);
+        return _.map(groups, function(item) {
+            var list = hierarchy(item.vals, names, index + 1);
+            var obj = { 'key': item.key };
+            if (list) {
+                _.extend(obj, { 'vals': list });
+            } else {
+                _.extend(obj, { 'vals': item.vals });                
             }
             return obj;
         });
-    }
+    };
 
     return {
 
@@ -69,23 +71,8 @@ app.factory("DataGrouperService", function() {
             });
         },
 
-        groupFields: function(data, names, fields) {
-            var groups = group(data, names);
-            return _.map(groups, function(item) {
-                var values = [];
-                _.map(item.vals, function(value) {
-                    var valueFileds = _.pick(value, fields);
-                    if (_.where(values, valueFileds).length == 0) {
-                        values.push(valueFileds);
-                    }
-                });
-                item.vals = values;
-                return item;
-            });
-        },
-
-        links: function(data, names) {
-            return recursive(data, names, 0);
+        hierarchy: function(data, names) {
+            return hierarchy(data, names, 0);
         }
 
     }

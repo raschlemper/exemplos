@@ -29,10 +29,10 @@ app.controller('ReportCtrl', function($scope, $routeParams, ReportService, Movim
         JsonService.visioTest()
             .then(function(data) {
                 visio = data[0];  
-                $scope.links = ReportService.pages(registers, angular.copy(visio));
+                $scope.links = ReportService.links(registers, angular.copy(visio));
                 $scope.getLink($scope.links[index]);
-                $scope.getPage($scope.pages[index]);
-                console.log('pages', $scope.links, $scope.pages);
+                // $scope.getPage($scope.pages[index]);
+                // console.log('pages', $scope.links, $scope.pages);
             })
             .catch(function(err) {
                 layout = [];
@@ -40,7 +40,8 @@ app.controller('ReportCtrl', function($scope, $routeParams, ReportService, Movim
     }
 
     $scope.getLink = function(link) {  
-        $scope.pages = link.field;
+        console.log(link);
+        $scope.link = ReportService.link(link);
     }
 
     $scope.getPage = function(page) {  

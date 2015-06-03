@@ -63,6 +63,11 @@ app.factory("ReportFormatterService", function($filter, DataGrouperService) {
 
 
 
+
+
+
+
+
     var getExpressionValue = function(registers, expression) {
         var template = _.template(expression);
         var result = template(registers);
