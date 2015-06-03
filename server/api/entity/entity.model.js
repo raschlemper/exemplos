@@ -11,7 +11,8 @@ var EntitySchema = new Schema({
     "value": [Schema.Types.Campos],
     "expression": String,
     "formula": String,
-    "description": String
+    "description": String,
+    "groups": [Schema.Types.Campos]
 });
 
 var entity = mongoose.model('entity', EntitySchema);

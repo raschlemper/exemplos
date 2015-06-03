@@ -70,6 +70,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             $scope.visio.campos = [];
             $scope.visio.layout = {};
         }
+        getTemplates();
     }
 
     var getTemplates = function() {
@@ -205,7 +206,6 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
 
     var init = function() {
         carregaVisio();
-        getTemplates();
     }
 
     init();

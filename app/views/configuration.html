@@ -135,7 +135,8 @@
                                                         </ul>
                                                     </div>
                                                     <div class="panel-footer">
-                                                        <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Escolher campos <i class="icon-cursor"></i></button>
+                                                        <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Escolher campos <i class="icon-cursor" style="margin-left:5px"></i></button>
+                                                        <button class="btn btn-default" data-target=".bs-example-modal-sm" data-toggle="modal" ng-if="component.data.fields.length">Criar totalizador<i class="icon-plus" style="margin-left:5px"></i></button>
                                                     </div>
                                                 </div>
                                                 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -193,6 +194,43 @@
                                                             <div class="modal-footer" style="margin-top:50% !important">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                                                 <button type="button" ng-click="saveFields()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallMoalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h3>Criar totalizador</h3>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="col-lg-10 pull-left">
+                                                                    <div class="form-group col-lg-7">
+                                                                        <label>Nome do campo:</label>
+                                                                        <input type="text" class="form-control" placeholder="Nome do campo" />
+                                                                    </div>
+                                                                    <div class="form-group col-lg-9">
+                                                                        <label>Descrição:</label>
+                                                                        <textarea cols="4" class="form-control" placeholder="Nome do campo" />
+                                                                    </div>
+                                                                    <div class="form-group col-lg-5">
+                                                                        <label>Fórmula:</label>
+                                                                        <select>
+                                                                            <item></item>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-lg-7">
+                                                                        <label>Quais campos selecionados deseja totalizar?:</label>
+                                                                        <select>
+                                                                            <item></item>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer" style="margin-top:50% !important">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                                <button type="button" d class="btn btn-primary" data-dismiss="modal">Salvar</button>
                                                             </div>
                                                         </div>
                                                     </div>
