@@ -46,8 +46,8 @@ app.factory("ReportService", function(DataGrouperService, ReportPageService, Rep
 
     var getFieldsFilter = function(filters) {
         var values = _.pluck(filters, 'value');
-        return _.reduce(values, function(memo, value) {
-            return _.union(memo, _.pluck(value, 'field'));
+        return _.map(values, function(value) {
+            return _.pluck(value, 'field');
         }, []);
     }
 
@@ -67,9 +67,12 @@ app.factory("ReportService", function(DataGrouperService, ReportPageService, Rep
     var createLinksPage = function(groupers, link) {
         var links = [];
         _.map(groupers, function(grouper) {            
+            // fazer um for para percorrer os niveis da lista
             var filters = ReportFormatterService.formatFields(grouper.key, link.filters);  
+
             var field = formatFieldLink(grouper.vals, link.field);
-            links.push({ 'filters': filters, 'field': field });
+            //var filtersGroupers = DataGrouperService.links(filters, grouper.key);
+            links.push({ 'filters': filtersGroupers, 'field': field });
         });
         return links;
     }
@@ -78,7 +81,7 @@ app.factory("ReportService", function(DataGrouperService, ReportPageService, Rep
         var filters = getReportFilter(visio.layout);
         var link = ReportPageService.links(filters);
         var fields = getFieldsFilter(link.filters);
-        var groupers = DataGrouperService.groupFields(registers, fields, ['cd_curso_instituicao','nm_curso']);
+        var groupers = DataGrouperService.links(registers, fields);
         return createLinksPage(groupers, link);
     }
 

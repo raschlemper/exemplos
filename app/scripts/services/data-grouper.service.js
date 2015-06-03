@@ -34,6 +34,21 @@ app.factory("DataGrouperService", function() {
         });
     };
 
+    var recursive = function(data, names, index) {
+        if (index == names.length) {
+            return;
+        }
+        var groups = group(data, names[index]);
+        return _.map(groups, function(item, i) {
+            var lista = recursive(item.vals, names, index + 1);
+            var obj = item.key;
+            if (lista) {
+                return _.extend(obj, lista);
+            }
+            return obj;
+        });
+    }
+
     return {
 
         group: function(data, names) {
@@ -67,6 +82,10 @@ app.factory("DataGrouperService", function() {
                 item.vals = values;
                 return item;
             });
+        },
+
+        links: function(data, names) {
+            return recursive(data, names, 0);
         }
 
     }

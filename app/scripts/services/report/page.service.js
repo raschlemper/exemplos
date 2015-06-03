@@ -11,7 +11,7 @@ app.factory("ReportPageService", function(DataGrouperService) {
     }
 
     var createLinkPage = function(fields) {   
-        var fieldLink = getLink(fields);    
+        var fieldLink = _.last(fields);//getLink(fields);    
         var filters = removeLinkFromFields(fields, fieldLink);
         return {
             'filters': filters,
