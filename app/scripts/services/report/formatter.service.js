@@ -66,7 +66,14 @@ app.factory("FormatterService", function(DataGrouperService) {
 
 
 
-
+    var getValueKey = function(registers, keys) {
+        var obj = {};
+        _.map(keys, function(key) {
+            var field = _.pick(registers, key.field);  
+            _.extend(obj, field);       
+        });
+        return obj;
+    }
 
     var getExpressionValue = function(registers, expression) {
         var template = _.template(expression);
@@ -89,6 +96,7 @@ app.factory("FormatterService", function(DataGrouperService) {
         applyFilter(registers, field);
         return {
             name: field.name,
+            key: getValueKey(registers, field.key),
             value: getExpressionValue(registers, field.expression),
             order: field.order
         };

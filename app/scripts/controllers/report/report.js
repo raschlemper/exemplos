@@ -25,12 +25,12 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
     }
 
     var getVisio = function() {
-        // VisioService.service.getByHashid($routeParams.hashid)
-        JsonService.visioTest()
+        VisioService.service.getByHashid($routeParams.hashid)
+        // JsonService.visioTest()
             .then(function(data) {
                 visio = data[0];  
                 $scope.link = ReportNewService.links(registers, angular.copy(visio));
-                // $scope.getPage($scope.pages[index]);
+                $scope.getLink($scope.link.selected[0], 0);
                 console.log('links', $scope.link, $scope.pages);
             })
             .catch(function(err) {
@@ -40,10 +40,17 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
 
     $scope.getLink = function(value, index) {
         $scope.link = ReportNewService.link(value, index);
+        $scope.getPage($scope.link.selected, $scope.link.links[0]);
     }
 
-    $scope.getPage = function(selected, value) {  
-        console.log(selected, value);
+    $scope.getPage = function(selected, link) {
+        $scope.visio = angular.copy(visio);
+        var page = { filters: link.key };
+        _.map(selected, function(item) {
+            _.extend(page.filters, item);
+        })
+        ReportNewService.page(page, registers, $scope.visio.layout);
+        console.log(visio.layout);
     }
 
     createReport();
