@@ -1,8 +1,8 @@
 'use strict';
 
-app.controller('ReportCtrl', function($scope, $routeParams, ReportService, MovimentoService, VisioService, JsonService) {
+app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService, MovimentoService, VisioService, JsonService) {
 
-    var index = 1;
+    var index = 0;
     var registers = [];
     var visio = {};
     $scope.links = [];
@@ -29,23 +29,21 @@ app.controller('ReportCtrl', function($scope, $routeParams, ReportService, Movim
         JsonService.visioTest()
             .then(function(data) {
                 visio = data[0];  
-                $scope.links = ReportService.links(registers, angular.copy(visio));
-                $scope.getLink($scope.links[index]);
+                $scope.link = ReportNewService.links(registers, angular.copy(visio));
                 // $scope.getPage($scope.pages[index]);
-                // console.log('pages', $scope.links, $scope.pages);
+                console.log('links', $scope.link, $scope.pages);
             })
             .catch(function(err) {
                 layout = [];
             });
     }
 
-    $scope.getLink = function(link) {  
-        console.log(link);
-        $scope.link = ReportService.link(link);
+    $scope.getLink = function(value, index) {
+        $scope.link = ReportNewService.link(value, index);
     }
 
-    $scope.getPage = function(page) {  
-        //ReportService.page(registers, angular.copy(visio), page);
+    $scope.getPage = function(selected, value) {  
+        console.log(selected, value);
     }
 
     createReport();

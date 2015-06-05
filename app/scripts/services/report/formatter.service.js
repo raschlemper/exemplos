@@ -1,4 +1,4 @@
-app.factory("ReportFormatterService", function($filter, DataGrouperService) {
+app.factory("FormatterService", function(DataGrouperService) {
 
     
 

@@ -1,4 +1,4 @@
-app.factory("ReportPageService", function(DataGrouperService) {
+app.factory("PageService", function(DataGrouperService) {
 
     var removeLinkFromFields = function(fields, field) {
         return _.without(fields, field);

@@ -41,6 +41,10 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
         templateUrl: 'views/report.html',
         controller: 'ReportCtrl'
       })
+      .when('/report/new', {
+        templateUrl: 'views/report/report.html',
+        controller: 'ReportNewCtrl'
+      })
       .when('/preview', {
         templateUrl: 'views/preview.html',
         controller: 'PreviewCtrl'

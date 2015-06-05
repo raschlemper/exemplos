@@ -1,6 +1,12 @@
-app.factory("ReportService", function(DataGrouperService, ReportPageService, ReportFormatterService) {
+app.factory("ReportNewService", function(DataGrouperService, PageService, FormatterService) {
 
-    var report = {     
+    var report = { 
+    };
+    var link = {
+        selected: [],
+        values: [],
+        lists: [],
+        links: []
     };
 
     /* **************************************************************************** */
@@ -48,6 +54,49 @@ app.factory("ReportService", function(DataGrouperService, ReportPageService, Rep
         }, []);
         return orderBy(filters);
     }
+    
+
+    /* *********************************** BREACRUMBS ***************************** */
+
+    var createList = function() {
+        link.lists = []; 
+        link.links = []; 
+        var values = []; 
+        _.map(link.selected, function(value, index) {
+            if(index == 0) { 
+                values = getList(link.values, value, index);
+            } else {
+                values = getList(values, value, index);
+            }
+        });  
+        getLinks(values);
+    }
+
+    var getList = function(values, value, index) {
+        var itens = _.pluck(values, 'item');
+        var selected = itens[value];
+        link.lists.push({ 'id': index, 'itens': itens, 'selected': selected }); 
+        return values[value].values;
+    }
+
+    var getLinks = function(values) {
+        var itens = _.pluck(values, 'item');
+        link.links = itens; 
+    }
+
+    var createListValuesDefault = function(values) {
+        if(link.selected.size == 0) return;
+        link.selected = [];
+        setValueDefault(link.values[0]);
+    }  
+    var setValueDefault = function(data) {
+        var values = data.values;
+        if(values) {
+            link.selected.push(0);
+            setValueDefault(values[0]);
+        }
+    } 
+
 
     /* **************************************************************************** */
 
@@ -67,7 +116,7 @@ app.factory("ReportService", function(DataGrouperService, ReportPageService, Rep
 
     var formatFieldLink = function(values, field) {   
         return _.map(values, function(value) {
-            return ReportFormatterService.formatField(value, field);
+            return FormatterService.formatField(value, field);
         });          
     }
 
@@ -77,7 +126,7 @@ app.factory("ReportService", function(DataGrouperService, ReportPageService, Rep
         }
         return _.map(data, function(item, i) {
             var list = formatLinks(item.vals, names, index + 1);
-            var obj = { 'item': ReportFormatterService.formatField(item.key, names[index]) };
+            var obj = { 'item': FormatterService.formatField(item.key, names[index]) };
             if (list) {
                 _.extend(obj, { 'values': list });
             } 
@@ -85,19 +134,28 @@ app.factory("ReportService", function(DataGrouperService, ReportPageService, Rep
         });
     }
 
-    var links = function(registers, visio) {
+    var createLinks = function(registers, visio) {
         var filters = getReportFilter(visio.layout); 
         var fields = getValueFields(filters);
         var groupers = DataGrouperService.hierarchy(registers, fields);
-        return formatLinks(groupers, filters, 0);
+        link.values = formatLinks(groupers, filters, 0);
     }
 
-    var link = function(link) {
-        //console.log(link)
+    var links = function(registers, visio) {
+        createLinks(registers, visio);
+        createListValuesDefault();
+        createList();
+        return link;
     }
+
+    var getLink = function(value, index) {
+        link.selected[index] = value;   
+        createList(); 
+        return link;          
+    } 
 
     return {
         links: links,
-        link: link
+        link: getLink
     }
 });
