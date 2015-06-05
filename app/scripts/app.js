@@ -37,11 +37,11 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
         templateUrl: 'views/configuration.html',
         controller: 'ConfigurationCtrl'
       })
-      .when('/report', {
+      .when('/report/new', {
         templateUrl: 'views/report.html',
         controller: 'ReportCtrl'
       })
-      .when('/report/new', {
+      .when('/report', {
         templateUrl: 'views/report/report.html',
         controller: 'ReportNewCtrl'
       })
