@@ -147,8 +147,8 @@
 .fuelux .radio-inline input[type="radio"]:not(.sr-only),
 .fuelux .checkbox-inline input[type="radio"]:not(.sr-only) {
   position: absolute;
-  width: 1px;
-  height: 1px;
+/*  width: 1px;
+  height: 1px;*/
   margin: -1px;
   padding: 0;
   overflow: hidden;

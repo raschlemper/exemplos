@@ -131,7 +131,7 @@
                                                     <div class="panel-heading">Campos escolhidos</div>
                                                     <div class="panel-body" ng-if="component.data.fields.length">
                                                         <ul class="list-group">
-                                                            <li ng-repeat="field in component.data.fields" class="list-group-item"><span class="label label-sm label-success">{{field.name}}</span><i class="icon-info pull-right" data-toggle="tooltip" data-placement="right" title="{{field.description}}"></i></li>
+                                                            <li ng-repeat="field in component.data.fields" class="list-group-item"><span class="label label-sm label-success" ng-if="!field.formula">{{field.name}}</span><span class="label label-sm label-info" ng-if="field.formula">{{field.name}}</span><i class="icon-info pull-right" data-toggle="tooltip" data-placement="right" title="{{field.description}}"></i></li>
                                                         </ul>
                                                     </div>
                                                     <div class="panel-footer">
