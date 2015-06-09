@@ -17,8 +17,8 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
     $scope.totalItens = 0;
     $scope.selectedsFiltered = [];
     $scope.groups = [];
-    $scope.totalizadores = [];
     $scope.form = {};
+    $scope.edit = false;
     $scope.agrupador = {};
 
     //Código para paginação
@@ -170,6 +170,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             _id: selected._id
         }));
         $scope.selectedsFiltered = $scope.component.data.fields;
+        removeFieldFromGroup(selected);
         totalItens();
         filtraSelecionados();
     }
@@ -193,10 +194,14 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
     $scope.tab = 1;
 
     $scope.addFieldGroup = function(groupSelected) {
-        var isSelected = $scope.groups.find(function(item) {
-            return item._id === groupSelected._id;
-        });
-        if (!isSelected) {
+        if ($scope.groups.length) {
+            var isSelected = _.findWhere($scope.groups, {
+                _id: groupSelected._id
+            });
+            if (!isSelected) {
+                $scope.groups.push(groupSelected);
+            }
+        } else {
             $scope.groups.push(groupSelected);
         }
     };
@@ -207,21 +212,33 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         }));
     };
 
-    $scope.createGrouper = function(){
+    $scope.createGrouper = function() {
+        if (!$scope.component.data.formulas) {
+            $scope.component.data.formulas = [];
+        };
         $scope.agrupador.groups = $scope.groups;
-        $scope.totalizadores.push($scope.agrupador);
+        if ($scope.edit) {
+            for (var i = $scope.component.data.formulas.length - 1; i >= 0; i--) {
+                if ($scope.component.data.formulas[i].label === $scope.agrupador.label) {
+                    $scope.component.data.formulas[i] = $scope.agrupador;
+                    break;
+                }
+            };
+        } else {
+            $scope.component.data.formulas.push($scope.agrupador);
+        }
         $scope.groups = [];
+        $scope.edit = false;
         $scope.agrupador = {};
         $scope.setTab(1);
     };
 
-    $scope.pushTotalizadores = function(){
-        if($scope.component.data.fields.length){
-            for (var i = $scope.totalizadores.length - 1; i >= 0; i--) {
-                $scope.component.data.fields.push($scope.totalizadores[i]);
-            };
-        };
-    };
+    $scope.updateTotalizer = function(totalizer) {
+        $scope.agrupador = totalizer;
+        $scope.groups = totalizer.groups;
+        $scope.edit = true;
+        $scope.setTab(2);
+    }
 
     $scope.setTab = function(tabId) {
         $scope.tab = tabId;
@@ -230,6 +247,25 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
     $scope.isSet = function(tabId) {
         return $scope.tab === tabId;
     };
+
+    $scope.removeTotalizer = function(totalizer) {
+        console.log(totalizer);
+        $scope.component.data.formulas = _.without($scope.component.data.formulas, _.findWhere($scope.component.data.formulas, {
+            alias: totalizer.alias
+        }));
+    };
+
+    var removeFieldFromGroup = function(field) {
+        if ($scope.component.data.formulas.length) {
+            for (var i = $scope.component.data.formulas.length - 1; i >= 0; i--) {
+                var groups = $scope.component.data.formulas[i].groups;
+                groups = _.without(groups, _.findWhere(groups, {
+                    _id: field._id
+                }));
+                $scope.component.data.formulas[i].groups = groups;
+            };
+        }
+    }
 
     var init = function() {
         carregaVisio();
