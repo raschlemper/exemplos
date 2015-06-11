@@ -32,6 +32,20 @@ app.factory("JsonService", function($http, $q) {
             return deferred.promise;
         },
 
+        visioLineTest: function(callback) {
+            var cb = callback || angular.noop;
+            var deferred = $q.defer();
+            $http.get('data/test/visio_line.json')
+                .success(function(data) {
+                    deferred.resolve(data);
+                    return cb(data);
+                }).error(function(err) {
+                    deferred.reject(err);
+                    return cb(err);
+                }.bind(this));
+            return deferred.promise;
+        },
+
         layoutTest: function(callback) {
             var cb = callback || angular.noop;
             var deferred = $q.defer();
