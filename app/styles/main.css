@@ -15,6 +15,23 @@
     margin: 4px 0px 0px -20px !important;
 }
 
+input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+}
+
+input[type="radio"] {
+    -webkit-appearance: radio;
+}
+
+input[type="submit"],
+input[type="button"] {
+    -webkit-appearance: button;
+}
+
+select {
+    -webkit-appearance: textfield;
+}
+
 @media (min-width: 768px) {
     .container {
         width: calc(100% - 24px);
@@ -339,6 +356,7 @@ body {
     .report {
         background-color: #f5f5f5;
         /*margin-top: -30px;*/
+        
         padding: 40px;
     }
 }
@@ -379,9 +397,10 @@ body {
 }
 
 .shadow {
-    -webkit-box-shadow: 0px 0px 30px -10px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 30px -10px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 30px -10px rgba(0,0,0,0.75);;
+    -webkit-box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.75);
+    ;
 }
 
 .img-file-page {
@@ -410,4 +429,3 @@ box-shadow: 0px 0px 30px -10px rgba(0,0,0,0.75);;
     border-bottom: 1px solid #CCC;
     background-color: #FFFFFF;
 }
-

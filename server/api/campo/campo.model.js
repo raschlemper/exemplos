@@ -8,8 +8,7 @@ var CampoSchema = new Schema({
     "field": String,
     "label": String,
     "type": String,
-    "isKey": Boolean,
-    "formula": String
+    "isKey": Boolean
 });
 
 

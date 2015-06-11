@@ -128,15 +128,18 @@
                                             </div>
                                             <div class="form-group" ng-if="component.type === 'table' || component.type === 'list'">
                                                 <div class="panel panel-default">
-                                                    <div class="panel-heading">Campos escolhidos</div>
-                                                    <div class="panel-body" ng-if="component.data.fields.length">
-                                                        <ul class="list-group">
-                                                            <li ng-repeat="field in component.data.fields" class="list-group-item"><span class="label label-sm label-success">{{field.name}}</span><i class="icon-info pull-right" data-toggle="tooltip" data-placement="right" title="{{field.description}}"></i></li>
+                                                    <div class="panel-heading">Campos / Totalizadores </div>
+                                                    <div class="panel-body" ng-if="component.data.fields.length || component.data.formulas.length">
+                                                        <ul class="list-group col-md-6">
+                                                            <li ng-repeat="field in component.data.fields" class="list-group-item"><span class="label label-sm label-success" ng-if="!field.formula">{{field.name}}</span><i class="icon-info pull-right" data-toggle="tooltip" data-placement="right" title="{{field.description}}"></i></li>
+                                                        </ul>
+                                                        <ul class="list-group col-md-6">
+                                                            <li ng-repeat="field in component.data.formulas" class="list-group-item"><span class="label label-sm label-info">{{field.name}}</span><i class="icon-info pull-right" data-toggle="tooltip" data-placement="right" title="{{field.description}}"></i></li>
                                                         </ul>
                                                     </div>
                                                     <div class="panel-footer">
                                                         <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Escolher campos <i class="icon-cursor" style="margin-left:5px"></i></button>
-                                                        <button class="btn btn-default" data-target=".bs-example-modal-sm" data-toggle="modal" ng-if="component.data.fields.length">Criar totalizador<i class="icon-plus" style="margin-left:5px"></i></button>
+                                                        <button class="btn btn-default" data-target=".bs-example-modal-sm" data-toggle="modal" ng-if="component.data.fields.length || component.data.formulas.length">Gerenciar totalizadores<i class="icon-plus" style="margin-left:5px"></i></button>
                                                     </div>
                                                 </div>
                                                 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -202,35 +205,111 @@
                                                     <div class="modal-dialog modal-lg">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h3>Criar totalizador</h3>
+                                                                <h3>Gerenciar totalizadores</h3>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <div class="col-lg-10 pull-left">
-                                                                    <div class="form-group col-lg-7">
-                                                                        <label>Nome do campo:</label>
-                                                                        <input type="text" class="form-control" placeholder="Nome do campo" />
+                                                                <ul class="nav nav-tabs nav-justified">
+                                                                    <li ng-class="{'active':tab===1}"><a ng-click="setTab(1)">Lista de totalizadores</a></li>
+                                                                    <li ng-class="{'active':tab===2}"><a ng-click="setTab(2)">Criar/Editar totalizador</a></li>
+                                                                </ul>
+                                                                <div class="col-lg-12 " ng-if="tab===1" style="margin-top:50px">
+                                                                    <table class="table table-bordered table-hover" ng-if="component.data.formulas.length">
+                                                                        <thead>
+                                                                            <tr class="active">
+                                                                                <th>
+                                                                                    Totalizador
+                                                                                </th>
+                                                                                <th>
+                                                                                    Descrição
+                                                                                </th>
+                                                                                <th class="hidden-480">
+                                                                                    Fórmula
+                                                                                </th>
+                                                                                <th class="hidden-480">
+                                                                                    Campos
+                                                                                </th>
+                                                                                <th class="hidden-480">
+                                                                                    Ações
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="field in component.data.formulas">
+                                                                                <td class="hidden-480">
+                                                                                    {{field.name}}
+                                                                                </td>
+                                                                                <td class="hidden-480">
+                                                                                    {{field.description}}
+                                                                                </td>
+                                                                                <td ng-if="field.formula==='sum'" class="hidden-480">
+                                                                                    Soma
+                                                                                </td>
+                                                                                <td ng-if="field.formula==='rest'" class="hidden-480">
+                                                                                    Saldo
+                                                                                </td>
+                                                                                <td class="hidden-480" ng-if="field.groups.length">
+                                                                                    <span class="label label-sm label-success" style="margin:5px" ng-repeat="field in field.groups" >{{field.name}}</span>
+                                                                                   
+                                                                                </td>
+                                                                                <td ng-if="!field.groups.length"> <span ng-if="!field.groups.length" class="label label-md label-danger">Selecione um campo para o totalizador!</span></td>
+                                                                                <td class="hidden-480">
+                                                                                    <button class="btn btn-default btn-flat" ng-click="removeTotalizer(field)"><i class="icon-close"></i></button>
+                                                                                    <button class="btn btn-default btn-flat" ng-click="updateTotalizer(field)"><i class="icon-note"></i></button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <span ng-if="!component.data.formulas.length">Não há totalizadores para o componente</span>
+                                                                </div>
+                                                                <div class="col-lg-12 pull-left" ng-if="tab===2" style="margin-top:50px">
+                                                                    <div class="form-group col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <label>Nome do campo:</label>
+                                                                            <input type="text" class="form-control" placeholder="Nome do campo" ng-model="agrupador.name" />
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Alias:</label>
+                                                                            <input type="text" class="form-control" placeholder="Alias" ng-model="agrupador.alias" />
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Descrição:</label>
+                                                                            <textarea cols="4" class="form-control" placeholder="Nome do campo" ng-model="agrupador.description" />
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Fórmula:</label>
+                                                                            <select ng-model="agrupador.formula" class="form-control">
+                                                                                <option value="sum">Soma</option>
+                                                                                <option value="rest">Saldo</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Quais campos selecionados deseja totalizar?
+                                                                            </label>
+                                                                            <div class="form-inline">
+                                                                                <select ng-model="groupSelected" class="form-control" ng-options="selected.name for selected in selectedsFiltered">
+                                                                                    <option></option>
+                                                                                </select>
+                                                                                <button class="btn btn-default" ng-click="addFieldGroup(groupSelected)"><i class="icon-plus"></i></button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <button type="button" class="btn btn-primary" ng-click="createGrouper()">Salvar</button>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="form-group col-lg-9">
-                                                                        <label>Descrição:</label>
-                                                                        <textarea cols="4" class="form-control" placeholder="Nome do campo" />
-                                                                    </div>
-                                                                    <div class="form-group col-lg-5">
-                                                                        <label>Fórmula:</label>
-                                                                        <select>
-                                                                            <item></item>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="form-group col-lg-7">
-                                                                        <label>Quais campos selecionados deseja totalizar?:</label>
-                                                                        <select>
-                                                                            <item></item>
-                                                                        </select>
+                                                                    <div class="form-group col-lg-5 pull-right">
+                                                                        <div class="well">
+                                                                            <label>Campos selecionados</label>
+                                                                            <ul class="list-group" ng-if="groups.length">
+                                                                                <li ng-repeat="field in groups" class="list-group-item"><span class="label label-sm label-success">{{field.name}}</span><i class="icon-close pull-right" ng-click="removeFieldGroup(field)"></i></li>
+                                                                            </ul>
+                                                                            <span ng-if="!groups.length">Nenhum campo selecionado</span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer" style="margin-top:50% !important">
+                                                            <div class="modal-footer" style="margin-top:65% !important">
+                                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Salvar</button>
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                                                <button type="button" d class="btn btn-primary" data-dismiss="modal">Salvar</button>
                                                             </div>
                                                         </div>
                                                     </div>
