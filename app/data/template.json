@@ -54,7 +54,7 @@
             "column": 12,
             "line": 25,
             "offsetLine": 1,
-            "type": "table",
+            "type": "text",
             "data": {}
         }]
     }],
@@ -108,7 +108,7 @@
             "line": 25,
             "offsetLine": 1,
             "data": {},
-            "type": "table"
+            "type": "text"
         }]
     }],
     "name": "Layout normal",

@@ -4,7 +4,6 @@ app.filter('startPage', function() {
 			var st = parseInt(start, 10);
 			if (isNaN(st))
 				st = 0;
-			console.log(input);
 			return input.slice(st);
 		}
 		return input;

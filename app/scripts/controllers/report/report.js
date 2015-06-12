@@ -25,8 +25,8 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
     }
 
     var getVisio = function() {
-        // VisioService.service.getByHashid($routeParams.hashid)
-        JsonService.visioLineTest()
+        VisioService.service.getByHashid($routeParams.hashid)
+/*        JsonService.visioLineTest()*/
             .then(function(data) {
                 visio = data[0]; 
                 $scope.getLinks();  
@@ -48,8 +48,10 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
 
     $scope.getPages = function(selected, link) {
         var filters = link.key;
-        _.map(selected, function(item) {
+        _.map(selected, function(item, index) {
+            if(index + 1 < selected.length){
             _.extend(filters, item);
+            }
         });
         $scope.page = ReportNewService.pages(registers, visio, filters);
         $scope.getPage($scope.page.pages, filters);
