@@ -5,8 +5,8 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
     var index = 0;
     var registers = [];
     var visio = {};
-    $scope.links = [];
-    $scope.pages = [];
+    $scope.link = [];
+    $scope.page = [];
     $scope.visio = {};
 
     var createReport = function() {
@@ -25,32 +25,38 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
     }
 
     var getVisio = function() {
-        VisioService.service.getByHashid($routeParams.hashid)
-        // JsonService.visioTest()
+        // VisioService.service.getByHashid($routeParams.hashid)
+        JsonService.visioLineTest()
             .then(function(data) {
-                visio = data[0];  
-                $scope.link = ReportNewService.links(registers, angular.copy(visio));
-                $scope.getLink($scope.link.selected[0], 0);
-                console.log('links', $scope.link, $scope.pages);
+                visio = data[0]; 
+                $scope.getLinks();  
             })
             .catch(function(err) {
                 layout = [];
             });
     }
 
-    $scope.getLink = function(value, index) {
-        $scope.link = ReportNewService.link(value, index);
-        $scope.getPage($scope.link.selected, $scope.link.links[0]);
+    $scope.getLinks = function() { 
+        $scope.link = ReportNewService.links(registers, visio);
+        $scope.getLink($scope.link.selected[0], index);
     }
 
-    $scope.getPage = function(selected, link) {
-        $scope.visio = angular.copy(visio);
-        var page = { filters: link.key };
+    $scope.getLink = function(key, index) {
+        $scope.link = ReportNewService.link(key, index);              
+        $scope.getPages($scope.link.selected, $scope.link.links[0]);
+    }
+
+    $scope.getPages = function(selected, link) {
+        var filters = link.key;
         _.map(selected, function(item) {
-            _.extend(page.filters, item);
-        })
-        ReportNewService.page(page, registers, $scope.visio.layout);
-        console.log(visio.layout);
+            _.extend(filters, item);
+        });
+        $scope.page = ReportNewService.pages(registers, visio, filters);
+        $scope.getPage($scope.page.pages, filters);
+    }
+
+    $scope.getPage = function(page) {
+        $scope.visio = ReportNewService.page(angular.copy(visio), page);
     }
 
     createReport();

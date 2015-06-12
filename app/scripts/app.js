@@ -17,6 +17,7 @@ var app = angular.module('exemplosApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ngLocale',
     'ui.bootstrap'
   ]);
 

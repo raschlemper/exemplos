@@ -1,24 +1,36 @@
-app.factory("PageService", function(DataGrouperService) {
+app.factory("PageService", function(DataGrouperService) { 
 
-    var removeLinkFromFields = function(fields, field) {
-        return _.without(fields, field);
+    var _page = {
+        values: [],
+        pages: [],
+        page: {}
+    }; 
+
+    var dividePageByNumberLines = function() {
+        _page.pages = angular.copy(_page.values);
     }
 
-    var createLinkPage = function(fields) {   
-        var fieldLink = _.last(fields);//getLink(fields);    
-        var filters = removeLinkFromFields(fields, fieldLink);
-        return {
-            'filters': filters,
-            'field': fieldLink
-        };
-    }
 
-    var links = function(fields) {
-        return createLinkPage(fields);
-    }
+    var applyFilter = function(filters, registers) {
+        if(!filters) { return registers; }
+        return _.where(registers, filters);
+    };
+
+    var page = function(page) {
+        _page.page = page;
+        return _page;
+    };
+
+    var pages = function(filters, registers) {
+        var values = applyFilter(filters, registers);
+        _page.values = values;
+        dividePageByNumberLines();
+        return _page;
+    };
 
     return {
-        links: links
+        pages: pages,
+        page: page
     }
 
 });

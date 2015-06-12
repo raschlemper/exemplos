@@ -2,8 +2,6 @@
 
     <div class="col-lg-12 without-padding">  
 
-        <!-- <breadcrumbs lists="links"></breadcrumbs> -->
-
         <ul class="breadcrumb breadcrumb-border without-margin">
             <li class="dropdown" ng-repeat="list in link.lists">
                 <a class="dropdown-toggle" id="{{list.selected.name}}" data-toggle="dropdown" aria-expanded="true">
@@ -25,7 +23,7 @@
         <nav class="bs-docs-sidebar">
             <ul class="nav nav-stacked fixed">
                 <li ng-repeat="item in link.links track by $index">
-                    <a ng-click="getPage(link.selected, item)">
+                    <a ng-click="getPages(link.selected, item)">
                         <i class="glyphicon glyphicon-arrow-right icon-sidebar"></i>{{ item.value }}
                     </a>
                 </li>
