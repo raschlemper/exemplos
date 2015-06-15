@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService) {
+app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService, BlockService) {
 
     $scope.visio = {};
     $scope.templates = [];
@@ -72,6 +72,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
     };
 
     var carregaVisio = function() {
+        BlockService.block("Carregando configurações...");
         if ($routeParams.hashid) {
             VisioService.service.getByHashid($routeParams.hashid).then(function(data) {
                     $scope.visio = data[0];
@@ -84,6 +85,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             $scope.visio.layout = {};
         }
         getTemplates();
+        BlockService.stop();
     };
 
     var getTemplates = function() {

@@ -13,11 +13,20 @@
     top: -2px;
 }*/
 
+a:hover, a:focus{
+    text-decoration: none !important;
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
     color: #000;
     padding: 0.2em 0;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
 }
 
 .title-step {

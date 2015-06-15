@@ -35,15 +35,7 @@
             "_id": "555f88eebe6354bb237607ee",
             "label": "Detalhes",
             "name": "details",
-            "column": 8,
-            "line": 25,
-            "type": "table",
-            "data": {}
-        }, {
-            "_id": "555f88eebe6354bb237607ef",
-            "label": "Total",
-            "name": "total",
-            "column": 4,
+            "column": 12,
             "line": 25,
             "type": "table",
             "data": {}

@@ -59,6 +59,7 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
 
     $scope.getPage = function(page) {
         $scope.visio = ReportNewService.page(angular.copy(visio), page);
+        console.log($scope.visio);
     }
 
     createReport();
