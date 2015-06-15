@@ -18,10 +18,10 @@ var all = {
   // Root path of server
   root: path.normalize(__dirname + '/../../..'),
 
-  ip: process.env.IP || "localhost",
+  ip: process.env.FINANCEIRO_IP_ADDRESS || "localhost",
 
   // Server port
-  port: process.env.PORT || 9000,
+  port: process.env.FINANCEIRO_PORT_ADDRESS || 9000,
 
   // Should we populate the DB with sample data?
   // seedDB: false,

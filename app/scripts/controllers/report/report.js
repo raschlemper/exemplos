@@ -43,16 +43,20 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
 
     $scope.getLink = function(key, index) {
         $scope.link = ReportNewService.link(key, index);              
-        $scope.getPages($scope.link.selected, $scope.link.links[0]);
+        var selected = angular.copy($scope.link.selected);
+        $scope.getPages(selected, $scope.link.links[0]);
     }
 
-    $scope.getPages = function(selected, link) {
+    $scope.getPages = function(selected, link) {            
+        var selectedX = angular.copy(selected);
         var filters = link.key;
-        _.map(selected, function(item) {
-            _.extend(filters, item);
+        _.map(selectedX, function(item) {
+            if(!_.contains(filters, item)) {
+                _.extend(filters, item);
+            }
         });
         $scope.page = ReportNewService.pages(registers, visio, filters);
-        $scope.getPage($scope.page.pages, filters);
+        $scope.getPage($scope.page.pages);
     }
 
     $scope.getPage = function(page) {

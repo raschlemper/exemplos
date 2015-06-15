@@ -4,7 +4,6 @@
 
 'use strict';
 
-// Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express');
@@ -20,7 +19,7 @@ require('./routes')(app);
 
 // Start server
 server.listen(config.port, config.ip, function() {
-    console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));
+    console.log('Express server listening on %s:%d, in %s mode', process.env.IP_ADDRESS, process.env.PORT_ADDRESS, app.get('env'));
 });
 
 // Expose app
