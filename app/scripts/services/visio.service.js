@@ -51,7 +51,7 @@ app.factory("VisioService", function($http, $q) {
     _visioService.getByHashid = function(hashid, callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
-        $http.get('/financeiro/visio',{params:{hashid: hashid}})
+        $http.get('/financeiro/visio/' + hashid, {})
             .success(function(data) {
                 deferred.resolve(data);
                 return cb();

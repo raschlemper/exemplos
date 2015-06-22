@@ -1,8 +1,32 @@
+/*.btn-2b {
+    border-radius: 0px 0px 5px 5px;
+}
+.btn-2 {
+    background: #CB4E4E none repeat scroll 0% 0%;
+    box-shadow: 0px 6px #AB3C3C;
+    transition: none 0s ease 0s;
+    height: 90% !important;
+}
+
+.btn-2b:hover {
+    box-shadow: 0px 8px #AB3C3C;
+    top: -2px;
+}*/
+
+a:hover, a:focus{
+    text-decoration: none !important;
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
     color: #000;
     padding: 0.2em 0;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
 }
 
 .title-step {

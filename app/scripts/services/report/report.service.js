@@ -1,4 +1,4 @@
-app.factory("ReportNewService", function(DataGrouperService, ComponentService, LinkService, PageService, 
+app.factory("ReportNewService", function(DataGrouperService, ComponentService, LinkService, PageService,
     ReportPageService, ReportComponentService, ReportFormatterService) {
 
     var report = {};
@@ -60,7 +60,7 @@ app.factory("ReportNewService", function(DataGrouperService, ComponentService, L
     }
 
     /* **************************************************************************** */
-    
+
 
     var getValueFields = function(filters) {
         var values = _.pluck(filters, 'value');
@@ -88,18 +88,19 @@ app.factory("ReportNewService", function(DataGrouperService, ComponentService, L
         var fields = getValueFields(filters);
         return LinkService.links(registers, filters, fields);
     }
-    
+
     var formatComponents = function(containers, page) {
-        return _.map(containers, function(container) {                
-            return { "components" : _.map(container.components, function(component) {
-                    return ComponentService.create(page, component);
-                })
-            }
+         _.map(containers, function(container) {
+             container.components = _.map(container.components, function(component) {
+                return ComponentService.create(page, component);
+            })
         });
+        return containers;
     }
 
     var page = function(visio, page) {
         visio.layout.containers = formatComponents(visio.layout.containers, page);
+        console.log(123, visio.layout);
         return visio;
     }
 

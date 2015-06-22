@@ -35,15 +35,7 @@
             "_id": "555f88eebe6354bb237607ee",
             "label": "Detalhes",
             "name": "details",
-            "column": 8,
-            "line": 25,
-            "type": "table",
-            "data": {}
-        }, {
-            "_id": "555f88eebe6354bb237607ef",
-            "label": "Total",
-            "name": "total",
-            "column": 4,
+            "column": 12,
             "line": 25,
             "type": "table",
             "data": {}
@@ -54,7 +46,7 @@
             "column": 12,
             "line": 25,
             "offsetLine": 1,
-            "type": "table",
+            "type": "text",
             "data": {}
         }]
     }],
@@ -108,7 +100,7 @@
             "line": 25,
             "offsetLine": 1,
             "data": {},
-            "type": "table"
+            "type": "text"
         }]
     }],
     "name": "Layout normal",

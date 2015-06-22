@@ -18,7 +18,7 @@ module.exports = function(app) {
     app.set('appPath', path.join(config.root, 'public'));
   }
 
-  if ('development' === env || 'test' === env) {
+  if ('development' === env || 'test' === env || 'homologation' === env) {
     app.use(express.static(path.join(config.root, 'app')));
     app.set('appPath', path.join(config.root, 'app'));
   }

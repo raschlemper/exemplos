@@ -14,9 +14,11 @@ app.directive('block', [function() {
             offsetLine: "=",
             lineHeight: "=",
             component: "=",
-            previewBlock: "="
+            previewBlock: "=",
+            verticalAlign: "="
         },
         link: function(scope, element, attrs, ctrls) {
+            
             scope.getColumn = function() {
                 return 'col-md-' + scope.columns;
             }
@@ -43,7 +45,13 @@ app.directive('block', [function() {
 
             scope.isGroup = function() {
                 if (scope.group) {
-                    scope.inline = "display: inline-group;";
+                    return "display: inline-group;";
+                }
+            }
+
+            scope.isVerticalAlign = function(){
+                if(scope.verticalAlign){
+                    return "vertical-align";
                 }
             }
 

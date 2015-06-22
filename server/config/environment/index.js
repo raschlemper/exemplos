@@ -18,13 +18,14 @@ var all = {
   // Root path of server
   root: path.normalize(__dirname + '/../../..'),
 
+  // Server ip
   ip: process.env.FINANCEIRO_IP_ADDRESS || "localhost",
 
   // Server port
   port: process.env.FINANCEIRO_PORT_ADDRESS || 9000,
 
   // Should we populate the DB with sample data?
-  // seedDB: false,
+  seedDB: false,
 
   // MongoDB connection options
   mongo: {

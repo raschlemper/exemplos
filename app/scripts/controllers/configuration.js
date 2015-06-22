@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService) {
+app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService, BlockService) {
 
     $scope.visio = {};
     $scope.templates = [];
@@ -17,6 +17,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
     $scope.totalItens = 0;
     $scope.selectedsFiltered = [];
     $scope.groups = [];
+    $scope.formats = [];
     $scope.form = {};
     $scope.edit = false;
     $scope.agrupador = {};
@@ -33,24 +34,32 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
     $scope.totalPorPagina = 3;
     $scope.paginaAtual = 1;
 
+    $scope.mudaPagina = function(pagina) {
+        $scope.paginaAtual = pagina;
+        filtraSelecionados();
+    };
+
     $scope.editComponent = function(component) {
         $scope.component = component;
         if (component.type === 'table' || component.type === 'list') {
             if (!$scope.component.data) {
                 $scope.component.data = {
-                    'fields': []
+                    'fields': [],
+                    'format': {'type':'list'}
                 };
+                $scope.selectedsFiltered = [];
+            } else {
                 $scope.selectedsFiltered = [];
             }
         }
         getCamposMovimento();
-    }
+    };
 
     $scope.selectTemplate = function() {
         $scope.visio.layout = $scope.selection.template;
         $scope.visio.layout.templateId = $scope.selection.template._id;
         console.log($scope.visio.layout.templateId);
-    }
+    };
 
     $scope.saveFields = function() {
         for (var i = 0; i < $scope.visio.layout.containers.length; i++) {
@@ -60,9 +69,10 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                 }
             };
         };
-    }
+    };
 
     var carregaVisio = function() {
+        BlockService.block("Carregando configurações...");
         if ($routeParams.hashid) {
             VisioService.service.getByHashid($routeParams.hashid).then(function(data) {
                     $scope.visio = data[0];
@@ -75,28 +85,29 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             $scope.visio.layout = {};
         }
         getTemplates();
-    }
+        BlockService.stop();
+    };
 
     var getTemplates = function() {
-            TemplateService.service.getAll()
-                .then(function(data) {
-                    $scope.templates = data;
-                    if (!$routeParams.hashid) {
-                        $scope.selection.template = data[0];
-                        $scope.visio.layout = data[0];
-                        $scope.visio.layout.templateId = data[0]._id;
-                    } else {
-                        var selecionado = $scope.templates.filter(function(value) {
-                            return value._id == $scope.visio.layout.templateId;
-                        });
-                        $scope.selection.template = selecionado[0];
-                    }
-                })
-                .catch(function(err) {
-                    return console.log(err);
-                });
-        }
-        //define os menus superiores para o wizard
+        TemplateService.service.getAll()
+            .then(function(data) {
+                $scope.templates = data;
+                if (!$routeParams.hashid) {
+                    $scope.selection.template = data[0];
+                    $scope.visio.layout = data[0];
+                    $scope.visio.layout.templateId = data[0]._id;
+                } else {
+                    var selecionado = $scope.templates.filter(function(value) {
+                        return value._id == $scope.visio.layout.templateId;
+                    });
+                    $scope.selection.template = selecionado[0];
+                }
+            })
+            .catch(function(err) {
+                return console.log(err);
+            });
+    };
+    //define os menus superiores para o wizard
     $scope.menus = [{
         ordem: 1,
         titulo: "Visão"
@@ -108,13 +119,13 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         titulo: "Campos"
     }, {
         ordem: 4,
-        titulo: "Configuração"
+        titulo: "Resumo"
     }];
 
     $scope.makePreview = function() {
         TemplateService.service.setOptionPreview($scope.visio.layout);
         $location.path("/preview");
-    }
+    };
 
     $scope.isValid = function(booleano) {
         if (booleano === true) {
@@ -147,7 +158,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             .catch(function(err) {
                 return console.log(err);
             });
-    }
+    };
 
     $scope.addCampo = function(label) {
         if (!label.selected) {
@@ -162,18 +173,20 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         $scope.selectedsFiltered = $scope.component.data.fields;
         totalItens();
         filtraSelecionados();
-    }
+    };
 
     $scope.removeCampo = function(selected) {
         selected.selected = false;
         $scope.component.data.fields = _.without($scope.component.data.fields, _.findWhere($scope.component.data.fields, {
             _id: selected._id
         }));
+        if ($scope.component.data.formulas) {
+            removeFieldFromGroup(selected);
+        };
         $scope.selectedsFiltered = $scope.component.data.fields;
-        removeFieldFromGroup(selected);
         totalItens();
         filtraSelecionados();
-    }
+    };
 
     $scope.saveVisio = function() {
         if (!$routeParams.hashid) {
@@ -184,12 +197,12 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             VisioService.service.update($scope.visio);
         }
         $location.path("/main");
-    }
+    };
 
     var filtraSelecionados = function() {
         var pagina = $scope.paginaAtual - 1;
         $scope.selectedsFiltered = $filter('startPage')($scope.component.data.fields, pagina * $scope.totalPorPagina);
-    }
+    };
 
     $scope.tab = 1;
 
@@ -201,8 +214,21 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             if (!isSelected) {
                 $scope.groups.push(groupSelected);
             }
-        } else {
+        } else if (groupSelected) {
             $scope.groups.push(groupSelected);
+        }
+    };
+
+    $scope.addFieldFormat = function(groupSelected) {
+        if ($scope.formats.length) {
+            var isSelected = _.findWhere($scope.formats, {
+                _id: groupSelected._id
+            });
+            if (!isSelected) {
+                $scope.formats.push(groupSelected);
+            }
+        } else if (groupSelected) {
+            $scope.formats.push(groupSelected);
         }
     };
 
@@ -212,11 +238,18 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         }));
     };
 
+    $scope.removeFieldFormat = function(field) {
+        $scope.formats = _.without($scope.formats, _.findWhere($scope.formats, {
+            _id: field._id
+        }));
+    };
+
     $scope.createGrouper = function() {
         if (!$scope.component.data.formulas) {
             $scope.component.data.formulas = [];
         };
         $scope.agrupador.groups = $scope.groups;
+        $scope.agrupador.alias = "cd_totalizer_" + new Date();
         if ($scope.edit) {
             for (var i = $scope.component.data.formulas.length - 1; i >= 0; i--) {
                 if ($scope.component.data.formulas[i].label === $scope.agrupador.label) {
@@ -233,12 +266,52 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         $scope.setTab(1);
     };
 
+    $scope.createFormat = function(format) {
+        if(!$scope.component.data.format){
+            $scope.component.data.format = {};
+        }
+        if ($scope.editFormat) {
+            $scope.format = $scope.component.data.format;
+        } else {
+            $scope.component.data.format['type'] = format.type;
+            $scope.component.data.format['fieldName'] = createFieldBasicFormat(format, true);
+            $scope.component.data.format['fieldValue'] = createFieldBasicFormat(format, false);
+            $scope.component.data.format['fields'] = $scope.formats;
+        }
+        $scope.formats = [];
+        $scope.editFormat = false;
+        $scope.format = {};
+        $scope.setTab(3);
+    };
+
+    var createFieldBasicFormat = function(input, isKey) {
+        var field = {};
+        field['isKey'] = isKey;
+        field['type'] = "number";
+        field['filter'] = {};
+        if (isKey) {
+            field['label'] = input.fieldName.key.label;
+            field['field'] = "cd_format_key_"+Math.floor(10000000000 + Math.random() * 90000000000);
+        } else {
+            field['label'] = input.fieldValue.key.label;
+            field['field'] = "cd_format_value_"+Math.floor(10000000000 + Math.random() * 90000000000);
+        };
+        return field;
+    };
+
     $scope.updateTotalizer = function(totalizer) {
         $scope.agrupador = totalizer;
         $scope.groups = totalizer.groups;
         $scope.edit = true;
         $scope.setTab(2);
-    }
+    };
+
+    $scope.updateFormat = function(format) {
+        $scope.format = format;
+        $scope.formats = format.fields;
+        $scope.editFormat = true;
+        $scope.setTab(3);
+    };
 
     $scope.setTab = function(tabId) {
         $scope.tab = tabId;
@@ -249,7 +322,6 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
     };
 
     $scope.removeTotalizer = function(totalizer) {
-        console.log(totalizer);
         $scope.component.data.formulas = _.without($scope.component.data.formulas, _.findWhere($scope.component.data.formulas, {
             alias: totalizer.alias
         }));
@@ -265,11 +337,11 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                 $scope.component.data.formulas[i].groups = groups;
             };
         }
-    }
+    };
 
     var init = function() {
         carregaVisio();
-    }
+    };
 
     init();
 

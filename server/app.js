@@ -19,7 +19,8 @@ require('./routes')(app);
 
 // Start server
 server.listen(config.port, config.ip, function() {
-    console.log('Express server listening on %s:%d, in %s mode', process.env.IP_ADDRESS, process.env.PORT_ADDRESS, app.get('env'));
+    console.log('Express server listening on %s:%d, in %s mode', 
+    	process.env.FINANCEIRO_IP_ADDRESS, process.env.FINANCEIRO_PORT_ADDRESS, app.get('env'));
 });
 
 // Expose app

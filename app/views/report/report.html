@@ -34,14 +34,13 @@
     <div class="col-md-10 report"> 
 
         <div class="page-portrait container-fluid">
-
             <layout configuracao="visio.layout.configuration" preview="false">
                 <div id="header-title" class="col-lg-12" ng-show="report.title">
                     <div class="page-header">
                         <h3>{{ report.title }}</h3>
                     </div>
                 </div>
-                <div block="container.type" columns="container.column" lines="0" group="false" line-height="visio.layout.configuration.full.lineHeight" preview-block="true" ng-repeat="container in visio.layout.containers">
+                <div block="container.type" columns="container.column" lines="0" group="false" line-height="visio.layout.configuration.full.lineHeight" preview-block="true" ng-repeat="container in visio.layout.containers" vertical-align="container.type==='header'">
                     <div block="component.name" columns="component.column" lines="0" line-height="visio.layout.configuration.full.lineHeight" preview-block="true" ng-repeat="component in container.components">
                         <widget data="component.data" type="component.type"></widget>
                     </div>

@@ -18,7 +18,8 @@ var app = angular.module('exemplosApp', [
     'ngSanitize',
     'ngTouch',
     'ngLocale',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'blockUI'
   ]);
 
 
