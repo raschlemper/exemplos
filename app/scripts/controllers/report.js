@@ -55,3 +55,11 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
     createReport();
 
 });
+
+var templatePendencia = "<TD class=txtdiversos5 width=133><B>"+
+    "<FONT color='#ff0000'>"+
+    "* </FONT>Pendencias:</B></TD>" + 
+    "<TD class=txtNormal width=462>"+
+    "<a href=&quot"+"JavaScript:execute('showLinkPendencias', '');"+ "&quot class=txtdiversos5>"+
+    "Clique para visualizar a pendência"
+    +"</a></TD>";

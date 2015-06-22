@@ -45,7 +45,9 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             if (!$scope.component.data) {
                 $scope.component.data = {
                     'fields': [],
-                    'format': {'type':'list'}
+                    'format': {
+                        'type': 'list'
+                    }
                 };
                 $scope.selectedsFiltered = [];
             } else {
@@ -58,8 +60,12 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
     $scope.selectTemplate = function() {
         $scope.visio.layout = $scope.selection.template;
         $scope.visio.layout.templateId = $scope.selection.template._id;
-        console.log($scope.visio.layout.templateId);
+        clear();
     };
+
+    var clear = function() {
+        $scope.component = {};
+    }
 
     $scope.saveFields = function() {
         for (var i = 0; i < $scope.visio.layout.containers.length; i++) {
@@ -267,7 +273,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
     };
 
     $scope.createFormat = function(format) {
-        if(!$scope.component.data.format){
+        if (!$scope.component.data.format) {
             $scope.component.data.format = {};
         }
         if ($scope.editFormat) {
@@ -291,10 +297,10 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         field['filter'] = {};
         if (isKey) {
             field['label'] = input.fieldName.key.label;
-            field['field'] = "cd_format_key_"+Math.floor(10000000000 + Math.random() * 90000000000);
+            field['field'] = "cd_format_key_" + Math.floor(10000000000 + Math.random() * 90000000000);
         } else {
             field['label'] = input.fieldValue.key.label;
-            field['field'] = "cd_format_value_"+Math.floor(10000000000 + Math.random() * 90000000000);
+            field['field'] = "cd_format_value_" + Math.floor(10000000000 + Math.random() * 90000000000);
         };
         return field;
     };
