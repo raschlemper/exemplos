@@ -23,7 +23,7 @@
                                 <td>{{visio.name}}</td>
                                 <td>{{visio.description}}</td>
                                 <td>{{visio.hashid}}</td>
-                                <td>{{visio.createDate}}</td>
+                                <td>{{visio.createDate | date:'dd/MM/yyyy'}}</td>
                                 <td>Financeiro</td>
                                 <td>
                                     <button class="btn btn-default btn-flat" ng-click="updateVisio(visio)"><i class="icon-note"></i></button>
