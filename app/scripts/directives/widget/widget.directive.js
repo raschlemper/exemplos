@@ -12,104 +12,26 @@ app.directive('widget', [function() {
         link: function(scope, element, attrs, ctrls) {
 
             var isTable = function() {
-                console.log("Table: " + scope.type);
-                console.log(scope.data);
+
                 if (scope.type === 'table') {
-                   /* scope.data = {
-                        'heads': [{
-                            'name': 'teste'
-                        }, {
-                            'name': 'teste1'
-                        }, {
-                            'name': 'teste2'
-                        }, {
-                            'name': 'teste3'
-                        }],
-                        'rows': [{
-                            'values': [{
-                                'value': 'teste'
-                            }, {
-                                'value': 'teste1'
-                            }, {
-                                'value': 'teste2'
-                            }, {
-                                'value': 'teste3'
-                            }]
-                        }, {
-                            'values': [{
-                                'value': 'teste'
-                            }, {
-                                'value': 'teste1'
-                            }, {
-                                'value': 'teste2'
-                            }, {
-                                'value': 'teste3'
-                            }]
-                        }, {
-                            'values': [{
-                                'value': 'teste'
-                            }, {
-                                'value': 'teste1'
-                            }, {
-                                'value': 'teste2'
-                            }, {
-                                'value': 'teste3'
-                            }]
-                        }, {
-                            'values': [{
-                                'value': 'teste'
-                            }, {
-                                'value': 'teste1'
-                            }, {
-                                'value': 'teste2'
-                            }, {
-                                'value': 'teste3'
-                            }]
-                        }, {
-                            'values': [{
-                                'value': 'teste'
-                            }, {
-                                'value': 'teste1'
-                            }, {
-                                'value': 'teste2'
-                            }, {
-                                'value': 'teste3'
-                            }]
-                        }, {
-                            'values': [{
-                                'value': 'teste'
-                            }, {
-                                'value': 'teste1'
-                            }, {
-                                'value': 'teste2'
-                            }, {
-                                'value': 'teste3'
-                            }]
-                        }, {
-                            'values': [{
-                                'value': 'teste'
-                            }, {
-                                'value': 'teste1'
-                            }, {
-                                'value': 'teste2'
-                            }, {
-                                'value': 'teste3'
-                            }]
-                        }]
-                    };*/
+                    console.log("Table: " + scope.type);
+                    console.log(scope.data);
                     scope.table = true;
                 }
             };
 
             var isText = function() {
-                console.log("Text: " + scope.type);
+
                 if (scope.type === 'text') {
+                    console.log("Text: " + scope.type);
                     scope.text = true;
+                    if(Object.keys(scope.data[0]).length === 0 ){
+                        scope.data[0] = "";
+                    }
                 }
             }
 
             var isImage = function() {
-                
                 if (scope.type === 'image') {
                     console.log("Image: ", scope.data);
                     scope.image = true;
@@ -117,37 +39,16 @@ app.directive('widget', [function() {
             }
 
             var isTitle = function() {
-                console.log("Title: " + scope.type);
                 if (scope.type === 'title') {
+                    console.log("Title: " + scope.type);
                     scope.title = true;
                 }
             }
 
             var isList = function() {
-                console.log("List: " + scope.type);
                 if (scope.type === 'list') {
+                    console.log("List: " + scope.type);
                     scope.list = true;
-/*                    scope.data = [{
-
-                        "head": "head1",
-                        "value": "value1"
-
-                    }, {
-
-                        "head": "head2",
-                        "value": "value2"
-
-                    }, {
-
-                        "head": "head3",
-                        "value": "value3"
-
-                    }, {
-
-                        "head": "head4",
-                        "value": "value4"
-
-                    }];*/
                 }
             }
 

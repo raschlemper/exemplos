@@ -247,16 +247,16 @@
                                                                                 <td class="hidden-480">
                                                                                     {{field.description}}
                                                                                 </td>
-                                                                                <td ng-if="field.formula==='sum'" class="hidden-480">
+                                                                                <td ng-if="field.type==='sum'" class="hidden-480">
                                                                                     Soma
                                                                                 </td>
-                                                                                <td ng-if="field.formula==='rest'" class="hidden-480">
+                                                                                <td ng-if="field.type==='rest'" class="hidden-480">
                                                                                     Saldo
                                                                                 </td>
-                                                                                <td class="hidden-480" ng-if="field.groups.length">
-                                                                                    <span class="label label-sm label-success" style="margin:5px" ng-repeat="field in field.groups">{{field.name}}</span>
+                                                                                <td class="hidden-480" ng-if="field.group.length">
+                                                                                    <span class="label label-sm label-success" style="margin:5px" ng-repeat="field in field.group">{{field.name}}</span>
                                                                                 </td>
-                                                                                <td ng-if="!field.groups.length"> <span ng-if="!field.groups.length" class="label label-md label-danger">Selecione um campo para o totalizador!</span></td>
+                                                                                <td ng-if="!field.group.length"> <span ng-if="!field.group.length" class="label label-md label-danger">Selecione um campo para o totalizador!</span></td>
                                                                                 <td class="hidden-480">
                                                                                     <button class="btn btn-default btn-flat" ng-click="removeTotalizer(field)"><i class="icon-close"></i></button>
                                                                                     <button class="btn btn-default btn-flat" ng-click="updateTotalizer(field)"><i class="icon-note"></i></button>
@@ -278,7 +278,7 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Fórmula:</label>
-                                                                            <select ng-model="agrupador.formula" class="form-control">
+                                                                            <select ng-model="agrupador.type" class="form-control">
                                                                                 <option value="sum">Soma</option>
                                                                                 <option value="rest">Saldo</option>
                                                                             </select>
@@ -308,7 +308,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-12 " ng-if="tab===3" style="margin-top:50px">
-                                                                    <table class="table table-bordered table-hover" ng-if="component.data.format">
+                                                                    <table class="table table-bordered table-hover" ng-if="component.data.format.fields" >
                                                                         <thead>
                                                                             <tr class="active">
                                                                                 <th>
@@ -337,23 +337,22 @@
                                                                                     Em coluna
                                                                                 </td>
                                                                                 <td class="hidden-480">
-                                                                                    {{component.data.format.fieldName.label}}
+                                                                                    {{component.data.format.fieldName.name}}
                                                                                 </td>
                                                                                 <td class="hidden-480">
-                                                                                    {{component.data.format.fieldValue.label}}
+                                                                                    {{component.data.format.fieldValue.name}}
                                                                                 </td>
                                                                                 <td class="hidden-480" ng-if="component.data.format.fields">
                                                                                     <span class="label label-sm label-success" style="margin:5px" ng-repeat="field in component.data.format.fields">{{field.name}}</span>
                                                                                 </td>
-<!--                                                                                 <td ng-if="!field.groups.length"> <span ng-if="!field.groups.length" class="label label-md label-danger">Selecione um campo para o totalizador!</span></td>
                                                                                 <td class="hidden-480">
-                                                                                    <button class="btn btn-default btn-flat" ng-click="removeTotalizer(field)"><i class="icon-close"></i></button>
-                                                                                    <button class="btn btn-default btn-flat" ng-click="updateTotalizer(field)"><i class="icon-note"></i></button>
-                                                                                </td> -->
+                                                                                    <button class="btn btn-default btn-flat" ng-click="removeFormatter()"><i class="icon-close"></i></button>
+                                                                                    <button class="btn btn-default btn-flat" ng-click="updateFormat(component.data.format)"><i class="icon-note"></i></button>
+                                                                                </td> 
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
-                                                                    <span ng-if="!component.data.format" class="pontilhado">Não há nenhum agrupamento para este componente</span>
+                                                                    <span ng-if="!component.data.format.fields" class="pontilhado">Não há nenhum agrupamento para este componente</span>
                                                                 </div>
                                                                 <div class="col-lg-12 pull-left" ng-if="tab===4" style="margin-top:50px">
                                                                     <div class="form-group col-lg-6">
@@ -375,7 +374,7 @@
                                                                             <textarea cols="4" class="form-control" placeholder="Nome do campo" ng-model="format.description" />
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            <label>Quais campos selecionados deseja totalizar?
+                                                                            <label>Quais campos selecionados deseja agrupar?
                                                                             </label>
                                                                             <div class="form-inline">
                                                                                 <select ng-model="groupSelected" class="form-control" ng-options="selected.name for selected in selectedsFiltered">

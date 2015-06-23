@@ -1,5 +1,4 @@
-app.factory("ReportNewService", function(DataGrouperService, ComponentService, LinkService, PageService,
-    ReportPageService, ReportComponentService, ReportFormatterService) {
+app.factory("ReportNewService", function( ComponentService, LinkService, PageService) {
 
     var report = {};
     var link = {
