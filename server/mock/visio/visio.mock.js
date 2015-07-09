@@ -22,7 +22,7 @@ function getConfig(file){
 }
 
 Visio.find({}).remove(function() {
-  var jsondata = getConfig('/visio.json'); 
+  var jsondata = getConfig('/test/visio_line.json'); 
   Visio.create(jsondata, function() {
       console.log('finished populating visio');
   });
