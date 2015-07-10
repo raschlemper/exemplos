@@ -23,12 +23,15 @@ var app = angular.module('exemplosApp', [
   ]);
 
 
-app.config(function ($routeProvider, $locationProvider, $httpProvider) {
+app.config(function ($routeProvider, $locationProvider, $httpProvider, blockUIConfig) {
     // $httpProvider.defaults.useXDomain = true;
     // $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost';
     // $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = ['GET, POST, OPTIONS, PUT, PATCH, DELETE'];
     // $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = 'X-Requested-With,content-type';
     // $httpProvider.defaults.headers.common['Access-Control-Allow-Credentials'] = true;
+
+    blockUIConfig.message = 'Carregando...';
+    blockUIConfig.delay = 100;
 
     $routeProvider
       .when('/', {
