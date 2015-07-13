@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService) {
+app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService, MessageService) {
 
     $scope.visio = {};
     $scope.templates = [];
@@ -31,7 +31,11 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         }
     };
 
-    $scope.totalPorPagina = 3;
+   $scope.selectComponent = function(index){  //function that sets the value of selectedRow to current index
+     $scope.selectedComponent = index;
+    }
+
+    $scope.totalPorPagina = 4;
     $scope.paginaAtual = 1;
 
     $scope.mudaPagina = function(pagina) {
@@ -65,6 +69,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
 
     var clear = function() {
         $scope.component = {};
+        $scope.selectedComponent = {};
     }
 
     $scope.saveFields = function() {
@@ -75,6 +80,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                 }
             };
         };
+        MessageService.success('Campos salvos com sucesso!');
     };
 
     var carregaVisio = function() {
@@ -85,6 +91,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                     getTemplates();
                 })
                 .catch(function(err) {
+                    MessageService.danger('Erro ao recuperar visão: ' + err);
                     return console.log(err);
                 });
         } else {
@@ -110,6 +117,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                 }
             })
             .catch(function(err) {
+                MessageService.danger('Erro ao recuperar templates: ' + err);
                 return console.log(err);
             });
     };
@@ -194,6 +202,10 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         filtraSelecionados();
     };
 
+    $scope.message = function(alert){
+        MessageService.success(alert);
+    }
+
     $scope.saveVisio = function() {
         if (!$routeParams.hashid) {
             $scope.visio.createDate = new Date();
@@ -202,6 +214,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         } else {
             VisioService.service.update($scope.visio);
         }
+        MessageService.success('Visão salva com sucesso!');
         $location.path("/main");
     };
 

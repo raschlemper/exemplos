@@ -19,7 +19,8 @@ var app = angular.module('exemplosApp', [
     'ngTouch',
     'ngLocale',
     'ui.bootstrap',
-    'blockUI'
+    'blockUI',
+    'ngToast'
   ]);
 
 

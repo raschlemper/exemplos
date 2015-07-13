@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the exemplosApp
  */
-app.controller('MainCtrl', function($scope, $location, $filter, VisioService) {
+app.controller('MainCtrl', function($scope, $location, $filter, VisioService, MessageService) {
 
     $scope.visios = [];
     $scope.totalItens = 0;
@@ -40,6 +40,7 @@ app.controller('MainCtrl', function($scope, $location, $filter, VisioService) {
                 filtraSelecionados();
             })
             .catch(function(err) {
+                MessageService.danger('Erro ao carregar visões: ' + err);
                 return console.log(err);
             });
     };

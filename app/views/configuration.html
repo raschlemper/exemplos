@@ -18,7 +18,7 @@
                 <step ordem="2" title="'Definir template'">
                     <div class="row">
                         <div class="col-md-9 text-center">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default" style="min-height: 500px;">
                                 <div class="panel-heading">Templates</div>
                                 <div class="panel-body">
                                     <div class="row layout-line">
@@ -95,8 +95,8 @@
                                     <layout configuracao="visio.layout.configuration" preview="true">
                                         <div block="container.type" columns="container.column" lines="container.line" group="false" line-height="5" preview-block="false" ng-repeat="container in visio.layout.containers">
                                             <div block="component.name" columns="component.column" lines="component.line" line-height="5" preview-block="true" ng-repeat="component in container.components">
-                                                <div class="layout layout-container layout-border" ng-click="editComponent(component)">
-                                                    <div class="layout layout-container container-column">
+                                                <div class="layout-full wide_buttons" ng-click="editComponent(component)">
+                                                    <div class="button gray" ng-class="{'gray-selected':component._id === selectedComponent}" ng-click="selectComponent(component._id)">
                                                         <span>{{component.label}}</span>
                                                     </div>
                                                 </div>
@@ -105,7 +105,7 @@
                                     </layout>
                                 </div>
                                 <div class="col-md-6 container-fluid pull-right">
-                                    <div class="panel panel-info" ng-if="component.type">
+                                    <div class="panel panel-info" ng-if="component.type" style="margin-top: 15px;">
                                         <div class="panel-heading">
                                             <h3 class="panel-title"><i class="icon-wrench"></i>   {{component.label}}</h3>
                                         </div>
@@ -153,21 +153,21 @@
                                                                 <h3>Escolher campos para componente</h3>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <div class="col-md-12 form-group" style="margin-left:20px;">
+                                                                <div class="col-md-12 form-group" style="margin-left:13px;">
                                                                     <label>Pesquisar campos</label>
                                                                     <input type="text" class="form-control" placeholder="Digite o nome do campo desejado" ng-model="busca.name" />
                                                                 </div>
-                                                                <div class="col-md-3">
-                                                                    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="margin-top:30px; max-height:330px; overflow-y: scroll; ">
+                                                                <div class="col-md-3" style="margin-top: 15px;">
+                                                                    <label style="margin-left: 13px; margin-bottom:15px">Selecionar campos</label>
+                                                                    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="margin-top:0px; max-height:355px; overflow-y: scroll; ">
                                                                         <ul class="nav bs-docs-sidenav">
-                                                                            <label>Selecionar campos</label>
                                                                             <li class="" ng-repeat="label in campos | filter:busca | orderBy:label.order">
                                                                                 <a ng-click="addCampo(label)" ng-class="{'docs-active': label.selected}">{{label.name}}</a>
                                                                             </li>
                                                                         </ul>
                                                                     </nav>
                                                                 </div>
-                                                                <div class="col-md-8" style="padding:45px; margin-left:50px;">
+                                                                <div class="col-md-8" style="padding:10px; margin-left:50px; margin-left: 71px; margin-top: 41px;">
                                                                     <div id="fields">
                                                                         <table class="table table-bordered table-hover">
                                                                             <thead>
@@ -175,7 +175,6 @@
                                                                                     <th>Nome</th>
                                                                                     <th>Chave</th>
                                                                                     <th>Valor</th>
-                                                                                    <th>Grupo</th>
                                                                                     <th class="col-md-2">Ações</th>
                                                                                 </tr>
                                                                             </thead>
@@ -185,20 +184,18 @@
                                                                                     <td>{{selecionado.name}}</td>
                                                                                     <td>{{selecionado.key[0].label}}</td>
                                                                                     <td>{{selecionado.value[0].label}}</td>
-                                                                                    <td ng-if="!selecionado.formula">Não possui</td>
-                                                                                    <td ng-if="selecionado.formula">{{selecionado.value[0].label}}</td>
                                                                                     <td class="col-md-2">
                                                                                         <button class="btn btn-default btn-flat" ng-click="removeCampo(selecionado)"><i class="icon-close"></i></button>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
-                                                                        <pagination ng-if="component.data.fields.length" total-items="totalItens" ng-model="paginaAtual" style="margin-left:51px" items-per-page="totalPorPagina" ng-change="mudaPagina(paginaAtual)" class="pagination-sm" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+                                                                        <pagination style="margin:0px; margin-left:50px" ng-if="component.data.fields.length" total-items="totalItens" ng-model="paginaAtual" style="margin-left:51px" items-per-page="totalPorPagina" ng-change="mudaPagina(paginaAtual)" class="pagination-sm" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
                                                                     </div>
                                                                     <div ng-if="!component.data.fields.length" class="pontilhado">Nenhum campo selecionado.</div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer" style="margin-top:50% !important">
+                                                            <div class="modal-footer" style="margin-top:55% !important">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                                                 <button type="button" ng-click="saveFields()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
                                                             </div>
@@ -267,34 +264,37 @@
                                                                 </div>
                                                                 <div class="col-lg-12 pull-left" ng-if="tab===2" style="margin-top:50px">
                                                                     <div class="form-group col-lg-6">
-                                                                        <div class="form-group">
-                                                                            <label>Nome do campo:</label>
-                                                                            <input type="text" class="form-control" placeholder="Nome do campo" ng-model="agrupador.name" />
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label>Descrição:</label>
-                                                                            <textarea cols="4" class="form-control" placeholder="Descrição" ng-model="agrupador.description" />
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label>Fórmula:</label>
-                                                                            <select ng-model="agrupador.type" class="form-control">
-                                                                                <option value="sum">Soma</option>
-                                                                                <option value="rest">Saldo</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label>Quais campos selecionados deseja totalizar?
-                                                                            </label>
-                                                                            <div class="form-inline">
-                                                                                <select ng-model="groupSelected" class="form-control" ng-options="selected.name for selected in selectedsFiltered">
-                                                                                    <option></option>
-                                                                                </select>
-                                                                               <!--  <button class="btn btn-default" ng-click="addFieldGroup(groupSelected)"><i class="icon-plus"></i></button> -->
+                                                                        <form id="totalizadorForm">
+                                                                            <div class="form-group">
+                                                                                <label>Nome do campo:</label>
+                                                                                <input type="text" class="form-control" placeholder="Nome do campo" ng-model="agrupador.name" name="nome" required  ng-class="{'has-error': totalizadorForm.nome.$invalid && !totalizadorForm.nome.$pristine }" />
+                                                                                 <p ng-show="totalizadorForm.nome.$invalid && !totalizadorForm.nome.$pristine" class="help-block">O nome é obrigatório.</p>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <button type="button" class="btn btn-primary" ng-click="createGrouper(groupSelected)">Salvar</button>
-                                                                        </div>
+                                                                            <div class="form-group">
+                                                                                <label>Descrição:</label>
+                                                                                <textarea cols="4" class="form-control" placeholder="Descrição" ng-model="agrupador.description" />
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Fórmula:</label>
+                                                                                <select name="type" ng-model="agrupador.type" class="form-control" ng-class="{'has-error': totalizadorForm.type.$invalid && !totalizadorForm.type.$pristine }" required>
+                                                                                    <option value="sum">Soma</option>
+                                                                                    <option value="rest">Saldo</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Quais campo selecionado você deseja totalizar?
+                                                                                </label>
+                                                                                <div class="form-inline">
+                                                                                    <select name="field" ng-model="groupSelected" class="form-control" ng-options="selected.name for selected in selectedsFiltered" ng-class="{'has-error': totalizadorForm.field.$invalid && !totalizadorForm.field.$pristine }" required>
+                                                                                        <option></option>
+                                                                                    </select>
+                                                                                    <!--  <button class="btn btn-default" ng-click="addFieldGroup(groupSelected)"><i class="icon-plus"></i></button> -->
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <button type="button" class="btn btn-primary"ng-disabled="cadastroForm.$invalid" ng-click="createGrouper(groupSelected)">Adicionar</button>
+                                                                            </div>
+                                                                        </form>
                                                                     </div>
                                                                     <!-- <div class="form-group col-lg-5 pull-right">
                                                                         <div class="well">
@@ -307,7 +307,7 @@
                                                                     </div> -->
                                                                 </div>
                                                                 <div class="col-lg-12 " ng-if="tab===3" style="margin-top:50px">
-                                                                    <table class="table table-bordered table-hover" ng-if="component.data.format.fields" >
+                                                                    <table class="table table-bordered table-hover" ng-if="component.data.format.fields">
                                                                         <thead>
                                                                             <tr class="active">
                                                                                 <th>
@@ -347,7 +347,7 @@
                                                                                 <td class="hidden-480">
                                                                                     <button class="btn btn-default btn-flat" ng-click="removeFormatter()"><i class="icon-close"></i></button>
                                                                                     <button class="btn btn-default btn-flat" ng-click="updateFormat(component.data.format)"><i class="icon-note"></i></button>
-                                                                                </td> 
+                                                                                </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -398,7 +398,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer" style="margin-top:65% !important">
-                                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                                                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="message('Configurações salvas com sucesso!')">Concluir</button>
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                                             </div>
                                                         </div>
@@ -451,7 +451,6 @@
                                                             <td class="hidden-480">{{component.label}}</td>
                                                             <td class="hidden-480" ng-if="component.data.fields">
                                                                 <span class="label label-sm label-success" style="margin:5px; display: inline-block !important;" ng-repeat="field in component.data.fields">{{field.name}}</span>
-
                                                             </td>
                                                             <td class="hidden-480" ng-if="!component.data.fields">
                                                                 <span>Não possui</span>

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService, MovimentoService, VisioService, JsonService) {
+app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService, MovimentoService, VisioService, JsonService, MessageService) {
 
     var index = 0;
     var registers = [];
@@ -20,6 +20,7 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
                 getVisio();
             })
             .catch(function(err) {
+                MessageService.danger('Erro ao recuperar dados do relatório: ' + err);
                 data = [];
             });
     }
@@ -32,6 +33,7 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
                 $scope.getLinks();  
             })
             .catch(function(err) {
+                MessageService.danger('Erro ao criar relatório: ' + err);
                 layout = [];
             });
     }
