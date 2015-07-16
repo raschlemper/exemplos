@@ -15,6 +15,10 @@ app.controller('MainCtrl', function($scope, $location, $filter, VisioService, Me
     $scope.paginaAtual = 1;
     $scope.filtered = [];
 
+    $scope.setVisio = function(visio){
+        $scope.visio = visio;
+    }
+
     $scope.mudaPagina = function(pagina) {
         $scope.paginaAtual = pagina;
         filtraSelecionados();
@@ -46,8 +50,11 @@ app.controller('MainCtrl', function($scope, $location, $filter, VisioService, Me
     };
 
 
-    $scope.removeVisio = function(visio) {
-        VisioService.service.remove(visio);
+    $scope.removeVisio = function() {
+        if($scope.visio){
+            VisioService.service.remove($scope.visio);
+        }
+        $scope.visio = {};
         getVisios();
     }
 

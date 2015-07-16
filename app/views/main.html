@@ -27,7 +27,7 @@
                                 <td>Financeiro</td>
                                 <td>
                                     <button class="btn btn-default btn-flat" ng-click="updateVisio(visio)"><i class="icon-note"></i></button>
-                                    <button class="btn btn-default btn-flat" ng-click="removeVisio(visio)"><i class="icon-close"></i></button>
+                                    <button class="btn btn-default btn-flat" ng-click="setVisio(visio)" data-toggle="modal" data-target="#modalVisio"><i class="icon-close"></i></button>
                                 </td>
                                 <td>
                                     <button class="btn btn-default btn-flat" ng-click="viewReport(visio)"><i class="icon-eye"></i></button>
@@ -39,6 +39,22 @@
                     <div ng-if="!visios.length" class="pontilhado">Para criar uma nova visão, clique no botão "Nova visão".</div>
                     <button class="btn btn-default pull-right" ng-click="newVisio()">Nova visão <i class="icon-doc"></i></button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalVisio" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmação:</h4>
+            </div>
+            <div class="modal-body">
+                Você realmente deseja excluir a visão?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="removeVisio(visio)">Excluir</button>
             </div>
         </div>
     </div>
