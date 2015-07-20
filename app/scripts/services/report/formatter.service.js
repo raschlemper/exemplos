@@ -57,15 +57,6 @@ app.factory("FormatterService", function(DataGrouperService) {
         });
     }
 
-
-
-
-
-
-
-
-
-
     var getValueKey = function(registers, keys) {
         var obj = {};
         _.map(keys, function(key) {

@@ -31,7 +31,7 @@ app.factory("ComponentService", function(DataGrouperService, PageService, Format
         });
     }
 
-    var applyExpression = function(component) {        
+    var applyExpression = function(component) {      
         var data = [];
         var fields = _.where(component.data.fields, { "selected": true });
         _.map(component.data.registers, function(register) {
@@ -68,7 +68,6 @@ app.factory("ComponentService", function(DataGrouperService, PageService, Format
         component = applyFormula(component); 
         // Deve converter as expression de cada field
         component = applyExpression(component);
-
         return component;
     }
 

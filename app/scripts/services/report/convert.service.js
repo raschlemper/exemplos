@@ -35,12 +35,12 @@ app.factory("ConvertService", function($filter, DataGrouperService) {
         return applyFilterItem(registers, field.value);    
     }
 
-    var getFieldValue = function(registers, field) {
-        applyFilter(registers, field);
+    var getFieldValue = function(register, field) {
+        applyFilter(register, field);
         return {
             name: field.name,
-            key: getValueKey(registers, field.key),
-            value: getExpressionValue(registers, field.expression),
+            key: getValueKey(register, field.key),
+            value: getExpressionValue(register, field.expression),
             order: field.order
         };
     }
@@ -52,8 +52,9 @@ app.factory("ConvertService", function($filter, DataGrouperService) {
         });
     }
 
-    var formatField = function(registers, field) {
-        return getFieldValue(registers, field);
+    //Até aqui ok
+    var formatField = function(register, field) {
+        return getFieldValue(register, field);
     }
 
     var formatFields = function(registers, fields) {

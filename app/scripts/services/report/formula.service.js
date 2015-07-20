@@ -49,7 +49,7 @@ app.factory("FormulaService", function(DataGrouperService) {
         var fieldName = fieldFormula.key.field;
     	_.map(fieldsValues, function(field) {
             var obj = {};
-			obj[fieldName] = formulaCallback(register, field, registers);            
+			obj[fieldName] = formulaCallback(register, field, registers);           
             register = _.extend(obj, register);
     	});
     	return register;
@@ -72,6 +72,7 @@ app.factory("FormulaService", function(DataGrouperService) {
         data.fields = addfieldsFormula(data);
         _.map(data.formulas, function(formula) {
             var registers = data.registers;
+            //aqui está o problema do agrupador
             data.registers = _.map(registers, function(register) {
             	var formulaFunction = formulaFactory(formula.type);
                 var values = getValuesFieldFormula(formula.group);

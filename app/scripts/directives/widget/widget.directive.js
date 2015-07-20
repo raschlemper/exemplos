@@ -12,14 +12,12 @@ app.directive('widget', [function() {
         link: function(scope, element, attrs, ctrls) {
 
             var isTable = function() {
-
                 if (scope.type === 'table') {
                     scope.table = true;
                 }
             };
 
             var isText = function() {
-
                 if (scope.type === 'text') {
                     scope.text = true;
                     if(Object.keys(scope.data[0]).length === 0 ){
