@@ -7,13 +7,17 @@
  * # MainCtrl
  * Controller of the exemplosApp
  */
-app.controller('MainCtrl', function($scope, $location, $filter, VisioService) {
+app.controller('MainCtrl', function($scope, $location, $filter, VisioService, MessageService) {
 
     $scope.visios = [];
     $scope.totalItens = 0;
     $scope.totalPorPagina = 6;
     $scope.paginaAtual = 1;
     $scope.filtered = [];
+
+    $scope.setVisio = function(visio){
+        $scope.visio = visio;
+    }
 
     $scope.mudaPagina = function(pagina) {
         $scope.paginaAtual = pagina;
@@ -40,13 +44,17 @@ app.controller('MainCtrl', function($scope, $location, $filter, VisioService) {
                 filtraSelecionados();
             })
             .catch(function(err) {
+                MessageService.danger('Erro ao carregar visões: ' + err);
                 return console.log(err);
             });
     };
 
 
-    $scope.removeVisio = function(visio) {
-        VisioService.service.remove(visio);
+    $scope.removeVisio = function() {
+        if($scope.visio){
+            VisioService.service.remove($scope.visio);
+        }
+        $scope.visio = {};
         getVisios();
     }
 

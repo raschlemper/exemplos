@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService, BlockService) {
+app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService, MessageService) {
 
     $scope.visio = {};
     $scope.templates = [];
@@ -31,7 +31,11 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         }
     };
 
-    $scope.totalPorPagina = 3;
+   $scope.selectComponent = function(index){  //function that sets the value of selectedRow to current index
+     $scope.selectedComponent = index;
+    }
+
+    $scope.totalPorPagina = 4;
     $scope.paginaAtual = 1;
 
     $scope.mudaPagina = function(pagina) {
@@ -65,6 +69,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
 
     var clear = function() {
         $scope.component = {};
+        $scope.selectedComponent = {};
     }
 
     $scope.saveFields = function() {
@@ -75,23 +80,25 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                 }
             };
         };
+        MessageService.success('Campos salvos com sucesso!');
     };
 
     var carregaVisio = function() {
-        BlockService.block("Carregando configurações...");
+        
         if ($routeParams.hashid) {
             VisioService.service.getByHashid($routeParams.hashid).then(function(data) {
                     $scope.visio = data[0];
+                    getTemplates();
                 })
                 .catch(function(err) {
+                    MessageService.danger('Erro ao recuperar visão: ' + err);
                     return console.log(err);
                 });
         } else {
             $scope.visio.campos = [];
             $scope.visio.layout = {};
+            getTemplates();
         }
-        getTemplates();
-        BlockService.stop();
     };
 
     var getTemplates = function() {
@@ -110,6 +117,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                 }
             })
             .catch(function(err) {
+                MessageService.danger('Erro ao recuperar templates: ' + err);
                 return console.log(err);
             });
     };
@@ -194,6 +202,10 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         filtraSelecionados();
     };
 
+    $scope.message = function(alert){
+        MessageService.success(alert);
+    }
+
     $scope.saveVisio = function() {
         if (!$routeParams.hashid) {
             $scope.visio.createDate = new Date();
@@ -202,6 +214,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         } else {
             VisioService.service.update($scope.visio);
         }
+        MessageService.success('Visão salva com sucesso!');
         $location.path("/main");
     };
 
@@ -250,7 +263,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         }));
     };
 
-    $scope.createGrouper = function() {
+    $scope.createGrouper = function(groupSelected) {
         if (!$scope.component.data.formulas) {
             $scope.component.data.formulas = [];
         };
@@ -260,7 +273,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
                     var field = createFieldBasicFormat($scope.agrupador.name, false);
                     field.description = $scope.agrupador.description;
                     $scope.agrupador.field = field;
-                    $scope.agrupador.group = $scope.groups;
+                    $scope.agrupador.group = groupSelected;
                     $scope.component.data.formulas[i] = $scope.agrupador;
                     break;
                 }
@@ -270,7 +283,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             var field = createFieldBasicFormat($scope.agrupador.name, false);
             field.description = $scope.agrupador.description;
             $scope.agrupador.field = field;
-            $scope.agrupador.group = $scope.groups;
+            $scope.agrupador.group = groupSelected;
             $scope.component.data.formulas.push($scope.agrupador);
         }
         $scope.groups = [];
@@ -320,6 +333,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         };
         field['expression'] = '<%= ' + field.key.field + ' %>';
         field['name'] = label;
+        field['selected'] = true;
         return field;
     };
 

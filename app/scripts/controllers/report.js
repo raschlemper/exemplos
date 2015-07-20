@@ -2,7 +2,7 @@
 
 app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
     ReportService, MovimentoService, VisioService,
-    JsonService) {
+    JsonService, MessageService) {
 
     var index = 0;
     var registers = [];
@@ -28,13 +28,14 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
                 getVisio();
             })
             .catch(function(err) {
+                MessageService.danger('Erro ao recuperar dados do relatório: ' + err);
                 data = [];
             });
     }
 
     var getVisio = function() {
         VisioService.service.getByHashid($routeParams.hashid)
-        // JsonService.visioTest()
+/*        JsonService.visioTest()*/
             .then(function(data) {
                 visio = data[0];
                 $scope.visio = angular.copy(visio);
@@ -43,6 +44,7 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
                 $scope.pageSelected = $scope.pages[index];
             })
             .catch(function(err) {
+                MessageService.danger('Erro ao carregar relatório: ' + err);
                 layout = [];
             });
     }
