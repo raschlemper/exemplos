@@ -209,10 +209,6 @@
                                  "isKey": false,
                                  "type": "number",
                                  "label": "Conta",
-                                 "filter": [
-                                     "currency",
-                                     "R$ "
-                                 ],
                                  "field": "cd_key_field",
                                  "_id": "5567047ca0c28d0228cb10ca"
                              },
@@ -220,10 +216,6 @@
                                  "isKey": false,
                                  "type": "number",
                                  "label": "Conta",
-                                 "filter": [
-                                     "currency",
-                                     "R$ "
-                                 ],
                                  "field": "cd_key_field",
                                  "_id": "5567047ca0c28d0228cb10ca"
                              },
