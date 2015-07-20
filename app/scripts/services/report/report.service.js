@@ -99,7 +99,6 @@ app.factory("ReportNewService", function( ComponentService, LinkService, PageSer
 
     var page = function(visio, page) {
         visio.layout.containers = formatComponents(visio.layout.containers, page);
-        console.log(123, visio.layout);
         return visio;
     }
 
