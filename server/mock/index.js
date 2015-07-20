@@ -11,6 +11,7 @@
 // require('./movimento/movimento.mock'); 
 require('./campo/campo.mock'); 
 require('./component/component.mock'); 
+require('./movimento/movimento.mock'); 
 require('./container/container.mock'); 
 require('./template/template.mock'); 
 require('./entity/entity.mock'); 

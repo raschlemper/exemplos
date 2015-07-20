@@ -35,7 +35,7 @@ app.factory("FormatService", function(DataGrouperService) {
             var object = _.map(fieldsValue, function(fieldValue) {
                 var valueField = _.pick(value, fieldValue);
                 var obj = angular.copy(keys); 
-                obj[fieldNameFormat] = fieldValue; 
+                obj[fieldNameFormat] = field.name; 
                 obj[fieldValueFormat] = _.property(fieldValue)(valueField);
                 return obj;
             });
