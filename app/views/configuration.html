@@ -4,6 +4,10 @@
             <wizard configuracao="menus" steps="4" valid="isValid(cadastroForm.$valid)">
                 <step ordem="1" title="'Configuração da visão'">
                     <div class="col-md-6">
+                        <div class="form-group" ng-if="visio.hashid">
+                            <label for="codigo">Código:</label>
+                            <input id="codigo" type="text" class="form-control" name="codigo" ng-model="visio.hashid" readonly />
+                        </div>
                         <div class="form-group" ng-class="{'has-error': cadastroForm.nome.$invalid && !cadastroForm.nome.$pristine }">
                             <label for="nome">Visão:</label>
                             <input id="nome" type="text" class="form-control" name="nome" ng-model="visio.name" placeholder="Digite o nome da visão" required />
