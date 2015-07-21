@@ -251,7 +251,7 @@
                                                                                     Saldo
                                                                                 </td>
                                                                                 <td class="hidden-480">
-                                                                                    <span class="label label-sm label-success" style="margin:5px">{{field.group.name}}</span>
+                                                                                    <span class="label label-sm label-success" style="margin:5px; display:inline-block">{{field.group.name}}</span>
                                                                                 </td>
                                                                                 <td class="hidden-480">
                                                                                     <button class="btn btn-default btn-flat" ng-click="removeTotalizer(field)"><i class="icon-close"></i></button>
@@ -342,7 +342,7 @@
                                                                                     {{component.data.format.fieldValue.name}}
                                                                                 </td>
                                                                                 <td class="hidden-480" ng-if="component.data.format.fields">
-                                                                                    <span class="label label-sm label-success" style="margin:5px" ng-repeat="field in component.data.format.fields">{{field.name}}</span>
+                                                                                    <span class="label label-sm label-success" style="margin:5px; display:inline-block" ng-repeat="field in component.data.format.fields">{{field.name}}</span>
                                                                                 </td>
                                                                                 <td class="hidden-480">
                                                                                     <button class="btn btn-default btn-flat" ng-click="removeFormatter()"><i class="icon-close"></i></button>
@@ -376,7 +376,7 @@
                                                                             <label>Quais campos selecionados deseja agrupar?
                                                                             </label>
                                                                             <div class="form-inline">
-                                                                                <select ng-model="groupSelected" class="form-control" ng-options="selected.name for selected in selectedsFiltered">
+                                                                                <select ng-model="groupSelected" class="form-control" ng-options="label.name for label in campos">
                                                                                     <option></option>
                                                                                 </select>
                                                                                 <button class="btn btn-default" ng-click="addFieldFormat(groupSelected)"><i class="icon-plus"></i></button>
