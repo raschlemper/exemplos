@@ -270,7 +270,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         if ($scope.edit) {
             for (var i = $scope.component.data.formulas.length - 1; i >= 0; i--) {
                 if ($scope.component.data.formulas[i].alias === $scope.agrupador.alias) {
-                    var field = createFieldBasicFormat($scope.agrupador.name, false);
+                    var field = createFieldBasicFormat($scope.agrupador.name, false, true, 'number');
                     field.description = $scope.agrupador.description;
                     $scope.agrupador.field = field;
                     $scope.agrupador.group = groupSelected;
@@ -280,7 +280,7 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             };
         } else {
             $scope.agrupador.alias = "cd_totalizer_" + Math.floor(10000000000 + Math.random() * 90000000000);
-            var field = createFieldBasicFormat($scope.agrupador.name, false);
+            var field = createFieldBasicFormat($scope.agrupador.name, false, true, 'number');
             field.description = $scope.agrupador.description;
             $scope.agrupador.field = field;
             $scope.agrupador.group = groupSelected;
@@ -300,8 +300,8 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
             $scope.format = $scope.component.data.format;
         } else {
             $scope.component.data.format['type'] = format.type;
-            $scope.component.data.format['fieldName'] = createFieldBasicFormat(format.fieldName.key.label, true);
-            $scope.component.data.format['fieldValue'] = createFieldBasicFormat(format.fieldName.key.label, false);
+            $scope.component.data.format['fieldName'] = createFieldBasicFormat(format.fieldName.key.label, true, false, 'text');
+            $scope.component.data.format['fieldValue'] = createFieldBasicFormat(format.fieldValue.key.label, false, true, 'number');
             $scope.component.data.format['fields'] = $scope.formats;
         }
         $scope.formats = [];
@@ -310,27 +310,30 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
         $scope.setTab(3);
     };
 
-    var createFieldBasicFormat = function(label, isKey) {
+    var createFieldBasicFormat = function(label, isKey, filter, type) {
         var field = {};
         var hash = Math.floor(10000000000 + Math.random() * 90000000000);
         field['key'] = {
-            'isKey': isKey,
-            'type': "number",
-            'filter': ["currency",
-                "R$ "
-            ],
-            'label': label,
-            'field': "cd_format_key_" + hash
+            'isKey': false,
+            'type': type,
+            'label': label
         };
         field['value'] = {
-            'isKey': isKey,
-            'type': "number",
-            'filter': ["currency",
-                "R$ "
-            ],
-            'label': label,
-            'field': "cd_format_value_" + hash
+            'isKey': false,
+            'type': type,
+            'label': label
         };
+        if(filter){
+            field.key.filter = ["currency", "R$ "];
+            field.value.filter = ["currency", "R$ "];
+        }
+        if(isKey){
+            field.key.field = "cd_format_key_" + hash;
+            field.value.field = "cd_format_key_" + hash;
+        }else{
+            field.key.field = "cd_format_value_" + hash;
+            field.value.field = "cd_format_value_" + hash;
+        }
         field['expression'] = '<%= ' + field.key.field + ' %>';
         field['name'] = label;
         field['selected'] = true;
