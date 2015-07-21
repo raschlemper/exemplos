@@ -19,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="visio in filtered">
+                            <tr ng-repeat="visio in filtered | orderBy:order:reverse">
                                 <td>{{visio.name}}</td>
                                 <td>{{visio.description}}</td>
                                 <td>{{visio.hashid}}</td>
