@@ -32,7 +32,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'blockUIConf
     // $httpProvider.defaults.headers.common['Access-Control-Allow-Credentials'] = true;
 
     blockUIConfig.message = 'Carregando...';
-    blockUIConfig.delay = 100;
+    blockUIConfig.delay = 2000;
 
     $routeProvider
       .when('/', {
