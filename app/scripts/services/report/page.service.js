@@ -1,4 +1,4 @@
-app.factory("PageService", function(DataGrouperService) { 
+app.factory("PageService", ['DataGrouperService', function(DataGrouperService) { 
 
     var _page = {
         values: [],
@@ -33,4 +33,4 @@ app.factory("PageService", function(DataGrouperService) {
         page: page
     }
 
-});
+}]);

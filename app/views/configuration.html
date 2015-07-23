@@ -271,8 +271,8 @@
                                                                         <form id="totalizadorForm">
                                                                             <div class="form-group">
                                                                                 <label>Nome do campo:</label>
-                                                                                <input type="text" class="form-control" placeholder="Nome do campo" ng-model="agrupador.name" name="nome" required  ng-class="{'has-error': totalizadorForm.nome.$invalid && !totalizadorForm.nome.$pristine }" />
-                                                                                 <p ng-show="totalizadorForm.nome.$invalid && !totalizadorForm.nome.$pristine" class="help-block">O nome é obrigatório.</p>
+                                                                                <input type="text" class="form-control" placeholder="Nome do campo" ng-model="agrupador.name" name="nome" required ng-class="{'has-error': totalizadorForm.nome.$invalid && !totalizadorForm.nome.$pristine }" />
+                                                                                <p ng-show="totalizadorForm.nome.$invalid && !totalizadorForm.nome.$pristine" class="help-block">O nome é obrigatório.</p>
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label>Descrição:</label>
@@ -296,7 +296,7 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <button type="button" class="btn btn-primary"ng-disabled="cadastroForm.$invalid" ng-click="createGrouper(groupSelected)">Adicionar</button>
+                                                                                <button type="button" class="btn btn-primary" ng-disabled="cadastroForm.$invalid" ng-click="createGrouper(groupSelected)">Adicionar</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>
@@ -420,53 +420,6 @@
                 <step ordem="4" title="'Resumo'">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-8">
-                                <h4>Campos selecionados:</h4>
-                                <table class="table table-responsive table-bordered table-hover">
-                                    <thead>
-                                        <tr class="active">
-                                            <th>
-                                                Container
-                                            </th>
-                                            <th class="hidden-480">
-                                                Componentes
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="container in visio.layout.containers">
-                                            <td>
-                                                {{container.name}}
-                                            </td>
-                                            <td class="hidden-480">
-                                                <table class="table table-striped">
-                                                    <thead>
-                                                        <tr class="active">
-                                                            <th>
-                                                                Label
-                                                            </th>
-                                                            <th class="hidden-480">
-                                                                Campos
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr ng-repeat="component in container.components">
-                                                            <td class="hidden-480">{{component.label}}</td>
-                                                            <td class="hidden-480" ng-if="component.data.fields">
-                                                                <span class="label label-sm label-success" style="margin:5px; display: inline-block !important;" ng-repeat="field in component.data.fields">{{field.name}}</span>
-                                                            </td>
-                                                            <td class="hidden-480" ng-if="!component.data.fields">
-                                                                <span>Não possui</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                             <div class="col-xs-3">
                                 <div style="margin-left: -30px">
                                     <h4 style="margin-left:30px">Layout selecionado:</h4>
@@ -492,6 +445,59 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <h4>Campos selecionados:</h4>
+                                <table class="table table-responsive table-bordered table-hover">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>
+                                                Área
+                                            </th>
+                                            <th class="hidden-480">
+                                                Função
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="container in visio.layout.containers">
+                                            <td ng-if="container.type === 'header'">
+                                                Cabeçalho
+                                            </td>
+                                            <td ng-if="container.type === 'details'">
+                                                Detalhes
+                                            </td>
+                                            <td ng-if="container.type === 'footer'">
+                                                Rodapé
+                                            </td>
+                                            <td class="hidden-480">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr class="active">
+                                                            <th>
+                                                                Nome do componente
+                                                            </th>
+                                                            <th class="hidden-480">
+                                                                Campos
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="component in container.components">
+                                                            <td class="hidden-480">{{component.label}}</td>
+                                                            <td class="hidden-480" ng-if="component.data.fields">
+                                                                <span class="label label-sm label-success" style="margin:5px; display: inline-block !important;" ng-repeat="field in component.data.fields">{{field.name}}</span>
+                                                            </td>
+                                                            <td class="hidden-480" ng-if="!component.data.fields">
+                                                                <span>Não possui</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="row">

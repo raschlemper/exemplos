@@ -3,29 +3,29 @@
 
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Visio</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    
+    
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
+    <!-- build:css({.tmp,app}) styles/vendor.css -->
     <!-- bower:css -->
-    <!--     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" /> -->
     <link rel="stylesheet" href="bower_components/fuelux/dist/css/fuelux.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-treeview/dist/bootstrap-treeview.min.css">
     <link rel="stylesheet" href="bower_components/hover/css/hover-min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="bower_components/bootswatch/flatly/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-theme-bootswatch-flatly/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/animate.css/animate.css" >
     <link rel="stylesheet" href="bower_components/angular-block-ui/dist/angular-block-ui.css" />
     <link rel="stylesheet" href="bower_components/ngtoast/dist/ngToast.min.css">
-    <!-- endbower -->   
+    <!-- endbower --> 
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/docs.min.css">
-    <link rel="stylesheet" href="styles/bs-docs-sidebar.css">
-    <!-- <link rel="stylesheet" href="styles/breadcrumbs.css"> -->
+    <link rel="stylesheet" href="styles/bs-docs-sidebar.css"> 
     <!-- endbuild -->
 </head>
 
@@ -86,7 +86,8 @@
     ga('create', 'UA-XXXXX-X');
     ga('send', 'pageview');
     </script>
-    <!-- build:js(.) scripts/vendor.js -->
+
+    <!-- build:js({.tmp,app}) scripts/vendor.js --> 
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -105,8 +106,9 @@
     <script src="bower_components/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
     <script src="bower_components/angular-block-ui/dist/angular-block-ui.js"></script>
     <script src="bower_components/ngtoast/dist/ngToast.min.js"></script>
-    <!-- endbower -->
+    <!-- endbower --> 
     <!-- endbuild -->
+
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/configuration.js"></script>
@@ -142,7 +144,7 @@
     <script src="scripts/services/report/formatter.service.js"></script> 
     <script src="scripts/services/data-grouper.service.js"></script>
     <script src="scripts/services/message.service.js"></script>
-
+    <!-- endbuild -->
  <!--
     <script src="scripts/services/data-grouper.service.js"></script>
     <script src="scripts/services/report.service.js"></script>
@@ -151,7 +153,6 @@
     <script src="scripts/services/report-formula.service.js"></script>
     <script src="scripts/services/report-page.service.js"></script> -->
 
-    <!-- endbuild -->
 </body>
 
 </html>

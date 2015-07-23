@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory("JsonService", function($http, $q) {
+app.factory("JsonService", ['$http', '$q',  function($http, $q) {
 
     return {
 
@@ -88,4 +88,4 @@ app.factory("JsonService", function($http, $q) {
             return deferred.promise;
         }
     }
-});
+}]);

@@ -1,4 +1,4 @@
-app.factory("TemplateService", function($http, $q) {
+app.factory("TemplateService", ['$http', '$q',  function($http, $q) {
     var _optionPreview = {};
     var _configuration = {};
     var _templateService = {};
@@ -48,4 +48,4 @@ app.factory("TemplateService", function($http, $q) {
     return {
         service: _templateService
     }
-});
+}]);

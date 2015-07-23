@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService, MessageService) {
+app.controller('ConfigurationCtrl', ['$scope', '$filter', '$location', '$routeParams', '$window', 'TemplateService', 'JsonService', 'VisioService', 'EntityService', 'MessageService', function($scope, $filter, $location, $routeParams, $window, TemplateService, JsonService, VisioService, EntityService, MessageService) {
 
     $scope.visio = {};
     $scope.templates = [];
@@ -390,4 +390,4 @@ app.controller('ConfigurationCtrl', function($scope, $filter, $location, $routeP
 
     init();
 
-});
+}]);

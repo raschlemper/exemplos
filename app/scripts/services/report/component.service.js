@@ -1,4 +1,5 @@
-app.factory("ComponentService", function(DataGrouperService, PageService, FormatService, 
+app.factory("ComponentService", ['DataGrouperService', 'PageService', 'FormatService', 
+    'ConvertService', 'FormulaService', function(DataGrouperService, PageService, FormatService, 
     ConvertService, FormulaService) {     
 
     // TODO: Criar um service para colocar os métodos de recuperação e tratamento de campos 
@@ -87,4 +88,4 @@ app.factory("ComponentService", function(DataGrouperService, PageService, Format
         create: create
     }
 
-});
+}]);

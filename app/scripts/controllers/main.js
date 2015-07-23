@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the exemplosApp
  */
-app.controller('MainCtrl', function($scope, $location, $filter, VisioService, MessageService) {
+app.controller('MainCtrl', ['$scope', '$location', '$filter', 'VisioService', 'MessageService', function($scope, $location, $filter, VisioService, MessageService) {
 
     $scope.visios = [];
     $scope.totalItens = 0;
@@ -67,4 +67,4 @@ app.controller('MainCtrl', function($scope, $location, $filter, VisioService, Me
         var pagina = $scope.paginaAtual - 1;
         $scope.filtered = $filter('startPage')($scope.visios, pagina * $scope.totalPorPagina);
     }
-});
+}]);

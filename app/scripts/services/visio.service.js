@@ -1,4 +1,4 @@
-app.factory("VisioService", function($http, $q) {
+app.factory("VisioService", ['$http', '$q', 'SERVER', function($http, $q, SERVER) {
     var _visioService = {};
 
     _visioService.addVisio = function(visio, callback) {
@@ -65,4 +65,4 @@ app.factory("VisioService", function($http, $q) {
     return {
         service: _visioService
     }
-});
+}]);

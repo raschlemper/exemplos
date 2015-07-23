@@ -1,4 +1,4 @@
-app.factory("FormulaService", function(DataGrouperService) {
+app.factory("FormulaService", ['DataGrouperService', function(DataGrouperService) {
 
     var addfieldsFormula = function(data) {
         var fields = data.fields;
@@ -85,4 +85,4 @@ app.factory("FormulaService", function(DataGrouperService) {
     return {
         calculate: calculate
     }
-});
+}]);

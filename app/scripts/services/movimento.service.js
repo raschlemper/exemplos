@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory("MovimentoService", function($http, $q){
+app.factory("MovimentoService", ['$http', '$q',  function($http, $q){
 
     return {
 
@@ -37,4 +37,4 @@ app.factory("MovimentoService", function($http, $q){
       	}
 
     }
-});
+}]);

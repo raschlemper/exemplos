@@ -24,7 +24,7 @@ var app = angular.module('exemplosApp', [
   ]);
 
 
-app.config(function ($routeProvider, $locationProvider, $httpProvider, blockUIConfig) {
+app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'blockUIConfig', function ($routeProvider, $locationProvider, $httpProvider, blockUIConfig) {
     // $httpProvider.defaults.useXDomain = true;
     // $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost';
     // $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = ['GET, POST, OPTIONS, PUT, PATCH, DELETE'];
@@ -60,9 +60,9 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider, blockUICo
       });
 
       $httpProvider.interceptors.push('menuInterceptor');
-  })
+  }])
 
-  .factory('menuInterceptor', function ($location) {
+  .factory('menuInterceptor', ['$location', function ($location) {
     return {
       // Active menu
       request: function (config) {
@@ -72,7 +72,7 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider, blockUICo
         return config;
       }
     };
-  })
+  }])
 
 function chooseMenu(menu) {
   var menus = angular.element("#menu").children();

@@ -1,6 +1,8 @@
 'use strict';
 
-app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
+app.controller('ReportCtrl', ['$scope', '$filter', '$routeParams', '$location',
+    'ReportService', 'MovimentoService', 'VisioService',
+    'JsonService', 'MessageService', function($scope, $filter, $routeParams, $location,
     ReportService, MovimentoService, VisioService,
     JsonService, MessageService) {
 
@@ -56,4 +58,4 @@ app.controller('ReportCtrl', function($scope, $filter, $routeParams, $location,
 
     createReport();
 
-});
+}]);

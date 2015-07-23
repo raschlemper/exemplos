@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory("EntityService", function($http, $q) {
+app.factory("EntityService", ['$http', '$q',  function($http, $q) {
 
     return {
 
@@ -34,4 +34,4 @@ app.factory("EntityService", function($http, $q) {
         }
 
     }
-});
+}]);

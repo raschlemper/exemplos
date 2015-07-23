@@ -1,4 +1,4 @@
-app.factory("LinkService", function(DataGrouperService, ConvertService) { 
+app.factory("LinkService", ['DataGrouperService', 'ConvertService', function(DataGrouperService, ConvertService) { 
 
     var _link = {
         selected: [],
@@ -121,4 +121,4 @@ app.factory("LinkService", function(DataGrouperService, ConvertService) {
         link: link
     }
 
-});
+}]);

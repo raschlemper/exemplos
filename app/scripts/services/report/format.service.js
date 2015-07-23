@@ -1,4 +1,4 @@
-app.factory("FormatService", function(DataGrouperService) {
+app.factory("FormatService", ['DataGrouperService', function(DataGrouperService) {
 
     var addfieldsFormat = function(data) {
         var fields = data.fields;
@@ -95,4 +95,4 @@ app.factory("FormatService", function(DataGrouperService) {
     return {
         apply: apply
     }
-});
+}]);

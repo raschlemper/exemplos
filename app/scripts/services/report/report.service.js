@@ -1,4 +1,4 @@
-app.factory("ReportNewService", function( ComponentService, LinkService, PageService) {
+app.factory("ReportNewService", ['ComponentService', 'LinkService', 'PageService', function( ComponentService, LinkService, PageService) {
 
     var report = {};
     var link = {
@@ -112,4 +112,4 @@ app.factory("ReportNewService", function( ComponentService, LinkService, PageSer
         pages: pages,
         page: page
     }
-});
+}]);

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService, MovimentoService, VisioService, JsonService, MessageService) {
+app.controller('ReportNewCtrl', ['$scope', '$routeParams', 'ReportNewService', 'MovimentoService', 'VisioService', 'JsonService', 'MessageService', function($scope, $routeParams, ReportNewService, MovimentoService, VisioService, JsonService, MessageService) {
 
     var index = 0;
     var registers = [];
@@ -68,5 +68,5 @@ app.controller('ReportNewCtrl', function($scope, $routeParams, ReportNewService,
 
     createReport();
 
-});
+}]);
 

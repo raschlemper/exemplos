@@ -1,4 +1,4 @@
-app.factory("FormatterService", function(DataGrouperService) {
+app.factory("FormatterService", ['DataGrouperService', function(DataGrouperService) {
 
     var getValueKey = function(registers, keys) {
         var obj = {};
@@ -55,4 +55,4 @@ app.factory("FormatterService", function(DataGrouperService) {
         formatField: formatField,
         formatFields: formatFields
     }
-});
+}]);

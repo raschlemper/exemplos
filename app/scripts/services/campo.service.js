@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory("CampoService", function($http, $q){
+app.factory("CampoService", ['$http', '$q', function($http, $q){
 
     return {
 
@@ -20,4 +20,4 @@ app.factory("CampoService", function($http, $q){
       	}
 
     }
-});
+}]);

@@ -1,4 +1,4 @@
-app.factory("BlockService", function(blockUI, blockUIConfig, $timeout) {
+app.factory("BlockService", ['blockUI', 'blockUIConfig', '$timeout', function(blockUI, blockUIConfig, $timeout) {
     return {
         block: function(message) {
             blockUI.start(message);
@@ -14,4 +14,4 @@ app.factory("BlockService", function(blockUI, blockUIConfig, $timeout) {
 
         }
     }
-});
+}]);

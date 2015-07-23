@@ -1,4 +1,4 @@
-app.factory("MessageService", function(ngToast) {
+app.factory("MessageService", ['ngToast', function(ngToast) {
     return {
         success: function(message) {
             ngToast.success({content:'<i class="icon-check" style="margin-right:5px"></i> '+message, dismissOnTimeout:true});
@@ -13,4 +13,4 @@ app.factory("MessageService", function(ngToast) {
             ngToast.danger({content:'<i class="icon-close" style="margin-right:5px"></i> '+message, dismissOnTimeout:true}); 
         }
     }
-});
+}]);

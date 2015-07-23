@@ -1,4 +1,4 @@
-app.factory("ConvertService", function($filter, DataGrouperService) {
+app.factory("ConvertService", ['$filter', 'DataGrouperService', function($filter, DataGrouperService) {
 
     var getValueKey = function(registers, keys) {
         var obj = {};
@@ -65,4 +65,4 @@ app.factory("ConvertService", function($filter, DataGrouperService) {
         formatField: formatField,
         formatFields: formatFields
     }
-});
+}]);

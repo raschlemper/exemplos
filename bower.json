@@ -17,14 +17,14 @@
     "font-awesome": "~4.3.0",
     "hover": "*",
     "simple-line-icons": "~1.0.0",
-    "bootstrap-theme-bootswatch-flatly": "~1.0.2",
-    "bootswatch": "~3.3.4+1",
-    "animateCSS": "~1.2.1",
+    "bootstrap-theme-bootswatch-flatly": "^1.0.2",
+    "animate-css": "~1.2.1",
     "angular-bootstrap": "~0.13.0",
-    "owl.carousel": "*",
-    "ng-tiny-scrollbar": "~0.8.0",
     "angular-block-ui": "~0.2.0",
-    "ngtoast": "~1.5.4"
+    "ngtoast": "~1.5.4",
+    "animate-css": "~3.3.0",
+    "requirejs":"*",
+    "moment": "*"
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"

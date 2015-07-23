@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exemplosApp
  */
-app.controller('PreviewCtrl', function($scope, TemplateService, $location, $routeParams) {
+app.controller('PreviewCtrl', ['$scope', 'TemplateService', '$location', '$routeParams', function($scope, TemplateService, $location, $routeParams) {
 
     $scope.option = {};
     $scope.visio = {};
@@ -26,4 +26,4 @@ app.controller('PreviewCtrl', function($scope, TemplateService, $location, $rout
         "pagamento": "08/05/2015",
         "valor": "100,00"
     }
-});
+}]);
