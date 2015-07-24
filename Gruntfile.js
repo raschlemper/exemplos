@@ -256,7 +256,7 @@ module.exports = function(grunt) {
                         '<%= yeoman.dist %>/scripts/**/*.js',
                         '<%= yeoman.dist %>/styles/**/*.css',
                         '<%= yeoman.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
-                        '<%= yeoman.dist %>/fonts/**/*.{eot,ttf,woff,woff2,svg}'
+                        '<%= yeoman.dist %>/styles/fonts/*'
                     ]
                 }
             }
@@ -287,7 +287,7 @@ module.exports = function(grunt) {
             css: ['<%= yeoman.dist %>/styles/**/*.css'],
             js: ['<%= yeoman.dist %>/scripts/**/*.js'],
             options: {
-                assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/styles', '<%= yeoman.dist %>/images', '<%= yeoman.dist %>/fonts'],
+                assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/styles', '<%= yeoman.dist %>/images'],
                 patterns: {
                     js: [
                         [/(assets\/images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']
@@ -413,11 +413,8 @@ module.exports = function(grunt) {
                         '*.html',
                         'views/**/*.html',
                         'scripts/directives/**/*.html',
-                        'bower_components/bootstrap-theme-bootswatch-flatly/css/bootstrap.css',
-                        'bower_components/requirejs/require.js',
-                        'bower_components/moment/moment.js',
-                        'fonts/*',
-                        'images/**/*.{png,gif,webp,jpg,jpeg,svg}'
+                        'images/**/*.{png,gif,webp,jpg,jpeg,svg}',
+                        'styles/fonts/*'
                     ]
                 }, {
                     expand: true,

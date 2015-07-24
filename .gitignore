@@ -1,11 +1,7 @@
 ######################
-# Bower Components
-######################
-/app/bower_components
-######################
 # Project Specific
 ######################
-/dist
+/src/main/webapp/dist
 
 ######################
 # Node
