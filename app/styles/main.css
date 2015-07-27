@@ -17,6 +17,8 @@ a:hover, a:focus{
     text-decoration: none !important;
 }
 
+.modal {z-index: 1050;}
+
 @font-face {
   font-family: 'Glyphicons Halflings';
 

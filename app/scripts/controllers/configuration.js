@@ -84,7 +84,7 @@ app.controller('ConfigurationCtrl', ['$scope', '$filter', '$location', '$routePa
     };
 
     var carregaVisio = function() {
-        
+
         if ($routeParams.hashid) {
             VisioService.service.getByHashid($routeParams.hashid).then(function(data) {
                     $scope.visio = data[0];
@@ -298,6 +298,7 @@ app.controller('ConfigurationCtrl', ['$scope', '$filter', '$location', '$routePa
         }
         if ($scope.editFormat) {
             $scope.format = $scope.component.data.format;
+            $scope.component.data.format.fields = $scope.formats;
         } else {
             $scope.component.data.format['type'] = format.type;
             $scope.component.data.format['fieldName'] = createFieldBasicFormat(format.fieldName.key.label, true, false, 'text');

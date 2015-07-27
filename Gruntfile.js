@@ -415,9 +415,11 @@ module.exports = function(grunt) {
                         'views/**/*.html',
                         'scripts/directives/**/*.html',
                         'bower_components/bootstrap-theme-bootswatch-flatly/css/bootstrap.css',
+                        'bower_components/bootstrap/dist/css/bootstrap.css',
                         'bower_components/requirejs/require.js',
                         'bower_components/moment/moment.js',
                         'fonts/*',
+                        'data/**/*.json',
                         'images/**/*.{png,gif,webp,jpg,jpeg,svg}'
                     ]
                 }, {
