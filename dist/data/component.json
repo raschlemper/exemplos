@@ -1,0 +1,71 @@
+[{
+    "_id": "555f88eebe6354bb237607ec",
+    "label": "Foto",
+    "name": "foto",
+    "column": 4,
+    "line": 35,
+    "type": "image",
+    "data": {}
+}, {
+    "_id": "555f88eebe6354bb237607ed",
+    "label": "Conteúdo do cabeçalho",
+    "name": "headerContent",
+    "column": 8,
+    "line": 35,
+    "type": "list",
+    "data": {}
+}, {
+    "_id": "555f88eebe6354bb237607ee",
+    "label": "Detalhes",
+    "name": "details",
+    "column": 8,
+    "line": 25,
+    "type": "list",
+    "data": {}
+}, {
+    "_id": "555f88eebe6354bb237607ef",
+    "label": "Total",
+    "name": "total",
+    "column": 4,
+    "line": 25,
+    "type": "table",
+    "type": "list",
+    "data": {}
+}, {
+    "_id": "555f88eebe6354bb237607f0",
+    "label": "Rodapé",
+    "name": "footer",
+    "column": 12,
+    "line": 25,
+    "offsetLine": 1,
+    "data": {}
+}, {
+    "_id": "555f88eebe6354bb237607f1",
+    "label": "Conteúdo do cabeçalho",
+    "name": "headerContent",
+    "column": 12,
+    "line": 35,
+    "type": "list",
+    "data": {}
+}, {
+    "_id": "555f88eebe6354bb237607f2",
+    "label": "Detalhes",
+    "name": "details",
+    "column": 12,
+    "line": 25,
+    "data": {}
+}, {
+    "_id": "555f88eebe6354bb237607f3",
+    "label": "Detalhes",
+    "name": "details",
+    "column": 12,
+    "line": 60,
+    "data": {}
+}, {
+    "_id": "555f88eebe6354bb237607f4",
+    "label": "Detalhes",
+    "name": "details",
+    "column": 12,
+    "line": 85,
+    "data": {}
+}]

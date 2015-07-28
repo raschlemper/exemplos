@@ -1,0 +1,163 @@
+[{
+        "name": "Com título",
+        "type": "header",
+        "line": 35,
+        "column": 12,
+        "components": [{
+            "label": "Título",
+            "name": "title",
+            "column": 12,
+            "line": 17,
+            "offsetLine": 1,
+            "type": "title",
+            "data": {}
+        }, {
+            "label": "Conteúdo do cabeçalho",
+            "name": "headerContent",
+            "column": 12,
+            "line": 18,
+            "type": "list",
+            "data": {}
+        }]
+    },
+
+    {
+        "name": "Sem título",
+        "type": "header",
+        "line": 35,
+        "column": 12,
+        "components": [{
+            "label": "Conteúdo do cabeçalho",
+            "name": "headerContent",
+            "column": 12,
+            "type": "list",
+            "data": {}
+        }]
+    },
+
+    {
+        "name": "Com foto",
+        "type": "header",
+        "line": 35,
+        "column": 12,
+        "components": [{
+            "label": "Foto",
+            "name": "foto",
+            "column": 4,
+            "line": 35,
+            "type": "image",
+            "data": {}
+        }, {
+            "label": "Conteúdo do cabeçalho",
+            "name": "headerContent",
+            "column": 8,
+            "line": 35,
+            "type": "list",
+            "data": {}
+        }]
+    },
+
+    {
+        "name": "Em linhas",
+        "type": "details",
+        "line": 35,
+        "column": 12,
+        "components": [{
+            "label": "Detalhes",
+            "name": "detailsContent",
+            "column": 12,
+            "line": 35,
+            "type": "list",
+            "data": {}
+        }]
+    },
+
+    {
+        "name": "Em colunas",
+        "type": "details",
+        "line": 35,
+        "column": 12,
+        "components": [{
+            "label": "Detalhes",
+            "name": "detailsContent",
+            "column": 12,
+            "line": 35,
+            "type": "table",
+            "data": {}
+        }]
+    },
+
+    {
+        "name": "Abaixo",
+        "type": "footer",
+        "line": 35,
+        "column": 12,
+        "components": [{
+            "label": "Detalhes",
+            "name": "detailsContent",
+            "column": 12,
+            "line": 20,
+            "type": "list",
+            "data": {}
+        }, {
+            "label": "Rodapé",
+            "name": "footer",
+            "column": 12,
+            "line": 15,
+            "type": "list",
+            "data": {}
+        }]
+    },
+
+    {
+        "name": "Lateral",
+        "type": "footer",
+        "line": 35,
+        "column": 12,
+        "components": [{
+            "label": "Detalhes",
+            "name": "detailsContent",
+            "column": 8,
+            "line": 35,
+            "type": "list",
+            "data": {}
+        }, {
+            "label": "Rodapé",
+            "name": "footer",
+            "column": 4,
+            "line": 35,
+            "type": "list",
+            "data": {}
+        }]
+    },
+
+    {
+        "name": "Ambos",
+        "type": "footer",
+        "line": 35,
+        "column": 12,
+        "components": [{
+            "label": "Detalhes",
+            "name": "details",
+            "column": 8,
+            "line": 25,
+            "type": "list",
+            "data": {}
+        }, {
+            "label": "Total",
+            "name": "total",
+            "column": 4,
+            "line": 25,
+            "type": "table",
+            "data": {}
+        }, {
+            "label": "Rodapé",
+            "name": "footer",
+            "column": 12,
+            "line": 10,
+            "offsetLine": 1,
+            "type": "list",
+            "data": {}
+        }]
+    }
+]

@@ -1,0 +1,92 @@
+{
+
+    "instituicao": {
+        "name": "Instituição",
+        "key": ["cd_instituicao_ensino"],
+        "value": [{
+            "field": "nm_instituicao_ensino"
+        }],
+        "expression": "<%= nm_instituicao_ensino %>"
+    },
+
+    "curso": {
+        "name": "Curso",
+        "key": ["cd_tipo_curso"],
+        "value": [{
+            "field": "ds_tipo_curso"
+        }],
+        "expression": "<%= ds_tipo_curso %>"
+    },
+
+    "serie": {
+        "name": "Série",
+        "key": ["cd_curso_instituicao"],
+        "value": [{
+            "field": "cd_curso_instituicao"
+        }, {
+            "field": "nm_curso"
+        }],
+        "expression": "<%= cd_curso_instituicao %> - <%= nm_curso %>"
+    },
+
+    "ano": {
+        "name": "Ano/Semestre",
+        "key": ["nr_ano", "nr_semestre"],
+        "value": [{
+            "field": "nr_ano"
+        }, {
+            "field": "nr_semestre"
+        }],
+        "expression": "<%= nr_ano %> / <%= nr_semestre %>"
+    },
+
+    "aluno": {
+        "name": "Aluno",
+        "key": ["cd_aluno"],
+        "value": [{
+            "field": "nm_aluno"
+        }],
+        "expression": "<%= nm_aluno %>"
+    },
+
+    "vencimento": {
+        "name": "Vencimento",
+        "key": ["dt_vencimento"],
+        "value": [{
+            "field": "dt_vencimento",
+            "filter": ["date", "dd/MM/yyyy"]
+        }],
+        "expression": "<%= dt_vencimento %>"
+    },
+
+    "pagamento": {
+        "name": "Pagamento",
+        "key": ["dt_pagamento"],
+        "value": [{
+            "field": "dt_pagamento",
+            "filter": ["date", "dd/MM/yyyy"]
+        }],
+        "expression": "<%= dt_pagamento %>"
+    },
+
+    "valor": {
+        "name": "Valor",
+        "key": ["previsao_confirmado"],
+        "value": [{
+            "field": "previsao_confirmado",
+            "filter": ["currency", "R$ "]
+        }],
+        "expression": "<%= previsao_confirmado %>"
+    },
+
+    "saldo": {
+        "name": "Saldo",
+        "key": ["previsao_confirmado"],
+        "value": [{
+            "field": "previsao_confirmado",
+            "filter": ["currency", "R$ "]
+        }],
+        "expression": "<%= previsao_confirmado %>"
+    }
+
+}

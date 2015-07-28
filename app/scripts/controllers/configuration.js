@@ -344,6 +344,8 @@ app.controller('ConfigurationCtrl', ['$scope', '$filter', '$location', '$routePa
     $scope.updateTotalizer = function(totalizer) {
         $scope.agrupador = totalizer;
         $scope.groups = totalizer.group;
+        $scope.groupSelected = totalizer.group;
+        console.log($scope.groupSelected);
         $scope.edit = true;
         $scope.setTab(2);
     };
@@ -355,9 +357,29 @@ app.controller('ConfigurationCtrl', ['$scope', '$filter', '$location', '$routePa
         $scope.setTab(4);
     };
 
-    $scope.setTab = function(tabId) {
+    $scope.setTab = function(tabId, limpaForm) {
+        if(limpaForm){
+          $scope.formats = [];
+          $scope.editFormat = false;
+          $scope.format = {};
+          $scope.groups = [];
+          $scope.edit = false;
+          $scope.agrupador = {};
+          $scope.groupSelected = {};
+        }
         $scope.tab = tabId;
     };
+
+    $scope.closeTableConfig = function(){
+      $scope.formats = [];
+      $scope.editFormat = false;
+      $scope.format = {};
+      $scope.groups = [];
+      $scope.edit = false;
+      $scope.agrupador = {};
+      $scope.groupSelected = {};
+      MessageService.success('Campos salvos com sucesso!');
+    }
 
     $scope.isSet = function(tabId) {
         return $scope.tab === tabId;

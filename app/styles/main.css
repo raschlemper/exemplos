@@ -26,6 +26,10 @@ a:hover, a:focus{
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
+.modal-backdrop{
+  position: fixed !important;
+}
+
 .wide_buttons .button{
   width: 100%;
   height: 100%;
@@ -217,6 +221,7 @@ body {
 
 .pontilhado {
     border: 1px dashed #000;
+    text-align:center;
     background-color: #FFF;
     padding: 10px;
     margin-bottom: 10px;

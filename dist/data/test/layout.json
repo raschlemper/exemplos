@@ -1,0 +1,50 @@
+{
+    "title": "Relatório de Movimentação Financeira",
+    "filter": [ "instituicao", "curso", "serie" ],
+    "containers": [
+        {   
+            "ordem": 1, 
+            "components": [ 
+                {   
+                    "codigo": 1,
+                    "type": "image", 
+                    "path": "image/yeoman.png"
+                }, 
+                {
+                    "codigo": 2,
+                    "type": "plan", 
+                    "fields": [ "instituicao", "curso", "serie" ],
+                    "depedency": 0 
+                }    
+            ] 
+        },
+        {   "ordem": 2, 
+            "components": [ 
+                {   
+                    "codigo": 3,
+                    "type": "table", 
+                    "fields": [ "ano", "aluno", "vencimento", "pagamento", "valor" ],
+                    "depedency": 2
+                },  
+                {   
+                    "codigo": 4,
+                    "type": "rest", 
+                    "fields": [ "ano", "aluno", "vencimento", "pagamento", "valor" ],
+                    "groups": [ "saldo" ],
+                    "depedency": 3
+                }  
+            ] 
+        },
+        {   "ordem": 3, 
+            "components": [ 
+                {   
+                    "codigo": 5,
+                    "type": "table", 
+                    "fields": [ "ano", "aluno" ],
+                    "groups": [ "saldo" ],
+                    "depedency": 2
+                }  
+            ] 
+        }
+    ]
+}

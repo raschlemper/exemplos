@@ -1,0 +1,361 @@
+ [{
+     "_id": "556899eece1be5e41e7658da",
+     "name": "Visão Teste Completo",
+     "description": "Este teste possui todos os campos preenchidos.",
+     "createDate": "2015-05-29T16:55:10.875Z",
+     "hashid": 82773873442,
+     "layout": {
+         "name": "Layout master",
+         "description": "Descrição",
+         "templateId": "555e430d923e6f18206dde3a",
+         "containers": [{
+             "components": [{
+                 "data": {
+                     "path": "https://blog.openshift.com/wp-content/uploads/imported/yeoman-logo.png"
+                 },
+                 "type": "image",
+                 "line": 35,
+                 "column": 4,
+                 "name": "foto",
+                 "label": "Foto",
+                 "_id": "555f88eebe6354bb237607ec"
+             }, {
+                 "data": {
+                     "fields": [{
+                         "selected": true,
+                         "key": [{
+                             "isKey": true,
+                             "type": "codigo",
+                             "label": "Código da instituição de ensino",
+                             "field": "cd_instituicao_ensino",
+                             "_id": "55670754fb32cea14217746e"
+                         }],
+                         "value": [{
+                             "isKey": false,
+                             "type": "text",
+                             "label": "Nome da instituição de ensino",
+                             "field": "nm_instituicao_ensino",
+                             "_id": "55670754fb32cea14217746f"
+                         }],
+                         "__v": 0,
+                         "expression": "<%= nm_instituicao_ensino %>",
+                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                         "order": 1,
+                         "name": "Instituição",
+                         "_id": "555f17bf7d9f9062787ebdc7"
+                     }, {
+                         "selected": true,
+                         "key": [{
+                             "isKey": true,
+                             "type": "codigo",
+                             "label": "Código do tipo de curso",
+                             "field": "cd_tipo_curso",
+                             "_id": "55670754fb32cea142177470"
+                         }],
+                         "value": [{
+                             "isKey": false,
+                             "type": "text",
+                             "label": "Descrição do tipo de curso",
+                             "field": "ds_tipo_curso",
+                             "_id": "55670754fb32cea142177471"
+                         }],
+                         "__v": 0,
+                         "expression": "<%= ds_tipo_curso %>",
+                         "description": "Campo refere-se ao tipo de curso registrado no sistema.",
+                         "order": 2,
+                         "name": "Curso",
+                         "_id": "555f17bf7d9f9062787ebdc8"
+                     }, {
+                         "selected": true,
+                         "key": [{
+                             "isKey": true,
+                             "type": "codigo",
+                             "label": "Código do Curso/Instituição",
+                             "field": "cd_curso_instituicao",
+                             "_id": "55670754fb32cea142177474"
+                         }],
+                         "value": [{
+                             "isKey": true,
+                             "type": "codigo",
+                             "label": "Código do Curso/Instituição",
+                             "field": "cd_curso_instituicao",
+                             "_id": "55670754fb32cea142177474"
+                         }, {
+                             "isKey": false,
+                             "type": "text",
+                             "label": "Nome do Curso/Instituição",
+                             "field": "nm_curso",
+                             "_id": "55670754fb32cea142177473"
+                         }],
+                         "__v": 0,
+                         "expression": "<%= cd_curso_instituicao %> - <%= nm_curso %>",
+                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                         "order": 4,
+                         "name": "Série",
+                         "_id": "555f17bf7d9f9062787ebdc9"
+                     }, {
+                         "selected": true,
+                         "key": [{
+                             "isKey": false,
+                             "type": "date",
+                             "label": "Ano",
+                             "field": "nr_ano",
+                             "_id": "55670754fb32cea14217746c"
+                         }, {
+                             "isKey": false,
+                             "type": "number",
+                             "label": "Semestre",
+                             "field": "nr_semestre",
+                             "_id": "55670754fb32cea14217746d"
+                         }],
+                         "value": [{
+                             "isKey": false,
+                             "type": "date",
+                             "label": "Ano",
+                             "field": "nr_ano",
+                             "_id": "55670754fb32cea14217746c"
+                         }, {
+                             "isKey": false,
+                             "type": "number",
+                             "label": "Semestre",
+                             "field": "nr_semestre",
+                             "_id": "55670754fb32cea14217746d"
+                         }],
+                         "__v": 0,
+                         "expression": "<%= nr_ano %> / <%= nr_semestre %>",
+                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                         "order": 3,
+                         "name": "Ano/Semestre",
+                         "_id": "555f17bf7d9f9062787ebdca"
+                     }]
+                 },
+                 "type": "list",
+                 "line": 35,
+                 "column": 8,
+                 "name": "headerContent",
+                 "label": "Conteúdo do cabeçalho",
+                 "_id": "555f88eebe6354bb237607ed"
+             }],
+             "__v": 0,
+             "column": 12,
+             "line": 35,
+             "type": "header",
+             "name": "Com foto",
+             "_id": "555b24e0a209f0690f4c7fba"
+         }, {
+             "components": [{
+                 "data": {
+                     "fields": [{
+                         "selected": true,
+                         "key": [{
+                             "isKey": true,
+                             "type": "codigo",
+                             "label": "Código do aluno",
+                             "field": "cd_aluno",
+                             "_id": "55670754fb32cea142177477"
+                         }],
+                         "value": [{
+                             "isKey": false,
+                             "type": "text",
+                             "label": "Nome do aluno",
+                             "field": "nm_aluno",
+                             "_id": "55670754fb32cea142177478"
+                         }],
+                         "__v": 0,
+                         "expression": "<%= nm_aluno %>",
+                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                         "order": 5,
+                         "name": "Aluno",
+                         "_id": "555f17bf7d9f9062787ebdcb"
+                     }, {
+                         "selected": true,
+                         "key": [{
+                             "isKey": false,
+                             "filter": [
+                                 "date",
+                                 "dd/MM/yyyy"
+                             ],
+                             "type": "date",
+                             "label": "Data de vencimento",
+                             "field": "dt_vencimento",
+                             "_id": "55670754fb32cea14217747b"
+                         }],
+                         "value": [{
+                             "isKey": false,
+                             "filter": [
+                                 "date",
+                                 "dd/MM/yyyy"
+                             ],
+                             "type": "date",
+                             "label": "Data de vencimento",
+                             "field": "dt_vencimento",
+                             "_id": "55670754fb32cea14217747b"
+                         }],
+                         "__v": 0,
+                         "expression": "<%= dt_vencimento %>",
+                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                         "order": 6,
+                         "name": "Vencimento",
+                         "_id": "555f17bf7d9f9062787ebdcc"
+                     }, {
+                         "selected": true,
+                         "key": [{
+                             "isKey": false,
+                             "type": "number",
+                             "label": "Previsão confirmada",
+                             "filter": [
+                                 "currency",
+                                 "R$ "
+                             ],
+                             "field": "previsao_confirmado",
+                             "_id": "5567047ca0c28d0228cb09ca"
+                         }],
+                         "value": [{
+                             "isKey": false,
+                             "type": "number",
+                             "label": "Previsão confirmada",
+                             "filter": [
+                                 "currency",
+                                 "R$ "
+                             ],
+                             "field": "previsao_confirmado",
+                             "_id": "5567047ca0c28d0228cb09ca"
+                         }],
+                         "__v": 0,
+                         "expression": "<%= previsao_confirmado %>",
+                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                         "order": 8,
+                         "name": "Previsão confirmada",
+                         "_id": "555f17bf7d9f9062787ebdce"
+                     }],
+                     "groups": [{
+                         "selected": true,
+                         "formula": "rest",
+                         "key": [{
+                             "isKey": false,
+                             "type": "number",
+                             "label": "Previsão confirmada",
+                             "filter": [
+                                 "currency",
+                                 "R$ "
+                             ],
+                             "field": "previsao_confirmado",
+                             "_id": "5567047ca0c28d0228cb09ca"
+                         }],
+                         "value": [{
+                             "isKey": false,
+                             "type": "number",
+                             "label": "Previsão confirmada",
+                             "filter": [
+                                 "currency",
+                                 "R$ "
+                             ],
+                             "field": "previsao_confirmado",
+                             "_id": "5567047ca0c28d0228cb09ca"
+                         }],
+                         "__v": 0,
+                         "expression": "<%= previsao_confirmado %>",
+                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                         "order": 8,
+                         "name": "Previsão confirmada",
+                         "_id": "555f17bf7d9f9062787ebdce"
+                     }]
+                 },
+                 "type": "table",
+                 "line": 25,
+                 "column": 8,
+                 "name": "details",
+                 "label": "Detalhes",
+                 "_id": "555f88eebe6354bb237607ee"
+             }],
+             "__v": 0,
+             "column": 12,
+             "line": 35,
+             "type": "details",
+             "name": "Movimentos",
+             "_id": "555b24e0a209f0690f4c7fbb"
+         }, {
+             "components": [{
+                 "data": {
+                     "fields": [{
+                         "selected": true,
+                         "key": [{
+                             "isKey": true,
+                             "type": "codigo",
+                             "label": "Código do aluno",
+                             "field": "cd_aluno",
+                             "_id": "55670754fb32cea142177477"
+                         }],
+                         "value": [{
+                             "isKey": false,
+                             "type": "text",
+                             "label": "Nome do aluno",
+                             "field": "nm_aluno",
+                             "_id": "55670754fb32cea142177478"
+                         }],
+                         "__v": 0,
+                         "expression": "<%= nm_aluno %>",
+                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                         "order": 5,
+                         "name": "Aluno",
+                         "_id": "555f17bf7d9f9062787ebdcb"
+                     }],
+                     "groups": [{
+                         "selected": true,
+                         "formula": "sum",
+                         "key": [{
+                             "isKey": false,
+                             "type": "number",
+                             "label": "Previsão confirmada",
+                             "filter": [
+                                 "currency",
+                                 "R$ "
+                             ],
+                             "field": "previsao_confirmado",
+                             "_id": "5567047ca0c28d0228cb09ca"
+                         }],
+                         "value": [{
+                             "isKey": false,
+                             "type": "number",
+                             "label": "Previsão confirmada",
+                             "filter": [
+                                 "currency",
+                                 "R$ "
+                             ],
+                             "field": "previsao_confirmado",
+                             "_id": "5567047ca0c28d0228cb09ca"
+                         }],
+                         "__v": 0,
+                         "expression": "<%= previsao_confirmado %>",
+                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                         "order": 8,
+                         "name": "Previsão confirmada",
+                         "_id": "555f17bf7d9f9062787ebdce"
+                     }]
+                 },
+                 "type": "table",
+                 "offsetLine": 1,
+                 "line": 25,
+                 "column": 12,
+                 "name": "footer",
+                 "label": "Rodapé",
+                 "_id": "555f88eebe6354bb237607f0"
+             }],
+             "__v": 0,
+             "column": 12,
+             "line": 35,
+             "type": "footer",
+             "name": "Saldos",
+             "_id": "555b24e0a209f0690f4c7fbc"
+         }],
+         "configuration": {
+             "preview": {
+                 "lineHeight": 2
+             },
+             "full": {
+                 "lineHeight": 15
+             }
+         }
+     },
+     "__v": 0
+ }]

@@ -1,0 +1,355 @@
+[{
+    "_id": "55670754fb32cea142177466",
+    "field": "ic_tipo_documento",
+    "label": "Tipo do documento",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea142177467",
+    "field": "id_mensalidade",
+    "label": "Id da mensalidade",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea142177468",
+    "field": "nr_documento",
+    "label": "Número do documento",
+    "type": "codigo",
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177469",
+    "field": "nr_titulo",
+    "label": "Número do título",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea14217746a",
+    "field": "sequencia_titulo",
+    "label": "Sequência do título",
+    "type": "codigo",
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217746b",
+    "field": "id_estrutura_servico",
+    "label": "Id estrutura do serviço",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea14217746c",
+    "field": "nr_ano",
+    "label": "Ano",
+    "type": "date",
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217746d",
+    "field": "nr_semestre",
+    "label": "Número do semestre",
+    "type": "codigo",
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217746e",
+    "field": "cd_instituicao_ensino",
+    "label": "Código da Instituição de ensino",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea14217746f",
+    "field": "nm_instituicao_ensino",
+    "label": "Nome da Instituição de ensino",
+    "type": "text",
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177470",
+    "field": "cd_tipo_curso",
+    "label": "Código Tipo de Curso",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea142177471",
+    "field": "ds_tipo_curso",
+    "label": "Descrição do tipo de curso",
+    "type": "text",
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177472",
+    "field": "cd_curso",
+    "label": "Código do curso",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea142177473",
+    "field": "nm_curso",
+    "label": "Nome do curso",
+    "type": "text",
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177474",
+    "field": "cd_curso_instituicao",
+    "label": "Código da relação Curso/Instituição",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea142177475",
+    "field": "id_tipo_receita_despesa",
+    "label": "Id tipo receita despesa",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea142177476",
+    "field": "ds_tipo_receita_despesa",
+    "label": "Descrição do tipo de receita despesa",
+    "type": "text",
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177477",
+    "field": "cd_aluno",
+    "label": "Código do aluno",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea142177478",
+    "field": "nm_aluno",
+    "label": "Nome do aluno",
+    "type": "text",
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177479",
+    "field": "id_responsavel_financeiro",
+    "label": "Id do responsável financeiro",
+    "type": "codigo",
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea14217747a",
+    "field": "nm_responsavel_financeiro",
+    "label": "Nome do responsável financeiro",
+    "type": "text",
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217747b",
+    "field": "dt_vencimento",
+    "label": "Data de vencimento",
+    "type": "date",
+    "filter": ["date", "dd/MM/yyyy"],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217747c",
+    "field": "dt_pagamento",
+    "label": "Data de pagamento",
+    "type": "date",
+    "filter": ["date", "dd/MM/yyyy"],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217747d",
+    "field": "caixa",
+    "label": "Caixa",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217747e",
+    "field": "banco",
+    "label": "Banco",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "filter": ["currency", "R$ "],
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea14217747f",
+    "field": "ajuste",
+    "label": "Ajuste",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "filter": ["currency", "R$ "],
+    "isKey": true
+}, {
+    "_id": "55670754fb32cea142177480",
+    "field": "previsao_nao_confirmado",
+    "label": "Previsão não confirmada",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177481",
+    "field": "previsao_confirmado",
+    "label": "Previsão confirmada",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177482",
+    "field": "previsao_desconto_nao_confirmado",
+    "label": "Previsão de desconto não confirmado",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177483",
+    "field": "previsao_desconto_confirmado",
+    "label": "Previsão de desconto confirmado",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177484",
+    "field": "desconto_concedido",
+    "label": "Desconto concedido",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177485",
+    "field": "juros_calculado",
+    "label": "Juros calculado",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177486",
+    "field": "multa_calculado",
+    "label": "Multa calculado",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177487",
+    "field": "nota_promissoria",
+    "label": "Nota promissória",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177488",
+    "field": "fies",
+    "label": "FIES",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177489",
+    "field": "cobranca",
+    "label": "Cobrança",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217748a",
+    "field": "dif_nao_confirmado",
+    "label": "Dif não confirmada",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217748b",
+    "field": "perdas",
+    "label": "Perdas",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217748c",
+    "field": "dinheiro",
+    "label": "Dinheiro",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217748d",
+    "field": "cartao_debito",
+    "label": "Cartão de débito",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217748e",
+    "field": "cartao_credito",
+    "label": "Cartão de crédito",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217748f",
+    "field": "cheque",
+    "label": "Cheque",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177490",
+    "field": "cheque_pre",
+    "label": "Cheque pré",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177491",
+    "field": "bolsa_condicional_nao_confirmado",
+    "label": "Bolsa condicional não confirmada",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177492",
+    "field": "bolsa_incondicional_nao_confirmado",
+    "label": "Bolsa incondicional não confirmada",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177493",
+    "field": "bolsa_condicional_confirmado",
+    "label": "Bolsa condicional confirmada",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177494",
+    "field": "bolsa_incondicional_confirmado",
+    "label": "Bolsa incondicional confirmada",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177495",
+    "field": "previsao_diversos_nao_confirmado",
+    "label": "Previsão de diversos não confirmado",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177496",
+    "field": "previsao_diversos_confirmado",
+    "label": "Previsão de diversos confirmado",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {	
+    "_id": "55670754fb32cea142177497",
+    "field": "dif_confirmado",
+    "label": "Dif confirmada",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177498",
+    "field": "desconto_calculado",
+    "label": "Desconto calculado",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea142177499",
+    "field": "permuta",
+    "label": "Permuta",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}, {
+    "_id": "55670754fb32cea14217749a",
+    "field": "desconto_nao_previsto",
+    "label": "Desconto não previsto",
+    "type": "number",
+    "filter": ["currency", "R$ "],
+    "isKey": false
+}]
